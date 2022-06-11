@@ -1,0 +1,27 @@
+// IMPORTING GLOBAL VARIABLES AND MIXINS
+@import "../../../styles/mixins.scss";
+@import "../../../styles/extends.scss";
+
+.lang {
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+  img {
+    width: 25px;
+    height: 20px;
+    border-radius: 3px;
+    margin: 0 10px;
+  }
+  h6 {
+    margin: 0;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  i {
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  .dropdown {
+    @extend %dropdown;
+  }
+}
