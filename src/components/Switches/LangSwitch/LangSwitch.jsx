@@ -46,12 +46,11 @@ const LangSwitch = () => {
     <div className={cls.lang}>
       <div className="dropdown">
         <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          {/* {lang === 'en' ? 'English' : 'Arabic'} */}
-          Language
+          {cookie.get('layaneduLang') === 'en' ? 'English' : 'العربية'}
         </button>
         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li onClick={() => switchLang('en')}>English</li>
-          <li onClick={() => switchLang('ar')}>Arabic</li>
+          <li onClick={() => switchLang('ar')}>العربية</li>
         </ul>
       </div>
     </div>

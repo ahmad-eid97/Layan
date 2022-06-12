@@ -1,0 +1,89 @@
+@import '../../styles/extends.scss';
+
+.navbar {
+  .topNav {
+    background-color: var(--main-color);
+    color: #fff;
+    padding: 10px 0;
+    div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      li {
+        display: inline-block;
+        padding: 0px 8px;
+        border-left: 1px solid #fff;
+        font-size: 0.9rem;
+        cursor: pointer;
+        &:hover {
+          color: var(--secondary-color);
+        }
+      }
+    }
+  }
+
+  .navLinks {
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 0;
+    div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .icons {
+      i {
+        font-size: 0.9rem;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        border: 1px solid #000;
+        display: grid;
+        place-items: center;
+        margin: 0 2px;
+        cursor: pointer;
+        &:hover {
+          color: var(--main-color);
+          border-color: var(--main-color);
+        }
+      }
+    }
+
+    button {
+      @extend %btn;
+      background-color: var(--secondary-color);
+      border-color: var(--secondary-color);
+      color: #000;
+      transition: all 0.3s ease-in-out;
+      margin-right: 20px;
+      &:hover {
+        background-color: transparent;
+        border-color: var(--secondary-color);
+        color: var(--secondary-color);
+      }
+    }
+
+    ul {
+      margin: 0;
+      li {
+        display: inline-block;
+        padding: 0px 8px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        font-weight: 600;
+        &:hover {
+          color: var(--main-color);
+        }
+      }
+    }
+
+    img {
+      width: 100px;
+    }
+  }
+}

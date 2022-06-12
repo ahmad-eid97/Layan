@@ -1,12 +1,8 @@
 import { useState, useEffect } from 'react';
 
-import LangSwitch from './components/Switches/LangSwitch/LangSwitch';
+import Navbar from './components/Navbar/Navbar';
 
 import { useTranslation } from 'react-i18next';
-
-import Cookies from 'universal-cookie';
-
-const cookies = new Cookies();
 
 function App() {
   // COMPONENT STATES
@@ -19,9 +15,8 @@ function App() {
 
   return (
     <div className="App" id={lang}>
-      <h1><i className="fa-light fa-house-user"></i>{t('analytics.welcomeText')}</h1>
 
-      <LangSwitch />
+      <Navbar />
       
     </div>
   );

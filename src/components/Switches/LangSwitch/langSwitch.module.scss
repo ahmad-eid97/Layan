@@ -3,25 +3,25 @@
 @import "../../../styles/extends.scss";
 
 .lang {
-  display: flex;
-  align-items: center;
-  margin: 0 10px;
-  img {
-    width: 25px;
-    height: 20px;
-    border-radius: 3px;
-    margin: 0 10px;
+  button {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    font-size: 0.9rem;
+    // color: var(--secondary-color);
+    &:hover, &:focus {
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+    }
   }
-  h6 {
-    margin: 0;
-    font-weight: 500;
-    text-transform: uppercase;
-  }
-  i {
-    margin: 0 10px;
-    cursor: pointer;
-  }
-  .dropdown {
-    @extend %dropdown;
+  ul {
+    padding: 10px !important;
+    li {
+      display: block !important;
+      &:hover {
+        color: var(--main-color) !important;
+      }
+    }
   }
 }
