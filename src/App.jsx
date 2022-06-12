@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import Navbar from './components/Navbar/Navbar';
+import AllRoutes from './allRoutes/AllRoutes';
 
 import { useTranslation } from 'react-i18next';
 
@@ -17,6 +18,8 @@ function App() {
     <div className="App" id={lang}>
 
       <Navbar />
+
+      <AllRoutes />
       
     </div>
   );

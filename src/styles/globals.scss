@@ -25,17 +25,12 @@ $p: 1rem;
   margin: 0;
 }
 
-// *:not(img):not(i):not(.MuiTooltip-popper):not(.MuiTooltip-popper *) {
-//   transition: all 0.2s ease-in-out;
-// }
-
 html,
 body {
   height: 100%;
-  // font-family: IBMPlexSansArabic;
   font-family: 'Almarai', sans-serif;
-  // font-family: 'IBM Plex Sans Arabic', sans-serif;
   color: var(--text-color);
+  overflow-x: hidden;
 }
 
 body {
@@ -161,12 +156,12 @@ img {
 /*****************************************\ Selection Reset \**************************************/
 
 ::selection {
-  background: $mainColor;
+  background: var(--main-color);
   color: #fff;
 }
 
 ::-moz-selection {
-  background: $mainColor;
+  background: var(--main-color);
   color: #fff;
 }
 
@@ -179,8 +174,8 @@ img {
 ::-webkit-scrollbar-thumb {
   width: 7px;
   height: 7px;
-  border-radius: 5px;
-  background-color: rgba($color: $mainColor, $alpha: 1);
+  border-radius: 0px;
+  background-color: var(--main-color);
 }
 
 #ar {

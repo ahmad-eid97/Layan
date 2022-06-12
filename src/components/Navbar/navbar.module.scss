@@ -5,7 +5,7 @@
   .topNav {
     background-color: var(--main-color);
     color: #fff;
-    padding: 10px 0;
+    padding: 5px 0;
     div {
       display: flex;
       justify-content: space-between;
@@ -30,7 +30,7 @@
 
   .navLinks {
     border-bottom: 1px solid var(--border-color);
-    padding: 10px 0;
+    // padding: 10px 0;
     div {
       display: flex;
       justify-content: space-between;
@@ -83,8 +83,12 @@
       }
     }
 
-    img {
-      width: 100px;
+    .logo {
+      padding: 5px 0;
+      img {
+        width: 100px;
+      }
+
     }
   }
 

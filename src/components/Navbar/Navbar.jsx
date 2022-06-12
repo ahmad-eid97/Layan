@@ -43,7 +43,9 @@ const Navbar = () => {
 
         <div className='container'>
 
-          <img src="/assets/images/logo.png" alt="" />
+          <div className={cls.logo}>
+            <img src="/assets/images/logo.png" alt="logoImage" />
+          </div>
 
           <ul>
             <li>خطوات الدراسة</li>
