@@ -15,7 +15,7 @@ const MobSidebar = ({ mobSidebar, setMobSidebar }) => {
 
       <div className={`${cls.mobSidebar} ${cls[i18n.language]}`} sx={{ bgcolor: 'background.secondary' }}>
 
-        <div className={cls.mobSidebar__mobileSearch} sx={{bgcolor: 'background.default'}}>
+        <div className={cls.mobSidebar__mobileSwitch} sx={{bgcolor: 'background.default'}}>
           <LangSwitch />
           <i className="fa-light fa-xmark" onClick={() => setMobSidebar(false)}></i>
         </div>
