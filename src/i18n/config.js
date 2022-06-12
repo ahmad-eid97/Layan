@@ -17,7 +17,7 @@ const cookie = new Cookies()
 const currentLang = cookie.get('marketyLang')
 
 i18n.use(initReactI18next).init({
-  fallbackLng: 'en',
+  fallbackLng: 'ar',
   lng: currentLang,
   resources: {
     en: {

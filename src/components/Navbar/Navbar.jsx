@@ -1,18 +1,29 @@
+import { useState } from 'react';
+
+import MobSidebar from './MobSidebar/MobSidebar';
+
 import LangSwitch from '../Switches/LangSwitch/LangSwitch';
 
 import cls from './navbar.module.scss';
 
 const Navbar = () => {
+  // COMPONENT HOOKS
+  const [mobSidebar, setMobSidebar] = useState(false);
+
   return (
     <div className={cls.navbar}>
 
       <div className={cls.topNav}>
 
         <div className='container'>
+
+          <ul>
+            <li>من نحن</li>
+            <li>تواصل معنا</li>
+            <li>الاسئله الشائعة</li>
+          </ul>
           
           <div>
-
-            <LangSwitch />
 
             <ul>
               <li>تتبع الطلب</li>
@@ -20,13 +31,9 @@ const Navbar = () => {
               <li>كن وكيلنا</li>
             </ul>
 
-          </div>
+            <LangSwitch />
 
-          <ul>
-            <li>من نحن</li>
-            <li>تواصل معنا</li>
-            <li>الاسئله الشائعة</li>
-          </ul>
+          </div>
 
         </div>
 
@@ -35,16 +42,8 @@ const Navbar = () => {
       <div className={cls.navLinks}>
 
         <div className='container'>
-          
-          <div>
-            <button>سجل الاَن</button>
-            <div className={cls.icons}>
-              <i className="fa-brands fa-facebook-f"></i>
-              <i className="fa-brands fa-twitter"></i>
-              <i className="fa-brands fa-instagram"></i>
-              <i className="fa-brands fa-youtube"></i>
-            </div>
-          </div>
+
+          <img src="/assets/images/logo.png" alt="" />
 
           <ul>
             <li>خطوات الدراسة</li>
@@ -56,12 +55,37 @@ const Navbar = () => {
             <li>السكنات</li>
             <li>ميديا</li>
           </ul>
+          
+          <div>
 
-          <img src="/assets/images/logo.png" alt="" />
+            <div className={cls.icons}>
+              <i className="fa-brands fa-facebook-f"></i>
+              <i className="fa-brands fa-twitter"></i>
+              <i className="fa-brands fa-instagram"></i>
+              <i className="fa-brands fa-youtube"></i>
+            </div>
+
+            <button>سجل الاَن</button>
+            
+          </div>
 
         </div>
 
       </div>
+
+      <div className={cls.mobileNav}>
+        <div className='container'>
+
+          <button>سجل الاَن</button>
+
+          <img src="/assets/images/logo.png" alt="" />
+
+          <i className="fa-light fa-grid-2" onClick={() => setMobSidebar(true)}></i>
+
+        </div>
+      </div>
+
+      <MobSidebar mobSidebar={mobSidebar} setMobSidebar={setMobSidebar} />
 
     </div>
   )

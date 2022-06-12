@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 function App() {
   // COMPONENT STATES
-  const { t, i18n } = useTranslation('common');
+  const { i18n } = useTranslation('common');
   const [lang, setLang] = useState(i18n.language)
 
   useEffect(() => {

@@ -10,13 +10,13 @@ const cookie = new Cookies();
 
 const LangSwitch = () => {
   // COMPONENT HOOKS
-  const { t: translate, i18n } = useTranslation('nav')
+  const { i18n } = useTranslation('nav')
 
   useEffect(() => {
     if (cookie.get('layaneduLang')) {
       i18n.changeLanguage(cookie.get('layaneduLang'));
     }
-  }, [])
+  }, [i18n])
 
   const switchLang = (lang) => {
 
