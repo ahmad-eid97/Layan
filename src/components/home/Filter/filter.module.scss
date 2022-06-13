@@ -1,0 +1,24 @@
+@import '../../../styles/mixins';
+@import '../../../styles/extends';
+
+.filter {
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  & > div {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    div, button {
+      grid-column: span 2;
+      @include sm {
+        grid-column: span 5;
+      }
+    }
+    button {
+      @extend %mainBtn;
+      @include sm {
+        grid-column: span 10;
+      }
+    }
+  }
+}

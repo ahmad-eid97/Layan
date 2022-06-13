@@ -1,0 +1,33 @@
+.footer {
+  a {
+    &:hover {
+      color: var(--main-color) !important;
+    }
+  }
+
+  .logoSection {
+    img {
+      width: 150px;
+    }
+
+    .app {
+      border: 1px solid var(--border-color);
+      width: 200px;
+      text-align: center !important;
+      padding: 7px 20px;
+      margin-bottom: 5px;
+      border-radius: 5px;
+      background-color: #363636;
+      color: #fff;
+      cursor: pointer;
+      i {
+        margin: 0 8px;
+        font-size: 1.3rem;
+      }
+    }
+  }
+
+  .bottom {
+    color: #fff;
+  }
+}

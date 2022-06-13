@@ -2,6 +2,8 @@
 @import '../../styles/extends';
 
 .navbar {
+  position: unset !important;
+  display: unset !important;
   .topNav {
     background-color: var(--main-color);
     color: #fff;
@@ -30,7 +32,10 @@
 
   .navLinks {
     border-bottom: 1px solid var(--border-color);
-    // padding: 10px 0;
+    position: sticky;
+    top: -1px;
+    background-color: #fff;
+    z-index: 99999;
     div {
       display: flex;
       justify-content: space-between;

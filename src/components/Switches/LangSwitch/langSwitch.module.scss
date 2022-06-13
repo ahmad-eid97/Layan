@@ -8,7 +8,8 @@
     border: none;
     box-shadow: none;
     font-size: 0.9rem;
-    // color: var(--secondary-color);
+    position: relative;
+    z-index: 999999999;
     &:hover, &:focus {
       background-color: transparent;
       border: none;
@@ -17,6 +18,8 @@
   }
   ul {
     padding: 10px !important;
+    position: relative;
+    z-index: 999999999;
     li {
       display: block !important;
       &:hover {

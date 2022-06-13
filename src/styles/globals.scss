@@ -373,3 +373,36 @@ button.swal2-cancel {
     direction: ltr!important;
   }
 }
+
+.control-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include sm {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .dot {
+    width: 10px !important;
+    height: 10px !important;
+    background-color: #ccc;
+    border: 2px solid rgb(162, 162, 162);
+    &.selected {
+      background-color: var(--main-color);
+      border: 2px solid var(--main-color);
+      width: 40px !important;
+      border-radius: 10px;
+    }
+  }
+}
+
+.carousel {
+  direction: ltr !important;
+  .slider-wrapper {
+    direction: ltr !important;
+    .slider {
+      
+  direction: ltr !important;
+    }
+  }
+}
