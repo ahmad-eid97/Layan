@@ -7,18 +7,15 @@
 
   & > div {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(12, 1fr);
     div, button {
       grid-column: span 2;
-      @include sm {
-        grid-column: span 5;
+      @include md {
+        grid-column: span 6;
       }
     }
     button {
       @extend %mainBtn;
-      @include sm {
-        grid-column: span 10;
-      }
     }
   }
 }

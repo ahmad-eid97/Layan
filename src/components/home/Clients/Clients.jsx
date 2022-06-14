@@ -9,7 +9,7 @@ const Clients = () => {
 
       <div className='container'>
 
-        <div className='row'>
+        <div className={`${cls.row} row`}>
 
           <div className='col-lg-6'>
 

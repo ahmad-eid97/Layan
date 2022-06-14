@@ -4,7 +4,7 @@
 .header {
   position: relative;
   z-index: 2;
-  & > div {
+  .row {
     @include md {
       flex-direction: column-reverse;
     }
@@ -40,7 +40,7 @@
       button {
         margin-top: 10px;
         margin-bottom: 50px;
-        @extend %secondaryBtn;
+        @extend %mainBtn;
       }
     }
     &.ar {

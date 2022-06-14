@@ -1,7 +1,14 @@
-@import '../../styles/mixins';
+@import '../../../styles/mixins';
 
 .clients {
   margin: 50px 0 100px;
+
+  .row {
+    @include md {
+      flex-direction: column-reverse;
+    }
+  }
+
   .carousel {
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);

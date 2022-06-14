@@ -5,14 +5,14 @@ const Footer = () => {
     <footer className={`${cls.footer} text-center text-lg-start bg-light text-muted`}>
   
       <section
-        className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+        className={`${cls.top} d-flex justify-content-center justify-content-lg-between p-4 border-bottom`}
       >
 
         <div className="me-5 d-none d-lg-block">
           <span>تواصل معنا عن طريق منصات التواصل الإجتماعي</span>
         </div>
 
-        <div>
+        <div className={cls.icons}>
           <a href="/" className="me-4 text-reset">
             <i className="fab fa-facebook-f"></i>
           </a>

@@ -27,6 +27,8 @@ const Filter = () => {
         <Selectbox placeholder="الدرجة العلمية" list={gradeList} select={setGrade} value={grade} />
 
         <Selectbox placeholder="الدرجة العلمية" list={gradeList} select={setGrade} value={grade} />
+        
+        <Selectbox placeholder="الدرجة العلمية" list={gradeList} select={setGrade} value={grade} />
 
         <button>بحث</button>
 

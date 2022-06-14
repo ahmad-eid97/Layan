@@ -27,7 +27,8 @@ const Features = () => {
               <div className='col-md-6'>
 
                 <div className={cls.part}>
-                  <i className="fa-light fa-headset"></i>
+                  <img src="/assets/images/support.png" alt="" />
+                  {/* <i className="fa-light fa-headset"></i> */}
                   <h6>دعم فني طوال الإسبوع</h6>
                 </div>
 
@@ -36,7 +37,8 @@ const Features = () => {
               <div className='col-md-6'>
 
                 <div className={cls.part}>
-                  <i className="fa-light fa-bag-shopping"></i>
+                  <img src="/assets/images/pay.png" alt="" />
+                  {/* <i className="fa-light fa-bag-shopping"></i> */}
                   <h6>طرق دفع مختلفة</h6>
                 </div>
 
@@ -45,7 +47,8 @@ const Features = () => {
               <div className='col-md-6'>
 
                 <div className={cls.part}>
-                  <i className="fa-light fa-file-chart-column"></i>
+                  <img src="/assets/images/report.png" alt="" />
+                  {/* <i className="fa-light fa-file-chart-column"></i> */}
                   <h6>تقديم تقريرات دورية</h6>
                 </div>
 
@@ -54,7 +57,8 @@ const Features = () => {
               <div className='col-md-6'>
 
                 <div className={cls.part}>
-                  <i className="fa-light fa-alarm-clock"></i>
+                  <img src="/assets/images/clock.png" alt="" />
+                  {/* <i className="fa-light fa-alarm-clock"></i> */}
                   <h6>سرعة الرد والإستجابه</h6>
                 </div>
 

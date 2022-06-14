@@ -1,3 +1,7 @@
+import { useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
@@ -27,11 +31,125 @@ const responsive = {
   }
 };
 
+const universities = [
+  {
+    name: 'جامعة القاهرة',
+    image: '/assets/images/university.png',
+    specs: [
+      'الطب',
+      'العلوم',
+      'التكنولوجيا',
+      'الهندسة',
+      'الإقتصاد',
+    ]
+  },
+  {
+    name: 'جامعة القاهرة',
+    image: '/assets/images/university.png',
+    specs: [
+      'الطب',
+      'العلوم',
+      'التكنولوجيا',
+      'الهندسة',
+      'الإقتصاد',
+    ]
+  },
+  {
+    name: 'جامعة القاهرة',
+    image: '/assets/images/university.png',
+    specs: [
+      'الطب',
+      'العلوم',
+      'التكنولوجيا',
+      'الهندسة',
+      'الإقتصاد',
+    ]
+  },
+  {
+    name: 'جامعة القاهرة',
+    image: '/assets/images/university.png',
+    specs: [
+      'الطب',
+      'العلوم',
+      'التكنولوجيا',
+      'الهندسة',
+      'الإقتصاد',
+    ]
+  },
+  {
+    name: 'جامعة القاهرة',
+    image: '/assets/images/university.png',
+    specs: [
+      'الطب',
+      'العلوم',
+      'التكنولوجيا',
+      'الهندسة',
+      'الإقتصاد',
+    ]
+  },
+  {
+    name: 'جامعة القاهرة',
+    image: '/assets/images/university.png',
+    specs: [
+      'الطب',
+      'العلوم',
+      'التكنولوجيا',
+      'الهندسة',
+      'الإقتصاد',
+    ]
+  },
+  {
+    name: 'جامعة القاهرة',
+    image: '/assets/images/university.png',
+    specs: [
+      'الطب',
+      'العلوم',
+      'التكنولوجيا',
+      'الهندسة',
+      'الإقتصاد',
+    ]
+  },
+  {
+    name: 'جامعة القاهرة',
+    image: '/assets/images/university.png',
+    specs: [
+      'الطب',
+      'العلوم',
+      'التكنولوجيا',
+      'الهندسة',
+      'الإقتصاد',
+    ]
+  },
+  {
+    name: 'جامعة القاهرة',
+    image: '/assets/images/university.png',
+    specs: [
+      'الطب',
+      'العلوم',
+      'التكنولوجيا',
+      'الهندسة',
+      'الإقتصاد',
+    ]
+  }
+]
+
 const Universities = () => {
+  // COMPONENT HOOKS
+  const [selectedUinversity, setSelectedUniversity] = useState(null);
+  const { i18n } = useTranslation();
+
   return (
     <div className={cls.universities}>
 
       <div className='container'>
+        
+        <h3 className='label'>
+
+          <i className="fa-light fa-graduation-cap"></i>
+
+          <p>أشهر الجامعات</p>
+          
+        </h3>
 
         <Carousel
           className={cls.carousel}
@@ -46,57 +164,51 @@ const Universities = () => {
           arrows={false}
         >
 
-          <div className={cls.slide}>
-            <img src="/assets/images/university.png" alt="university" />
-            <p>جامعة القاهرة</p>
-          </div>
+          {universities.map((one, idx) => (
 
-          <div className={cls.slide}>
-            <img src="/assets/images/university.png" alt="university" />
-            <p>جامعة القاهرة</p>
-          </div>
+            <div key={idx} className={cls.slide} onClick={() => setSelectedUniversity(one)}>
+              <img src={one.image} alt="university" />
+              <p>{one.name}</p>
+            </div>
 
-          <div className={cls.slide}>
-            <img src="/assets/images/university.png" alt="university" />
-            <p>جامعة القاهرة</p>
-          </div>
-
-          <div className={cls.slide}>
-            <img src="/assets/images/university.png" alt="university" />
-            <p>جامعة القاهرة</p>
-          </div>
-
-          <div className={cls.slide}>
-            <img src="/assets/images/university.png" alt="university" />
-            <p>جامعة القاهرة</p>
-          </div>
-
-          <div className={cls.slide}>
-            <img src="/assets/images/university.png" alt="university" />
-            <p>جامعة القاهرة</p>
-          </div>
-
-          <div className={cls.slide}>
-            <img src="/assets/images/university.png" alt="university" />
-            <p>جامعة القاهرة</p>
-          </div>
-
-          <div className={cls.slide}>
-            <img src="/assets/images/university.png" alt="university" />
-            <p>جامعة القاهرة</p>
-          </div>
-
-          <div className={cls.slide}>
-            <img src="/assets/images/university.png" alt="university" />
-            <p>جامعة القاهرة</p>
-          </div>
-
-          <div className={cls.slide}>
-            <img src="/assets/images/university.png" alt="university" />
-            <p>جامعة القاهرة</p>
-          </div>
+          ))}
 
         </Carousel>
+
+        {selectedUinversity && 
+
+          <div className={cls.description}>
+
+            <h6><i className="fa-light fa-graduation-cap"></i> <span>{selectedUinversity.name}</span></h6>
+
+            <i className={`${cls[i18n.language]} fa-light fa-xmark`} onClick={() => setSelectedUniversity(null)}></i>
+
+              <Carousel
+                className={cls.carousel}
+                draggable={true}
+                showDots={false}
+                responsive={responsive}
+                autoPlay={true}
+                infinite={true}
+                autoPlaySpeed={3000}
+                keyBoardControl={true}
+                transitionDuration={500}
+                arrows={false}
+              >
+
+                {selectedUinversity.specs.map((one, idx) => (
+
+                  <div key={idx} className={cls.smallSlide}>
+                    <p>{one}</p>
+                  </div>
+
+                ))}
+
+              </Carousel>
+
+          </div>
+        
+        }
 
       </div>
 

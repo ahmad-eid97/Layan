@@ -1,4 +1,16 @@
-import { Filter, Header, Features, KnowUs, Universities, Clients } from '../../components';
+import { 
+  Filter, 
+  Header, 
+  Features, 
+  KnowUs, 
+  Universities, 
+  Clients, 
+  Contact, 
+  Blogs, 
+  Platforms,
+  Experiences,
+  News
+} from '../../components';
 
 const Home = () => {
   return (
@@ -12,9 +24,19 @@ const Home = () => {
 
       <KnowUs />
 
+      <News />
+
       <Universities />
 
+      <Experiences />
+
+      <Blogs />
+
       <Clients />
+
+      <Platforms />
+
+      <Contact />
 
     </div>
   )

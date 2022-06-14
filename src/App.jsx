@@ -15,6 +15,12 @@ function App() {
     setLang(i18n.language);
   }, [i18n.language])
 
+  // useEffect(() => {
+  //   document.body.addEventListener('click', () => {
+  //     document.getElementById('selectOverLay').click();
+  //   })
+  // }, [])
+
   return (
     <div className="App" id={lang}>
 

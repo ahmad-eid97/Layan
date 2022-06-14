@@ -43,15 +43,17 @@
     }
 
     .icons {
+      margin: 0 20px;
       i {
         font-size: 0.9rem;
         width: 25px;
         height: 25px;
-        border-radius: 50%;
-        border: 1px solid #000;
+        border-radius: 5px;
+        border: 1px solid var(--dark-color);
+        color: var(--dark-color);
         display: grid;
         place-items: center;
-        margin: 0 2px;
+        margin: 0 4px;
         cursor: pointer;
         &:hover {
           color: var(--main-color);
@@ -61,17 +63,10 @@
     }
 
     button {
-      @extend %btn;
-      background-color: var(--secondary-color);
-      border-color: var(--secondary-color);
-      color: #000;
+      @extend %mainBtn;
+      padding: 5px 15px;
+      font-size: 0.8rem;
       transition: all 0.3s ease-in-out;
-      margin-right: 20px;
-      &:hover {
-        background-color: transparent;
-        border-color: var(--secondary-color);
-        color: var(--secondary-color);
-      }
     }
 
     ul {
