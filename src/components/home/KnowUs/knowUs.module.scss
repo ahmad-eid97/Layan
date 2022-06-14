@@ -17,7 +17,8 @@
       height: 450px;
       border-radius: 50%;
       // background-color: var(--dark-color);
-      background-image: url('../../../../public/assets/images/education.jpg');
+      background-image: url('../../../../public/assets/images/manyPersons.png');
+      background-size: cover;
       margin: auto;
       animation: blob 5s linear infinite;
       @include sm {

@@ -8,8 +8,12 @@
   & > div {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
+    input {
+      border-radius: 0px !important;
+    }
     div, button {
       grid-column: span 2;
+      border-radius: 0px;
       @include md {
         grid-column: span 6;
       }

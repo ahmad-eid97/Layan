@@ -57,11 +57,9 @@ const Contact = () => {
 
             <div className={cls.image}>
 
-              <div className="blob">
+              <div className="blob"></div>
 
-              </div>
-
-              <img src="/assets/images/girl.png" alt="contactImage" />
+              <img src="/assets/images/onePerson.png" alt="contactImage" />
 
             </div>
 
