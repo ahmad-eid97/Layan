@@ -522,3 +522,38 @@ h3.label, h2.label, h1.label {
     }
   }
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 0px;
+  .page-item {
+    .page-link {
+      color: var(--main-color);
+      border: 1px solid var(--main-color);
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      margin: 0 3px;
+      &:hover, &:focus {
+        background-color: var(--main-color);
+        color: #fff;
+        box-shadow: unset;
+      }
+    }
+  }
+}
+
+// ACTIVE LINKS
+ul {
+  li {
+    a.active {
+      color: var(--main-color) !important;
+    }
+  }
+}

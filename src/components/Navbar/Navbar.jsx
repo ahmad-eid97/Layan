@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-
+import { NavLink, Link } from 'react-router-dom';
 import MobSidebar from './MobSidebar/MobSidebar';
 
 import LangSwitch from '../Switches/LangSwitch/LangSwitch';
@@ -21,7 +20,8 @@ const Navbar = () => {
           <ul>
             <li><Link to="/about-us"> من نحن</Link></li>
             <li><Link to="/contact-us"> تواصل معنا</Link></li>
-            <li>الاسئله الشائعة</li>
+            <li><Link to="/questions"> الأسئلة الشائعة</Link></li>
+            <li></li>
           </ul>
           
           <div>
@@ -57,8 +57,8 @@ const Navbar = () => {
           <ul>
             <li>خطوات الدراسة</li>
             <li>الجامعات</li>
-            <li>خدماتنا</li>
-            <li>الاخبار</li>
+            <li><NavLink to="/services"> خدماتنا</NavLink></li>
+            <li><NavLink to="/news"> الأخبار</NavLink></li>
             <li>المقالات</li>
             <li>الدورات</li>
             <li>السكنات</li>

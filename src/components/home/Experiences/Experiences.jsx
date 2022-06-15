@@ -63,7 +63,7 @@ const Experiences = () => {
 
                   <div className='col-sm-6 col-lg-3'>
                     <div>
-                      <i class="fa-light fa-money-bill"></i>
+                      <i className="fa-light fa-money-bill"></i>
                       <p>Payment</p>
                     </div>
                   </div>
@@ -125,7 +125,7 @@ const Experiences = () => {
 
                   <div className='col-sm-6 col-lg-3'>
                     <div>
-                      <i class="fa-light fa-money-bill"></i>
+                      <i className="fa-light fa-money-bill"></i>
                       <p>Payment</p>
                     </div>
                   </div>
