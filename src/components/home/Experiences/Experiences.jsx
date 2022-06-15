@@ -9,7 +9,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import cls from './experiences.module.scss';
 
 const Experiences = () => {
-	const [isOpen, setOpen] = useState(false);
 	const [openViewer, setOpenViewer] = useState('');
 
   return (

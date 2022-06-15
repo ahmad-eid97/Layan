@@ -26,6 +26,12 @@
         &:hover {
           color: var(--secondary-color);
         }
+        a {
+          color: #fff;
+          &:hover {
+            color: var(--secondary-color);
+          }
+        }
       }
     }
   }
@@ -79,6 +85,12 @@
         font-weight: 600;
         &:hover {
           color: var(--main-color);
+        }
+        a {
+          color: #fff;
+          &:hover {
+            color: var(--secondary-color);
+          }
         }
       }
     }

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import MobSidebar from './MobSidebar/MobSidebar';
 
@@ -18,8 +19,8 @@ const Navbar = () => {
         <div className='container'>
 
           <ul>
-            <li>من نحن</li>
-            <li>تواصل معنا</li>
+            <li><Link to="/about-us"> من نحن</Link></li>
+            <li><Link to="/contact-us"> تواصل معنا</Link></li>
             <li>الاسئله الشائعة</li>
           </ul>
           
@@ -44,7 +45,13 @@ const Navbar = () => {
         <div className='container'>
 
           <div className={cls.logo}>
-            <img src="/assets/images/logo.png" alt="logoImage" />
+
+            <Link to="/">
+
+              <img src="/assets/images/logo.png" alt="logo" />
+
+            </Link>
+
           </div>
 
           <ul>
@@ -80,7 +87,11 @@ const Navbar = () => {
 
           <button>سجل الاَن</button>
 
-          <img src="/assets/images/logo.png" alt="" />
+          <Link to="/">
+
+            <img src="/assets/images/logo.png" alt="logo" />
+
+          </Link>
 
           <i className="fa-light fa-grid-2" onClick={() => setMobSidebar(true)}></i>
 

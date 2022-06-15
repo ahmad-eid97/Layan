@@ -21,7 +21,7 @@ const Blogs = () => {
 
         <div className='row justify-content-center'>
 
-          <div className='col-md-6 col-lg-4'>
+          <div className='col-md-6 col-lg-4 col-xl-3'>
 
             <div className={`${cls.blog} quarterContainer`}>
 
@@ -44,7 +44,7 @@ const Blogs = () => {
 
           </div>
 
-          <div className='col-md-6 col-lg-4'>
+          <div className='col-md-6 col-lg-4 col-xl-3'>
 
             <div className={`${cls.blog} quarterContainer`}>
 
@@ -67,7 +67,30 @@ const Blogs = () => {
 
           </div>
 
-          <div className='col-md-6 col-lg-4'>
+          <div className='col-md-6 col-lg-4 col-xl-3'>
+
+            <div className={`${cls.blog} quarterContainer`}>
+
+              <img src="/assets/images/education.jpg" alt="" />
+
+              <div className={cls.info}>
+
+                <h6>جامعات مصرية معروفة</h6>
+
+                <p>جامعة القاهرة الجديدة</p>
+
+                <span><i className="fa-light fa-clock"></i> <span>أضيفت منذ 3 أشهر</span></span>
+
+              </div>
+
+              <div className={`quarter ${i18n.language}`}></div>
+              <div className={`movingQuarter ${i18n.language}`}></div>
+
+            </div>
+
+          </div>
+
+          <div className='col-md-6 col-lg-4 col-xl-3'>
 
             <div className={`${cls.blog} quarterContainer`}>
 

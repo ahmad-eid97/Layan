@@ -21,7 +21,7 @@ const News = () => {
 
         <div className='row justify-content-center'>
 
-          <div className='col-md-6 col-lg-4'>
+          <div className='col-md-6 col-lg-4 col-xl-3'>
 
             <div className={`${cls.singleNews} quarterContainer`}>
 
@@ -44,7 +44,7 @@ const News = () => {
 
           </div>
 
-          <div className='col-md-6 col-lg-4'>
+          <div className='col-md-6 col-lg-4 col-xl-3'>
 
             <div className={`${cls.singleNews} quarterContainer`}>
 
@@ -67,7 +67,30 @@ const News = () => {
 
           </div>
 
-          <div className='col-md-6 col-lg-4'>
+          <div className='col-md-6 col-lg-4 col-xl-3'>
+
+            <div className={`${cls.singleNews} quarterContainer`}>
+
+              <img src="/assets/images/news.jpg" alt="newsImage" />
+
+              <div className={cls.info}>
+
+                <h6>بداية سنة 2022 الدراسية</h6>
+
+                <p>جامعة القاهرة الجديدة</p>
+
+                <span><i className="fa-light fa-clock"></i> <span>أضيفت منذ 3 أشهر</span></span>
+
+              </div>
+
+              <div className={`quarter ${i18n.language} second`}></div>
+              <div className={`movingQuarter ${i18n.language} second`}></div>
+
+            </div>
+
+          </div>
+
+          <div className='col-md-6 col-lg-4 col-xl-3'>
 
             <div className={`${cls.singleNews} quarterContainer`}>
 
