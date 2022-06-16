@@ -63,8 +63,8 @@ const Information = () => {
           
         
           <h3 className={`${cls.label} label`}>
-    
-            <i className="fa-light fa-graduation-cap"></i>
+
+            <img src="/assets/images/cap.png" alt="titleImage" />
 
             <p>منصة رائدة في مجال الخدمات الطلابية وقبول الجامعات</p>
             

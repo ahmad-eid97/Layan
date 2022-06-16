@@ -14,8 +14,8 @@ const News = () => {
         <div className={cls.newsHead}>
         
           <h3 className='label'>
-    
-            <i className="fa-light fa-radio-tuner"></i>
+
+            <img src="/assets/images/news.png" alt="titleImage" />
     
             <p>أحدث الأخبار</p>
             

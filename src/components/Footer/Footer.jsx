@@ -13,24 +13,26 @@ const Footer = () => {
         </div>
 
         <div className={cls.icons}>
-          <a href="/" className="me-4 text-reset">
+
+          <a target="blank" href="https://www.facebook.com/%D9%84%D9%8A%D8%A7%D9%86-%D9%84%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A%D8%A9-%D9%81%D9%84%D8%B3%D8%B7%D9%8A%D9%86-220896948736960/" className="me-4 text-reset">
             <i className="fab fa-facebook-f"></i>
           </a>
-          <a href="/" className="me-4 text-reset">
+          <a target="blank" href="https://twitter.com/LayanEducation" className="me-4 text-reset">
             <i className="fab fa-twitter"></i>
           </a>
-          <a href="/" className="me-4 text-reset">
-            <i className="fab fa-google"></i>
-          </a>
-          <a href="/" className="me-4 text-reset">
+          <a target="blank" href="https://www.instagram.com/layanpalestine" className="me-4 text-reset">
             <i className="fab fa-instagram"></i>
           </a>
-          <a href="/" className="me-4 text-reset">
+          <a target="blank" href="https://youtube.com/channel/UCRhUpd_l49FxB2z5jYb0GhA" className="me-4 text-reset">
+            <i className="fa-brands fa-youtube"></i>
+          </a>
+          {/* <a target="blank" href="/" className="me-4 text-reset">
             <i className="fab fa-linkedin"></i>
           </a>
-          <a href="/" className="me-4 text-reset">
+          <a target="blank" href="/" className="me-4 text-reset">
             <i className="fab fa-github"></i>
-          </a>
+          </a> */}
+
         </div>
 
       </section>
@@ -112,7 +114,7 @@ const Footer = () => {
       </section>
 
       <div className={`${cls.bottom} text-center p-4`} style={{ backgroundColor: '#363636' }}>
-        جميع الحقوق محفوظة لموقع لايان
+        جميع الحقوق محفوظة لموقع ليان
         © 2022 
       </div>
 

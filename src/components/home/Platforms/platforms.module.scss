@@ -24,7 +24,9 @@
       -ms-user-select: none; /* Internet Explorer/Edge */
       user-select: none;
       img {
-        width: 150px;
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
         pointer-events: none;
       }
     } 

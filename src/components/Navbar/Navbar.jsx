@@ -59,7 +59,7 @@ const Navbar = () => {
             <li>الجامعات</li>
             <li><NavLink to="/services"> خدماتنا</NavLink></li>
             <li><NavLink to="/news"> الأخبار</NavLink></li>
-            <li>المقالات</li>
+            <li><NavLink to="/blogs"> المقالات</NavLink></li>
             <li>الدورات</li>
             <li>السكنات</li>
             <li>ميديا</li>
@@ -68,10 +68,15 @@ const Navbar = () => {
           <div>
 
             <div className={cls.icons}>
-              <i className="fa-brands fa-facebook-f"></i>
-              <i className="fa-brands fa-twitter"></i>
-              <i className="fa-brands fa-instagram"></i>
-              <i className="fa-brands fa-youtube"></i>
+
+              <a target="blank" href="https://www.facebook.com/%D9%84%D9%8A%D8%A7%D9%86-%D9%84%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A%D8%A9-%D9%81%D9%84%D8%B3%D8%B7%D9%8A%D9%86-220896948736960/"><i className="fa-brands fa-facebook-f"></i></a>
+
+              <a target="blank" href="https://twitter.com/LayanEducation"><i className="fa-brands fa-twitter"></i></a>
+
+              <a target="blank" href="https://www.instagram.com/layanpalestine"><i className="fa-brands fa-instagram"></i></a>
+
+              <a target="blank" href="https://youtube.com/channel/UCRhUpd_l49FxB2z5jYb0GhA"><i className="fa-brands fa-youtube"></i></a>
+
             </div>
 
             <button>سجل الاَن</button>

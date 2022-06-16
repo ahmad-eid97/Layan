@@ -18,7 +18,9 @@ const Experiences = () => {
         
         <h3 className={`${cls.label} label`}>
   
-          <i className="fa-light fa-graduation-cap"></i>
+          {/* <i className="fa-light fa-graduation-cap"></i> */}
+
+          <img src="/assets/images/cap.png" alt="titleImage" />
   
           <p>تجارب الطلاب</p>
           

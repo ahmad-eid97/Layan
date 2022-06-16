@@ -411,6 +411,13 @@ h3.label, h2.label, h1.label {
   margin-bottom: 30px;
   text-align: center !important;
   font-weight: 600;
+  img {
+    width: 45px;
+    height: 45px;
+    margin: 10px auto;
+    opacity: 0.8;
+    transform: rotate(-20deg);
+  }
   i {
     font-size: 2rem;
     color: rgb(185, 185, 185);
@@ -421,7 +428,8 @@ h3.label, h2.label, h1.label {
   }
   p {
     text-align: center !important;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    margin-bottom: 50px;
   }
   @include sm {
     font-size: 1.2rem;

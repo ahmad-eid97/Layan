@@ -42,8 +42,8 @@ const Questions = () => {
       <div className='container'>
         
           <h1 className='label'>
-    
-            <i className="fa-light fa-messages-question"></i>
+
+            <img src="/assets/images/question.png" alt="titleImage" />
     
             <p>أكثر الأسئلة تردداَ</p>
             

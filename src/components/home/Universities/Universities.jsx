@@ -44,8 +44,8 @@ const universities = [
     ]
   },
   {
-    name: 'جامعة القاهرة',
-    image: '/assets/images/university.png',
+    name: 'جامعة حلب',
+    image: '/assets/images/halab.png',
     specs: [
       'الطب',
       'العلوم',
@@ -55,8 +55,8 @@ const universities = [
     ]
   },
   {
-    name: 'جامعة القاهرة',
-    image: '/assets/images/university.png',
+    name: 'جامعة إسطنبول',
+    image: '/assets/images/istanbul.png',
     specs: [
       'الطب',
       'العلوم',
@@ -66,8 +66,8 @@ const universities = [
     ]
   },
   {
-    name: 'جامعة القاهرة',
-    image: '/assets/images/university.png',
+    name: 'جامعة فلسطين',
+    image: '/assets/images/palastine.png',
     specs: [
       'الطب',
       'العلوم',
@@ -77,41 +77,8 @@ const universities = [
     ]
   },
   {
-    name: 'جامعة القاهرة',
-    image: '/assets/images/university.png',
-    specs: [
-      'الطب',
-      'العلوم',
-      'التكنولوجيا',
-      'الهندسة',
-      'الإقتصاد',
-    ]
-  },
-  {
-    name: 'جامعة القاهرة',
-    image: '/assets/images/university.png',
-    specs: [
-      'الطب',
-      'العلوم',
-      'التكنولوجيا',
-      'الهندسة',
-      'الإقتصاد',
-    ]
-  },
-  {
-    name: 'جامعة القاهرة',
-    image: '/assets/images/university.png',
-    specs: [
-      'الطب',
-      'العلوم',
-      'التكنولوجيا',
-      'الهندسة',
-      'الإقتصاد',
-    ]
-  },
-  {
-    name: 'جامعة القاهرة',
-    image: '/assets/images/university.png',
+    name: 'الجامعة الأمريكية',
+    image: '/assets/images/auc.png',
     specs: [
       'الطب',
       'العلوم',
@@ -145,7 +112,7 @@ const Universities = () => {
         
         <h3 className='label'>
 
-          <i className="fa-light fa-graduation-cap"></i>
+          <img src="/assets/images/cap.png" alt="titleImage" />
 
           <p>أشهر الجامعات</p>
           

@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
-import { Home, Signin, AboutUs, Contact, Questions, Services, News } from "../pages";
+import { Home, Signin, AboutUs, Contact, Questions, Services, News, Blogs } from "../pages";
 
 const AllRoutes = () => {
   return (
@@ -17,6 +17,8 @@ const AllRoutes = () => {
       <Route path="/services" element={<Services />} />
 
       <Route path="/news" element={<News />} />
+
+      <Route path="/blogs" element={<Blogs />} />
 
       <Route path="/signin" element={<Signin />} />
       

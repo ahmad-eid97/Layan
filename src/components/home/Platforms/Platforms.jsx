@@ -31,13 +31,11 @@ const responsive = {
 
 const platforms = [
   '/assets/images/udemy.png',
-  '/assets/images/udemy.png',
-  '/assets/images/udemy.png',
-  '/assets/images/udemy.png',
-  '/assets/images/udemy.png',
-  '/assets/images/udemy.png',
-  '/assets/images/udemy.png',
-  '/assets/images/udemy.png',
+  '/assets/images/plat1.png',
+  '/assets/images/plat2.png',
+  '/assets/images/plat3.png',
+  '/assets/images/plat4.png',
+  '/assets/images/plat5.png',
 ]
 
 const Platforms = () => {
@@ -51,7 +49,7 @@ const Platforms = () => {
         
         <h3 className='label'>
 
-          <i className="fa-light fa-graduation-cap"></i>
+          <img src="/assets/images/cap.png" alt="titleImage" />
 
           <p>أشهر المنصات</p>
           
@@ -73,7 +71,7 @@ const Platforms = () => {
           {platforms.map((one, idx) => (
 
             <div key={idx} className={cls.slide}>
-              <img src='/assets/images/udemy.png' alt="platform" />
+              <img src={one} alt="platform" />
             </div>
 
           ))}

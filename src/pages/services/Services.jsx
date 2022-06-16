@@ -7,8 +7,8 @@ const service = () => {
       <div className='container'>
         
         <h1 className='label'>
-  
-          <i className="fa-light fa-display-code"></i>
+
+          <img src="/assets/images/services.png" alt="titleImage" />
   
           <p>تعرف علي خدماتنا للحصول علي القبول الجامعي</p>
           

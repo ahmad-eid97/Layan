@@ -10,4 +10,6 @@ export { default as Services } from './services/Services';
 
 export { default as News } from './news/News';
 
+export { default as Blogs } from './blogs/Blogs';
+
 export { default as Signin } from './signin/Signin';

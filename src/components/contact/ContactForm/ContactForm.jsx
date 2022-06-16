@@ -8,7 +8,7 @@ const ContactForm = () => {
         
         <h1 className='label'>
 
-          <i className="fa-light fa-messages"></i>
+          <img src="/assets/images/message.png" alt="titleImage" />
 
           <p>إرسل لنا رسالة نصية وسنتواصل معك</p>
           

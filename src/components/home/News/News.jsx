@@ -11,7 +11,9 @@ const News = () => {
         
       <h3 className='label'>
 
-        <i className="fa-light fa-graduation-cap"></i>
+        {/* <i className="fa-light fa-graduation-cap"></i> */}
+
+        <img src="/assets/images/cap.png" alt="titleImage" />
 
         <p>الأخبار</p>
         
