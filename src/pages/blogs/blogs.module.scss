@@ -1,5 +1,15 @@
+@import '../../styles/mixins';
+
 .blogs {
   margin: 50px 0 100px;
+
+  h3 {
+    @include sm {
+      p {
+        font-size: 1.2rem !important;
+      }
+    }
+  }
 
   .row {
     margin-top: 80px;
@@ -8,16 +18,62 @@
       padding: 15px 15px 25px 15px;
       border-radius: 5px;
       overflow: hidden;
+      position: relative;
+      margin-bottom: 30px;
+      cursor: pointer;
+      @include sm {
+        max-width: 350px;
+        margin: 0 auto 30px;
+        .info {
+          h4 {
+            font-size: 1rem !important;
+          }
+          p {
+            font-size: 0.8rem !important;
+          }
+        }
+      }
+      .badge {
+        position: absolute;
+        top: 0px;
+        left: 10%;
+        z-index: 3;
+        background-color: #f44336;
+        color: #fff;
+        padding: 15px 10px;
+        border-radius: 0 0 5px 5px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        &.en {
+          left: unset;
+          right: 10%;
+        }
+      }
       img {
         border-radius: 5px;
         margin-bottom: 25px;
+        position: relative;
+        z-index: 2;
       }
-      h4 {
-        margin-bottom: 10px;
-      }
-      p {
-        opacity: 0.8;
-        font-size: 0.9rem;
+      .info {
+        position: relative;
+        z-index: 2;
+        span {
+          font-size: 0.9rem;
+        }
+        h4 {
+          margin-bottom: 10px;
+          font-weight: 600;
+          font-size: 1.2rem;
+        }
+        p {
+          opacity: 0.8;
+          font-size: 0.9rem;
+        }
       }
     }
   }

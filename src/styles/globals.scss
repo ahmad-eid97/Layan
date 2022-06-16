@@ -488,7 +488,8 @@ h3.label, h2.label, h1.label {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background-color: #fd9b8b;
+    background-color: #738698;
+    // background-color: #fd9b8b;
     &.second {
       background-color: #738698;
     }
@@ -506,7 +507,8 @@ h3.label, h2.label, h1.label {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background-color: #ffdbd5;
+    background-color: #d2e1f1;
+    // background-color: #ffdbd5;
     transition: all 0.4s ease-in-out;
     &.second {
       background-color: #d2e1f1;
@@ -517,12 +519,14 @@ h3.label, h2.label, h1.label {
     }
   }
   &:hover {
+    color: #fff;
     .movingQuarter {
       bottom: 0px;
       left: 0;
       border-radius: 0%;
       width: 100%;
       height: 100%;
+      background-color: var(--dark-color);
       &.en {
         left: unset;
         right: 0;

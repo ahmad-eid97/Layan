@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
-import { Home, Signin, AboutUs, Contact, Questions, Services, News, Blogs } from "../pages";
+import { Home, Signin, AboutUs, Contact, Questions, Services, News, NewsDetails, Blogs, BlogDetails } from "../pages";
 
 const AllRoutes = () => {
   return (
@@ -17,8 +17,12 @@ const AllRoutes = () => {
       <Route path="/services" element={<Services />} />
 
       <Route path="/news" element={<News />} />
+      
+      <Route path="/news/:newsId" element={<NewsDetails />} />
 
       <Route path="/blogs" element={<Blogs />} />
+
+      <Route path="/blogs/:blogId" element={<BlogDetails />} />
 
       <Route path="/signin" element={<Signin />} />
       

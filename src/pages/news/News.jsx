@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
 
 import cls from './news.module.scss';
@@ -5,6 +7,7 @@ import cls from './news.module.scss';
 const News = () => {
   // COMPONENT HOOKS
   const { i18n } = useTranslation();
+  const navigate = useNavigate()
   
   return (
     <div className={cls.news}>
@@ -35,7 +38,7 @@ const News = () => {
 
           <div className='col-md-6 col-lg-4 col-xl-3'>
 
-            <div className={`${cls.singleNews} quarterContainer`}>
+            <div className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
 
               <img src="/assets/images/news.jpg" alt="newsImage" />
 
@@ -58,7 +61,7 @@ const News = () => {
 
           <div className='col-md-6 col-lg-4 col-xl-3'>
 
-            <div className={`${cls.singleNews} quarterContainer`}>
+            <div className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
 
               <img src="/assets/images/news.jpg" alt="newsImage" />
 
@@ -81,7 +84,7 @@ const News = () => {
 
           <div className='col-md-6 col-lg-4 col-xl-3'>
 
-            <div className={`${cls.singleNews} quarterContainer`}>
+            <div className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
 
               <img src="/assets/images/news.jpg" alt="newsImage" />
 
@@ -104,7 +107,7 @@ const News = () => {
 
           <div className='col-md-6 col-lg-4 col-xl-3'>
 
-            <div className={`${cls.singleNews} quarterContainer`}>
+            <div className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
 
               <img src="/assets/images/news.jpg" alt="newsImage" />
 
@@ -127,7 +130,7 @@ const News = () => {
 
           <div className='col-md-6 col-lg-4 col-xl-3'>
 
-            <div className={`${cls.singleNews} quarterContainer`}>
+            <div className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
 
               <img src="/assets/images/news.jpg" alt="newsImage" />
 
@@ -150,7 +153,7 @@ const News = () => {
 
           <div className='col-md-6 col-lg-4 col-xl-3'>
 
-            <div className={`${cls.singleNews} quarterContainer`}>
+            <div className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
 
               <img src="/assets/images/news.jpg" alt="newsImage" />
 
@@ -173,7 +176,7 @@ const News = () => {
 
           <div className='col-md-6 col-lg-4 col-xl-3'>
 
-            <div className={`${cls.singleNews} quarterContainer`}>
+            <div className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
 
               <img src="/assets/images/news.jpg" alt="newsImage" />
 
@@ -196,7 +199,7 @@ const News = () => {
 
           <div className='col-md-6 col-lg-4 col-xl-3'>
 
-            <div className={`${cls.singleNews} quarterContainer`}>
+            <div className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
 
               <img src="/assets/images/news.jpg" alt="newsImage" />
 

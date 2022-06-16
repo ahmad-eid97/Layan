@@ -39,3 +39,15 @@ export { default as Information } from './about/Information/Information';
 // CONTACT-US COMPONENTS
 
 export { default as ContactForm } from './contact/ContactForm/ContactForm';
+
+// NEWS COMPONENTS
+
+export { default as NewsDetails } from './newsDetails/Details/Details';
+
+export { default as NewsSpecs } from './newsDetails/NewsSpecs/NewsSpecs';
+
+// BLOG COMPONENTS
+
+export { default as Details } from './blogDetails/Details/Details';
+
+export { default as BlogSpecs } from './blogDetails/BlogSpecs/BlogSpecs';

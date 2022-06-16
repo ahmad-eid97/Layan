@@ -12,4 +12,8 @@ export { default as News } from './news/News';
 
 export { default as Blogs } from './blogs/Blogs';
 
+export { default as BlogDetails } from './blogDetails/BlogDetails';
+
+export { default as NewsDetails } from './newsDetails/NewsDetails';
+
 export { default as Signin } from './signin/Signin';
