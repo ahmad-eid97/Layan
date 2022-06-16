@@ -80,6 +80,14 @@ const Header = () => {
                 </div>
               </div>
 
+              <div className={cls.part}>
+                <i className="fa-solid fa-phone"></i>
+                <div>
+                  <p>تفاصيل التواصل</p>
+                  <span>info@lyanedu.com</span>
+                </div>
+              </div>
+
             </div>
 
           </div>

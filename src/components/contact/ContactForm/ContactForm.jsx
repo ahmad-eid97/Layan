@@ -90,7 +90,7 @@ const ContactForm = () => {
 
                   <div>
                     <p>رقم الهاتف</p>
-                    <span>01025864313</span>
+                    <span>0097022973810</span>
                   </div>
 
                 </div>
@@ -101,7 +101,7 @@ const ContactForm = () => {
 
                 <div>
                   <p>العنوان</p>
-                  <span>القاهرة مصر</span>
+                  <span>إسطنبول, تركيا</span>
                 </div>
 
                 </div>
@@ -112,7 +112,7 @@ const ContactForm = () => {
 
                 <div>
                   <p>تفاصيل التواصل</p>
-                  <span>civil.ahmad.eid@gmail.com</span>
+                  <span>info@lyanedu.com</span>
                 </div>
 
                 </div>
