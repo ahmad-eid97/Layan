@@ -155,6 +155,14 @@ const Header = () => {
                 </div>
               </div>
 
+              <div className={cls.part}>
+                <i className="fa-solid fa-phone"></i>
+                <div>
+                  <p>تفاصيل التواصل</p>
+                  <span>info@lyanedu.com</span>
+                </div>
+              </div>
+
             </div>
 
           </div>
@@ -222,6 +230,14 @@ const Header = () => {
                 </div>
               </div>
 
+              <div className={cls.part}>
+                <i className="fa-solid fa-phone"></i>
+                <div>
+                  <p>تفاصيل التواصل</p>
+                  <span>info@lyanedu.com</span>
+                </div>
+              </div>
+
             </div>
 
           </div>
@@ -286,6 +302,14 @@ const Header = () => {
                 <div>
                   <p>إتصل بنا على</p>
                   <span>0097022973810</span>
+                </div>
+              </div>
+
+              <div className={cls.part}>
+                <i className="fa-solid fa-phone"></i>
+                <div>
+                  <p>تفاصيل التواصل</p>
+                  <span>info@lyanedu.com</span>
                 </div>
               </div>
 
