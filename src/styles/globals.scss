@@ -430,6 +430,12 @@ h3.label, h2.label, h1.label {
     text-align: center !important;
     font-size: 1.3rem;
     margin-bottom: 50px;
+    @include sm {
+      font-size: 1.1rem;
+    }
+    @include xs {
+      font-size: 1rem;
+    }
   }
   @include sm {
     font-size: 1.2rem;
@@ -568,4 +574,14 @@ ul {
       color: var(--main-color) !important;
     }
   }
+}
+
+// DATE PICKER STYLES
+.react-datepicker__triangle {
+  transform: translate(200px, 0) !important;
+}
+
+.react-datepicker__day--selected {
+  background-color: var(--main-color);
+  color: #fff;
 }

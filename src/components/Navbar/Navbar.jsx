@@ -28,8 +28,8 @@ const Navbar = () => {
 
             <ul>
               <li>تتبع الطلب</li>
-              <li>طلب التسجيل</li>
-              <li>كن وكيلنا</li>
+              <li><Link to="/register"> طلب التسجيل</Link></li>
+              <li><Link to="/agent"> كن وكيلنا</Link></li>
             </ul>
 
             <LangSwitch />

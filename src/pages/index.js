@@ -16,4 +16,8 @@ export { default as BlogDetails } from './blogDetails/BlogDetails';
 
 export { default as NewsDetails } from './newsDetails/NewsDetails';
 
+export { default as Register } from './register/Register';
+
+export { default as Agent } from './agent/Agent';
+
 export { default as Signin } from './signin/Signin';

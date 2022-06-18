@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
-import { Home, Signin, AboutUs, Contact, Questions, Services, News, NewsDetails, Blogs, BlogDetails } from "../pages";
+import { Home, Signin, AboutUs, Contact, Questions, Services, News, NewsDetails, Blogs, BlogDetails, Register, Agent } from "../pages";
 
 const AllRoutes = () => {
   return (
@@ -23,6 +23,10 @@ const AllRoutes = () => {
       <Route path="/blogs" element={<Blogs />} />
 
       <Route path="/blogs/:blogId" element={<BlogDetails />} />
+
+      <Route path="/register" element={<Register />} />
+
+      <Route path="/agent" element={<Agent />} />
 
       <Route path="/signin" element={<Signin />} />
       
