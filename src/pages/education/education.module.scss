@@ -1,18 +1,38 @@
+@import '../../styles/mixins.scss';
+
 .education {
   margin: 50px 0 100px;
 
   .stepper {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     column-gap: 6rem;
     row-gap: 2rem;
+    @include sm {
+      column-gap: 1rem;
+    }
     .step {
-      grid-column: span 1;
+      grid-column: span 2;
       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
       padding: 20px;
       border-radius: 5px;
       position: relative;
       z-index: 3;
+      max-width: 350px;
+      margin: auto;
+      @include md {
+        grid-column: span 3;
+        &:after {
+          content: none !important;
+          border: none !important;
+        }
+      }
+      @include sm {
+        grid-column: span 6;
+      }
+      @include xs {
+        grid-column: span 6;
+      }
       .num {
         position: absolute;
         top: 0px;
