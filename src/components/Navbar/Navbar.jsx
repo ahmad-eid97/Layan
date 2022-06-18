@@ -55,7 +55,7 @@ const Navbar = () => {
           </div>
 
           <ul>
-            <li>خطوات الدراسة</li>
+            <li><NavLink to="/education"> خطوات الدراسة</NavLink></li>
             <li>الجامعات</li>
             <li><NavLink to="/services"> خدماتنا</NavLink></li>
             <li><NavLink to="/news"> الأخبار</NavLink></li>

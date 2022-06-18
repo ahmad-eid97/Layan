@@ -20,4 +20,6 @@ export { default as Register } from './register/Register';
 
 export { default as Agent } from './agent/Agent';
 
+export { default as Education } from './education/Education';
+
 export { default as Signin } from './signin/Signin';

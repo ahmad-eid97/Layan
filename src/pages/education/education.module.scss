@@ -1,0 +1,101 @@
+.education {
+  margin: 50px 0 100px;
+
+  .stepper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 6rem;
+    row-gap: 2rem;
+    .step {
+      grid-column: span 1;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      border-radius: 5px;
+      position: relative;
+      z-index: 3;
+      .num {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 60px;
+        height: 60px;
+        border-radius: 0 50% 50% 50%;
+        background-color: var(--dark-color);
+        display: grid;
+        place-content: center;
+        transition: all 0.3s ease-in-out;
+        span {
+          color: #fff;
+          font-size: 1.3rem;
+        }
+        &.en {
+          left: unset;
+          right: 0;
+          border-radius: 50% 0% 50% 50%;
+        }
+      }
+      img {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 20px;
+      }
+      h6 {
+        font-weight: 600;
+      }
+      p {
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+      &:hover {
+        background-color: var(--dark-color);
+        color: #fff;
+        .num {
+          background-color: #fff;
+          span {
+            color: #000;
+            opacity: 0.8;
+          }
+        }
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        width: 6rem;
+        z-index: 1;
+        height: 2px;
+        border: 2px dashed var(--dark-color);
+        opacity: 0.2;
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+      }
+      &:first-of-type:after  {
+        content: none;
+        border: none;
+      }
+      &:nth-of-type(4):after  {
+        content: none;
+        border: none;
+      }
+      &.en {
+        &:first-of-type:after  {
+          content: '';
+          border: 2px dashed var(--dark-color);
+        }
+        &:nth-of-type(4):after  {
+          content: '';
+          border: 2px dashed var(--dark-color);
+        }
+        &:last-of-type:after  {
+          content: none;
+          border: none;
+        }
+        &:nth-of-type(3):after  {
+          content: none;
+          border: none;
+        }
+      }
+    }
+  }
+}
