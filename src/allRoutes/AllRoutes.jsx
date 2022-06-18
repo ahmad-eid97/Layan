@@ -13,7 +13,8 @@ import {
   BlogDetails, 
   Register, 
   Agent, 
-  Education 
+  Education, 
+  Registered
 } from "../pages";
 
 const AllRoutes = () => {
@@ -39,6 +40,8 @@ const AllRoutes = () => {
       <Route path="/blogs/:blogId" element={<BlogDetails />} />
 
       <Route path="/register" element={<Register />} />
+
+      <Route path="/registered" element={<Registered />} />
 
       <Route path="/agent" element={<Agent />} />
 

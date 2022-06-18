@@ -18,6 +18,8 @@ export { default as NewsDetails } from './newsDetails/NewsDetails';
 
 export { default as Register } from './register/Register';
 
+export { default as Registered } from './registered/Registered';
+ 
 export { default as Agent } from './agent/Agent';
 
 export { default as Education } from './education/Education';

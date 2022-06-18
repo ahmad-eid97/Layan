@@ -50,9 +50,9 @@
         background-color: var(--dark-color);
         color: #fff;
         .num {
-          background-color: #fff;
+          background-color: var(--main-color);
           span {
-            color: #000;
+            color: #fff;
             opacity: 0.8;
           }
         }
