@@ -14,7 +14,8 @@ import {
   Register, 
   Agent, 
   Education, 
-  Registered
+  Registered,
+  EducationInfo
 } from "../pages";
 
 const AllRoutes = () => {
@@ -46,6 +47,8 @@ const AllRoutes = () => {
       <Route path="/agent" element={<Agent />} />
 
       <Route path="/education" element={<Education />} />
+
+      <Route path="/education-info" element={<EducationInfo />} />
 
       <Route path="/signin" element={<Signin />} />
       

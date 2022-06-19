@@ -8,6 +8,9 @@
     grid-template-columns: repeat(6, 1fr);
     column-gap: 6rem;
     row-gap: 2rem;
+    height: 100%;
+    justify-items: center;
+    align-items: center;
     @include sm {
       column-gap: 1rem;
     }
@@ -20,6 +23,7 @@
       z-index: 3;
       max-width: 350px;
       margin: auto;
+      height: 100%;
       @include md {
         grid-column: span 3;
         &:after {
@@ -82,19 +86,29 @@
         position: absolute;
         top: 50%;
         left: 100%;
-        width: 6rem;
+        width: 7rem;
         z-index: 1;
         height: 2px;
         border: 2px dashed var(--dark-color);
         opacity: 0.2;
         border-radius: 5px;
         transition: all 0.3s ease-in-out;
+        @include xl {
+          width: 6rem;
+        }
+        @include lg {
+          width: 6rem;
+        }
       }
       &:first-of-type:after  {
         content: none;
         border: none;
       }
       &:nth-of-type(4):after  {
+        content: none;
+        border: none;
+      }
+      &:nth-of-type(7):after  {
         content: none;
         border: none;
       }
@@ -112,6 +126,14 @@
           border: none;
         }
         &:nth-of-type(3):after  {
+          content: none;
+          border: none;
+        }
+        &:nth-of-type(7):after  {
+          content: '';
+          border: 2px dashed var(--dark-color);
+        }
+        &:nth-of-type(6):after  {
           content: none;
           border: none;
         }

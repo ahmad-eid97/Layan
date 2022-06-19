@@ -87,7 +87,7 @@
           color: var(--main-color);
         }
         a {
-          color: #000;
+          color: var(--text-color);
           &.active {
             color: var(--main-color) !important;
           }

@@ -29,7 +29,7 @@ const Education = () => {
 
             </div>
 
-            <img src="/assets/images/question.png" alt="titleImage" />
+            <img src="/assets/images/questioninig.png" alt="titleImage" />
 
             <h6>الإستشارة المجانيه</h6>
 
@@ -45,11 +45,11 @@ const Education = () => {
 
             </div>
 
-            <img src="/assets/images/question.png" alt="titleImage" />
+            <img src="/assets/images/ask.png" alt="titleImage" />
 
-            <h6>الإستشارة المجانيه</h6>
+            <h6>إختر تخصصك</h6>
 
-            <p>ابدأ في التواصل مع المستشار التعليمي الخاص بنا ليشرح كافة التفاصيل عن الدراسة في تركيا خطوة بخطوة ومساعدتك في اتخاذ القرار المناسب</p>
+            <p>لا أحد ينكر أنّ عملية اختيار التخصص الجامعي المناسب قد تكون في غالب الأحيان مثيرة للتوتر والخوف، نظرًا لأن الكثيرين يفكّرون في الأمر على أنه خطوة مصيرية ستحدّد مستقبلهم إلى الأبد. لا تقلق، منصة ليان لديها فريق</p>
 
           </div>
 
@@ -61,11 +61,11 @@ const Education = () => {
 
             </div>
 
-            <img src="/assets/images/question.png" alt="titleImage" />
+            <img src="/assets/images/universityBuilding.png" alt="titleImage" />
 
-            <h6>الإستشارة المجانيه</h6>
+            <h6>إختيار الجامعة</h6>
 
-            <p>ابدأ في التواصل مع المستشار التعليمي الخاص بنا ليشرح كافة التفاصيل عن الدراسة في تركيا خطوة بخطوة ومساعدتك في اتخاذ القرار المناسب</p>
+            <p>انتظر قليلاً ..! في هذه الخطوة ستعيش معنا اجواء كل جامعة حيث نشرح تفاصيل كل جامعة من حيث مميزاتها وعيوبها والأجواء بداخلها، ونرشدك للخيار الأمثل والافضل لك</p>
 
           </div>
 
@@ -77,11 +77,11 @@ const Education = () => {
 
             </div>
 
-            <img src="/assets/images/question.png" alt="titleImage" />
+            <img src="/assets/images/form.png" alt="titleImage" />
 
-            <h6>الإستشارة المجانيه</h6>
+            <h6>إملأ نموذج التسجيل</h6>
 
-            <p>ابدأ في التواصل مع المستشار التعليمي الخاص بنا ليشرح كافة التفاصيل عن الدراسة في تركيا خطوة بخطوة ومساعدتك في اتخاذ القرار المناسب</p>
+            <p>بعد اختيار الجامعه وتخصصك المناسب يمكنك ملئ نموذج التسجيل الالكتروني المجاني لكي يصلك القبول الجامعي في اسرع وقت ممكن</p>
 
           </div>
 
@@ -93,11 +93,11 @@ const Education = () => {
 
             </div>
 
-            <img src="/assets/images/question.png" alt="titleImage" />
+            <img src="/assets/images/accept.png" alt="titleImage" />
 
-            <h6>الإستشارة المجانيه</h6>
+            <h6>القبول الجامعى</h6>
 
-            <p>ابدأ في التواصل مع المستشار التعليمي الخاص بنا ليشرح كافة التفاصيل عن الدراسة في تركيا خطوة بخطوة ومساعدتك في اتخاذ القرار المناسب</p>
+            <p>بعد ملئ نموذج التسجيل يصلك القبول في اقرب وقت ممكن علي الايميل الخاص بك والتواصل معك لتجهيز جميع الوثائق المطلوبة وانهاء كافة اجراءات السفر</p>
 
           </div>
 
@@ -109,179 +109,47 @@ const Education = () => {
 
             </div>
 
-            <img src="/assets/images/question.png" alt="titleImage" />
+            <img src="/assets/images/sleep.png" alt="titleImage" />
 
-            <h6>الإستشارة المجانيه</h6>
+            <h6>السكن الجامعى</h6>
 
-            <p>ابدأ في التواصل مع المستشار التعليمي الخاص بنا ليشرح كافة التفاصيل عن الدراسة في تركيا خطوة بخطوة ومساعدتك في اتخاذ القرار المناسب</p>
+            <p>نساعدك علي تأمين سكن مناسب وآمن، حيث خلق بيئة مناسبه ومناخ هادئ يساعدك علي التميز والابداع حرصاً منا علي ان يستمتع كل طالب بفترة دراسية مليئة بالذكريات السعيدة</p>
+
+          </div>
+
+          <div className={`${cls.step} ${cls[i18n.language]}`}>
+
+            <div className={`${cls.num} ${cls[i18n.language]}`}>
+
+              <span>07</span>
+
+            </div>
+
+            <img src="/assets/images/plane.png" alt="titleImage" />
+
+            <h6>الإستقبال في المطار</h6>
+
+            <p>بعد تحديد موعد السفر وحجز تذكرتك، يتم استقبالك في المطار من قبل مندوب الشركة وأخذ جوله في جامعتك ومن ثم وصولك الي مكان الاقامة</p>
+
+          </div>
+
+          <div className={`${cls.step} ${cls[i18n.language]}`}>
+
+            <div className={`${cls.num} ${cls[i18n.language]}`}>
+
+              <span>08</span>
+
+            </div>
+
+            <img src="/assets/images/logistics.png" alt="titleImage" />
+
+            <h6>الكوبونات</h6>
+
+            <p>تواصل معنا لمعرفة العروض والكوبونات المتوفره لدينا لتقديم خصومات علي الدورات التدريبية علي منصتنا والتي تكون متوفره دائما عبر موقعنا الرسمي</p>
 
           </div>
 
         </div>
-
-        {/* <div className='row'>
-
-          <div className='col-lg-3'>
-
-            <div className={cls.step}>
-
-              <div className={cls.num}>
-
-                <span>01</span>
-
-              </div>
-
-              <img src="/assets/images/question.png" alt="titleImage" />
-
-              <h6>الإستشارة المجانيه</h6>
-
-              <p>ابدأ في التواصل مع المستشار التعليمي الخاص بنا ليشرح كافة التفاصيل عن الدراسة في تركيا خطوة بخطوة ومساعدتك في اتخاذ القرار المناسب</p>
-
-            </div>
-
-          </div>
-
-          <div className='col-lg-3'>
-
-            <div className={cls.step}>
-
-              <div className={cls.num}>
-
-                <span>02</span>
-
-              </div>
-
-              <img src="/assets/images/question.png" alt="titleImage" />
-
-              <h6>الإستشارة المجانيه</h6>
-
-              <p>ابدأ في التواصل مع المستشار التعليمي الخاص بنا ليشرح كافة التفاصيل عن الدراسة في تركيا خطوة بخطوة ومساعدتك في اتخاذ القرار المناسب</p>
-
-            </div>
-
-          </div>
-
-          <div className='col-lg-3'>
-
-            <div className={cls.step}>
-
-              <div className={cls.num}>
-
-                <span>03</span>
-
-              </div>
-
-              <img src="/assets/images/question.png" alt="titleImage" />
-
-              <h6>الإستشارة المجانيه</h6>
-
-              <p>ابدأ في التواصل مع المستشار التعليمي الخاص بنا ليشرح كافة التفاصيل عن الدراسة في تركيا خطوة بخطوة ومساعدتك في اتخاذ القرار المناسب</p>
-
-            </div>
-
-          </div>
-
-          <div className='col-lg-3'>
-
-            <div className={cls.step}>
-
-              <div className={cls.num}>
-
-                <span>04</span>
-
-              </div>
-
-              <img src="/assets/images/question.png" alt="titleImage" />
-
-              <h6>الإستشارة المجانيه</h6>
-
-              <p>ابدأ في التواصل مع المستشار التعليمي الخاص بنا ليشرح كافة التفاصيل عن الدراسة في تركيا خطوة بخطوة ومساعدتك في اتخاذ القرار المناسب</p>
-
-            </div>
-
-          </div>
-
-          <div className='col-lg-3'>
-
-            <div className={cls.step}>
-
-              <div className={cls.num}>
-
-                <span>05</span>
-
-              </div>
-
-              <img src="/assets/images/question.png" alt="titleImage" />
-
-              <h6>الإستشارة المجانيه</h6>
-
-              <p>ابدأ في التواصل مع المستشار التعليمي الخاص بنا ليشرح كافة التفاصيل عن الدراسة في تركيا خطوة بخطوة ومساعدتك في اتخاذ القرار المناسب</p>
-
-            </div>
-
-          </div>
-
-          <div className='col-lg-3'>
-
-            <div className={cls.step}>
-
-              <div className={cls.num}>
-
-                <span>06</span>
-
-              </div>
-
-              <img src="/assets/images/question.png" alt="titleImage" />
-
-              <h6>الإستشارة المجانيه</h6>
-
-              <p>ابدأ في التواصل مع المستشار التعليمي الخاص بنا ليشرح كافة التفاصيل عن الدراسة في تركيا خطوة بخطوة ومساعدتك في اتخاذ القرار المناسب</p>
-
-            </div>
-
-          </div>
-
-          <div className='col-lg-3'>
-
-            <div className={cls.step}>
-
-              <div className={cls.num}>
-
-                <span>07</span>
-
-              </div>
-
-              <img src="/assets/images/question.png" alt="titleImage" />
-
-              <h6>الإستشارة المجانيه</h6>
-
-              <p>ابدأ في التواصل مع المستشار التعليمي الخاص بنا ليشرح كافة التفاصيل عن الدراسة في تركيا خطوة بخطوة ومساعدتك في اتخاذ القرار المناسب</p>
-
-            </div>
-
-          </div>
-
-          <div className='col-lg-3'>
-
-            <div className={cls.step}>
-
-              <div className={cls.num}>
-
-                <span>08</span>
-
-              </div>
-
-              <img src="/assets/images/question.png" alt="titleImage" />
-
-              <h6>الإستشارة المجانيه</h6>
-
-              <p>ابدأ في التواصل مع المستشار التعليمي الخاص بنا ليشرح كافة التفاصيل عن الدراسة في تركيا خطوة بخطوة ومساعدتك في اتخاذ القرار المناسب</p>
-
-            </div>
-
-          </div>
-
-        </div> */}
 
       </div>
 
