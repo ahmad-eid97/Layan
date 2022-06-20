@@ -10,7 +10,7 @@
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.02);
     margin-top: 20px;
-    border-right: 2px solid var(--main-color);
+    border-right: 3px solid var(--main-color);
     .field {
       margin-bottom: 15px;
     }
@@ -159,6 +159,10 @@
           }
         }
       }
+    }
+    &.en {
+      border-right: unset;
+      border-left: 3px solid var(--main-color);
     }
   }
 

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 import "react-datepicker/dist/react-datepicker.css";
 import cls from './agent.module.scss';
 
@@ -16,6 +18,7 @@ const Agent = () => {
     phone: '',
   }
   const [fields, setFields] = useState(initialValues);
+  const { i18n } = useTranslation();
 
   const handleFields = (e) => {
     console.log(e.target.value)
@@ -42,7 +45,7 @@ const Agent = () => {
 
           <div className="col-xs-12">
 
-            <div  className={cls.section}>
+            <div  className={`${cls.section} ${cls[i18n.language]}`}>
 
               <h3><i className="fa-light fa-book-open-cover"></i> <span>لتكن أحد وكلائنا</span></h3>
 
@@ -56,7 +59,7 @@ const Agent = () => {
 
         <div className={cls.form}>
 
-          <div className={cls.block}>
+          <div className={`${cls.block} ${cls[i18n.language]}`}>
 
             <h4><i className="fa-light fa-building"></i> تفاصيل المؤسسة</h4>
 
@@ -126,7 +129,7 @@ const Agent = () => {
 
           </div>
 
-          <div className={cls.block}>
+          <div className={`${cls.block} ${cls[i18n.language]}`}>
 
             <h4><i className="fa-light fa-user-lock"></i> تفاصيل تسجيل الدخول</h4>
 

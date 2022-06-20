@@ -49,6 +49,10 @@
           font-size: 0.8rem !important;
         }
       }
+      &.en {
+        border-right: unset;
+        border-left: 4px solid var(--dark-color);
+      }
     }
   }
 
@@ -207,6 +211,10 @@
           }
         }
       }
+    }
+    &.en {
+      border-right: unset;
+      border-left: 3px solid var(--main-color);
     }
   }
 

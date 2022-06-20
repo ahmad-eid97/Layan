@@ -113,7 +113,7 @@ const Register = () => {
 
         <div className={cls.form}>
 
-          <div className={cls.block}>
+          <div className={`${cls.block} ${cls[i18n.language]}`}>
 
             <h4><i className="fa-light fa-user"></i> المعلومات الشخصية</h4>
 
@@ -225,7 +225,7 @@ const Register = () => {
 
           </div>
 
-          <div className={cls.block}>
+          <div className={`${cls.block} ${cls[i18n.language]}`}>
 
             <h4><i className="fa-light fa-lock-keyhole"></i> معلومات الحساب</h4>
 
@@ -271,7 +271,7 @@ const Register = () => {
 
           </div>
 
-          <div className={cls.block}>
+          <div className={`${cls.block} ${cls[i18n.language]}`}>
 
             <h4><i className="fa-light fa-camera-retro"></i> الوثائق</h4>
 
@@ -381,7 +381,7 @@ const Register = () => {
 
           </div>
 
-          <div className={cls.block}>
+          <div className={`${cls.block} ${cls[i18n.language]}`}>
 
             <h4><i className="fa-light fa-earth-americas"></i> معلومات عامة</h4>
 
