@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import { useTranslation } from 'react-i18next';
 
 import cls from './dataAccordion.module.scss'
-import { Typography } from '@mui/material';
 
 const Accordion = ({ data }) => {
   // COMPONENT HOOKS
@@ -69,9 +68,9 @@ const Accordion = ({ data }) => {
 
         <Box className={cls.accordionBody}>
 
-          <Typography>
+          <p>
             <span><i className="fa-regular fa-circle-question"></i></span> {data.answer}
-          </Typography>
+          </p>
 
         </Box>
 

@@ -56,7 +56,7 @@ const Navbar = () => {
 
           <ul>
             <li><NavLink to="/education"> خطوات الدراسة</NavLink></li>
-            <li>الجامعات</li>
+            <li><NavLink to="/all-universities"> الجامعات</NavLink></li>
             <li><NavLink to="/services"> خدماتنا</NavLink></li>
             <li><NavLink to="/news"> الأخبار</NavLink></li>
             <li><NavLink to="/blogs"> المقالات</NavLink></li>

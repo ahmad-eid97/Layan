@@ -1,0 +1,46 @@
+@import '../../styles/extends';
+
+.university {
+  margin-bottom: 100px;
+
+  .textSide {
+    padding: 0 20%;
+
+    img {
+      width: 100px;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    p {
+      opacity: 0.8;
+      font-size: 1.1rem
+    }
+  }
+
+  .imageSide {
+    height: 70vh;
+    position: relative;
+    img {
+      width: 100%;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 50%;
+      z-index: 999;
+      background: linear-gradient(90deg, transparent, #FFFFFF);
+    }
+  }
+
+  button {
+    @extend %mainBtn;
+    margin-top: 15px;
+  }
+}

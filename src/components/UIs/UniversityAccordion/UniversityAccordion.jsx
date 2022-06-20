@@ -1,0 +1,127 @@
+import { useState } from 'react';
+
+import Box from '@mui/material/Box';
+
+import { useTranslation } from 'react-i18next';
+
+import cls from './universityAccordion.module.scss';
+
+const Accordion = ({ data }) => {
+  // COMPONENT HOOKS
+  const [showSub, setShowSub] = useState('')
+  const { i18n } = useTranslation()
+
+  // COMPONENT HANDLERS
+  const showSubList = (e, list) => {
+    if(showSub === list) {
+      setShowSub('')
+    }
+    else {
+      setShowSub(list)
+    }
+
+    let subMenu = e.target.nextElementSibling;
+
+    if (subMenu) {
+      let maxHeight = subMenu.scrollHeight;
+
+      if (!subMenu.style.maxHeight) {
+        subMenu.style.maxHeight = maxHeight + 'px';
+      } else {
+        subMenu.style.maxHeight = null;
+      }
+    }
+  }
+
+  return (
+    <Box className={`${cls.accordion_link} ${showSub === 'products' ? cls.showSub : ''} ${cls[i18n.language]}`}>
+
+      <Box className={`${cls.link} ${cls[i18n.language]}`} onClick={(e) => showSubList(e, 'products')}>
+
+        <Box className={`${cls.label} ${cls[i18n.language]}`}>
+
+          {data.label}
+
+        </Box>
+
+        <Box className={cls.icon}>
+
+          {showSub ? 
+          
+            <i className={`${cls[i18n.language]} fa-light fa-circle-minus`}></i>
+
+          :
+
+            <i className={`${cls[i18n.language]} fa-light fa-circle-plus`}></i>
+          
+          }
+
+        </Box>
+
+      </Box>
+
+      <Box className={`${cls.subMenu} ${cls[i18n.language]} subMenu`}>
+
+        {showSub === 'products' && <Box className={cls.dropLayer} onClick={(e) => showSubList(e, '')}></Box>}
+
+        <Box className={cls.accordionBody}>
+
+          <div className='row align-items-center'>
+
+            <div className='col-sm-6 col-md-4'>
+
+              <p>اللغة</p>
+
+              <span>{data.data.lang}</span>
+
+            </div>
+
+            <div className='col-sm-6 col-md-4'>
+
+              <p>الدراسة</p>
+
+              <span>{data.data.education}</span>
+
+            </div>
+
+            <div className='col-sm-6 col-md-4'>
+
+              <p>السعر قبل الخصم</p>
+
+              <span>{data.data.beforePrice}</span>
+
+            </div>
+
+            <div className='col-sm-6 col-md-4'>
+
+              <p>سعر التقسيط بعد الخصم</p>
+
+              <span>{data.data.afterPrice}</span>
+
+            </div>
+
+            <div className='col-sm-6 col-md-4'>
+
+              <p>سعر الكاش بعد الخصم</p>
+
+              <span>{data.data.cash}</span>
+
+            </div>
+
+            <div className='col-sm-6 col-md-4'>
+
+              <button>عرض التفاصيل</button>
+
+            </div>
+
+          </div>
+
+        </Box>
+
+      </Box>
+
+    </Box>
+  )
+}
+
+export default Accordion

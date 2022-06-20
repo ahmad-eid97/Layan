@@ -1,8 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import { 
-  Home, 
-  Signin, 
+  Home,
   AboutUs, 
   Contact, 
   Questions, 
@@ -15,7 +14,9 @@ import {
   Agent, 
   Education, 
   Registered,
-  EducationInfo
+  EducationInfo,
+  University,
+  AllUniversities
 } from "../pages";
 
 const AllRoutes = () => {
@@ -50,7 +51,9 @@ const AllRoutes = () => {
 
       <Route path="/education-info" element={<EducationInfo />} />
 
-      <Route path="/signin" element={<Signin />} />
+      <Route path="/university" element={<University />} />
+
+      <Route path="/all-universities" element={<AllUniversities />} />
       
     </Routes>
   )
