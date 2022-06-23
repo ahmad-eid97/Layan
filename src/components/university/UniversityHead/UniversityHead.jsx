@@ -16,7 +16,7 @@ const UniversityHead = ({ university }) => {
 
               <h2>{university.title}</h2>
 
-              {/* <p dangerouslySetInnerHTML={{ __html: university.details }}></p> */}
+              {university && university.details && <p dangerouslySetInnerHTML={{ __html: university.details.substring(0, 400) }}></p>}
 
               <button>سجل الاَن</button>
 

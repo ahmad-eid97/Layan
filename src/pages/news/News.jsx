@@ -72,15 +72,15 @@ const News = () => {
 
         {news.length ?
 
-          <div className='row justify-content-center'>
+          <div className={cls.wrapper}>
 
             {news.map((singleOne, idx) => (
 
-              <div key={idx} className='col-md-6 col-lg-4 col-xl-3'>
+              // <div key={idx} className='col-md-6 col-lg-4 col-xl-3'>
 
-                <div className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
+                <div key={idx} className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
 
-                  <img src="/assets/images/news.jpg" alt="newsImage" />
+                  <img src={singleOne.photo_file} alt="newsImage" />
 
                   <div className={cls.info}>
 
@@ -88,7 +88,7 @@ const News = () => {
 
                     <p>أضيفت بواسطة {singleOne.user.name}</p>
 
-                    <p>{singleOne.details}</p>
+                    <p dangerouslySetInnerHTML={{ __html: singleOne.details.substring(0, 350) + '...'}}></p>
 
                     <span><i className="fa-light fa-clock"></i> <span>أضيفت في {singleOne.date}</span></span>
 
@@ -99,7 +99,7 @@ const News = () => {
 
                 </div>
 
-              </div>
+              // </div>
 
             ))}
 

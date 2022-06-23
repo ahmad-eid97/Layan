@@ -526,11 +526,18 @@ h3.label, h2.label, h1.label {
       right: -80px;
     }
   }
-  h2, h3, h4, p , span {
+  h2, h3, h4, h6, p , span {
     transition: all 0.3s ease-in-out;
+    text-align: center !important;
+  }
+  p, span {
+    font-size: 0.9rem !important;
   }
   &:hover {
     color: #fff;
+    span {
+      color: #fff !important;
+    }
     .movingQuarter {
       bottom: 0px;
       left: 0;

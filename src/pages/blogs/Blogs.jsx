@@ -14,6 +14,7 @@ const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const { i18n } = useTranslation();
   const navigate = useNavigate();
 
@@ -21,7 +22,7 @@ const Blogs = () => {
   const fetchBlogs = async () => {
     setLoading(true)
 
-    const response = await axios.get(`/topics/3/page/1/count/30/${i18n.language}`);
+    const response = await axios.get(`/topics/7/page/1/count/30/${i18n.language}`);
 
     if(!response) return;
 
@@ -38,6 +39,10 @@ const Blogs = () => {
     fetchBlogs()
   }, [])
 
+  const changePage = (pageNum) => {
+    setCurrentPage(pageNum)
+  }
+
   return (
     <div className={cls.blogs}>
 
@@ -53,255 +58,42 @@ const Blogs = () => {
           
         </h3>
 
-        <div className={`${cls.row} row justify-content-center`}>
+        <div className={`${cls.wrapper}`}>
 
-          <div className="col-md-6 col-lg-4">
+          { blogs.map((blog, idx) => (
 
-            <div className={`${cls.blog} quarterContainer`} onClick={() => navigate('/blogs/123')}>
+            // <div key={idx} className="col-md-6 col-lg-4">
 
-              <div className={`${cls.badge} ${cls[i18n.language]}`}>
+              <div key={idx} className={`${cls.blog} quarterContainer`} onClick={() => navigate('/blogs/123')}>
 
-                <span>11</span>
+                <div className={`${cls.badge} ${cls[i18n.language]}`}>
 
-                <span>OCT</span>
+                  <span>11</span>
 
-              </div>
+                  <span>OCT</span>
 
-              <img src="/assets/images/blog.jpg" alt="blogImage" />
+                </div>
 
-              <div className={cls.info}>
+                <img src={blog.photo_file} alt="blogImage" />
 
-                <span><i className="fa-regular fa-user"></i> بواسطة ahmad</span>
+                <div className={cls.info}>
 
-                <h4>تقديم حلول أفضل للأجيال القادمة</h4>
+                  <span><i className="fa-regular fa-user"></i> بواسطة {blog.user.name}</span>
 
-                <p>هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا </p>
+                  <h4>{blog.title}</h4>
 
-              </div>
+                  <p dangerouslySetInnerHTML={{ __html: blog.details.substring(0, 400) }}></p>
 
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
+                </div>
 
-            </div>
-
-          </div>
-
-          <div className="col-md-6 col-lg-4">
-
-            <div className={`${cls.blog} quarterContainer`} onClick={() => navigate('/blogs/123')}>
-
-              <div className={`${cls.badge} ${cls[i18n.language]}`}>
-
-                <span>11</span>
-
-                <span>OCT</span>
+                <div className={`quarter ${i18n.language} second`}></div>
+                <div className={`movingQuarter ${i18n.language} second`}></div>
 
               </div>
 
-              <img src="/assets/images/blog.jpg" alt="blogImage" />
+            // </div>
 
-              <div className={cls.info}>
-
-                <span><i className="fa-regular fa-user"></i> بواسطة ahmad</span>
-
-                <h4>تقديم حلول أفضل للأجيال القادمة</h4>
-
-                <p>هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا </p>
-
-              </div>
-
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
-
-            </div>
-
-          </div>
-
-          <div className="col-md-6 col-lg-4">
-
-            <div className={`${cls.blog} quarterContainer`} onClick={() => navigate('/blogs/123')}>
-
-              <div className={`${cls.badge} ${cls[i18n.language]}`}>
-
-                <span>11</span>
-
-                <span>OCT</span>
-
-              </div>
-
-              <img src="/assets/images/blog.jpg" alt="blogImage" />
-
-              <div className={cls.info}>
-
-                <span><i className="fa-regular fa-user"></i> بواسطة ahmad</span>
-
-                <h4>تقديم حلول أفضل للأجيال القادمة</h4>
-
-                <p>هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا </p>
-
-              </div>
-
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
-
-            </div>
-
-          </div>
-
-          <div className="col-md-6 col-lg-4">
-
-            <div className={`${cls.blog} quarterContainer`} onClick={() => navigate('/blogs/123')}>
-
-              <div className={`${cls.badge} ${cls[i18n.language]}`}>
-
-                <span>11</span>
-
-                <span>OCT</span>
-
-              </div>
-
-              <img src="/assets/images/blog.jpg" alt="blogImage" />
-
-              <div className={cls.info}>
-
-                <span><i className="fa-regular fa-user"></i> بواسطة ahmad</span>
-
-                <h4>تقديم حلول أفضل للأجيال القادمة</h4>
-
-                <p>هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا </p>
-
-              </div>
-
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
-
-            </div>
-
-          </div>
-
-          <div className="col-md-6 col-lg-4">
-
-            <div className={`${cls.blog} quarterContainer`} onClick={() => navigate('/blogs/123')}>
-
-              <div className={`${cls.badge} ${cls[i18n.language]}`}>
-
-                <span>11</span>
-
-                <span>OCT</span>
-
-              </div>
-
-              <img src="/assets/images/blog.jpg" alt="blogImage" />
-
-              <div className={cls.info}>
-
-                <span><i className="fa-regular fa-user"></i> بواسطة ahmad</span>
-
-                <h4>تقديم حلول أفضل للأجيال القادمة</h4>
-
-                <p>هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا </p>
-
-              </div>
-
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
-
-            </div>
-
-          </div>
-
-          <div className="col-md-6 col-lg-4">
-
-            <div className={`${cls.blog} quarterContainer`} onClick={() => navigate('/blogs/123')}>
-
-              <div className={`${cls.badge} ${cls[i18n.language]}`}>
-
-                <span>11</span>
-
-                <span>OCT</span>
-
-              </div>
-
-              <img src="/assets/images/blog.jpg" alt="blogImage" />
-
-              <div className={cls.info}>
-
-                <span><i className="fa-regular fa-user"></i> بواسطة ahmad</span>
-
-                <h4>تقديم حلول أفضل للأجيال القادمة</h4>
-
-                <p>هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا </p>
-
-              </div>
-
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
-
-            </div>
-
-          </div>
-
-          <div className="col-md-6 col-lg-4">
-
-            <div className={`${cls.blog} quarterContainer`}>
-
-              <div className={`${cls.badge} ${cls[i18n.language]}`}>
-
-                <span>11</span>
-
-                <span>OCT</span>
-
-              </div>
-
-              <img src="/assets/images/blog.jpg" alt="blogImage" />
-
-              <div className={cls.info}>
-
-                <span><i className="fa-regular fa-user"></i> بواسطة ahmad</span>
-
-                <h4>تقديم حلول أفضل للأجيال القادمة</h4>
-
-                <p>هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا </p>
-
-              </div>
-
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
-
-            </div>
-
-          </div>
-
-          <div className="col-md-6 col-lg-4">
-
-            <div className={`${cls.blog} quarterContainer`} onClick={() => navigate('/blogs/123')}>
-
-              <div className={`${cls.badge} ${cls[i18n.language]}`}>
-
-                <span>11</span>
-
-                <span>OCT</span>
-
-              </div>
-
-              <img src="/assets/images/blog.jpg" alt="blogImage" />
-
-              <div className={cls.info}>
-
-                <span><i className="fa-regular fa-user"></i> بواسطة ahmad</span>
-
-                <h4>تقديم حلول أفضل للأجيال القادمة</h4>
-
-                <p>هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا </p>
-
-              </div>
-
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
-
-            </div>
-
-          </div>
+          )) }
 
         </div>
 
@@ -311,20 +103,20 @@ const Blogs = () => {
 
             <nav aria-label="Page navigation example">
               <ul className="pagination">
-                <li className="page-item">
-                  <a className="page-link" href="/" aria-label="Previous">
+                <li className={`${currentPage === 1 ? 'disabled' : ''} page-item`}>
+                  <a className="page-link" href="/" aria-label="Previous" onClick={() => changePage(currentPage -= 1)}>
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>
                 {
                   Array(Math.ceil(count / 30)).fill(0).map((one, idx) => (
 
-                    <li key={idx} className="page-item"><a className="page-link" href="#">{idx + 1}</a></li>
+                    <li key={idx} className="page-item"><a className={`${currentPage === idx + 1 ? 'active' : ''} page-link`} href="#" onClick={() => changePage(idx + 1)}>{idx + 1}</a></li>
 
                   ))
                 }
-                <li className="page-item">
-                  <a className="page-link" href="/" aria-label="Next">
+                <li className={`${Math.ceil(count / 30) === 1 ? 'disabled' : ''} page-item`}>
+                  <a className="page-link" href="/" aria-label="Next" onClick={() => changePage(currentPage += 1)}>
                     <span aria-hidden="true">&raquo;</span>
                   </a>
                 </li>
