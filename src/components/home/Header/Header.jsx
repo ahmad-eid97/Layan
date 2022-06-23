@@ -6,7 +6,7 @@ import cls from './header.module.scss';
 
 const Header = () => {
   // COMPONENT HOOKS
-  const { i18n } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
 
   return (
     <div className={cls.header}>
@@ -30,11 +30,11 @@ const Header = () => {
 
                 <div className={cls.content}>
 
-                  <span>لأنك تستحق الأفضل</span>
+                  <span>{t('home.deserve')}</span>
 
-                  <h1><span>ليان</span> للخدمات التعليمية</h1>
+                  <h1>{t('home.layan')}</h1>
 
-                  <button>سجل الاَن</button>
+                  <button>{t('home.register')}</button>
 
                 </div>
 
@@ -50,7 +50,7 @@ const Header = () => {
 
                 <p>تمتلك شركتنا فريق عمل احترافي وتعمل علي تطوير منظومة التعليم تمتلك شركتنا فريق عمل احترافي وتعمل علي تطوير منظومة التعليم تمتلك شركتنا فريق عمل احترافي وتعمل علي تطوير منظومة التعليم </p>
 
-                <button>إعرف أكثر</button>
+                <button>{t('home.know')}</button>
 
               </div>
 
@@ -105,11 +105,11 @@ const Header = () => {
 
                 <div className={cls.content}>
 
-                  <span>لأنك تستحق الأفضل</span>
+                  <span>{t('home.deserve')}</span>
 
-                  <h1><span>ليان</span> للخدمات التعليمية</h1>
+                  <h1>{t('home.layan')}</h1>
 
-                  <button>سجل الاَن</button>
+                  <button>{t('home.register')}</button>
 
                 </div>
 
@@ -125,7 +125,7 @@ const Header = () => {
 
                 <p>تمتلك شركتنا فريق عمل احترافي وتعمل علي تطوير منظومة التعليم تمتلك شركتنا فريق عمل احترافي وتعمل علي تطوير منظومة التعليم تمتلك شركتنا فريق عمل احترافي وتعمل علي تطوير منظومة التعليم </p>
 
-                <button>إعرف أكثر</button>
+                <button>{t('home.know')}</button>
 
               </div>
 
@@ -180,11 +180,11 @@ const Header = () => {
 
                 <div className={cls.content}>
 
-                  <span>لأنك تستحق الأفضل</span>
+                  <span>{t('home.deserve')}</span>
 
-                  <h1><span>ليان</span> للخدمات التعليمية</h1>
+                  <h1>{t('home.layan')}</h1>
 
-                  <button>سجل الاَن</button>
+                  <button>{t('home.register')}</button>
 
                 </div>
 
@@ -200,7 +200,7 @@ const Header = () => {
 
                 <p>تمتلك شركتنا فريق عمل احترافي وتعمل علي تطوير منظومة التعليم تمتلك شركتنا فريق عمل احترافي وتعمل علي تطوير منظومة التعليم تمتلك شركتنا فريق عمل احترافي وتعمل علي تطوير منظومة التعليم </p>
 
-                <button>إعرف أكثر</button>
+                <button>{t('home.know')}</button>
 
               </div>
 
@@ -255,11 +255,11 @@ const Header = () => {
 
                 <div className={cls.content}>
 
-                  <span>لأنك تستحق الأفضل</span>
+                  <span>{t('home.deserve')}</span>
 
-                  <h1><span>ليان</span> للخدمات التعليمية</h1>
+                  <h1>{t('home.layan')}</h1>
 
-                  <button>سجل الاَن</button>
+                  <button>{t('home.register')}</button>
 
                 </div>
 
@@ -275,7 +275,7 @@ const Header = () => {
 
                 <p>تمتلك شركتنا فريق عمل احترافي وتعمل علي تطوير منظومة التعليم تمتلك شركتنا فريق عمل احترافي وتعمل علي تطوير منظومة التعليم تمتلك شركتنا فريق عمل احترافي وتعمل علي تطوير منظومة التعليم </p>
 
-                <button>إعرف أكثر</button>
+                <button>{t('home.know')}</button>
 
               </div>
 

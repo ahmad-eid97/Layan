@@ -1,8 +1,47 @@
-import cls from './services.module.scss'
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const service = () => {
+import axios from './../../Utils/axios';
+
+import PagesLoader from '../../components/UIs/PagesLoader/PagesLoader' 
+
+import { useTranslation } from 'react-i18next';
+
+import cls from './services.module.scss';
+
+const Service = () => {
+  // COMPONENT HOOKS
+  const [services, setServices] = useState([]);
+  const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const { i18n } = useTranslation();
+  const navigate = useNavigate();
+
+  // DCOMPONENT HANDLERS
+  const fetchServices = async () => {
+    setLoading(true)
+
+    const response = await axios.get(`/topics/2/page/1/count/30/${i18n.language}`);
+
+    if(!response) return;
+
+    setServices(response.data.topics);
+
+    setCount(response.data.topics_count);
+
+    setLoading(false)
+
+    console.log(response);
+  }
+
+  useEffect(() => {
+    fetchServices()
+  }, [])
+
   return (
     <div className={cls.services}>
+
+      {loading && <PagesLoader />}
 
       <div className='container'>
         
@@ -108,4 +147,4 @@ const service = () => {
   )
 }
 
-export default service
+export default Service;

@@ -103,7 +103,7 @@ const universities = [
 const Universities = () => {
   // COMPONENT HOOKS
   const [selectedUinversity, setSelectedUniversity] = useState(null);
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation('common');
 
   return (
     <div className={cls.universities}>
@@ -114,7 +114,7 @@ const Universities = () => {
 
           <img src="/assets/images/cap.png" alt="titleImage" />
 
-          <p>أشهر الجامعات</p>
+          <p>{t('home.universities')}</p>
           
         </h3>
 

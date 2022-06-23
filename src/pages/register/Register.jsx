@@ -1,105 +1,191 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux';
+import { userActions } from '../../store/slices/userSlice/userSlice';
 
 import SelectBox from '../../components/UIs/SelectBox/Selectbox';
 
 import DatePicker from "react-datepicker";
 
+import axios from '../../Utils/axios';
+
 import { useTranslation } from 'react-i18next';
+
+import { toast } from 'react-toastify';
 
 import "react-datepicker/dist/react-datepicker.css";
 import cls from './register.module.scss';
+import Loader from '../../components/UIs/Loader/Loader';
 
 const genderList = [
-  'ذكر',
-  'أنثى'
-]
-
-const countries = [
-  'Egypt',
-  'Saudi Arabia',
-  'United Arab Emirates',
-  'Kuwait',
-  'Oman',
-  'Bahrain',
-  'Qatar',
-  'Jordan'
-]
-
-const cities = [
-  'Cairo',
-  'Alexandria',
-  'Giza',
-  'Sharqia',
-  'Sohag',
-  'Dahra',
-  'Kuwait City',
-  'Amman'
+  {
+    title: 'ذكر',
+    label: 'male'
+  },
+  {
+    title: 'أنثي',
+    label: 'female'
+  }
 ]
 
 const Register = () => {
   // COMPONENT HOOKS
+  const [countries, setCountries] = useState([]);
+  const [cities, setCities] = useState([]);
   let initialValues = {
     username: '',
     fname: '',
     lname: '',
     fatherName: '',
-    mothername: '',
+    motherName: '',
     passportNo: '',
     email: '',
     password: '',
     phone: '',
-    country: '',
-    city: '',
     status: '',
   }
   const [fields, setFields] = useState(initialValues);
   const [startDate, setStartDate] = useState(new Date());
-  const [gender, setGender] = useState('')
-  const [country, setCountry] = useState('')
-  const [city, setCity] = useState('')
-  const [status, setStatus] = useState('on')
-  const { i18n } = useTranslation()
-  const [choosedLogoImage, setChoosedLogoImage] = useState();
-  const [choosedPassportImage, setChoosedPassportImage] = useState();
-  const inputRef = useRef();
-  const passportInputRef = useRef();
+  const [gender, setGender] = useState('');
+  const [country, setCountry] = useState('');
+  const [city, setCity] = useState('');
+  const [emptyFields, setEmptyFields] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { t, i18n } = useTranslation('auth');
+  const { t: translate } = useTranslation('common')
+  const dispatch = useDispatch();
+  // const [status, setStatus] = useState('on')
+  // const [choosedLogoImage, setChoosedLogoImage] = useState();
+  // const [choosedPassportImage, setChoosedPassportImage] = useState();
 
-  const inputClick = () => {
-    inputRef.current.click()
-  }
+  // const inputRef = useRef();
+  // const passportInputRef = useRef();
 
-  const inputPassportClick = () => {
-    passportInputRef.current.click()
-  }
+  // const inputClick = () => {
+  //   inputRef.current.click()
+  // }
 
-  const chooseLogoImage = (e) => {
-    setChoosedLogoImage(e.target.files[0])
-  }
+  // const inputPassportClick = () => {
+  //   passportInputRef.current.click()
+  // }
 
-  const deleteLogoImage = () => {
-    setChoosedLogoImage('')
-    inputRef.current.value = ''
-  }
+  // const chooseLogoImage = (e) => {
+  //   setChoosedLogoImage(e.target.files[0])
+  // }
 
-  const choosePassportImage = (e) => {
-    setChoosedPassportImage(e.target.files[0])
-  }
+  // const deleteLogoImage = () => {
+  //   setChoosedLogoImage('')
+  //   inputRef.current.value = ''
+  // }
 
-  const deletePassportImage = () => {
-    setChoosedPassportImage('')
-    passportInputRef.current.value = ''
-  }
+  // const choosePassportImage = (e) => {
+  //   setChoosedPassportImage(e.target.files[0])
+  // }
+
+  // const deletePassportImage = () => {
+  //   setChoosedPassportImage('')
+  //   passportInputRef.current.value = ''
+  // }
 
   const handleFields = (e) => {
-    console.log(e.target.value)
     setFields({
       ...fields,
       [e.target.name]: e.target.value
     })
   }
 
+  // FETCH ALL COUNTRIES
+  const fetchAllCountries = async () => {
+    const response = await axios.get(`/crm/countries?lang=${i18n.language === 'ar' ? 2 : 1}&limit=30`).catch(err => {
+      console.log(err)
+    })
+
+    if(!response) return;
+
+    setCountries(response.data.data.countries)
+  }
+
+  // FETCH ALL COUNTRIES
+  const fetchAllCities = async () => {
+    const response = await axios.get(`/crm/cities?lang=${i18n.language === 'ar' ? 2 : 1}&limit=30`).catch(err => {
+      console.log(err)
+    })
+
+    if(!response) return;
+
+    setCities(response.data.data.cities)
+  }
+
+  useEffect(() => {
+    // FETCH ALL COUNTRIES
+    fetchAllCountries()
+    // FETCH ALL COUNTRIES
+    fetchAllCities()
+
+  }, [])
+
+  // COMPONENT HANDLERS
+  const register = async () => {
+    setLoading(true)
+    const data = {
+      username: fields.username,
+      first_name: fields.fname,
+      last_name: fields.lname,
+      father_name: fields.fatherName,
+      mother_name: fields.motherName,
+      passport_no: fields.passportNo,
+      gender: gender.label,
+      phone: fields.phone,
+      birth_date: startDate,
+      country_id: country.id,
+      city_id: city.id,
+      email: fields.email,
+      password: fields.password,
+    }
+
+    Object.values(data).forEach(one => {
+      if(one === '') {
+        setEmptyFields(true);
+        setLoading(false)
+      }
+    })
+
+    const response = await axios.post('/crm/students/auth/register', data);
+
+    if(!response || !response.data.success) {
+
+      setLoading(false)
+
+      console.log('here')
+
+      if(emptyFields === false) {
+
+        errorNotify(translate('fields.error'));
+
+      }
+
+      return;
+    };
+
+    console.log(response)
+
+    setLoading(false)
+
+    dispatch(userActions.setUser(response.data.data.student))
+
+    navigate('/')
+
+  }
+
+  const successNotify = (message) => toast.success(message)
+  const errorNotify = (message) => toast.error(message)
+
   return (
     <div className={cls.register}>
+
+      {loading && <Loader />}
         
       <div className="container">
 
@@ -125,7 +211,20 @@ const Register = () => {
 
                   <label>إسم المستخدم</label>
 
-                  <input type="text" placeholder='إسم المستخدم' name="username" value={fields.username} onChange={(e) => handleFields(e)} />
+                  <input 
+                    type="text" 
+                    placeholder='إسم المستخدم' 
+                    name="username" 
+                    value={fields.username} 
+                    onChange={(e) => handleFields(e)}
+                    className={emptyFields && fields.username === '' ? cls.error : ''}
+                    />
+
+                  {emptyFields && fields.username === '' &&
+                  
+                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                  
+                  }
 
                 </div>
 
@@ -137,7 +236,20 @@ const Register = () => {
 
                   <label>الإسم الاول</label>
 
-                  <input type="text" placeholder='الإسم الاول' name="fname" value={fields.fname} onChange={(e) => handleFields(e)} />
+                  <input 
+                    type="text" 
+                    placeholder='الإسم الاول' 
+                    name="fname" 
+                    value={fields.fname} 
+                    onChange={(e) => handleFields(e)}
+                    className={emptyFields && fields.fname === '' ? cls.error : ''}
+                    />
+
+                    {emptyFields && fields.fname === '' &&
+                    
+                      <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    
+                    }
 
                 </div>
 
@@ -149,7 +261,20 @@ const Register = () => {
 
                   <label>الإسم الأخير</label>
 
-                  <input type="text" placeholder='الإسم الأخير' name="lname" value={fields.lname} onChange={(e) => handleFields(e)} />
+                  <input 
+                    type="text" 
+                    placeholder='الإسم الأخير' 
+                    name="lname" 
+                    value={fields.lname} 
+                    onChange={(e) => handleFields(e)} 
+                    className={emptyFields && fields.lname === '' ? cls.error : ''}
+                    />
+
+                  {emptyFields && fields.lname === '' &&
+
+                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+
+                  }
 
                 </div>
 
@@ -161,7 +286,20 @@ const Register = () => {
 
                   <label>إسم الأب</label>
 
-                  <input type="text" placeholder='إسم الأب' name="fatherName" value={fields.fatherName} onChange={(e) => handleFields(e)} />
+                  <input 
+                    type="text" 
+                    placeholder='إسم الأب' 
+                    name="fatherName" 
+                    value={fields.fatherName} 
+                    onChange={(e) => handleFields(e)} 
+                    className={emptyFields && fields.fatherName === '' ? cls.error : ''}
+                    />
+
+                  {emptyFields && fields.fatherName === '' &&
+
+                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+
+                  }
 
                 </div>
 
@@ -173,7 +311,20 @@ const Register = () => {
 
                   <label>إسم الأم</label>
 
-                  <input type="text" placeholder='إسم الأم' name="motherName" value={fields.motherName} onChange={(e) => handleFields(e)} />
+                  <input 
+                    type="text" 
+                    placeholder='إسم الأم' 
+                    name="motherName" 
+                    value={fields.motherName} 
+                    onChange={(e) => handleFields(e)} 
+                    className={emptyFields && fields.motherName === '' ? cls.error : ''}
+                    />
+
+                    {emptyFields && fields.motherName === '' &&
+  
+                      <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+  
+                    }
 
                 </div>
 
@@ -189,7 +340,13 @@ const Register = () => {
 
                     <i className="fa-light fa-calendar-days"></i>
 
-                    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className={emptyFields && startDate === '' ? cls.error : ''} />
+
+                    {emptyFields && fields.startDate === '' &&
+
+                      <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+
+                    }
 
                   </div>
 
@@ -203,7 +360,20 @@ const Register = () => {
 
                   <label>رقم جواز السفر</label>
 
-                  <input type="text" placeholder='رقم جواز السفر' name="passportNo" value={fields.pasportNo} onChange={(e) => handleFields(e)} />
+                  <input 
+                    type="text" 
+                    placeholder='رقم جواز السفر' 
+                    name="passportNo" 
+                    value={fields.passportNo} 
+                    onChange={(e) => handleFields(e)} 
+                    className={emptyFields && fields.passportNo === '' ? cls.error : ''}
+                    />
+
+                  {emptyFields && fields.passportNo === '' &&
+
+                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+
+                  }
 
                 </div>
 
@@ -215,7 +385,13 @@ const Register = () => {
 
                   <label>الجنس</label>
 
-                  <SelectBox placeholder="الجنس" list={genderList} value={gender} select={setGender} />
+                  <SelectBox placeholder="الجنس" list={genderList} value={gender['title'] || ''} select={setGender} error={emptyFields && !gender ? true : false} />
+
+                  {emptyFields && !gender &&
+
+                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+
+                  }
 
                 </div>
 
@@ -237,7 +413,19 @@ const Register = () => {
 
                   <label>البريد الإلكتروني</label>
 
-                  <input type="text" placeholder='البريد الإلكتروني' name="email" value={fields.email} onChange={(e) => handleFields(e)} />
+                  <input 
+                    type="text" 
+                    placeholder='البريد الإلكتروني' 
+                    name="email" value={fields.email} 
+                    onChange={(e) => handleFields(e)} 
+                    className={emptyFields && fields.email === '' ? cls.error : ''}
+                  />
+
+                  {emptyFields && !fields.email &&
+
+                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+
+                  }
 
                 </div>
 
@@ -249,7 +437,20 @@ const Register = () => {
 
                   <label>كلمة المرور</label>
 
-                  <input type="text" placeholder='كلمة المرور' name="password" value={fields.password} onChange={(e) => handleFields(e)} />
+                  <input 
+                    type="text" 
+                    placeholder='كلمة المرور' 
+                    name="password" 
+                    value={fields.password} 
+                    onChange={(e) => handleFields(e)} 
+                    className={emptyFields && fields.password === '' ? cls.error : ''}
+                  />
+
+                  {emptyFields && !fields.password &&
+
+                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+
+                  }
 
                 </div>
 
@@ -261,7 +462,20 @@ const Register = () => {
 
                   <label>رقم الهاتف</label>
 
-                  <input type="text" placeholder='رقم الهاتف' name="phone" value={fields.phone} onChange={(e) => handleFields(e)} />
+                  <input 
+                    type="text" 
+                    placeholder='رقم الهاتف' 
+                    name="phone" 
+                    value={fields.phone} 
+                    onChange={(e) => handleFields(e)}
+                    className={emptyFields && fields.phone === '' ? cls.error : ''}
+                  />
+
+                  {emptyFields && !fields.phone &&
+
+                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+
+                  }
 
                 </div>
 
@@ -271,7 +485,7 @@ const Register = () => {
 
           </div>
 
-          <div className={`${cls.block} ${cls[i18n.language]}`}>
+          {/* <div className={`${cls.block} ${cls[i18n.language]}`}>
 
             <h4><i className="fa-light fa-camera-retro"></i> الوثائق</h4>
 
@@ -379,7 +593,7 @@ const Register = () => {
 
             </div>
 
-          </div>
+          </div> */}
 
           <div className={`${cls.block} ${cls[i18n.language]}`}>
 
@@ -393,7 +607,13 @@ const Register = () => {
 
                   <label>الدولة</label>
 
-                  <SelectBox placeholder="الدولة" list={countries} value={country} select={setCountry} />
+                  <SelectBox placeholder="الدولة" list={countries} value={country['title'] || ''} select={setCountry} error={emptyFields && !country ? true : false} />
+
+                  {emptyFields && !country &&
+
+                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+
+                  }
 
                 </div>
 
@@ -405,13 +625,19 @@ const Register = () => {
 
                   <label>المدينة</label>
 
-                  <SelectBox placeholder="المدينة" list={cities} value={city} select={setCity} />
+                  <SelectBox placeholder="المدينة" list={cities} value={city['title'] || ''} select={setCity} error={emptyFields && !city ? true : false} />
+
+                  {emptyFields && !city &&
+
+                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+
+                  }
 
                 </div>
 
               </div>
 
-              <div className="col-lg-6">
+              {/* <div className="col-lg-6">
 
                 <div className={`${cls.field} ${cls.radio}`}>
 
@@ -432,11 +658,9 @@ const Register = () => {
                   </div>
                   </div>
 
-                  {/* <input type="text" placeholder='الحالة' name="status" value={fields.status} onChange={(e) => handleFields(e)} /> */}
-
                 </div>
 
-              </div>
+              </div> */}
 
             </div>
 
@@ -444,7 +668,7 @@ const Register = () => {
 
           <div className={cls.btn}>
 
-            <button>تسجيل طلب الإلتحاق</button>
+            <button onClick={register}>{t('register.register')}</button>
 
           </div>
 

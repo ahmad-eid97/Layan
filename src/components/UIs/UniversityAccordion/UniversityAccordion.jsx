@@ -11,6 +11,8 @@ const Accordion = ({ data }) => {
   const [showSub, setShowSub] = useState('')
   const { i18n } = useTranslation()
 
+  console.log(data)
+
   // COMPONENT HANDLERS
   const showSubList = (e, list) => {
     if(showSub === list) {
@@ -40,7 +42,7 @@ const Accordion = ({ data }) => {
 
         <Box className={`${cls.label} ${cls[i18n.language]}`}>
 
-          {data.label}
+          <p dangerouslySetInnerHTML={{ __html: data.details }}></p>
 
         </Box>
 
@@ -66,13 +68,13 @@ const Accordion = ({ data }) => {
 
         <Box className={cls.accordionBody}>
 
-          <div className='row align-items-center'>
+          <div className='row align-items-center justify-content-center'>
 
             <div className='col-sm-6 col-md-4'>
 
               <p>اللغة</p>
 
-              <span>{data.data.lang}</span>
+              <span>{data.languages.map(one => one.title).join(',')}</span>
 
             </div>
 
@@ -80,7 +82,7 @@ const Accordion = ({ data }) => {
 
               <p>الدراسة</p>
 
-              <span>{data.data.education}</span>
+              <span>{data.study_years}</span>
 
             </div>
 
@@ -88,15 +90,7 @@ const Accordion = ({ data }) => {
 
               <p>السعر قبل الخصم</p>
 
-              <span>{data.data.beforePrice}</span>
-
-            </div>
-
-            <div className='col-sm-6 col-md-4'>
-
-              <p>سعر التقسيط بعد الخصم</p>
-
-              <span>{data.data.afterPrice}</span>
+              <span>{data.price_start_at}</span>
 
             </div>
 
@@ -104,7 +98,7 @@ const Accordion = ({ data }) => {
 
               <p>سعر الكاش بعد الخصم</p>
 
-              <span>{data.data.cash}</span>
+              {/* <span>{data.data.cash}</span> */}
 
             </div>
 

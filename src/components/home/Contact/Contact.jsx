@@ -5,16 +5,37 @@ import SelectBox from '../../UIs/SelectBox/Selectbox';
 import cls from './contact.module.scss';
 
 const contactList = [
-  'واتساب',
-  'فيس بوك',
-  'تويتر',
-  'رقم الهاتف'
+  {
+    title: 'واتساب',
+    label: 'واتساب'
+  },
+  {
+    title: 'فيس بوك',
+    label: 'فيس بوك'
+  },
+  {
+    title: 'تويتر',
+    label: 'تويتر'
+  },
+  {
+    title: 'رقم الهاتف',
+    label: 'رقم الهاتف'
+  }
 ]
 
 const contactMethods = [
-  'واتساب',
-  'مقابلة',
-  'الإتصال'
+  {
+    title: 'واتساب',
+    label: 'واتساب'
+  },
+  {
+    title: 'مقابلة',
+    label: 'مقابلة'
+  },
+  {
+    title: 'الإتصال',
+    label: 'الإتصال'
+  }
 ]
 
 const Contact = () => {

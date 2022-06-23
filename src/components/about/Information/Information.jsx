@@ -64,8 +64,6 @@ const Information = () => {
         </div>
 
         <div className={`${cls.features} row`}>
-
-          
         
           <h3 className={`${cls.label} label`}>
 

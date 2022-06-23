@@ -5,10 +5,26 @@ import Selectbox from '../../UIs/SelectBox/Selectbox';
 import cls from './filter.module.scss';
 
 const gradeList = [
-  'الأولى',
-  'الثانية',
-  'الثالثة',
-  'الرابعة',
+  {
+    title: "الأولي",
+    label: 'الأولي'
+  },
+  {
+    title: "الأولي",
+    label: 'الأولي'
+  },
+  {
+    title: "الأولي",
+    label: 'الأولي'
+  },
+  {
+    title: "الأولي",
+    label: 'الأولي'
+  },
+  {
+    title: "الأولي",
+    label: 'الأولي'
+  }
 ]
 
 const Filter = () => {

@@ -6,10 +6,13 @@ import "react-modal-video/scss/modal-video.scss";
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
+import { useTranslation } from 'react-i18next';
+
 import cls from './experiences.module.scss';
 
 const Experiences = () => {
 	const [openViewer, setOpenViewer] = useState('');
+  const { t, i18n } = useTranslation('common');
 
   return (
     <div className={cls.experiences}>
@@ -17,12 +20,10 @@ const Experiences = () => {
       <div className='container'>
         
         <h3 className={`${cls.label} label`}>
-  
-          {/* <i className="fa-light fa-graduation-cap"></i> */}
 
           <img src="/assets/images/cap.png" alt="titleImage" />
   
-          <p>تجارب الطلاب</p>
+          <p>{t('home.students')}</p>
           
         </h3>
 

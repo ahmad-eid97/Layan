@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router';
 
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -29,28 +30,10 @@ const responsive = {
   }
 };
 
-const universities = [
-  {
-    image: '/assets/images/halab.png',
-    name: 'جامعة حلب',
-  },
-  {
-    image: '/assets/images/istanbul.png',
-    name: 'جامعة إسطنبول',
-  },
-  {
-    image: '/assets/images/palastine.png',
-    name: 'جامعة فلسطين',
-  },
-  {
-    image: '/assets/images/university.png',
-    name: 'جامعة القاهرة',
-  },
-]
-
-const RelatedUniversities = () => {
+const RelatedUniversities = ({ relatedUniversities }) => {
   // COMPONENT HOOKS
   const { i18n } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <div className={cls.relatedUniversities}>
@@ -78,15 +61,15 @@ const RelatedUniversities = () => {
           arrows={false}
         >
 
-          {universities.map((one, idx) => (
+          {relatedUniversities.map((one, idx) => (
 
             <div key={idx} className={cls.slide}>
 
-              <img src={one.image} alt="platform" />
+              <img src={one.photo_file} alt="platform" />
 
-              <h6>{one.name}</h6>
+              <h6>{one.title}</h6>
 
-              <button>عرض التفاصيل</button>
+              <button onClick={() => navigate(`/university/${one.id}`)}>عرض التفاصيل</button>
 
             </div>
 

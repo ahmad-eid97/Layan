@@ -4,7 +4,7 @@ import cls from './blogs.module.scss';
 
 const Blogs = () => {
   // COMPONENT HOOKS
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation('common');
 
   return (
     <div className={cls.blogs}>
@@ -13,7 +13,7 @@ const Blogs = () => {
 
         <img src="/assets/images/cap.png" alt="titleImage" />
 
-        <p>المقالات</p>
+        <p>{t('home.blogs')}</p>
         
       </h3>
 

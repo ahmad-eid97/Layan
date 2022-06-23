@@ -40,7 +40,7 @@ const platforms = [
 
 const Platforms = () => {
   // COMPONENT HOOKS
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation('common');
 
   return (
     <div className={cls.platforms}>
@@ -51,7 +51,7 @@ const Platforms = () => {
 
           <img src="/assets/images/cap.png" alt="titleImage" />
 
-          <p>أشهر المنصات</p>
+          <p>{t('home.platforms')}</p>
           
         </h3>
 

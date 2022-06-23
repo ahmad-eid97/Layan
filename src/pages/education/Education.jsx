@@ -4,7 +4,7 @@ import cls from './education.module.scss';
 
 const Education = () => {
   // COMPONENT HOOKS
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation('common');
 
   return (
     <div className={cls.education}>
@@ -15,7 +15,7 @@ const Education = () => {
 
           <img src="/assets/images/cap.png" alt="titleImage" />
   
-          <p>خطوات الدراسة عن طريق منصتنا</p>
+          <p>{t('education.steps')}</p>
           
         </h1>
 
