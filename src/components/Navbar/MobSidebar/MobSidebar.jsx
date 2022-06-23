@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 import LangSwitch from '../../Switches/LangSwitch/LangSwitch';
 
 import { useTranslation } from 'react-i18next';
@@ -6,7 +8,12 @@ import cls from './MobSidebar.module.scss'
 
 const MobSidebar = ({ mobSidebar, setMobSidebar }) => {
   // COMPONENT HOOKS
-  const { i18n } = useTranslation()
+  const { i18n } = useTranslation();
+
+  // COMPONENT HANDLERS
+  const close = () => {
+    setMobSidebar(false);
+  }
 
   return (
     <div className={`${cls.wrapper} ${mobSidebar ? cls.show : cls.hide}`}>
@@ -21,20 +28,20 @@ const MobSidebar = ({ mobSidebar, setMobSidebar }) => {
         </div>
 
         <ul>
-          <li>خطوات الدراسة</li>
-          <li>الجامعات</li>
-          <li>خدماتنا</li>
-          <li>الاخبار</li>
-          <li>المقالات</li>
+          <li onClick={close}><NavLink to="/education"> خطوات الدراسة</NavLink></li>
+          <li onClick={close}><NavLink to="/all-universities"> الجامعات</NavLink></li>
+          <li onClick={close}><NavLink to="/services"> خدماتنا</NavLink></li>
+          <li onClick={close}><NavLink to="/news"> الأخبار</NavLink></li>
+          <li onClick={close}><NavLink to="/blogs"> المقالات</NavLink></li>
           <li>الدورات</li>
           <li>السكنات</li>
           <li>ميديا</li>
           <li>تتبع الطلب</li>
-          <li>طلب التسجيل</li>
-          <li>كن وكيلنا</li>
-          <li>من نحن</li>
-          <li>تواصل معنا</li>
-          <li>الاسئله الشائعة</li>
+          <li onClick={close}><NavLink to="/register"> طلب التسجيل</NavLink></li>
+          <li onClick={close}><NavLink to="/agent"> كن وكيلنا</NavLink></li>
+          <li onClick={close}><NavLink to="/about-us"> من نحن</NavLink></li>
+          <li onClick={close}><NavLink to="/contact-us"> تواصل معنا</NavLink></li>
+          <li onClick={close}><NavLink to="/questions"> الأسئلة الشائعة</NavLink></li>
         </ul>
 
       </div>

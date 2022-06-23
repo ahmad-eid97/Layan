@@ -166,10 +166,12 @@
           }
         }
         @include md {
-          margin: 80px 30px 0px;
+          margin: 0px 30px 0px;
+          transform: translateY(-20px);
         }
         @include sm {
-          margin: 80px 10px 0px;
+          margin: 0px 10px 0px;
+          transform: translateY(-25px);
           i {
             width: 30px;
             height: 30px;
@@ -186,8 +188,9 @@
             }
           }
         }
-        @include sm {
-          margin: 80px 2px 0px;
+        @include xs {
+          margin: 0px 2px 0px;
+          transform: translateY(-35px);
         }
       }
     }
