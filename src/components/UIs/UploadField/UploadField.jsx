@@ -2,7 +2,7 @@ import { useRef } from 'react';
 
 import cls from './uploadField.module.scss';
 
-const UploadField = ({ attach, updateAttachment }) => {
+const UploadField = ({ attach, updateAttachment, empty }) => {
   // COMPONENT HOOKS
   const inputRef = useRef();
 
@@ -12,13 +12,11 @@ const UploadField = ({ attach, updateAttachment }) => {
   }
 
   const chooseImage = (e) => {
-    attach.file_url = URL.createObjectURL(e.target.files[0]);
-    updateAttachment(attach)
+    updateAttachment({ ...attach, file_url: URL.createObjectURL(e.target.files[0]) })
   }
 
   const deletedImage = () => {
-    attach.file_url = '';
-    updateAttachment(attach)
+    updateAttachment({ ...attach, file_url: '' })
     inputRef.current.value = ''
   }
 
@@ -43,8 +41,6 @@ const UploadField = ({ attach, updateAttachment }) => {
 
               </div>
 
-              {/* {choosedLogoImage.name.substring(0, 20) + '...'} */}
-
             </div>
 
           </>
@@ -66,6 +62,8 @@ const UploadField = ({ attach, updateAttachment }) => {
           <input type="file" style={{ display: 'none' }} ref={inputRef} onChange={chooseImage} />
 
       </div>
+
+      {empty && <p className={cls.error}>يجب إرفاق ملف</p>}
 
     </div>
   )

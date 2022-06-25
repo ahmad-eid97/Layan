@@ -48,8 +48,6 @@ const AllUniversities = () => {
     }
   };
 
-  console.log(resMeta)
-
   const fetchAllCountries = async () => {
     setPageLoading(true)
 
@@ -57,9 +55,38 @@ const AllUniversities = () => {
 
     if(!response && !response.data.data.success) return;
 
-    setCountries(response.data.data.countries);
+    if(i18n.language === 'ar') {
+      const arabicViewCountries = response.data.data.countries.reverse()
 
-    setChoosedCountry(response.data.data.countries[0]);
+      console.log(arabicViewCountries)
+
+      const allCountries = [...arabicViewCountries];
+      allCountries.forEach(async country => {
+        const flagRes = await axios.get(`https://countryflagsapi.com/svg/${country.code}`);
+  
+        if(!flagRes) return;
+
+        country.image = flagRes.data
+
+        setCountries(allCountries);
+
+        setChoosedCountry(arabicViewCountries[29]);
+      })
+    } else {
+
+      const allCountries = [...response.data.data.countries];
+      allCountries.forEach(async country => {
+        const flagRes = await axios.get(`https://countryflagsapi.com/svg/${country.code}`);
+  
+        if(!flagRes) return;
+
+        country.image = flagRes.data
+
+        setCountries(allCountries);
+
+        setChoosedCountry(response.data.data.countries[0]);
+      })
+    }
 
     setPageLoading(false)
   }
@@ -131,9 +158,9 @@ const AllUniversities = () => {
           draggable={true}
           showDots={false}
           responsive={responsive}
-          autoPlay={true}
+          autoPlay={false}
           infinite={true}
-          autoPlaySpeed={3000}
+          autoPlaySpeed={100000000000000}
           keyBoardControl={true}
           transitionDuration={500}
           arrows={false}
@@ -142,7 +169,7 @@ const AllUniversities = () => {
           {countries.map((one, idx) => (
 
             <div key={idx} className={`${cls.smallSlide} ${choosedCountry.id === one.id ? cls.choosed : ''}`} onClick={() => setChoosedCountry(one)}>
-              <p>{one.title}</p>
+              <p><span dangerouslySetInnerHTML={{ __html: one.image }}></span> {one.title}</p>
             </div>
 
           ))}

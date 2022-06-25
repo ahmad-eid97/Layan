@@ -66,6 +66,21 @@
     font-size: 0.9rem;
     background-color: #fff;
     cursor: pointer;
+    p {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 0 3px 0;
+      span {
+        svg {
+          margin: 0 10px;
+          width: 30px !important;
+          height: 25px !important;
+          border-radius: 5px;
+          object-fit: contain;
+        }
+      }
+    }
     &:hover {
       background-color: var(--dark-color);
       color: #fff;

@@ -186,8 +186,6 @@ const EducationInfo = () => {
 
     })
 
-    console.log(Object.values(data).findIndex(one => (one === undefined || one === '')))
-
     if(Object.values(data).findIndex(one => one === undefined || one === '') <= -1) {
 
       const response = await axios.post(`/crm/applications?lang=${i18n.language}`)

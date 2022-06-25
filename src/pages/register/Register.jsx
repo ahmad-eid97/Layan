@@ -175,7 +175,7 @@ const Register = () => {
 
     dispatch(userActions.setUser(response.data.data.student))
 
-    navigate('/')
+    navigate('/registered')
 
   }
 

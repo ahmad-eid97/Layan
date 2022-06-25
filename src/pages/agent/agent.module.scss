@@ -67,6 +67,10 @@
     background-color: #fafafa;
     .field {
       margin-bottom: 15px;
+      p {
+        font-size: 0.8rem;
+        color: var(--main-color);
+      }
     }
     h4 {
       margin-bottom: 30px;
@@ -115,6 +119,9 @@
       font-size: 0.9rem;
       outline: none;
       background-color: #fff;
+      &.error {
+        border-color: var(--main-color);
+      }
     }
 
     .date {

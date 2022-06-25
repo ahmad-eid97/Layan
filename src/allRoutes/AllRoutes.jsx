@@ -16,7 +16,8 @@ import {
   Registered,
   EducationInfo,
   University,
-  AllUniversities
+  AllUniversities,
+  ProgramDetails
 } from "../pages";
 
 const AllRoutes = () => {
@@ -54,6 +55,8 @@ const AllRoutes = () => {
       <Route path="/university/:id" element={<University />} />
 
       <Route path="/all-universities" element={<AllUniversities />} />
+
+      <Route path="/program/:id" element={<ProgramDetails />} />
       
     </Routes>
   )

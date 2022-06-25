@@ -29,3 +29,5 @@ export { default as EducationInfo } from './educationInfo/EducationInfo';
 export { default as University } from './university/University';
 
 export { default as AllUniversities } from './allUniversities/AllUniversities';
+
+export { default as ProgramDetails } from './programDetails/ProgramDetails';
