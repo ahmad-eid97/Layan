@@ -61,8 +61,6 @@ const University = () => {
 
     setRelatedUniversities(response.data.data.universities);
 
-    // setLoading(false)
-
     console.log(response)
   }
 

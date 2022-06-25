@@ -61,3 +61,9 @@ export { default as UniversityInfo } from './university/UniversityInfo/Universit
 export { default as UniversityDetails } from './university/UniversityDetails/UniversityDetails';
 
 export { default as RelatedUniversities } from './university/RelatedUniversities/RelatedUniversities';
+
+// PROGRAM COMPONENTS
+
+export { default as ProgramDetailsInfo } from './programDetails/ProgramDetailsInfo/ProgramDetailsInfo';
+
+export { default as ProgramDetailsUniversities } from './programDetails/ProgramDetailsUniversities/ProgramDetailsUniversities';

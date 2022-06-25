@@ -17,7 +17,8 @@ import {
   EducationInfo,
   University,
   AllUniversities,
-  ProgramDetails
+  ProgramDetails,
+  ProgramsFilterPage
 } from "../pages";
 
 const AllRoutes = () => {
@@ -57,6 +58,8 @@ const AllRoutes = () => {
       <Route path="/all-universities" element={<AllUniversities />} />
 
       <Route path="/program/:id" element={<ProgramDetails />} />
+
+      <Route path="/programs-filter/:id" element={<ProgramsFilterPage />} />
       
     </Routes>
   )

@@ -85,7 +85,6 @@ const EducationInfo = () => {
 
   useEffect(() => {
     fetchData();
-
   }, [])
 
   const getFilesByDegree = async () => {

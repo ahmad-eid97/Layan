@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 
@@ -9,7 +10,8 @@ import cls from './universityAccordion.module.scss';
 const Accordion = ({ data }) => {
   // COMPONENT HOOKS
   const [showSub, setShowSub] = useState('')
-  const { i18n } = useTranslation()
+  const { i18n } = useTranslation();
+  const navigate = useNavigate();
 
   console.log(data)
 
@@ -104,7 +106,7 @@ const Accordion = ({ data }) => {
 
             <div className='col-sm-6 col-md-4'>
 
-              <button>عرض التفاصيل</button>
+              <button onClick={() => navigate(`/program/${data.id}`)}>عرض التفاصيل</button>
 
             </div>
 

@@ -31,3 +31,5 @@ export { default as University } from './university/University';
 export { default as AllUniversities } from './allUniversities/AllUniversities';
 
 export { default as ProgramDetails } from './programDetails/ProgramDetails';
+
+export { default as ProgramsFilterPage } from './programsFilterPage/ProgramsFilterPage';
