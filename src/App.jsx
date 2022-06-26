@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import Navbar from './components/Navbar/Navbar';
 import AllRoutes from './allRoutes/AllRoutes';
@@ -13,16 +14,15 @@ function App() {
   // COMPONENT STATES
   const { i18n } = useTranslation('common');
   const [lang, setLang] = useState(i18n.language)
+  const location = useLocation()
 
   useEffect(() => {
     setLang(i18n.language);
   }, [i18n.language])
 
-  // useEffect(() => {
-  //   document.body.addEventListener('click', () => {
-  //     document.getElementById('selectOverLay').click();
-  //   })
-  // }, [])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location])
 
   return (
     <div className="App" id={lang}>

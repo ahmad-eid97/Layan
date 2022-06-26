@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Selectbox from '../../UIs/SelectBox/Selectbox';
 import Loader from '../../UIs/Loader/Loader';
@@ -8,29 +9,6 @@ import axios from '../../../Utils/axios';
 import { useTranslation } from 'react-i18next';
 
 import cls from './filter.module.scss';
-
-const gradeList = [
-  {
-    title: "الأولي",
-    label: 'الأولي'
-  },
-  {
-    title: "الأولي",
-    label: 'الأولي'
-  },
-  {
-    title: "الأولي",
-    label: 'الأولي'
-  },
-  {
-    title: "الأولي",
-    label: 'الأولي'
-  },
-  {
-    title: "الأولي",
-    label: 'الأولي'
-  }
-]
 
 const Filter = () => {
   // COMPONENT HOOKS
@@ -46,6 +24,7 @@ const Filter = () => {
   const [language, setLanguage] = useState('');
   const [loading, setLoading] = useState(false);
   const { i18n } = useTranslation();
+  const navigate = useNavigate();
 
   const fetchCountries = async () => {
     setLoading(true)
@@ -120,11 +99,8 @@ const Filter = () => {
   }
 
   const search = async () => {
-    const response = await axios.get(`/crm/programs/filter/search?lang=${i18n.language}&specialty_id=${speciality.id}&degree_id=${degree.id}&limit=30&university_id=${university.id}&country_id=${country.id}`);
 
-    if(!response) return;
-
-    console.log(response)
+    navigate(`/programs-filter?endPoint=/crm/programs/filter/search?lang=${i18n.language}--specialty_id=${speciality.id}--degree_id=${degree.id}--limit=30&university_id=${university.id}--country_id=${country.id}`)
   }
 
   return (

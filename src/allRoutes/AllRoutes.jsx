@@ -59,7 +59,7 @@ const AllRoutes = () => {
 
       <Route path="/program/:id" element={<ProgramDetails />} />
 
-      <Route path="/programs-filter/:id" element={<ProgramsFilterPage />} />
+      <Route path="/programs-filter" element={<ProgramsFilterPage />} />
       
     </Routes>
   )

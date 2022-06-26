@@ -50,7 +50,10 @@
   .carousel {
     margin-bottom: 10px;
     padding-bottom: 20px;
-    direction: ltr !important;
+    // direction: rtl !important;
+    // &.en {
+    //   direction: ltr !important;
+    // }
   }
 
   .smallSlide {
@@ -71,14 +74,11 @@
       align-items: center;
       justify-content: center;
       margin: 0 0 3px 0;
-      span {
-        svg {
-          margin: 0 10px;
-          width: 30px !important;
-          height: 25px !important;
-          border-radius: 5px;
-          object-fit: contain;
-        }
+      img {
+        width: 25px;
+        height: 20px;
+        border-radius: 3px;
+        margin: 0 7px;
       }
     }
     &:hover {
@@ -110,11 +110,12 @@
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none;
     img {
-      width: 150px;
-      height: 150px;
-      object-fit: contain;
+      width: 200px !important;
+      height: 120px !important;
+      object-fit: cover;
       pointer-events: none;
-      margin-bottom: 0px;
+      margin-bottom: 10px;
+      border-radius: 5px;
     }
     h6 {
       font-weight: 600;

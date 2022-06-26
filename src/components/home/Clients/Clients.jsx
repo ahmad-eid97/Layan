@@ -1,9 +1,39 @@
+import { useState, useEffect } from 'react';
+
+import Loader from '../../UIs/Loader/Loader';
+
+import axios from '../../../Utils/axios';
+
+import { useTranslation } from 'react-i18next';
+
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import cls from './clients.module.scss';
 
 const Clients = () => {
+	const [clients, setClients] = useState('');
+	const [loading, setLoading] = useState('');
+  const { t, i18n } = useTranslation('common');
+
+  // COMPONENT HANDLERS
+  const fetchClients = async () => {
+    setLoading(true)
+
+    const response = await axios.get(`/topics/13/page/1/count/50/${i18n.language}`);
+
+    if(!response) return;
+
+    setClients(response.data.topics);
+    console.log(response);
+
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    fetchClients();
+  }, [])
+
   return (
     <div className={cls.clients}>
 
@@ -17,21 +47,23 @@ const Clients = () => {
 
               <Carousel showStatus={false} showArrows={false} showThumbs={false}>
 
-                  <div className={cls.slide}>
+                {clients && clients.map((client, idx) => (
+
+                  <div key={idx} className={cls.slide}>
 
                     <span><i className="fa-solid fa-quote-left"></i></span>
 
                     <div className={cls.info}>
 
-                      <p>منصة تعليمية رائعة ونظام ومتابعة ممتازة في كل اوقات الإسبوع يتم التواصل معك بشكل دوري لمتابعة المستوي المطلوب</p>
+                      <p>{client.title}</p>
 
                       <div className={cls.user}>
 
-                        <img src='/assets/images/user.jpg' alt='user' />
+                        <img src={client.photo_file} alt='user' />
 
                         <div>
-                          <h5>ahmad eid</h5>
-                          <p>engineer</p>
+                          <h5>{client.fields[0].value}</h5>
+                          <p>{client.fields[1].value}</p>
                         </div>
 
                       </div>
@@ -40,51 +72,7 @@ const Clients = () => {
 
                   </div>
 
-                  <div className={cls.slide}>
-
-                    <span><i className="fa-solid fa-quote-left"></i></span>
-
-                    <div className={cls.info}>
-
-                      <p>منصة تعليمية رائعة ونظام ومتابعة ممتازة في كل اوقات الإسبوع يتم التواصل معك بشكل دوري لمتابعة المستوي المطلوب</p>
-
-                      <div className={cls.user}>
-
-                        <img src='/assets/images/user.jpg' alt='user' />
-
-                        <div>
-                          <h5>ahmad eid</h5>
-                          <p>engineer</p>
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                  <div className={cls.slide}>
-
-                    <span><i className="fa-solid fa-quote-left"></i></span>
-
-                    <div className={cls.info}>
-
-                      <p>منصة تعليمية رائعة ونظام ومتابعة ممتازة في كل اوقات الإسبوع يتم التواصل معك بشكل دوري لمتابعة المستوي المطلوب</p>
-
-                      <div className={cls.user}>
-
-                        <img src='/assets/images/user.jpg' alt='user' />
-
-                        <div>
-                          <h5>ahmad eid</h5>
-                          <p>engineer</p>
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                  </div>
+                ))}
 
               </Carousel>
 

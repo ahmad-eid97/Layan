@@ -33,3 +33,5 @@ export { default as AllUniversities } from './allUniversities/AllUniversities';
 export { default as ProgramDetails } from './programDetails/ProgramDetails';
 
 export { default as ProgramsFilterPage } from './programsFilterPage/ProgramsFilterPage';
+
+export { default as Applications } from './applications/Applications';

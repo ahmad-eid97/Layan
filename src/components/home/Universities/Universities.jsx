@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+import Loader from '../../../components/UIs/Loader/Loader';
 
 import { useTranslation } from 'react-i18next';
 
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+
+import axios from '../../../Utils/axios';
 
 import cls from './universities.module.scss';
 
@@ -102,11 +106,32 @@ const universities = [
 
 const Universities = () => {
   // COMPONENT HOOKS
+  const [universities, setUniversities] = useState([])
   const [selectedUinversity, setSelectedUniversity] = useState(null);
+  const [loading, setLoading] = useState(false)
   const { t, i18n } = useTranslation('common');
+
+  // COMPONENT HANDLERS
+  const fetchUniversities = async () => {
+    setLoading(true)
+
+    const response = await axios.get(`/crm/universities?lang=${i18n.language}&limit=30`);
+
+    if(!response) return;
+
+    setUniversities(response.data.data.universities);
+
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    fetchUniversities();
+  }, [])
 
   return (
     <div className={cls.universities}>
+
+      {loading && <Loader />}
 
       <div className='container'>
         
@@ -131,11 +156,11 @@ const Universities = () => {
           arrows={false}
         >
 
-          {universities.map((one, idx) => (
+          {universities && universities.map((one, idx) => (
 
             <div key={idx} className={cls.slide} onClick={() => setSelectedUniversity(one)}>
-              <img src={one.image} alt="university" />
-              <p>{one.name}</p>
+              <img src={one.photo_file} alt="university" />
+              <p>{one.title}</p>
             </div>
 
           ))}
@@ -146,7 +171,7 @@ const Universities = () => {
 
           <div className={cls.description}>
 
-            <h6><i className="fa-light fa-graduation-cap"></i> <span>{selectedUinversity.name}</span></h6>
+            <h6><i className="fa-light fa-graduation-cap"></i> <span>{selectedUinversity.title}</span></h6>
 
             <i className={`${cls[i18n.language]} fa-light fa-xmark`} onClick={() => setSelectedUniversity(null)}></i>
 
@@ -163,10 +188,10 @@ const Universities = () => {
                 arrows={false}
               >
 
-                {selectedUinversity.specs.map((one, idx) => (
+                {selectedUinversity.specialties.map((one, idx) => (
 
                   <div key={idx} className={cls.smallSlide}>
-                    <p>{one}</p>
+                    <p>{one.title}</p>
                   </div>
 
                 ))}

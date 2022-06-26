@@ -9,6 +9,9 @@ import { useTranslation } from 'react-i18next';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+
 import axios from '../../Utils/axios';
 
 import cls from './allUniversities.module.scss';
@@ -48,6 +51,10 @@ const AllUniversities = () => {
     }
   };
 
+  useEffect(() => {
+    
+  }, [i18n.language])
+
   const fetchAllCountries = async () => {
     setPageLoading(true)
 
@@ -55,38 +62,9 @@ const AllUniversities = () => {
 
     if(!response && !response.data.data.success) return;
 
-    if(i18n.language === 'ar') {
-      const arabicViewCountries = response.data.data.countries.reverse()
+    setCountries(response.data.data.countries);
 
-      console.log(arabicViewCountries)
-
-      const allCountries = [...arabicViewCountries];
-      allCountries.forEach(async country => {
-        const flagRes = await axios.get(`https://countryflagsapi.com/svg/${country.code}`);
-  
-        if(!flagRes) return;
-
-        country.image = flagRes.data
-
-        setCountries(allCountries);
-
-        setChoosedCountry(arabicViewCountries[29]);
-      })
-    } else {
-
-      const allCountries = [...response.data.data.countries];
-      allCountries.forEach(async country => {
-        const flagRes = await axios.get(`https://countryflagsapi.com/svg/${country.code}`);
-  
-        if(!flagRes) return;
-
-        country.image = flagRes.data
-
-        setCountries(allCountries);
-
-        setChoosedCountry(response.data.data.countries[0]);
-      })
-    }
+    setChoosedCountry(response.data.data.countries[0]);
 
     setPageLoading(false)
   }
@@ -153,28 +131,29 @@ const AllUniversities = () => {
       </h3>
 
       <div className='container'>
-        <Carousel
-          className={cls.carousel}
-          draggable={true}
-          showDots={false}
-          responsive={responsive}
-          autoPlay={false}
-          infinite={true}
-          autoPlaySpeed={100000000000000}
-          keyBoardControl={true}
-          transitionDuration={500}
-          arrows={false}
+
+        {console.log(i18n.language)}
+
+        <Swiper 
+          spaceBetween={5}
+          slidesPerView={7}
+          onSwiper={(swiper) => console.log(swiper)}
+          className={`${cls.carousel} ${cls[i18n.language]}`}
+          dir='rtl'
         >
 
           {countries.map((one, idx) => (
 
-            <div key={idx} className={`${cls.smallSlide} ${choosedCountry.id === one.id ? cls.choosed : ''}`} onClick={() => setChoosedCountry(one)}>
-              <p><span dangerouslySetInnerHTML={{ __html: one.image }}></span> {one.title}</p>
-            </div>
+            <SwiperSlide key={idx} className={`${cls.smallSlide} ${choosedCountry.id === one.id ? cls.choosed : ''}`} onClick={() => setChoosedCountry(one)}>
+
+              <p>{one.title}</p>
+
+            </SwiperSlide>
 
           ))}
 
-        </Carousel>
+        </Swiper>
+
       </div>
 
       <div className='container'>

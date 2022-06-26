@@ -1,6 +1,11 @@
+import { useNavigate } from 'react-router-dom';
+
 import cls from './programDetailsUniversities.module.scss';
 
 const ProgramDetailsUniversities = ({ program }) => {
+  // COMPONENT HOOKS
+  const navigate = useNavigate()
+
   return (
     <div className={cls.programDetailsUniversities}>
 
@@ -66,7 +71,7 @@ const ProgramDetailsUniversities = ({ program }) => {
 
                     <p>تسجيل</p>
 
-                    <span><button>سجل الاَن</button></span>
+                    <span><button onClick={() => navigate(`/register`)}>سجل الاَن</button></span>
 
                   </div>
 
