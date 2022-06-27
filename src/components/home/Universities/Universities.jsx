@@ -35,75 +35,6 @@ const responsive = {
   }
 };
 
-const universities = [
-  {
-    name: 'جامعة القاهرة',
-    image: '/assets/images/university.png',
-    specs: [
-      'الطب',
-      'العلوم',
-      'التكنولوجيا',
-      'الهندسة',
-      'الإقتصاد',
-    ]
-  },
-  {
-    name: 'جامعة حلب',
-    image: '/assets/images/halab.png',
-    specs: [
-      'الطب',
-      'العلوم',
-      'التكنولوجيا',
-      'الهندسة',
-      'الإقتصاد',
-    ]
-  },
-  {
-    name: 'جامعة إسطنبول',
-    image: '/assets/images/istanbul.png',
-    specs: [
-      'الطب',
-      'العلوم',
-      'التكنولوجيا',
-      'الهندسة',
-      'الإقتصاد',
-    ]
-  },
-  {
-    name: 'جامعة فلسطين',
-    image: '/assets/images/palastine.png',
-    specs: [
-      'الطب',
-      'العلوم',
-      'التكنولوجيا',
-      'الهندسة',
-      'الإقتصاد',
-    ]
-  },
-  {
-    name: 'الجامعة الأمريكية',
-    image: '/assets/images/auc.png',
-    specs: [
-      'الطب',
-      'العلوم',
-      'التكنولوجيا',
-      'الهندسة',
-      'الإقتصاد',
-    ]
-  },
-  {
-    name: 'جامعة القاهرة',
-    image: '/assets/images/university.png',
-    specs: [
-      'الطب',
-      'العلوم',
-      'التكنولوجيا',
-      'الهندسة',
-      'الإقتصاد',
-    ]
-  }
-]
-
 const Universities = () => {
   // COMPONENT HOOKS
   const [universities, setUniversities] = useState([])
@@ -113,7 +44,7 @@ const Universities = () => {
 
   // COMPONENT HANDLERS
   const fetchUniversities = async () => {
-    setLoading(true)
+    // setLoading(true)
 
     const response = await axios.get(`/crm/universities?lang=${i18n.language}&limit=30`);
 
@@ -121,7 +52,7 @@ const Universities = () => {
 
     setUniversities(response.data.data.universities);
 
-    setLoading(false)
+    // setLoading(false)
   }
 
   useEffect(() => {
