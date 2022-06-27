@@ -26,4 +26,12 @@ export { default as Education } from './education/Education';
 
 export { default as EducationInfo } from './educationInfo/EducationInfo';
 
-export { default as Signin } from './signin/Signin';
+export { default as University } from './university/University';
+
+export { default as AllUniversities } from './allUniversities/AllUniversities';
+
+export { default as ProgramDetails } from './programDetails/ProgramDetails';
+
+export { default as ProgramsFilterPage } from './programsFilterPage/ProgramsFilterPage';
+
+export { default as Applications } from './applications/Applications';

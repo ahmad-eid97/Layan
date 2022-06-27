@@ -1,0 +1,58 @@
+.programDetailsInfo {
+  h2 {
+    p {
+      text-align: center !important;
+      font-size: 1.7rem;
+      margin-bottom: 50px;
+      font-weight: 600;
+    }
+  }
+
+  .analytics {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    .one {
+      display: flex;
+      align-items: center;
+      // border: 2px dashed var(--main-color);
+      border-radius: 5px;
+      // background-color: #fad8d3;
+      padding: 15px 20px;
+      margin-bottom: 10px;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+      border-right: 3px solid var(--main-color);
+      background-color: #fff;
+      img {
+        width: 50px;
+      }
+      div {
+        padding: 0 20px;
+        span {
+          font-size: 1.1rem;
+          font-weight: bold;
+          color: var(--main-color);
+          transition: all 0.2s ease-in-out;
+        }
+        p {
+          font-size: 1rem;
+          font-weight: bold;
+        }
+      }
+      &:hover {
+        transform: scale(1.03);
+      }
+    }
+  }
+
+  .details {
+    p {
+      font-size: 1rem !important;
+      color: var(--text-color) !important;
+    }
+  }
+
+  .opportunities {
+    
+  }
+}

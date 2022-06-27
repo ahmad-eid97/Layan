@@ -11,74 +11,86 @@
     }
   }
 
-  .row {
+  .wrapper {
     margin-top: 80px;
-    .blog {
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-      padding: 15px 15px 25px 15px;
-      border-radius: 5px;
-      overflow: hidden;
-      position: relative;
-      margin-bottom: 30px;
-      cursor: pointer;
-      @include sm {
-        max-width: 350px;
-        margin: 0 auto 30px;
-        .info {
-          h4 {
-            font-size: 1rem !important;
-          }
-          p {
-            font-size: 0.8rem !important;
-          }
-        }
-      }
-      .badge {
-        position: absolute;
-        top: 0px;
-        left: 10%;
-        z-index: 3;
-        background-color: #f44336;
-        color: #fff;
-        padding: 15px 10px;
-        border-radius: 0 0 5px 5px;
-        font-size: 0.9rem;
-        font-weight: bold;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        &.en {
-          left: unset;
-          right: 10%;
-        }
-      }
-      img {
-        border-radius: 5px;
-        margin-bottom: 25px;
-        position: relative;
-        z-index: 2;
-      }
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+  }
+
+  .blog {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px 15px 25px 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 30px;
+    cursor: pointer;
+    background-color: #fff;
+    grid-column: span 4;
+    @include lg {
+      grid-column: span 6;
+    }
+    @include sm {
+      max-width: 350px;
+      margin: 0 auto 30px;
+      grid-column: span 12;
       .info {
-        position: relative;
-        z-index: 2;
-        span {
-          font-size: 0.9rem;
-          i {
-            color: var(--main-color);
-            padding: 0 5px;
-          }
-        }
         h4 {
-          margin-bottom: 10px;
-          font-weight: 600;
-          font-size: 1.1rem;
+          font-size: 1rem !important;
         }
         p {
-          opacity: 0.8;
-          font-size: 0.9rem;
+          font-size: 0.8rem !important;
         }
       }
     }
+    .badge {
+      position: absolute;
+      top: 0px;
+      left: 10%;
+      z-index: 3;
+      background-color: #f44336;
+      color: #fff;
+      padding: 15px 10px;
+      border-radius: 0 0 5px 5px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      &.en {
+        left: unset;
+        right: 10%;
+      }
+    }
+    img {
+      border-radius: 5px;
+      margin-bottom: 25px;
+      height: 250px;
+      position: relative;
+      z-index: 2;
+    }
+    .info {
+      position: relative;
+      z-index: 2;
+      span {
+        font-size: 0.9rem;
+        i {
+          color: var(--main-color);
+          padding: 0 5px;
+        }
+      }
+      h4 {
+        margin-bottom: 10px;
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+      p {
+        opacity: 0.8;
+        font-size: 0.9rem;
+      }
+    }
   }
+
 }

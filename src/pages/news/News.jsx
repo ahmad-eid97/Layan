@@ -1,4 +1,9 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import axios from './../../Utils/axios';
+
+import PagesLoader from '../../components/UIs/PagesLoader/PagesLoader' 
 
 import { useTranslation } from 'react-i18next';
 
@@ -6,11 +11,42 @@ import cls from './news.module.scss';
 
 const News = () => {
   // COMPONENT HOOKS
+  const [news, setNews] = useState([]);
+  const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const { i18n } = useTranslation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  // DCOMPONENT HANDLERS
+  const fetchNews = async () => {
+    setLoading(true)
+
+    const response = await axios.get(`/topics/3/page/${currentPage}/count/30/${i18n.language}`);
+
+    if(!response) return;
+
+    setNews(response.data.topics);
+
+    setCount(response.data.topics_count);
+
+    setLoading(false)
+
+    console.log(response);
+  }
+
+  useEffect(() => {
+    fetchNews()
+  }, [])
+
+  const changePage = (pageNum) => {
+    setCurrentPage(pageNum)
+  }
   
   return (
     <div className={cls.news}>
+
+      {loading && <PagesLoader />}
 
       <div className='container'>
 
@@ -34,215 +70,82 @@ const News = () => {
 
         </div>
 
-        <div className='row justify-content-center'>
+        {news.length ?
 
-          <div className='col-md-6 col-lg-4 col-xl-3'>
+          <div className={cls.wrapper}>
 
-            <div className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
+            {news.map((singleOne, idx) => (
 
-              <img src="/assets/images/news.jpg" alt="newsImage" />
+              // <div key={idx} className='col-md-6 col-lg-4 col-xl-3'>
 
-              <div className={cls.info}>
+                <div key={idx} className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
 
-                <h6>تخرج دفعة 2022</h6>
+                  <img src={singleOne.photo_file} alt="newsImage" />
 
-                <p>جامعة القاهرة الجديدة</p>
+                  <div className={cls.info}>
 
-                <span><i className="fa-light fa-clock"></i> <span>أضيفت منذ 3 أشهر</span></span>
+                    <h6>{singleOne.title}</h6>
 
-              </div>
+                    <p>أضيفت بواسطة {singleOne.user.name}</p>
 
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
+                    <p dangerouslySetInnerHTML={{ __html: singleOne.details.substring(0, 350) + '...'}}></p>
 
-            </div>
+                    <span><i className="fa-light fa-clock"></i> <span>أضيفت في {singleOne.date}</span></span>
 
-          </div>
+                  </div>
 
-          <div className='col-md-6 col-lg-4 col-xl-3'>
+                  <div className={`quarter ${i18n.language} second`}></div>
+                  <div className={`movingQuarter ${i18n.language} second`}></div>
 
-            <div className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
+                </div>
 
-              <img src="/assets/images/news.jpg" alt="newsImage" />
+              // </div>
 
-              <div className={cls.info}>
-
-                <h6>إنتهاء مشروع تخرج 2022</h6>
-
-                <p>جامعة القاهرة الجديدة</p>
-
-                <span><i className="fa-light fa-clock"></i> <span>أضيفت منذ 3 أشهر</span></span>
-
-              </div>
-
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
-
-            </div>
+            ))}
 
           </div>
 
-          <div className='col-md-6 col-lg-4 col-xl-3'>
+          :
 
-            <div className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
+          <div className='empty'>
 
-              <img src="/assets/images/news.jpg" alt="newsImage" />
+            <img src="/assets/images/emptyUniversities.png" alt="empty" />
 
-              <div className={cls.info}>
-
-                <h6>بداية سنة 2022 الدراسية</h6>
-
-                <p>جامعة القاهرة الجديدة</p>
-
-                <span><i className="fa-light fa-clock"></i> <span>أضيفت منذ 3 أشهر</span></span>
-
-              </div>
-
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
-
-            </div>
+            <p>لا توجد أخبار حتي الاَن</p>
 
           </div>
+        
+        }
 
-          <div className='col-md-6 col-lg-4 col-xl-3'>
+        {news.length && 
 
-            <div className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
+          <div className='pagination'>
 
-              <img src="/assets/images/news.jpg" alt="newsImage" />
+            <nav aria-label="Page navigation example">
+              <ul className="pagination">
+                <li className={`${currentPage === 1 ? 'disabled' : ''} page-item`}>
+                  <a className="page-link" href="/" aria-label="Previous" onClick={() => changePage(currentPage -= 1)}>
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                {
+                  Array(Math.ceil(count / 30)).fill(0).map((one, idx) => (
 
-              <div className={cls.info}>
+                    <li key={idx} className="page-item"><a className={`${currentPage === idx + 1 ? 'active' : ''} page-link`} href="#" onClick={() => changePage(idx + 1)}>{idx + 1}</a></li>
 
-                <h6>بداية سنة 2022 الدراسية</h6>
-
-                <p>جامعة القاهرة الجديدة</p>
-
-                <span><i className="fa-light fa-clock"></i> <span>أضيفت منذ 3 أشهر</span></span>
-
-              </div>
-
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
-
-            </div>
-
-          </div>
-
-          <div className='col-md-6 col-lg-4 col-xl-3'>
-
-            <div className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
-
-              <img src="/assets/images/news.jpg" alt="newsImage" />
-
-              <div className={cls.info}>
-
-                <h6>بداية سنة 2022 الدراسية</h6>
-
-                <p>جامعة القاهرة الجديدة</p>
-
-                <span><i className="fa-light fa-clock"></i> <span>أضيفت منذ 3 أشهر</span></span>
-
-              </div>
-
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
-
-            </div>
+                  ))
+                }
+                <li className={`${Math.ceil(count / 30) === 1 ? 'disabled' : ''} page-item`}>
+                  <a className="page-link" href="/" aria-label="Next" onClick={() => changePage(currentPage += 1)}>
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
 
           </div>
-
-          <div className='col-md-6 col-lg-4 col-xl-3'>
-
-            <div className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
-
-              <img src="/assets/images/news.jpg" alt="newsImage" />
-
-              <div className={cls.info}>
-
-                <h6>بداية سنة 2022 الدراسية</h6>
-
-                <p>جامعة القاهرة الجديدة</p>
-
-                <span><i className="fa-light fa-clock"></i> <span>أضيفت منذ 3 أشهر</span></span>
-
-              </div>
-
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
-
-            </div>
-
-          </div>
-
-          <div className='col-md-6 col-lg-4 col-xl-3'>
-
-            <div className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
-
-              <img src="/assets/images/news.jpg" alt="newsImage" />
-
-              <div className={cls.info}>
-
-                <h6>بداية سنة 2022 الدراسية</h6>
-
-                <p>جامعة القاهرة الجديدة</p>
-
-                <span><i className="fa-light fa-clock"></i> <span>أضيفت منذ 3 أشهر</span></span>
-
-              </div>
-
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
-
-            </div>
-
-          </div>
-
-          <div className='col-md-6 col-lg-4 col-xl-3'>
-
-            <div className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
-
-              <img src="/assets/images/news.jpg" alt="newsImage" />
-
-              <div className={cls.info}>
-
-                <h6>بداية سنة 2022 الدراسية</h6>
-
-                <p>جامعة القاهرة الجديدة</p>
-
-                <span><i className="fa-light fa-clock"></i> <span>أضيفت منذ 3 أشهر</span></span>
-
-              </div>
-
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div className='pagination'>
-
-          <nav aria-label="Page navigation example">
-            <ul className="pagination">
-              <li className="page-item">
-                <a className="page-link" href="/" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li className="page-item"><a className="page-link" href="#">1</a></li>
-              <li className="page-item"><a className="page-link" href="#">2</a></li>
-              <li className="page-item"><a className="page-link" href="#">3</a></li>
-              <li className="page-item">
-                <a className="page-link" href="/" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-
-        </div>
+        
+        }
 
       </div>
 

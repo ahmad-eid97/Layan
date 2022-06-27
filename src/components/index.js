@@ -51,3 +51,19 @@ export { default as NewsSpecs } from './newsDetails/NewsSpecs/NewsSpecs';
 export { default as Details } from './blogDetails/Details/Details';
 
 export { default as BlogSpecs } from './blogDetails/BlogSpecs/BlogSpecs';
+
+// UNIVERSTIY COMPONENTS
+
+export { default as UniversityHead } from './university/UniversityHead/UniversityHead';
+
+export { default as UniversityInfo } from './university/UniversityInfo/UniversityInfo';
+
+export { default as UniversityDetails } from './university/UniversityDetails/UniversityDetails';
+
+export { default as RelatedUniversities } from './university/RelatedUniversities/RelatedUniversities';
+
+// PROGRAM COMPONENTS
+
+export { default as ProgramDetailsInfo } from './programDetails/ProgramDetailsInfo/ProgramDetailsInfo';
+
+export { default as ProgramDetailsUniversities } from './programDetails/ProgramDetailsUniversities/ProgramDetailsUniversities';

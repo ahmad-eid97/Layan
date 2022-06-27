@@ -1,8 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import { 
-  Home, 
-  Signin, 
+  Home,
   AboutUs, 
   Contact, 
   Questions, 
@@ -15,7 +14,11 @@ import {
   Agent, 
   Education, 
   Registered,
-  EducationInfo
+  EducationInfo,
+  University,
+  AllUniversities,
+  ProgramDetails,
+  ProgramsFilterPage
 } from "../pages";
 
 const AllRoutes = () => {
@@ -50,7 +53,13 @@ const AllRoutes = () => {
 
       <Route path="/education-info" element={<EducationInfo />} />
 
-      <Route path="/signin" element={<Signin />} />
+      <Route path="/university/:id" element={<University />} />
+
+      <Route path="/all-universities" element={<AllUniversities />} />
+
+      <Route path="/program/:id" element={<ProgramDetails />} />
+
+      <Route path="/programs-filter" element={<ProgramsFilterPage />} />
       
     </Routes>
   )

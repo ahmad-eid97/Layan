@@ -1,10 +1,30 @@
+import { useState, useEffect } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import axios from '../../../Utils/axios';
 
 import cls from './blogs.module.scss';
 
 const Blogs = () => {
   // COMPONENT HOOKS
-  const { i18n } = useTranslation();
+  const [blogs, setBlogs] = useState([])
+  const { t, i18n } = useTranslation('common');
+
+  // COMPONENT HANDLERS
+  const fetchNews = async () => {
+    const response = await axios.get(`/topics/7/page/1/count/50/${i18n.language}`);
+
+    if(!response) return;
+
+    setBlogs(response.data.topics)
+
+    console.log(response)
+  }
+
+  useEffect(() => {
+    fetchNews()
+  }, [])
 
   return (
     <div className={cls.blogs}>
@@ -13,105 +33,40 @@ const Blogs = () => {
 
         <img src="/assets/images/cap.png" alt="titleImage" />
 
-        <p>المقالات</p>
+        <p>{t('home.blogs')}</p>
         
       </h3>
 
       <div className='container'>
 
-        <div className='row justify-content-center'>
+        <div className={cls.wrapper}>
 
-          <div className='col-md-6 col-lg-4 col-xl-3'>
+          {blogs.map((blog, idx) => (
 
-            <div className={`${cls.blog} quarterContainer`}>
+            // <div key={idx} className='col-md-6 col-lg-4 col-xl-3'>
 
-              <img src="/assets/images/education.jpg" alt="" />
+              <div key={idx} className={`${cls.blog} quarterContainer`}>
 
-              <div className={cls.info}>
+                <img src={blog.photo_file} alt="" />
 
-                <h6>جامعات مصرية معروفة</h6>
+                <div className={cls.info}>
 
-                <p>جامعة القاهرة الجديدة</p>
+                  <h6>{blog.title}</h6>
 
-                <span><i className="fa-light fa-clock"></i> <span>أضيفت منذ 3 أشهر</span></span>
+                  <p dangerouslySetInnerHTML={{ __html: blog.details.substring(0, 350) }}></p>
 
-              </div>
+                  <span><i className="fa-light fa-clock"></i> <span>أضيفت في {blog.date}</span></span>
 
-              <div className={`quarter ${i18n.language}`}></div>
-              <div className={`movingQuarter ${i18n.language}`}></div>
+                </div>
 
-            </div>
-
-          </div>
-
-          <div className='col-md-6 col-lg-4 col-xl-3'>
-
-            <div className={`${cls.blog} quarterContainer`}>
-
-              <img src="/assets/images/education.jpg" alt="" />
-
-              <div className={cls.info}>
-
-                <h6>جامعات مصرية معروفة</h6>
-
-                <p>جامعة القاهرة الجديدة</p>
-
-                <span><i className="fa-light fa-clock"></i> <span>أضيفت منذ 3 أشهر</span></span>
+                <div className={`quarter ${i18n.language}`}></div>
+                <div className={`movingQuarter ${i18n.language}`}></div>
 
               </div>
 
-              <div className={`quarter ${i18n.language}`}></div>
-              <div className={`movingQuarter ${i18n.language}`}></div>
+            // </div>
 
-            </div>
-
-          </div>
-
-          <div className='col-md-6 col-lg-4 col-xl-3'>
-
-            <div className={`${cls.blog} quarterContainer`}>
-
-              <img src="/assets/images/education.jpg" alt="" />
-
-              <div className={cls.info}>
-
-                <h6>جامعات مصرية معروفة</h6>
-
-                <p>جامعة القاهرة الجديدة</p>
-
-                <span><i className="fa-light fa-clock"></i> <span>أضيفت منذ 3 أشهر</span></span>
-
-              </div>
-
-              <div className={`quarter ${i18n.language}`}></div>
-              <div className={`movingQuarter ${i18n.language}`}></div>
-
-            </div>
-
-          </div>
-
-          <div className='col-md-6 col-lg-4 col-xl-3'>
-
-            <div className={`${cls.blog} quarterContainer`}>
-
-              <img src="/assets/images/education.jpg" alt="" />
-
-              <div className={cls.info}>
-
-                <h6>جامعات مصرية معروفة</h6>
-
-                <p>جامعة القاهرة الجديدة</p>
-
-                <span><i className="fa-light fa-clock"></i> <span>أضيفت منذ 3 أشهر</span></span>
-
-              </div>
-
-              <div className={`quarter ${i18n.language}`}></div>
-              <div className={`movingQuarter ${i18n.language}`}></div>
-
-            </div>
-
-          </div>
+          ))}
 
         </div>
 

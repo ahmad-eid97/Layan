@@ -19,6 +19,9 @@
       padding: 12px 15px;
       width: 100%;
       cursor: pointer;
+      &.error {
+        border-color: var(--main-color) !important;
+      }
     }
     i {
       position: absolute;
@@ -60,6 +63,7 @@
           font-size: 0.9rem;
           padding: 5px 5px;
           font-weight: 400;
+          color: var(--text-color);
         }
         &:hover {
           background-color: var(--hover-color);

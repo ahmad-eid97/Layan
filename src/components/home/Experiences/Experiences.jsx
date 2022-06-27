@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+import Loader from '../../UIs/Loader/Loader';
 
 import ModalVideo from 'react-modal-video';
 import "react-modal-video/scss/modal-video.scss";
@@ -6,10 +8,35 @@ import "react-modal-video/scss/modal-video.scss";
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
+import axios from '../../../Utils/axios';
+
+import { useTranslation } from 'react-i18next';
+
 import cls from './experiences.module.scss';
 
 const Experiences = () => {
-	const [openViewer, setOpenViewer] = useState('');
+  const [openViewer, setOpenViewer] = useState(false)
+	const [experiences, setExperiences] = useState('');
+	const [loading, setLoading] = useState('');
+  const { t, i18n } = useTranslation('common');
+
+  // COMPONENT HANDLERS
+  const fetchExperiences = async () => {
+    setLoading(true)
+
+    const response = await axios.get(`/topics/11/page/1/count/50/${i18n.language}`);
+
+    if(!response) return;
+
+    // setExperiences(response.data.data.universities);
+    console.log(response);
+
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    fetchExperiences();
+  }, [])
 
   return (
     <div className={cls.experiences}>
@@ -17,12 +44,10 @@ const Experiences = () => {
       <div className='container'>
         
         <h3 className={`${cls.label} label`}>
-  
-          {/* <i className="fa-light fa-graduation-cap"></i> */}
 
           <img src="/assets/images/cap.png" alt="titleImage" />
   
-          <p>تجارب الطلاب</p>
+          <p>{t('home.students')}</p>
           
         </h3>
 

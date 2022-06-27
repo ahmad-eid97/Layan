@@ -1,6 +1,11 @@
+import { useTranslation } from 'react-i18next';
+
 import cls from './information.module.scss';
 
 const Information = () => {
+  // COMPONENT HOOKS
+  const { i18n } = useTranslation();
+
   return (
     <div className={cls.information}>
 
@@ -10,7 +15,7 @@ const Information = () => {
 
           <div className="col-xs-12">
 
-            <div  className={cls.section}>
+            <div className={`${cls.section} ${cls[i18n.language]}`}>
 
               <h3><i className="fa-light fa-user-cowboy"></i> <span>من نحن!؟</span></h3>
 
@@ -22,7 +27,7 @@ const Information = () => {
 
           <div className="col-xs-12 col-lg-6">
 
-            <div  className={cls.section}>
+            <div className={`${cls.section} ${cls[i18n.language]}`}>
 
               <h3><i className="fa-light fa-glasses"></i> <span>رؤيتنا</span></h3>
 
@@ -34,7 +39,7 @@ const Information = () => {
 
           <div className="col-xs-12 col-lg-6">
 
-            <div  className={cls.section}>
+            <div className={`${cls.section} ${cls[i18n.language]}`}>
 
               <h3><i className="fa-light fa-briefcase"></i> <span>مهمتنا</span></h3>
 
@@ -46,7 +51,7 @@ const Information = () => {
 
           <div className="col-xs-12">
 
-            <div  className={cls.section}>
+            <div className={`${cls.section} ${cls[i18n.language]}`}>
 
               <h3><i className="fa-light fa-book-open-cover"></i> <span>رسالتنا</span></h3>
 
@@ -59,8 +64,6 @@ const Information = () => {
         </div>
 
         <div className={`${cls.features} row`}>
-
-          
         
           <h3 className={`${cls.label} label`}>
 

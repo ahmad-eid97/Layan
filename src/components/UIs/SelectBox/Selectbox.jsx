@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 // STYLES FILES
 import cls from "./selectbox.module.scss";
 
-const Selectdiv = ({ placeholder, list, value, select, disabled }) => {
+const SelectBox = ({ placeholder, list, value, select, disabled, error }) => {
   const { i18n } = useTranslation()
   const listItems = list;
   const [open, setOpen] = useState(false);
@@ -31,19 +31,20 @@ const Selectdiv = ({ placeholder, list, value, select, disabled }) => {
             value={value}
             onFocus={() => setOpen(true)}
             disabled={disabled}
+            className={error ? cls.error : ''}
           />
           <i className={`fa-solid fa-angle-down ${cls[i18n.language]}`}></i>
         </div>
 
         <div className={`${cls.field__results} ${open ? cls.active : ""}`}>
           <div className={cls.field__results_result}>
-            {listItems.map((item) => (
+            {listItems.map((item, idx) => (
               <div
                 className={cls.resultInside}
                 onClick={() => selectChoose(item)}
-                key={item}
+                key={idx}
               >
-                <p key={item}>{item}</p>
+                <p>{item.title ? item.title : item.specialties.title}</p>
               </div>
             ))}
           </div>
@@ -53,4 +54,4 @@ const Selectdiv = ({ placeholder, list, value, select, disabled }) => {
   );
 };
 
-export default Selectdiv;
+export default SelectBox;

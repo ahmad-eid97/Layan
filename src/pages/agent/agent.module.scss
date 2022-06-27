@@ -11,6 +11,7 @@
       border-radius: 5px;
       margin-bottom: 40px;
       border-right: 4px solid var(--dark-color);
+      background-color: #fff;
       h3 {
         margin-bottom: 20px;
         display: flex;
@@ -49,6 +50,10 @@
           font-size: 0.8rem !important;
         }
       }
+      &.en {
+        border-right: unset;
+        border-left: 4px solid var(--dark-color);
+      }
     }
   }
 
@@ -59,8 +64,13 @@
     background-color: rgba(0, 0, 0, 0.02);
     margin-top: 20px;
     border-right: 2px solid var(--main-color);
+    background-color: #fafafa;
     .field {
       margin-bottom: 15px;
+      p {
+        font-size: 0.8rem;
+        color: var(--main-color);
+      }
     }
     h4 {
       margin-bottom: 30px;
@@ -109,6 +119,9 @@
       font-size: 0.9rem;
       outline: none;
       background-color: #fff;
+      &.error {
+        border-color: var(--main-color);
+      }
     }
 
     .date {
@@ -207,6 +220,10 @@
           }
         }
       }
+    }
+    &.en {
+      border-right: unset;
+      border-left: 3px solid var(--main-color);
     }
   }
 

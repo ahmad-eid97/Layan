@@ -13,20 +13,48 @@
     }
   }
 
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+  }
+
   .service {
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     border-radius: 5px;
     margin-bottom: 30px;
+    background-color: #fff;
+    grid-column: span 4;
+    @include md {
+      grid-column: span 6;
+    }
+    @include xs {
+      grid-column: span 12;
+    }
+    div {
+      text-align: center !important;
+    }
+    span {
+      color: #000 !important;
+      opacity: 0.8 !important;
+      background-color: transparent !important;
+      text-align: center !important;
+    }
     &:hover {
       background-color: var(--dark-color);
       color: #fff;
+      span {
+        color: #fff !important;
+      }
     }
 
     img {
       margin-bottom: 20px;
       width: 100px;
+      height: auto;
       margin: 10px auto 30px;
+      object-fit: contain;
       @include xs {
         width: 80px;
       }

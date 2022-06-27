@@ -1,119 +1,72 @@
+import { useEffect, useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import axios from '../../../Utils/axios';
 
 import cls from './news.module.scss';
 
 const News = () => {
   // COMPONENT HOOKS
-  const { i18n } = useTranslation();
+  const [news, setNews] = useState([])
+  const { t, i18n } = useTranslation('common');
+
+  // COMPONENT HANDLERS
+  const fetchNews = async () => {
+    const response = await axios.get(`/topics/3/page/1/count/50/${i18n.language}`);
+
+    if(!response) return;
+
+    setNews(response.data.topics)
+  }
+
+  useEffect(() => {
+    fetchNews()
+  }, [])
 
   return (
     <div className={cls.news}>
         
       <h3 className='label'>
 
-        {/* <i className="fa-light fa-graduation-cap"></i> */}
-
         <img src="/assets/images/cap.png" alt="titleImage" />
 
-        <p>الأخبار</p>
+        <p>{t('home.news')}</p>
         
       </h3>
 
       <div className='container'>
 
-        <div className='row justify-content-center'>
+        <div className={cls.wrapper}>
 
-          <div className='col-md-6 col-lg-4 col-xl-3'>
+          {news.map((one, idx) => (
 
-            <div className={`${cls.singleNews} quarterContainer`}>
+            // <div key={idx} className='col-md-6 col-lg-4 col-xl-3'>
 
-              <img src="/assets/images/news.jpg" alt="newsImage" />
+              <div key={idx} className={`${cls.singleNews} quarterContainer`}>
 
-              <div className={cls.info}>
+                <img src={one.photo_file} alt="newsImage" />
 
-                <h6>تخرج دفعة 2022</h6>
+                <div className={cls.info}>
 
-                <p>جامعة القاهرة الجديدة</p>
+                  <h6>{one.title}</h6>
 
-                <span><i className="fa-light fa-clock"></i> <span>أضيفت منذ 3 أشهر</span></span>
+                  <p><span>أضيف بواسطة {one.user.name}</span></p>
 
-              </div>
+                  <p dangerouslySetInnerHTML={{ __html: one.details.substring(0, 350) }}></p>
 
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
+                  <span><i className="fa-light fa-clock"></i> <span>أضيفت في {one.date}</span></span>
 
-            </div>
+                </div>
 
-          </div>
-
-          <div className='col-md-6 col-lg-4 col-xl-3'>
-
-            <div className={`${cls.singleNews} quarterContainer`}>
-
-              <img src="/assets/images/news.jpg" alt="newsImage" />
-
-              <div className={cls.info}>
-
-                <h6>إنتهاء مشروع تخرج 2022</h6>
-
-                <p>جامعة القاهرة الجديدة</p>
-
-                <span><i className="fa-light fa-clock"></i> <span>أضيفت منذ 3 أشهر</span></span>
+                <div className={`quarter ${i18n.language} second`}></div>
+                <div className={`movingQuarter ${i18n.language} second`}></div>
 
               </div>
 
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
+            // </div>
 
-            </div>
-
-          </div>
-
-          <div className='col-md-6 col-lg-4 col-xl-3'>
-
-            <div className={`${cls.singleNews} quarterContainer`}>
-
-              <img src="/assets/images/news.jpg" alt="newsImage" />
-
-              <div className={cls.info}>
-
-                <h6>بداية سنة 2022 الدراسية</h6>
-
-                <p>جامعة القاهرة الجديدة</p>
-
-                <span><i className="fa-light fa-clock"></i> <span>أضيفت منذ 3 أشهر</span></span>
-
-              </div>
-
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
-
-            </div>
-
-          </div>
-
-          <div className='col-md-6 col-lg-4 col-xl-3'>
-
-            <div className={`${cls.singleNews} quarterContainer`}>
-
-              <img src="/assets/images/news.jpg" alt="newsImage" />
-
-              <div className={cls.info}>
-
-                <h6>بداية سنة 2022 الدراسية</h6>
-
-                <p>جامعة القاهرة الجديدة</p>
-
-                <span><i className="fa-light fa-clock"></i> <span>أضيفت منذ 3 أشهر</span></span>
-
-              </div>
-
-              <div className={`quarter ${i18n.language} second`}></div>
-              <div className={`movingQuarter ${i18n.language} second`}></div>
-
-            </div>
-
-          </div>
+          ))}
 
         </div>
 

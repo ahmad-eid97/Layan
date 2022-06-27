@@ -23,11 +23,15 @@
         border-left: 1px solid #fff;
         font-size: 0.9rem;
         cursor: pointer;
+        text-decoration: none !important;
+        font-family: 'Almarai', sans-serif !important;
         &:hover {
           color: var(--secondary-color);
         }
         a {
           color: #fff;
+          text-decoration: none !important;
+          font-family: 'Almarai', sans-serif !important;
           &:hover {
             color: var(--secondary-color);
           }
@@ -41,7 +45,7 @@
     position: sticky;
     top: -1px;
     background-color: #fff;
-    z-index: 99999;
+    z-index: 999;
     div {
       display: flex;
       justify-content: space-between;
@@ -50,6 +54,9 @@
 
     .icons {
       margin: 0 20px;
+      a {
+        text-decoration: none !important;
+      }
       i {
         font-size: 0.9rem;
         width: 25px;
@@ -77,12 +84,19 @@
 
     ul {
       margin: 0;
+      padding: 0;
       li {
         display: inline-block;
         padding: 0px 8px;
         font-size: 0.9rem;
         cursor: pointer;
         font-weight: 600;
+        text-decoration: none !important;
+        font-family: 'Almarai', sans-serif !important;
+        a {
+          text-decoration: none !important;
+          font-family: 'Almarai', sans-serif !important;
+        }
         &:hover {
           color: var(--main-color);
         }
