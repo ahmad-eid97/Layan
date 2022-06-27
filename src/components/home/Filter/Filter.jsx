@@ -36,8 +36,6 @@ const Filter = () => {
     setCountries(countriesRes.data.data.countries)
 
     setLoading(false)
-
-    console.log(countriesRes)
   }
 
   useEffect(() => {
@@ -52,7 +50,6 @@ const Filter = () => {
     if(!response) return;
 
     setUniversities(response.data.data.universities)
-    console.log(response.data.data.universities)
 
     setLoading(false)
   }
@@ -72,8 +69,6 @@ const Filter = () => {
     if (!response) return;
 
     setPrograms(response.data.data.specialties);
-
-    console.log(response)
   }
 
   useEffect(() => {
@@ -88,7 +83,6 @@ const Filter = () => {
     if(!response) return;
 
     setLanguages(response.data.data);
-    console.log(response);
 
     setLoading(false)
   }

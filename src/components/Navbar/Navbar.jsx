@@ -30,6 +30,7 @@ const Navbar = () => {
               <li>تتبع الطلب</li>
               <li><Link to="/register"> طلب التسجيل</Link></li>
               <li><Link to="/agent"> كن وكيلنا</Link></li>
+              <li><Link to="/login"> تسجيل الدخول</Link></li>
             </ul>
 
             <LangSwitch />
@@ -57,12 +58,13 @@ const Navbar = () => {
           <ul>
             <li><NavLink to="/education"> خطوات الدراسة</NavLink></li>
             <li><NavLink to="/all-universities"> الجامعات</NavLink></li>
+            <li><NavLink to="/programs"> البرامج</NavLink></li>
             <li><NavLink to="/services"> خدماتنا</NavLink></li>
             <li><NavLink to="/news"> الأخبار</NavLink></li>
             <li><NavLink to="/blogs"> المقالات</NavLink></li>
             <li>الدورات</li>
             <li>السكنات</li>
-            <li>ميديا</li>
+            {/* <li>ميديا</li> */}
           </ul>
           
           <div>

@@ -50,8 +50,6 @@ const University = () => {
     setDegrees(response.data.data.degrees)
 
     setLoading(false)
-
-    console.log(response)
   }
 
   const fetchRelatedUniversities = async () => {
@@ -60,8 +58,6 @@ const University = () => {
     if(!response) return;
 
     setRelatedUniversities(response.data.data.universities);
-
-    console.log(response)
   }
 
   useEffect(() => {

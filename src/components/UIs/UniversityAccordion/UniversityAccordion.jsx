@@ -13,8 +13,6 @@ const Accordion = ({ data }) => {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
 
-  console.log(data)
-
   // COMPONENT HANDLERS
   const showSubList = (e, list) => {
     if(showSub === list) {

@@ -18,8 +18,6 @@ const Education = () => {
     if(!response) return;
 
     setSteps(response.data.topics)
-
-    console.log(response)
   }
 
   useEffect(() => {

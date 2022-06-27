@@ -90,7 +90,6 @@ const AllUniversities = () => {
 
     setLoading(true)
 
-    console.log(`${link}&lang=${i18n.language}&country_id=${choosedCountry.id}`);
     const response = await axios.get(`${link}&lang=${i18n.language}&country_id=${choosedCountry.id}`);
 
     if(!response) return;
@@ -161,7 +160,6 @@ const AllUniversities = () => {
 
         <Swiper 
           spaceBetween={5}
-          onSwiper={(swiper) => console.log(swiper)}
           className={`${cls.carousel} ${cls[i18n.language]}`}
           dir='rtl'
           breakpoints={breakpoints}

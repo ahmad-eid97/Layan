@@ -36,8 +36,6 @@ const ContactForm = () => {
 
       if(!response) return;
 
-      console.log(response)
-
       successNotify('تم إرسال الرسالة بنجاح')
     }
   }

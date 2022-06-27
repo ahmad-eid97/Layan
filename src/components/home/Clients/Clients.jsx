@@ -25,7 +25,6 @@ const Clients = () => {
     if(!response) return;
 
     setClients(response.data.topics);
-    console.log(response);
 
     setLoading(false)
   }

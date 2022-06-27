@@ -12,8 +12,6 @@ const UniversityDetails = ({ degrees }) => {
     setType(degrees[0])
   }, [degrees])
 
-  console.log(degrees)
-
   return (
     <div className={cls.universityDetails}>
 

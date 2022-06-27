@@ -26,8 +26,6 @@ const ProgramsFilterPage = () => {
     setPrograms(response.data.data.programs)
 
     setLoading(false)
-
-    console.log(response)
   }
 
   useEffect(() => {

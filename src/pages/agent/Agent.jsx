@@ -105,8 +105,6 @@ const Agent = () => {
     const empties = Object.values(data).filter(one => one === undefined || one === '')
 
     if(empties.length <= 0) {
-
-      console.log('here')
       
       const response = await axios.post('/crm/agents', data);
 
@@ -114,8 +112,6 @@ const Agent = () => {
         errorNotify('البيانات التي تم ادخالها غير صحيحة')
         return;
       };
-
-      console.log(response)
 
     }
   }

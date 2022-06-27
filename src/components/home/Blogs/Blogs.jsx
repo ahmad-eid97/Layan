@@ -18,8 +18,6 @@ const Blogs = () => {
     if(!response) return;
 
     setBlogs(response.data.topics)
-
-    console.log(response)
   }
 
   useEffect(() => {

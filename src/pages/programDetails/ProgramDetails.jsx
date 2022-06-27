@@ -27,8 +27,6 @@ const ProgramDetails = () => {
 
     setProgram(response.data.data)
 
-    console.log(response)
-
     setLoading(false)
   } 
 

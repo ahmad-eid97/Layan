@@ -15,8 +15,6 @@ const Applications = () => {
     const response = await axios.get(`/crm/applications?lang=${i18n.language}&limit=30`);
     
     if(!response) return;
-
-    console.log(response)
   }
 
   useEffect(() => {

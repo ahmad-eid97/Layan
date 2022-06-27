@@ -96,8 +96,6 @@ const EducationInfo = () => {
       if(!response) return;
 
       setAttachments(response.data.data)
-
-      console.log(response.data.data)
       
       setLoading(false)
     }
@@ -156,10 +154,10 @@ const EducationInfo = () => {
 
   const updateAttachment = (attach) => {
     const updatedAttach = attachments.findIndex(att => att.key === attach.key)
-    console.log(updatedAttach)
+
     attachments.splice(updatedAttach, 1, attach)
+    
     setAttachments([...attachments])
-    console.log(attach)
   }
 
   const saveApplication = async () => {

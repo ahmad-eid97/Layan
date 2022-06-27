@@ -126,8 +126,6 @@ const Register = () => {
 
       setLoading(false)
 
-      console.log('here')
-
       if(emptyFields === false) {
 
         errorNotify(translate('fields.error'));
@@ -136,8 +134,6 @@ const Register = () => {
 
       return;
     };
-
-    console.log(response)
 
     setLoading(false)
 

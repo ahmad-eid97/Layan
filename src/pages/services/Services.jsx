@@ -30,8 +30,6 @@ const Service = () => {
     setCount(response.data.topics_count);
 
     setLoading(false)
-
-    console.log(response);
   }
 
   useEffect(() => {
