@@ -1,6 +1,7 @@
 import cls from './register.module.scss';
 
 const Registered = () => {
+
   return (
     <div className={cls.registered}>
 

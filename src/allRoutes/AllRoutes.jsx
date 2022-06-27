@@ -18,7 +18,10 @@ import {
   University,
   AllUniversities,
   ProgramDetails,
-  ProgramsFilterPage
+  ProgramsFilterPage,
+  Applications,
+  Login,
+  Programs
 } from "../pages";
 
 const AllRoutes = () => {
@@ -26,6 +29,8 @@ const AllRoutes = () => {
     <Routes>
 
       <Route path="/" element={<Home />} />
+
+      <Route path="/login" element={<Login />} />
       
       <Route path="/about-us" element={<AboutUs />} />
 
@@ -60,6 +65,10 @@ const AllRoutes = () => {
       <Route path="/program/:id" element={<ProgramDetails />} />
 
       <Route path="/programs-filter" element={<ProgramsFilterPage />} />
+
+      <Route path="/applications" element={<Applications />} />
+
+      <Route path="/programs" element={<Programs />} />
       
     </Routes>
   )

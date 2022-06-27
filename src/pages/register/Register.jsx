@@ -56,38 +56,6 @@ const Register = () => {
   const { t, i18n } = useTranslation('auth');
   const { t: translate } = useTranslation('common')
   const dispatch = useDispatch();
-  // const [status, setStatus] = useState('on')
-  // const [choosedLogoImage, setChoosedLogoImage] = useState();
-  // const [choosedPassportImage, setChoosedPassportImage] = useState();
-
-  // const inputRef = useRef();
-  // const passportInputRef = useRef();
-
-  // const inputClick = () => {
-  //   inputRef.current.click()
-  // }
-
-  // const inputPassportClick = () => {
-  //   passportInputRef.current.click()
-  // }
-
-  // const chooseLogoImage = (e) => {
-  //   setChoosedLogoImage(e.target.files[0])
-  // }
-
-  // const deleteLogoImage = () => {
-  //   setChoosedLogoImage('')
-  //   inputRef.current.value = ''
-  // }
-
-  // const choosePassportImage = (e) => {
-  //   setChoosedPassportImage(e.target.files[0])
-  // }
-
-  // const deletePassportImage = () => {
-  //   setChoosedPassportImage('')
-  //   passportInputRef.current.value = ''
-  // }
 
   const handleFields = (e) => {
     setFields({

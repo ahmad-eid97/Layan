@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { 
   Filter, 
   Header, 
@@ -13,6 +15,7 @@ import {
 } from '../../components';
 
 const Home = () => {
+
   return (
     <div>
 

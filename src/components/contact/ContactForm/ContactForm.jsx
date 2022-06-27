@@ -1,6 +1,49 @@
+import { useState } from 'react';
+
+import axios from '../../../Utils/axios';
+
+import { toast } from 'react-toastify';
+
 import cls from './contactForm.module.scss';
 
 const ContactForm = () => {
+  // COMPONENT HOOKS
+  const [fields, setFields] = useState({
+    contact_name: '',
+    contact_email: '',
+    contact_phone: '',
+    contact_subject: '',
+    contact_message: '',
+  })
+  const [emptyFields, setEmptyFields] = useState(false)
+
+  // COMPONENT HANDLERS
+  const handleFields = (e) => {
+    setFields({
+      ...fields,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const sendMessage = async () => {
+    const empty = Object.values(fields).filter(one => one === '');
+
+    if(empty.length) {
+      setEmptyFields(true)
+    } else {
+
+      const response = await axios.post('/contact', fields);
+
+      if(!response) return;
+
+      console.log(response)
+
+      successNotify('تم إرسال الرسالة بنجاح')
+    }
+  }
+
+  const successNotify = (message) => toast.success(message)
+
   return (
     <div className={cls.contactForm}>
 
@@ -26,7 +69,9 @@ const ContactForm = () => {
 
                   <label>الإسم<span>*</span></label>
 
-                  <input type="text" placeholder='الإسم' />
+                  <input type="text" placeholder='الإسم' name='contact_name' value={fields.contact_name} onChange={(e) => handleFields(e)} className={emptyFields && !fields.contact_name ? cls.error : ''} />
+
+                  {emptyFields && !fields.contact_name && <p>هذا الحقل لا يجب ان يكون فارغاَ</p>}
 
                 </div>
 
@@ -34,7 +79,9 @@ const ContactForm = () => {
 
                   <label>البريد الإلكتروني<span>*</span></label>
 
-                  <input type="text" placeholder='البريد الإلكتروني' />
+                  <input type="text" placeholder='البريد الإلكتروني' name='contact_email' value={fields.contact_email} onChange={(e) => handleFields(e)} className={emptyFields && !fields.contact_email ? cls.error : ''} />
+
+                  {emptyFields && !fields.contact_email && <p>هذا الحقل لا يجب ان يكون فارغاَ</p>}
 
                 </div>
 
@@ -42,7 +89,9 @@ const ContactForm = () => {
 
                   <label>رقم الهاتف<span>*</span></label>
 
-                  <input type="text" placeholder='رقم الهاتف' />
+                  <input type="text" placeholder='رقم الهاتف' name='contact_phone' value={fields.contact_phone} onChange={(e) => handleFields(e)} className={emptyFields && !fields.contact_phone ? cls.error : ''} />
+
+                  {emptyFields && !fields.contact_phone && <p>هذا الحقل لا يجب ان يكون فارغاَ</p>}
 
                 </div>
 
@@ -50,7 +99,9 @@ const ContactForm = () => {
 
                   <label>الموضوع<span>*</span></label>
 
-                  <input type="text" placeholder='الموضوع' />
+                  <input type="text" placeholder='الموضوع' name='contact_subject' value={fields.contact_subject} onChange={(e) => handleFields(e)} className={emptyFields && !fields.contact_subject ? cls.error : ''} />
+
+                  {emptyFields && !fields.contact_subject && <p>هذا الحقل لا يجب ان يكون فارغاَ</p>}
 
                 </div>
 
@@ -58,13 +109,15 @@ const ContactForm = () => {
 
                   <label>الرسالة<span>*</span></label>
 
-                  <textarea placeholder='الرسالة'></textarea>
+                  <textarea placeholder='الرسالة' name='contact_message' value={fields.contact_message} onChange={(e) => handleFields(e)} className={emptyFields && !fields.contact_message ? cls.error : ''}></textarea>
+
+                  {emptyFields && !fields.contact_message && <p>هذا الحقل لا يجب ان يكون فارغاَ</p>}
 
                 </div>
 
-                <p><input type="checkbox" />قبول الشروط والأحكام وسياسات الخصوصية !؟</p>
+                <p className={cls.check}><input type="checkbox" />قبول الشروط والأحكام وسياسات الخصوصية !؟</p>
 
-                <button>إرسال</button>
+                <button onClick={sendMessage}>إرسال</button>
 
               </div>
 

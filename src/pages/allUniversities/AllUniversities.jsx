@@ -115,6 +115,33 @@ const AllUniversities = () => {
 
   }, [choosedCountry])
 
+  
+  const breakpoints = {
+    // when window width is >= 320px
+    100: {
+      slidesPerView: 2,
+      spaceBetween: 5
+    },
+    // when window width is >= 480px
+    480: {
+      slidesPerView: 3,
+      spaceBetween: 5
+    },
+    // when window width is >= 640px
+    640: {
+      slidesPerView: 4,
+      spaceBetween: 5
+    },
+    992: {
+      slidesPerView: 6,
+      spaceBetween: 5
+    },
+    1200: {
+      slidesPerView: 7,
+      spaceBetween: 5
+    }
+  }
+
   return (
     <div className={cls.allUniversities}>
 
@@ -132,14 +159,12 @@ const AllUniversities = () => {
 
       <div className='container'>
 
-        {console.log(i18n.language)}
-
         <Swiper 
           spaceBetween={5}
-          slidesPerView={7}
           onSwiper={(swiper) => console.log(swiper)}
           className={`${cls.carousel} ${cls[i18n.language]}`}
           dir='rtl'
+          breakpoints={breakpoints}
         >
 
           {countries.map((one, idx) => (

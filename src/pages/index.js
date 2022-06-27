@@ -1,3 +1,7 @@
+export { default as Register } from './register/Register';
+
+export { default as Login } from './login/Login';
+
 export { default as Home } from './home/Home';
 
 export { default as AboutUs } from './aboutUs/AboutUs';
@@ -16,8 +20,6 @@ export { default as BlogDetails } from './blogDetails/BlogDetails';
 
 export { default as NewsDetails } from './newsDetails/NewsDetails';
 
-export { default as Register } from './register/Register';
-
 export { default as Registered } from './registered/Registered';
  
 export { default as Agent } from './agent/Agent';
@@ -35,3 +37,5 @@ export { default as ProgramDetails } from './programDetails/ProgramDetails';
 export { default as ProgramsFilterPage } from './programsFilterPage/ProgramsFilterPage';
 
 export { default as Applications } from './applications/Applications';
+
+export { default as Programs } from './programs/Programs';

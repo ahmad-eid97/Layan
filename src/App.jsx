@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useTranslation } from 'react-i18next';
+import ScrollToTop from './components/UIs/ScrollToTop/ScrollToTop';
 
 function App() {
   // COMPONENT STATES
@@ -40,7 +41,11 @@ function App() {
 
       <Navbar />
 
-      <AllRoutes />
+      <ScrollToTop>
+
+        <AllRoutes />
+
+      </ScrollToTop>
 
       <Footer />
       

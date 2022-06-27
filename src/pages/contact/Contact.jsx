@@ -3,6 +3,7 @@ import { ContactForm } from '../../components';
 import cls from './contact.module.scss';
 
 const Contact = () => {
+
   return (
     <div className={cls.contact}>
 

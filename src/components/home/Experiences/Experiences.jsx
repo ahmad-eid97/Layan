@@ -28,8 +28,7 @@ const Experiences = () => {
 
     if(!response) return;
 
-    // setExperiences(response.data.data.universities);
-    console.log(response);
+    setExperiences(response.data.topics);
 
     setLoading(false)
   }
@@ -53,47 +52,63 @@ const Experiences = () => {
 
         <Carousel showStatus={false} showArrows={false} showThumbs={false} className={`${cls.carousel}`}>
 
-          <div className='row'>
+          {experiences && experiences.map((one, idx) => (
 
-            <div className='col-lg-6'>
+            <div key={idx} className='row'>
 
-              <div className={cls.text}>
+              <div className='col-lg-6'>
 
-                <span>علي إستعداد للتجربة!؟</span>
+                <div className={cls.text}>
 
-                <h3>تجارب طلابنا بعد التعامل مع لمنصة في خوض تجربة تعليمية جديده كلياَ والتفاعل مع منصتنا.</h3>
+                  <span>علي إستعداد للتجربة!؟</span>
 
-                <p>هذا النص لملئ الفراغات فقط ليس إلا هذا النص لملئ الفراغات فقط ليس إلا هذا النص لملئ الفراغات فقط ليس إلا هذا النص لملئ الفراغات فقط ليس إلا هذا النص لملئ الفراغات فقط ليس إلا هذا النص لملئ الفراغات فقط ليس إلا هذا النص لملئ الفراغات فقط ليس إلا هذا النص لملئ الفراغات فقط ليس إلا هذا النص لملئ الفراغات فقط ليس إلا هذا النص لملئ الفراغات فقط ليس </p>
+                  <h3>{one.title}</h3>
 
-                <div className={`${cls.features} row`}>
+                  <p dangerouslySetInnerHTML={{ __html: one.details }}></p>
 
-                  <div className='col-sm-6 col-lg-3'>
-                    <div>
-                      <i className="fa-light fa-graduation-cap"></i>
-                      <p>Education</p>
+                  <div className={`${cls.features} row`}>
+
+                    <div className='col-sm-6 col-lg-3'>
+                      <div>
+                        <i className="fa-light fa-graduation-cap"></i>
+                        <p>Education</p>
+                      </div>
                     </div>
+
+                    <div className='col-sm-6 col-lg-3'>
+                      <div>
+                        <i className="fa-light fa-briefcase"></i>
+                        <p>Work</p>
+                      </div>
+                    </div>
+
+                    <div className='col-sm-6 col-lg-3'>
+                      <div>
+                        <i className="fa-light fa-clock"></i>
+                        <p>Time</p>
+                      </div>
+                    </div>
+
+                    <div className='col-sm-6 col-lg-3'>
+                      <div>
+                        <i className="fa-light fa-money-bill"></i>
+                        <p>Payment</p>
+                      </div>
+                    </div>
+
                   </div>
 
-                  <div className='col-sm-6 col-lg-3'>
-                    <div>
-                      <i className="fa-light fa-briefcase"></i>
-                      <p>Work</p>
-                    </div>
-                  </div>
+                </div>
 
-                  <div className='col-sm-6 col-lg-3'>
-                    <div>
-                      <i className="fa-light fa-clock"></i>
-                      <p>Time</p>
-                    </div>
-                  </div>
+              </div>
 
-                  <div className='col-sm-6 col-lg-3'>
-                    <div>
-                      <i className="fa-light fa-money-bill"></i>
-                      <p>Payment</p>
-                    </div>
-                  </div>
+              <div className='col-lg-6'>
+
+                <div className={cls.video}>
+
+                  <iframe style={{ pointerEvents: 'none', borderRadius: '5px', margin: 'auto' }} width="90%" height="415" src={one.fields[0].value} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+
+                  <i className="fa-solid fa-play" onClick={()=> setOpenViewer(one.fields[0].value)}></i>
 
                 </div>
 
@@ -101,81 +116,7 @@ const Experiences = () => {
 
             </div>
 
-            <div className='col-lg-6'>
-
-              <div className={cls.video}>
-
-                <iframe style={{ pointerEvents: 'none', borderRadius: '5px', margin: 'auto' }} width="90%" height="415" src="https://www.youtube.com/embed/HndV87XpkWg?controls=0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-
-                <i className="fa-solid fa-play" onClick={()=> setOpenViewer('https://www.youtube.com/embed/HndV87XpkWg?controls=0')}></i>
-
-              </div>
-
-            </div>
-
-          </div>
-
-          <div className='row'>
-
-            <div className='col-lg-6'>
-
-              <div className={cls.text}>
-
-                <span>علي إستعداد للتجربة!؟</span>
-
-                <h3>تجارب طلابنا بعد التعامل مع لمنصة في خوض تجربة تعليمية جديده كلياَ والتفاعل مع منصتنا.</h3>
-
-                <p>هذا النص لملئ الفراغات فقط ليس إلا هذا النص لملئ الفراغات فقط ليس إلا هذا النص لملئ الفراغات فقط ليس إلا هذا النص لملئ الفراغات فقط ليس إلا هذا النص لملئ الفراغات فقط ليس إلا هذا النص لملئ الفراغات فقط ليس إلا هذا النص لملئ الفراغات فقط ليس إلا هذا النص لملئ الفراغات فقط ليس إلا هذا النص لملئ الفراغات فقط ليس إلا هذا النص لملئ الفراغات فقط ليس </p>
-
-                <div className={`${cls.features} row`}>
-
-                  <div className='col-sm-6 col-lg-3'>
-                    <div>
-                      <i className="fa-light fa-graduation-cap"></i>
-                      <p>Education</p>
-                    </div>
-                  </div>
-
-                  <div className='col-sm-6 col-lg-3'>
-                    <div>
-                      <i className="fa-light fa-briefcase"></i>
-                      <p>Work</p>
-                    </div>
-                  </div>
-
-                  <div className='col-sm-6 col-lg-3'>
-                    <div>
-                      <i className="fa-light fa-clock"></i>
-                      <p>Time</p>
-                    </div>
-                  </div>
-
-                  <div className='col-sm-6 col-lg-3'>
-                    <div>
-                      <i className="fa-light fa-money-bill"></i>
-                      <p>Payment</p>
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-            <div className='col-lg-6'>
-
-              <div className={cls.video}>
-
-                <iframe style={{ pointerEvents: 'none', borderRadius: '5px', margin: 'auto' }} width="90%" height="415" src="https://www.youtube.com/embed/HndV87XpkWg?controls=0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-
-                <i className="fa-solid fa-play" onClick={()=> setOpenViewer('https://www.youtube.com/embed/HndV87XpkWg?controls=0')}></i>
-
-              </div>
-
-            </div>
-
-          </div>
+          ))}
 
         </Carousel>
 
@@ -185,7 +126,7 @@ const Experiences = () => {
 
             <div className={cls.overlay} onClick={() => setOpenViewer(null)}></div>
 
-            <iframe style={{ pointerEvents: 'none', borderRadius: '5px', margin: 'auto' }} width="90%" height="415" src="https://www.youtube.com/embed/HndV87XpkWg?controls=0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            <iframe style={{ pointerEvents: 'none', borderRadius: '5px', margin: 'auto' }} width="90%" height="415" src={openViewer} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 
           </div>
         

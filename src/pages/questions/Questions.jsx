@@ -36,6 +36,7 @@ const questions = [
 ]
 
 const Questions = () => {
+
   return (
     <div className={cls.questions}>
 
