@@ -79,8 +79,8 @@ const Navbar = () => {
             <li><NavLink to="/services"> خدماتنا</NavLink></li>
             <li><NavLink to="/news"> الأخبار</NavLink></li>
             <li><NavLink to="/blogs"> المقالات</NavLink></li>
-            <li>الدورات</li>
-            <li>السكنات</li>
+            {/* <li>الدورات</li> */}
+            {/* <li>السكنات</li> */}
             {/* <li>ميديا</li> */}
           </ul>
           

@@ -33,9 +33,9 @@ const MobSidebar = ({ mobSidebar, setMobSidebar }) => {
           <li onClick={close}><NavLink to="/services"> خدماتنا</NavLink></li>
           <li onClick={close}><NavLink to="/news"> الأخبار</NavLink></li>
           <li onClick={close}><NavLink to="/blogs"> المقالات</NavLink></li>
-          <li>الدورات</li>
+          {/* <li>الدورات</li>
           <li>السكنات</li>
-          <li>ميديا</li>
+          <li>ميديا</li> */}
           <li>تتبع الطلب</li>
           <li onClick={close}><NavLink to="/register"> طلب التسجيل</NavLink></li>
           <li onClick={close}><NavLink to="/agent"> كن وكيلنا</NavLink></li>
