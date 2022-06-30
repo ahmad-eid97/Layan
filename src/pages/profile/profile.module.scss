@@ -1,0 +1,17 @@
+.profile {
+  margin: 50px 0 100px;
+  .nav {
+    display: flex;
+    align-items: center;
+    span {
+      padding: 8px 25px;
+      cursor: pointer;
+      border-radius: 5px;
+      &.active {
+        color: var(--main-color);
+        border-bottom: 3px solid var(--main-color);
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+    }
+  }
+}

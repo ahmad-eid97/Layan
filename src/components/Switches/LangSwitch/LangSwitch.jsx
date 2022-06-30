@@ -19,10 +19,12 @@ const LangSwitch = () => {
   }, [i18n])
 
   const switchLang = (lang) => {
+    
+    window.location.reload()
 
     cookie.set('layaneduLang', lang)
     
-    i18n.changeLanguage(lang)
+    // i18n.changeLanguage(lang)
     
   };
 

@@ -12,26 +12,52 @@ import cls from './programs.module.scss';
 const Programs = () => {
   // COMPONENT HOOKS
   const [programs, setPrograms] = useState([]);
+  const [links, setLinks] = useState([]);
+  const [meta, setMeta] = useState([]);
   const [loading, setLoading] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [count, setCount] = useState(0);
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
 
   // COMPONENT HANDLERS
   const fetchPrograms = async () => {
     setLoading(true)
-
-    const response = await axios.get(`/crm/programs?lang=${i18n.language}&limit=30`);
+    const response = await axios.get(`/crm/programs?lang=${i18n.language}&limit=10`).catch(err => console.log(err))
 
     if(!response) return;
 
     setPrograms(response.data.data.programs);
+
+    setLinks(response.data.data.links)
+
+    setMeta(response.data.data.meta)
 
     setLoading(false)
   }
 
   useEffect(() => {
     fetchPrograms();
-  })
+  }, [])
+
+  const changePage = async (e, link) => {
+    e.preventDefault();
+
+    setLoading(true)
+
+    const response = await axios.get(link);
+
+    if(!response) return;
+
+    setPrograms(response.data.data.programs);
+
+    setLinks(response.data.data.links)
+
+    setMeta(response.data.data.meta)
+
+    setLoading(false)
+
+  }
     
   return (
     <div className={cls.programs}>
@@ -198,12 +224,42 @@ const Programs = () => {
           :
 
           <div className='empty'>
-            <img src="/assets/images/emptyUniversities.png" alt="" />
+            <img src="/assets/images/emptyUniversities.png" alt="empty" />
             <p>لا توجد برامج</p>
           </div>
         }
 
       </div>
+
+      {programs.length && 
+        
+        <div className='pagination'>
+
+          <nav aria-label="Page navigation example">
+            <ul className="pagination">
+              <li className={`${!links.prev ? 'disabled' : '' } page-item`} onClick={(e) => changePage(e, links.prev)}>
+                <a className='page-link' aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              {
+                Array(Math.ceil(meta.total / 200)).fill().map((one, idx) => ( // fill for looping to fill array => Array(2)
+                  <li className='page-item' key={idx}>
+                    <a className={`${meta.current_page === idx + 1 ? 'active' : ''} page-link`} href="#" onClick={(e) => changePage(e, `https://layanedu.com/api/v1/crm/programs?page=${idx + 1}`)}>{ idx + 1 }</a>
+                  </li>
+                ))
+              }
+              <li className={`${!links.next ? 'disabled' : '' } page-item`} onClick={(e) => changePage(e, links.next)}>
+                <a className="page-link" href="/" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+        </div>
+
+      }
 
     </div>
   )

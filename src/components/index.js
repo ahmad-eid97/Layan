@@ -67,3 +67,9 @@ export { default as RelatedUniversities } from './university/RelatedUniversities
 export { default as ProgramDetailsInfo } from './programDetails/ProgramDetailsInfo/ProgramDetailsInfo';
 
 export { default as ProgramDetailsUniversities } from './programDetails/ProgramDetailsUniversities/ProgramDetailsUniversities';
+
+// PROFILE COMPONENTS
+
+export { default as PersonalInfoSection } from './profile/PersonalInfoSection/PersonalInfoSection';
+
+export { default as ApplicationsSection } from './profile/ApplicationsSection/ApplicationsSection';

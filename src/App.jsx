@@ -7,6 +7,9 @@ import { Footer } from './components';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { css } from "glamor";
+
+import { toast } from 'react-toastify';
 
 import { useTranslation } from 'react-i18next';
 import ScrollToTop from './components/UIs/ScrollToTop/ScrollToTop';
@@ -29,6 +32,7 @@ function App() {
     <div className="App" id={lang}>
 
       <ToastContainer
+        toastClassName={css({ fontFamily: "Almarai, sans-serif !important" })}
         position={lang === 'en' ? "top-right" : "top-left"}
         autoClose={4000}
         hideProgressBar={false}

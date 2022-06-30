@@ -21,7 +21,8 @@ import {
   ProgramsFilterPage,
   Applications,
   Login,
-  Programs
+  Programs,
+  Profile
 } from "../pages";
 
 const AllRoutes = () => {
@@ -69,6 +70,8 @@ const AllRoutes = () => {
       <Route path="/applications" element={<Applications />} />
 
       <Route path="/programs" element={<Programs />} />
+
+      <Route path="/profile" element={<Profile />} />
       
     </Routes>
   )

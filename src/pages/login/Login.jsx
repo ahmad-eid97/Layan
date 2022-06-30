@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Loader from '../../components/UIs/Loader/Loader';
+
 import { useDispatch } from 'react-redux';
 import { userActions } from './../../store/slices/userSlice/userSlice';
 
@@ -12,21 +14,28 @@ const Login = () => {
   // COMPONENT HOOKS
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch()
 
   const login = async () => {
+    setLoading(true)
+
     const credentials = {
       email, password
     }
+    if(email !== '' && password !== '') {
 
-    const response = await axios.post('/crm/students/auth/login', credentials);
+      const response = await axios.post('/crm/students/auth/login', credentials);
+  
+      if(!response) return;
+  
+      dispatch(userActions.setUser(response.data.data.student));
+  
+      navigate('/')
+    }
 
-    if(!response) return;
-
-    dispatch(userActions.setUser(response.data.data.student))
-
-    navigate('/')
+    setLoading(false)
   }
 
   return (

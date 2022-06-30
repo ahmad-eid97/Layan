@@ -31,6 +31,7 @@ const Navbar = () => {
               <li><Link to="/register"> طلب التسجيل</Link></li>
               <li><Link to="/agent"> كن وكيلنا</Link></li>
               <li><Link to="/login"> تسجيل الدخول</Link></li>
+              <li><Link to="/profile"> الصفحة الشحصية</Link></li>
             </ul>
 
             <LangSwitch />

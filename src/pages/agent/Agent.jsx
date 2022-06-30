@@ -73,6 +73,8 @@ const Agent = () => {
 
     setCities(response.data.data.cities)
 
+    setCity(response.data.data.cities[0])
+
     setLoading(false)
   }
 

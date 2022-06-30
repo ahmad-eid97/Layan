@@ -39,3 +39,5 @@ export { default as ProgramsFilterPage } from './programsFilterPage/ProgramsFilt
 export { default as Applications } from './applications/Applications';
 
 export { default as Programs } from './programs/Programs';
+
+export { default as Profile } from './profile/Profile';

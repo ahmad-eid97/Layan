@@ -113,6 +113,8 @@ const Register = () => {
       password: fields.password,
     }
 
+    console.log(data)
+
     Object.values(data).forEach(one => {
       if(one === '') {
         setEmptyFields(true);
@@ -120,27 +122,53 @@ const Register = () => {
       }
     })
 
-    const response = await axios.post('/crm/students/auth/register', data);
+    const emptyCheck = Object.values(data).filter(one => one === undefined || one === '');
 
-    if(!response || !response.data.success) {
+    console.log(emptyCheck)
 
+    if(emptyCheck.length <= 0) {
+
+      const response = await axios.post('/crm/students/auth/register', data);
+  
+      if(!response || !response.data.success) {
+  
+        setLoading(false)
+  
+        if(emptyFields === false) {
+  
+          errorNotify(translate('fields.error'));
+  
+        }
+  
+        return;
+      };
+  
       setLoading(false)
+  
+      dispatch(userActions.setUser(response.data.data.student))
+  
+      navigate('/registered')
 
-      if(emptyFields === false) {
+    }
 
-        errorNotify(translate('fields.error'));
+  }
 
-      }
+  const chooseCountry = async (country) => {
+    setCountry(country);
 
-      return;
-    };
+    setLoading(true)
+
+    const citiesResponse = await axios.get(`/crm/cities?lang=${i18n.language}&limit=30&country_id=${country.id}`);
+
+    if(!citiesResponse) return;
 
     setLoading(false)
 
-    dispatch(userActions.setUser(response.data.data.student))
+    setCities(citiesResponse.data.data.cities)
 
-    navigate('/registered')
+    setCity(citiesResponse.data.data.cities[0])
 
+    console.log(citiesResponse)
   }
 
   const successNotify = (message) => toast.success(message)
@@ -402,7 +430,7 @@ const Register = () => {
                   <label>كلمة المرور</label>
 
                   <input 
-                    type="text" 
+                    type="password" 
                     placeholder='كلمة المرور' 
                     name="password" 
                     value={fields.password} 
@@ -571,7 +599,7 @@ const Register = () => {
 
                   <label>الدولة</label>
 
-                  <SelectBox placeholder="الدولة" list={countries} value={country['title'] || ''} select={setCountry} error={emptyFields && !country ? true : false} />
+                  <SelectBox placeholder="الدولة" list={countries} value={country['title'] || ''} select={chooseCountry} error={emptyFields && !country ? true : false} />
 
                   {emptyFields && !country &&
 
@@ -589,7 +617,7 @@ const Register = () => {
 
                   <label>المدينة</label>
 
-                  <SelectBox placeholder="المدينة" list={cities} value={city['title'] || ''} select={setCity} error={emptyFields && !city ? true : false} />
+                  <SelectBox placeholder="المدينة" list={cities} value={city.title || ''} select={setCity} error={emptyFields && !city ? true : false} />
 
                   {emptyFields && !city &&
 
