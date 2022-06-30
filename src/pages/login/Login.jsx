@@ -6,9 +6,13 @@ import Loader from '../../components/UIs/Loader/Loader';
 import { useDispatch } from 'react-redux';
 import { userActions } from './../../store/slices/userSlice/userSlice';
 
+import Cookies from 'universal-cookie';
+
 import axios from '../../Utils/axios';
 
 import cls from './login.module.scss';
+
+const cookie = new Cookies();
 
 const Login = () => {
   // COMPONENT HOOKS
@@ -16,7 +20,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const login = async () => {
     setLoading(true)
@@ -29,8 +33,12 @@ const Login = () => {
       const response = await axios.post('/crm/students/auth/login', credentials);
   
       if(!response) return;
+
+      console.log(response);
   
       dispatch(userActions.setUser(response.data.data.student));
+
+      cookie.set('layanAuth', response.data.data.access_token);
   
       navigate('/')
     }

@@ -1,19 +1,49 @@
 import axios from '../../../Utils/axios';
 
+import Cookies from 'universal-cookie';
+
+import Loader from '../../UIs/Loader/Loader';
+
+import { useNavigate } from 'react-router-dom';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { userActions } from '../../../store/slices/userSlice/userSlice';
+
 import cls from './personalInfoSection.module.scss';
+import { useState } from 'react';
+
+const cookie = new Cookies()
 
 const PersonalInfoSection = () => {
+  // COMPONENT HOOKS
+  const user = useSelector(({user}) => user.user);
+  const dispatch = useDispatch()
+  const navigate = useNavigate();
+
   // COMPONENT HANDLERS
   const logout = async () => {
-    const response = await axios.post('/crm/students/auth/logout').catch(err => console.log(err));
+    // const response = await axios.post('/crm/students/auth/logout', {
+    //   headers: {
+    //     Authorization: `Bearer ${cookie.get('layanAuth')}`,
+    //     Accept: 'application/json'
+    //   }
+    // }).catch(err => console.log(err));
 
-    if(!response) return;
+    // if(!response) return;
 
-    console.log(response)
+    cookie.remove('layanAuth');
+
+    dispatch(userActions.setUser(null));
+
+    navigate('/')
+
+    // console.log(response);
   }
 
   return (
     <div className={cls.personalSection}>
+
+      {!user && <Loader />}
 
       <div className={cls.profile}>
 
@@ -23,9 +53,9 @@ const PersonalInfoSection = () => {
 
           <div>
 
-            <h5>ahmad eid</h5>
+            <h5>{user?.username}</h5>
 
-            <p>engineer</p>
+            <p>{user?.phone}</p>
 
           </div>
 
@@ -41,7 +71,7 @@ const PersonalInfoSection = () => {
 
           <p>الإسم:</p>
 
-          <span>ahmad eid</span>
+          <span>{user?.username}</span>
 
         </div>
 
@@ -49,7 +79,7 @@ const PersonalInfoSection = () => {
 
           <p>البريد الإلكترني:</p>
 
-          <span>civil.ahmad.eid@gmail.com</span>
+          <span>{user?.email}</span>
 
         </div>
 
@@ -57,7 +87,7 @@ const PersonalInfoSection = () => {
 
           <p>تاريخ الميلاد:</p>
 
-          <span>11 / 10 / 1997</span>
+          <span>{user?.birth_date}</span>
 
         </div>
 
@@ -65,7 +95,7 @@ const PersonalInfoSection = () => {
 
           <p>البلد:</p>
 
-          <span>Egypt</span>
+          <span>{user?.country?.title}</span>
 
         </div>
 
@@ -73,7 +103,7 @@ const PersonalInfoSection = () => {
 
           <p>المدينة:</p>
 
-          <span>sohag</span>
+          <span>{user?.city?.title}</span>
 
         </div>
 

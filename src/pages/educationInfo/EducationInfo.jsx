@@ -185,7 +185,11 @@ const EducationInfo = () => {
 
     if(Object.values(data).findIndex(one => one === undefined || one === '') <= -1) {
 
-      const response = await axios.post(`/crm/applications?lang=${i18n.language}`)
+      const response = await axios.post(`/crm/applications?lang=${i18n.language}`, {
+        headers: {
+          Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbGF5YW5lZHUuY29tXC9hcGlcL3YxXC9jcm1cL3N0dWRlbnRzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY1NjYwNDQxOCwibmJmIjoxNjU2NjA0NDE4LCJqdGkiOiJOR1JvSkt4cEt5U2dVellpIiwic3ViIjo0LCJwcnYiOiJjYWI5YWI3ZjExZTliOTMxNTFiYjY3MGQxYzJkN2NhYjkxYzU5NjA3In0.S_VRX_xgSyNedMA84W9BXqtJ_sX9kh0VAwSgldrWf98`
+        }
+      })
   
       if(!response) return;
   

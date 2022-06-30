@@ -2,13 +2,20 @@ import { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import MobSidebar from './MobSidebar/MobSidebar';
 
+import { useSelector } from 'react-redux';
+
+import Cookies from 'universal-cookie';
+
 import LangSwitch from '../Switches/LangSwitch/LangSwitch';
 
 import cls from './navbar.module.scss';
 
+const cookie = new Cookies();
+
 const Navbar = () => {
   // COMPONENT HOOKS
   const [mobSidebar, setMobSidebar] = useState(false);
+  const user = useSelector(({user}) => user.user);
 
   return (
     <div className={cls.navbar}>
@@ -30,8 +37,17 @@ const Navbar = () => {
               <li>تتبع الطلب</li>
               <li><Link to="/register"> طلب التسجيل</Link></li>
               <li><Link to="/agent"> كن وكيلنا</Link></li>
-              <li><Link to="/login"> تسجيل الدخول</Link></li>
-              <li><Link to="/profile"> الصفحة الشحصية</Link></li>
+
+              {cookie.get('layanAuth') ? 
+
+                <li><Link to="/profile"> الصفحة الشحصية</Link></li>
+
+                :
+
+                <li><Link to="/login"> تسجيل الدخول</Link></li>
+
+              }
+
             </ul>
 
             <LangSwitch />
