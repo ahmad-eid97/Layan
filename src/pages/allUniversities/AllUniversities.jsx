@@ -245,7 +245,7 @@ const AllUniversities = () => {
               {
                 Array(Math.ceil(resMeta.meta.total / 30)).fill().map((one, idx) => ( // fill for looping to fill array => Array(2)
                   <li className='page-item' key={idx}>
-                    <a className={`${resMeta.meta.current_page === idx + 1 ? 'active' : ''} page-link`} href="#" onClick={(e) => changePage(e, `https://layanedu.com/api/v1/crm/universities?page=${idx+1}`)}>{ idx + 1 }</a>
+                    <a className={`${resMeta.meta.current_page === idx + 1 ? 'active' : ''} page-link`} href="#" onClick={(e) => changePage(e, `https://layanedu.com/dash/api/v1/crm/universities?page=${idx+1}`)}>{ idx + 1 }</a>
                   </li>
                 ))
               }

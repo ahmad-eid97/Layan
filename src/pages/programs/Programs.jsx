@@ -245,7 +245,7 @@ const Programs = () => {
               {
                 Array(Math.ceil(meta.total / 200)).fill().map((one, idx) => ( // fill for looping to fill array => Array(2)
                   <li className='page-item' key={idx}>
-                    <a className={`${meta.current_page === idx + 1 ? 'active' : ''} page-link`} href="#" onClick={(e) => changePage(e, `https://layanedu.com/api/v1/crm/programs?page=${idx + 1}`)}>{ idx + 1 }</a>
+                    <a className={`${meta.current_page === idx + 1 ? 'active' : ''} page-link`} href="#" onClick={(e) => changePage(e, `https://layanedu.com/dash/api/v1/crm/programs?page=${idx + 1}`)}>{ idx + 1 }</a>
                   </li>
                 ))
               }
