@@ -13,17 +13,28 @@ const ProgramsFilterPage = () => {
   const [loading, setLoading] = useState(false);
   const [programs, setPrograms] = useState([])
   const endPoint = searchParams.get("endPoint");
+  const [links, setLinks] = useState([]);
+  const [meta, setMeta] = useState([]);
   const navigate = useNavigate();
+
+  console.log()
 
   // COMPONENT HOOKS  
   const fetchData = async () => {
     setLoading(true)
 
+    console.log(endPoint)
+
     const response = await axios.get(endPoint.replace(/--/g, "&"));
+    console.log(response)
 
     if(!response) return;
 
     setPrograms(response.data.data.programs)
+
+    setLinks(response.data.data.links)
+
+    setMeta(response.data.data.meta)
 
     setLoading(false)
   }
@@ -31,6 +42,25 @@ const ProgramsFilterPage = () => {
   useEffect(() => {
     fetchData(endPoint)
   }, [endPoint])
+
+  const changePage = async (e, link) => {
+    e.preventDefault();
+
+    setLoading(true)
+
+    const response = await axios.get(link);
+
+    if(!response) return;
+
+    setPrograms(response.data.data.programs);
+
+    setLinks(response.data.data.links)
+
+    setMeta(response.data.data.meta)
+
+    setLoading(false)
+
+  }
 
   return (
     <div className={cls.programsFilterPage}>
@@ -58,7 +88,7 @@ const ProgramsFilterPage = () => {
 
                   <img src={program.logo_file} alt="programImage" />
 
-                  <h6>{program.specialties.title}</h6>
+                  <h6>{program?.specialties?.title}</h6>
 
                 </div>
 
@@ -66,9 +96,9 @@ const ProgramsFilterPage = () => {
 
                   <div className={cls.tags}>
 
-                    <span>{program.degrees.title}</span>
-                    <span>{program.languages[0].title}</span>
-                    <span>{program.specialties.title}</span>
+                    <span>{program?.degrees?.title}</span>
+                    <span>{program?.languages[0]?.title}</span>
+                    <span>{program?.specialties?.title}</span>
 
                   </div>
 
@@ -79,7 +109,7 @@ const ProgramsFilterPage = () => {
                       <div className='col-4'>
 
                         <p>البرنامج</p>
-                        <span>{program.specialties.title}</span>
+                        <span>{program?.specialties?.title}</span>
 
                       </div>
 
@@ -203,6 +233,36 @@ const ProgramsFilterPage = () => {
         }
 
       </div>
+
+      {programs.length && 
+        
+        <div className='pagination'>
+
+          <nav aria-label="Page navigation example">
+            <ul className="pagination">
+              <li className={`${!links.prev ? 'disabled' : '' } page-item`} onClick={(e) => changePage(e, links.prev)}>
+                <a className='page-link' aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              {
+                Array(Math.ceil(meta.total / 200)).fill().map((one, idx) => ( // fill for looping to fill array => Array(2)
+                  <li className='page-item' key={idx}>
+                    <a className={`${meta.current_page === idx + 1 ? 'active' : ''} page-link`} href="#" onClick={(e) => changePage(e, `https://layanedu.com/dash/api/v1/crm/programs?page=${idx + 1}`)}>{ idx + 1 }</a>
+                  </li>
+                ))
+              }
+              <li className={`${!links.next ? 'disabled' : '' } page-item`} onClick={(e) => changePage(e, links.next)}>
+                <a className="page-link" href="/" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+        </div>
+
+      }
 
     </div>
   )

@@ -54,13 +54,27 @@ const Filter = () => {
     setLoading(false)
   }
 
+  const fetchDegrees = async () => {
+    setLoading(true)
+
+    const response = await axios.get(`/crm/degrees?lang=${i18n.language}&country_id=${country.id}&limit=30`);
+
+    if(!response) return;
+
+    setDegrees(response.data.data.degrees)
+
+    setLoading(false)
+  }
+
   useEffect(() => {
     fetchUniversities()
+    fetchDegrees()
   }, [country])
 
   const updateUniversity = (university) => {
     setUniversity(university)
-    setDegrees(university.degrees)
+    // setDegrees(university.degrees)
+    console.log(university)
   }
 
   const fetchSpecialities = async () => {
@@ -80,9 +94,11 @@ const Filter = () => {
 
     const response = await axios.get(`/crm/applications/languages/get_languages_by_program_ajax?lang=${i18n.language}&program_id=${speciality.id}`);
 
+    console.log(response)
+
     if(!response) return;
 
-    setLanguages(response.data.data);
+    setLanguages(response.data.data || []);
 
     setLoading(false)
   }
@@ -90,11 +106,12 @@ const Filter = () => {
   const updateSpeciality = async(speciality) => {
     setSpeciality(speciality)
     getLanguages(speciality)
+    console.log(speciality)
   }
 
   const search = async () => {
 
-    navigate(`/programs-filter?endPoint=/crm/programs/filter/search?lang=${i18n.language}--specialty_id=${speciality.id}--degree_id=${degree.id}--limit=30&university_id=${university.id}--country_id=${country.id}`)
+    navigate(`/programs-filter?endPoint=/crm/programs/filter/search?lang=${i18n.language}--specialty_id=${speciality.id || ''}--degree_id=${degree.id || ''}--limit=10&university_id=${university.id || ''}--country_id=${country.id || ''}`)
   }
 
   return (
