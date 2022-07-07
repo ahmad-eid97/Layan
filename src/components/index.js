@@ -8,6 +8,8 @@ export { default as Footer } from './Footer/Footer';
 
 export { default as ProgressBar } from './UIs/ProgressBar/ProgressBar';
 
+export { default as Loader } from './UIs/Loader/Loader';
+
 // HOME COMPONENTS
 
 export { default as KnowUs } from './home/KnowUs/KnowUs';

@@ -23,7 +23,7 @@ const Filter = () => {
   const [country, setCountry] = useState('');
   const [language, setLanguage] = useState('');
   const [loading, setLoading] = useState(false);
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation('common');
   const navigate = useNavigate();
 
   const fetchCountries = async () => {
@@ -73,7 +73,6 @@ const Filter = () => {
 
   const updateUniversity = (university) => {
     setUniversity(university)
-    // setDegrees(university.degrees)
     console.log(university)
   }
 
@@ -121,17 +120,17 @@ const Filter = () => {
 
         {loading && <Loader />}
 
-        <Selectbox placeholder="البلد" list={countries} select={setCountry} value={country.title || ''} />
+        <Selectbox placeholder={t('home.country')} list={countries} select={setCountry} value={country.title || ''} />
 
-        <Selectbox placeholder="الجامعة" list={universities} select={updateUniversity} value={university.title || ''} />
+        <Selectbox placeholder={t('home.university')} list={universities} select={updateUniversity} value={university.title || ''} />
 
-        <Selectbox placeholder="الدرجة العلمية" list={degrees} select={setDegree} value={degree.title || ''} />
+        <Selectbox placeholder={t('home.degree')} list={degrees} select={setDegree} value={degree.title || ''} />
 
-        <Selectbox placeholder="التخصص" list={programs} select={updateSpeciality} value={speciality.title || ''} />
+        <Selectbox placeholder={t('home.speciality')} list={programs} select={updateSpeciality} value={speciality.title || ''} />
         
-        <Selectbox placeholder="اللغة" list={languages} select={setLanguage} value={language.title || ''} />
+        <Selectbox placeholder={t('home.lang')} list={languages} select={setLanguage} value={language.title || ''} />
 
-        <button onClick={search}>بحث</button>
+        <button onClick={search}>{t('home.search')}</button>
 
       </div>
 

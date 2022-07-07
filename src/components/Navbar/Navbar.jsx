@@ -8,6 +8,8 @@ import Cookies from 'universal-cookie';
 
 import LangSwitch from '../Switches/LangSwitch/LangSwitch';
 
+import { useTranslation } from 'react-i18next';
+
 import cls from './navbar.module.scss';
 
 const cookie = new Cookies();
@@ -16,6 +18,7 @@ const Navbar = () => {
   // COMPONENT HOOKS
   const [mobSidebar, setMobSidebar] = useState(false);
   const user = useSelector(({user}) => user.user);
+  const { t } = useTranslation('nav')
 
   return (
     <div className={cls.navbar}>
@@ -25,26 +28,26 @@ const Navbar = () => {
         <div className='container'>
 
           <ul>
-            <li><Link to="/about-us"> من نحن</Link></li>
-            <li><Link to="/contact-us"> تواصل معنا</Link></li>
-            <li><Link to="/questions"> الأسئلة الشائعة</Link></li>
+            <li><Link to="/about-us"> {t('nav.who')}</Link></li>
+            <li><Link to="/contact-us"> {t('nav.contactUs')}</Link></li>
+            <li><Link to="/questions"> {t('nav.questions')}</Link></li>
             <li></li>
           </ul>
           
           <div>
 
             <ul>
-              <li>تتبع الطلب</li>
-              <li><Link to="/register"> طلب التسجيل</Link></li>
-              <li><Link to="/agent"> كن وكيلنا</Link></li>
+              <li>{t('nav.trackOrder')}</li>
+              <li><Link to="/register"> {t('nav.register')}</Link></li>
+              <li><Link to="/agent"> {t('nav.beAgent')}</Link></li>
 
               {cookie.get('layanAuth') ? 
 
-                <li><Link to="/profile"> الصفحة الشحصية</Link></li>
+                <li><Link to="/profile"> {t('nav.profile')}</Link></li>
 
                 :
 
-                <li><Link to="/login"> تسجيل الدخول</Link></li>
+                <li><Link to="/login"> {t('nav.login')}</Link></li>
 
               }
 
@@ -73,15 +76,12 @@ const Navbar = () => {
           </div>
 
           <ul>
-            <li><NavLink to="/education"> خطوات الدراسة</NavLink></li>
-            <li><NavLink to="/all-universities"> الجامعات</NavLink></li>
-            <li><NavLink to="/programs"> البرامج</NavLink></li>
-            <li><NavLink to="/services"> خدماتنا</NavLink></li>
-            <li><NavLink to="/news"> الأخبار</NavLink></li>
-            <li><NavLink to="/blogs"> المقالات</NavLink></li>
-            {/* <li>الدورات</li> */}
-            {/* <li>السكنات</li> */}
-            {/* <li>ميديا</li> */}
+            <li><NavLink to="/education"> {t('nav.studySteps')}</NavLink></li>
+            <li><NavLink to="/all-universities"> {t('nav.universities')}</NavLink></li>
+            <li><NavLink to="/programs"> {t('nav.programs')}</NavLink></li>
+            <li><NavLink to="/services"> {t('nav.services')}</NavLink></li>
+            <li><NavLink to="/news"> {t('nav.news')}</NavLink></li>
+            <li><NavLink to="/blogs"> {t('nav.blogs')}</NavLink></li>
           </ul>
           
           <div>
@@ -98,7 +98,7 @@ const Navbar = () => {
 
             </div>
 
-            <button>سجل الاَن</button>
+            <button>{t('nav.registerNow')}</button>
             
           </div>
 
@@ -109,7 +109,7 @@ const Navbar = () => {
       <div className={cls.mobileNav}>
         <div className='container'>
 
-          <button>سجل الاَن</button>
+          <button>{t('nav.registerNow')}</button>
 
           <Link to="/">
 

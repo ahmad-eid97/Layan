@@ -17,7 +17,7 @@ const ApplicationsSection = () => {
   // COMPONENT HOOKS
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(false)
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation('common')
   const navigate = useNavigate()
 
   // COMPONENT HANDLERS
@@ -57,7 +57,7 @@ const ApplicationsSection = () => {
 
             <p>
 
-              <span>لدرجة العلمية: </span>
+              <span>{t('profile.degree')}: </span>
 
               { application.degree.title }
 
@@ -67,7 +67,7 @@ const ApplicationsSection = () => {
 
               <p>
 
-                <span>اللغة الاولي: </span>
+                <span>{t('profile.fLang')}: </span>
 
                 { application.language_primary.title }
 
@@ -75,7 +75,7 @@ const ApplicationsSection = () => {
 
               <p>
 
-                <span>اللغة الثانية: </span>
+                <span>{t('profile.sLang')}: </span>
 
                 { application.language_second.title }
 
@@ -85,7 +85,7 @@ const ApplicationsSection = () => {
 
             <div>
 
-              <span>البرنامج الرئيسي: </span>
+              <span>{t('profile.mainProgram')}: </span>
 
               <p dangerouslySetInnerHTML={{ __html: application.primary_program.details }}></p>
 
@@ -93,7 +93,7 @@ const ApplicationsSection = () => {
             
             <div>
 
-              <span>البرنامج الثانوي: </span>
+              <span>{t('profile.secondProgram')}: </span>
 
               <p dangerouslySetInnerHTML={{ __html: application.second_program.details }}></p>
 
@@ -103,14 +103,14 @@ const ApplicationsSection = () => {
 
               <p>
 
-                <span>الفصل الدراسي: </span>
+                <span>{t('profile.semester')}: </span>
 
                 { application.semester.title }
 
               </p>
               <p>
 
-                <span>الجامعة: </span>
+                <span>{t('profile.university')}: </span>
 
                 { application.university.title }
 
@@ -120,7 +120,7 @@ const ApplicationsSection = () => {
 
             <p>
 
-              <span>حالة الطلب: </span>
+              <span>{t('profile.status')}: </span>
 
               { application.status }
 
@@ -134,7 +134,7 @@ const ApplicationsSection = () => {
 
       <div className={cls.btn}>
 
-        <button onClick={() => navigate('/education-info')}>إنشاء طلب</button>
+        <button onClick={() => navigate('/education-info')}>{t('profile.createApp')}</button>
 
       </div>
 

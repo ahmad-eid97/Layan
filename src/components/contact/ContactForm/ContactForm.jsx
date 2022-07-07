@@ -4,10 +4,15 @@ import axios from '../../../Utils/axios';
 
 import { toast } from 'react-toastify';
 
+import validator from 'validator';
+
+import { useTranslation } from 'react-i18next';
+
 import cls from './contactForm.module.scss';
 
 const ContactForm = () => {
   // COMPONENT HOOKS
+  const { t } = useTranslation('common');
   const [fields, setFields] = useState({
     contact_name: '',
     contact_email: '',
@@ -32,15 +37,20 @@ const ContactForm = () => {
       setEmptyFields(true)
     } else {
 
-      const response = await axios.post('/contact', fields);
+      if(validator.isEmail(fields.contact_email)) {
+        const response = await axios.post('/contact', fields);
 
-      if(!response) return;
+        if(!response) return;
 
-      successNotify('تم إرسال الرسالة بنجاح')
+        successNotify(t('contact.success'))
+      } else {
+        errorNotify(t('contact.emailInvalid'))
+      }
     }
   }
 
   const successNotify = (message) => toast.success(message)
+  const errorNotify = (message) => toast.error(message)
 
   return (
     <div className={cls.contactForm}>
@@ -51,7 +61,7 @@ const ContactForm = () => {
 
           <img src="/assets/images/message.png" alt="titleImage" />
 
-          <p>إرسل لنا رسالة نصية وسنتواصل معك</p>
+          <p>{t('contact.contact')}</p>
           
         </h1>
 
@@ -65,57 +75,57 @@ const ContactForm = () => {
 
                 <div className="col-md-6">
 
-                  <label>الإسم<span>*</span></label>
+                  <label>{t('contact.name')}<span>*</span></label>
 
-                  <input type="text" placeholder='الإسم' name='contact_name' value={fields.contact_name} onChange={(e) => handleFields(e)} className={emptyFields && !fields.contact_name ? cls.error : ''} />
+                  <input type="text" placeholder={t('contact.name')} name='contact_name' value={fields.contact_name} onChange={(e) => handleFields(e)} className={emptyFields && !fields.contact_name ? cls.error : ''} />
 
-                  {emptyFields && !fields.contact_name && <p>هذا الحقل لا يجب ان يكون فارغاَ</p>}
-
-                </div>
-
-                <div className="col-md-6">
-
-                  <label>البريد الإلكتروني<span>*</span></label>
-
-                  <input type="text" placeholder='البريد الإلكتروني' name='contact_email' value={fields.contact_email} onChange={(e) => handleFields(e)} className={emptyFields && !fields.contact_email ? cls.error : ''} />
-
-                  {emptyFields && !fields.contact_email && <p>هذا الحقل لا يجب ان يكون فارغاَ</p>}
+                  {emptyFields && !fields.contact_name && <p>{t('contact.required')}</p>}
 
                 </div>
 
                 <div className="col-md-6">
 
-                  <label>رقم الهاتف<span>*</span></label>
+                  <label>{t('contact.email')}<span>*</span></label>
 
-                  <input type="text" placeholder='رقم الهاتف' name='contact_phone' value={fields.contact_phone} onChange={(e) => handleFields(e)} className={emptyFields && !fields.contact_phone ? cls.error : ''} />
+                  <input type="text" placeholder={t('contact.email')} name='contact_email' value={fields.contact_email} onChange={(e) => handleFields(e)} className={emptyFields && !fields.contact_email ? cls.error : ''} />
 
-                  {emptyFields && !fields.contact_phone && <p>هذا الحقل لا يجب ان يكون فارغاَ</p>}
+                  {emptyFields && !fields.contact_email && <p>{t('contact.required')}</p>}
 
                 </div>
 
                 <div className="col-md-6">
 
-                  <label>الموضوع<span>*</span></label>
+                  <label>{t('contact.phone')}<span>*</span></label>
 
-                  <input type="text" placeholder='الموضوع' name='contact_subject' value={fields.contact_subject} onChange={(e) => handleFields(e)} className={emptyFields && !fields.contact_subject ? cls.error : ''} />
+                  <input type="text" placeholder={t('contact.phone')} name='contact_phone' value={fields.contact_phone} onChange={(e) => handleFields(e)} className={emptyFields && !fields.contact_phone ? cls.error : ''} />
 
-                  {emptyFields && !fields.contact_subject && <p>هذا الحقل لا يجب ان يكون فارغاَ</p>}
+                  {emptyFields && !fields.contact_phone && <p>{t('contact.required')}</p>}
+
+                </div>
+
+                <div className="col-md-6">
+
+                  <label>{t('contact.subject')}<span>*</span></label>
+
+                  <input type="text" placeholder={t('contact.subject')} name='contact_subject' value={fields.contact_subject} onChange={(e) => handleFields(e)} className={emptyFields && !fields.contact_subject ? cls.error : ''} />
+
+                  {emptyFields && !fields.contact_subject && <p>{t('contact.required')}</p>}
 
                 </div>
 
                 <div className="col-xs-12">
 
-                  <label>الرسالة<span>*</span></label>
+                  <label>{t('contact.message')}<span>*</span></label>
 
-                  <textarea placeholder='الرسالة' name='contact_message' value={fields.contact_message} onChange={(e) => handleFields(e)} className={emptyFields && !fields.contact_message ? cls.error : ''}></textarea>
+                  <textarea placeholder={t('contact.message')} name='contact_message' value={fields.contact_message} onChange={(e) => handleFields(e)} className={emptyFields && !fields.contact_message ? cls.error : ''}></textarea>
 
-                  {emptyFields && !fields.contact_message && <p>هذا الحقل لا يجب ان يكون فارغاَ</p>}
+                  {emptyFields && !fields.contact_message && <p>{t('contact.required')}</p>}
 
                 </div>
 
-                <p className={cls.check}><input type="checkbox" />قبول الشروط والأحكام وسياسات الخصوصية !؟</p>
+                <p className={cls.check}><input type="checkbox" />{t('contact.accept')}</p>
 
-                <button onClick={sendMessage}>إرسال</button>
+                <button onClick={sendMessage}>{t('contact.send')}</button>
 
               </div>
 
@@ -127,11 +137,11 @@ const ContactForm = () => {
 
             <div className={cls.info}>
 
-              <span>معلومات الإتصال</span>
+              <span>{t('contact.info')}</span>
 
-              <h3>دعنا نتواصل معاَ</h3>
+              <h3>{t('contact.text')}</h3>
 
-              <p>اكتب لنا رسالتك لكي نتمكن من التواص معك في اقرب فرصة بالمعلومات التي تفيدك وتقوم بحل المشكة تماما ونحن موجودين علي مدار اليوم والإسبوع بشكل دوري</p>
+              <p>{t('contact.contactWith')}</p>
 
               <div className={cls.wayWrapper}>
 
@@ -140,7 +150,7 @@ const ContactForm = () => {
                   <i className="fa-light fa-phone"></i>
 
                   <div>
-                    <p>رقم الهاتف</p>
+                    <p>{t('contact.phoneCall')}</p>
                     <span>0097022973810</span>
                   </div>
 
@@ -151,7 +161,7 @@ const ContactForm = () => {
                 <i className="fa-light fa-location-check"></i>
 
                 <div>
-                  <p>العنوان</p>
+                  <p>{t('contact.address')}</p>
                   <span>إسطنبول, تركيا</span>
                 </div>
 
@@ -162,7 +172,7 @@ const ContactForm = () => {
                 <i className="fa-light fa-message"></i>
 
                 <div>
-                  <p>تفاصيل التواصل</p>
+                  <p>{t('contact.details')}</p>
                   <span>info@lyanedu.com</span>
                 </div>
 

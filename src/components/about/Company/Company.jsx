@@ -1,8 +1,13 @@
 import ProgressBar from '../../UIs/ProgressBar/ProgressBar';
 
+import { useTranslation } from 'react-i18next';
+
 import cls from './company.module.scss'
 
 const Company = () => {
+  // COMPONENT HOOK
+  const { t } = useTranslation('common')
+
   return (
     <div className={cls.company}>
 
@@ -14,17 +19,17 @@ const Company = () => {
 
           <div className={cls.text}>
 
-            <span>ماذا عن شركتنا!؟</span>
+            <span>{t('about.about')}</span>
 
-            <h2>نقوم بتقديم الخدمات عن طريق التنمية المستمره لمنصتنا في خدمة المحتوي التعليمي</h2>
+            <h2>{t('about.doing')}</h2>
 
-            <p>هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا .</p>
+            <p>{t('about.text')}</p>
 
-            <h4>نمتلك اكثر من 10 سنوات خبرة في المجال التعليمي عبر المنصات المختلفة والتعلم عن بعد.</h4>
+            <h4>{t('about.have')}</h4>
 
-            <ProgressBar label="التحليلات" percentage="95" />
+            <ProgressBar label={t('about.analytics')} percentage="95" />
 
-            <ProgressBar label="الحلول" percentage="60" />
+            <ProgressBar label={t('about.solutions')} percentage="60" />
 
           </div>
 

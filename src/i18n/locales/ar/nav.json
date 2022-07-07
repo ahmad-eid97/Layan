@@ -1,3 +1,32 @@
 {
-  
+  "nav.who": "من نحن؟",
+  "nav.contactUs": "تواصل معنا",
+  "nav.questions": "الأسئلة الشائعة",
+  "nav.trackOrder": "تتبع الطلب",
+  "nav.register": "طلب التسجيل",
+  "nav.beAgent": "كن وكيلنا",
+  "nav.profile": "الصفحة الشحصية",
+  "nav.login": "تسجيل الدخول",
+  "nav.studySteps": "خطوات الدراسة",
+  "nav.universities": "الجامعات",
+  "nav.programs": "البرامج",
+  "nav.services": "خدماتنا",
+  "nav.news": "الأخبار",
+  "nav.blogs": "المقالات",
+  "nav.registerNow": "سجل الاَن",
+
+  "footer.contact": "تواصل معنا عن طريق منصات التواصل الإجتماعي",
+  "footer.layan": "منصة ليان التعليمية تسهل عليك الوصول للمحتوي التعليمي المطلوب ف اقرب فرصه ممكنه وبكفاءه عالية",
+  "footer.ourUniversities": "جامعاتنا",
+  "footer.oneUni": "جامعة اسطنبول",
+  "footer.twoUni": "جامعة حلب",
+  "footer.threeUni": "جامعة القاهره",
+  "footer.fourUni": "الجامعة الأمريكية",
+  "footer.steps": "الخطوات المطلوبة",
+  "footer.agent": "كن وكيلنا",
+  "footer.know": "إعرف أكثر",
+  "footer.track": "تتبع الطلب",
+  "footer.contacting": "تواصل معنا",
+  "footer.apps": "التطبيقات",
+  "footer.right": "جميع الحقوق محفوظة لموقع ليان"
 }

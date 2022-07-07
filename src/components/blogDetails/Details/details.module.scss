@@ -45,6 +45,7 @@
       position: relative;
       z-index: 2;
       min-height: 300px;
+      max-height: 500px;
     }
     .info {
       position: relative;
@@ -70,6 +71,9 @@
       p {
         opacity: 0.8;
         font-size: 0.9rem;
+      }
+      em {
+        color: #000;
       }
     }
 
@@ -133,7 +137,7 @@
     }
 
     .comments {
-
+      margin-top: 20px;
       .comment {
         padding-bottom: 25px;
         border-bottom: 1px solid rgb(231, 231, 231);

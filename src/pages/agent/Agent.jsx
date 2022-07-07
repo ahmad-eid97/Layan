@@ -27,15 +27,15 @@ const Agent = () => {
     phone: '',
   }
   const [fields, setFields] = useState(initialValues);
-  const [logoAttach, setLogoAttach] = useState({file_url: '', name: 'صورة الشعار'});
-  const [licenceAttach, setLicenceAttach] = useState({file_url: '', name: 'صورة الرخصة'});
+  const { t, i18n } = useTranslation('common');
+  const [logoAttach, setLogoAttach] = useState({file_url: '', name: `${t('agent.logo')}`});
+  const [licenceAttach, setLicenceAttach] = useState({file_url: '', name: `${t('agent.licencePhoto')}`});
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState({});
   const [cities, setCities] = useState([]);
   const [city, setCity] = useState({});
   const [emptyFields, setEmptyFields] = useState(false);
   const [loading, setLoading] = useState(false)
-  const { i18n } = useTranslation();
 
   const handleFields = (e) => {
     setFields({
@@ -111,7 +111,7 @@ const Agent = () => {
       const response = await axios.post('/crm/agents', data);
 
       if(!response || !response.data.success) {
-        errorNotify('البيانات التي تم ادخالها غير صحيحة')
+        errorNotify(t('agent.invalid'))
         return;
       };
 
@@ -132,7 +132,7 @@ const Agent = () => {
 
           <img src="/assets/images/cap.png" alt="titleImage" />
 
-          <p>طلب التسجيل للحصول علي القبول الجامعى</p>
+          <p>{t('agent.title')}</p>
 
         </h1>
 
@@ -142,9 +142,9 @@ const Agent = () => {
 
             <div  className={`${cls.section} ${cls[i18n.language]}`}>
 
-              <h3><i className="fa-light fa-book-open-cover"></i> <span>لتكن أحد وكلائنا</span></h3>
+              <h3><i className="fa-light fa-book-open-cover"></i> <span>{t('agent.agents')}</span></h3>
 
-              <p> رائدة في مجال الخدمات الطلابية والقبول الجامعية. انشئت شركة في عام 2015 حيث تهدف الي مساعدة الطلاب الاجانب للالتحاق بالجامعات التركية وتقديم خصومات دراسية مميزة والمساعدة في اختيار التخصص المناسب . وتمتلك شركة علمني شكرا فريق احترافي يمد يديه لجميع الطلاب ليس مقتصر فقط علي تقديم اوراق الطالب للجامعة وتوفير له قبول جامعي وانما استيعاب احتياجات الطالب بالكامل ابتداءا من تقديم له كافة الاستشارات الجامعية مرورا باستقبال المطار وتوفير له سكن مناسب وانهاء له كافة اجراءات اقامته في تركيا</p>
+              <p>{t('agent.text')}</p>
 
             </div>
 
@@ -156,7 +156,7 @@ const Agent = () => {
 
           <div className={`${cls.block} ${cls[i18n.language]}`}>
 
-            <h4><i className="fa-light fa-building"></i> تفاصيل المؤسسة</h4>
+            <h4><i className="fa-light fa-building"></i> {t('agent.institution')}</h4>
 
             <div className="row">
 
@@ -164,11 +164,11 @@ const Agent = () => {
 
                 <div className={cls.field}>
 
-                  <label>إسم المؤسسة</label>
+                  <label>{t('agent.institutionName')}</label>
 
                   <input 
                     type="text" 
-                    placeholder='إسم المؤسسة' 
+                    placeholder={t('agent.institutionName')} 
                     name="business_name" 
                     value={fields.business_name} 
                     onChange={(e) => handleFields(e)} 
@@ -177,7 +177,7 @@ const Agent = () => {
 
                   {emptyFields && !fields.business_name &&
 
-                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    <p>{t('agent.required')}</p>
 
                   }
 
@@ -189,11 +189,11 @@ const Agent = () => {
 
                 <div className={cls.field}>
 
-                  <label>رقم الرخصة</label>
+                  <label>{t('agent.licenceName')}</label>
 
                   <input 
                     type="text" 
-                    placeholder='رقم الرخصة' 
+                    placeholder={t('agent.licenceName')}
                     name="licence_no" 
                     value={fields.licence_no} 
                     onChange={(e) => handleFields(e)}
@@ -202,7 +202,7 @@ const Agent = () => {
 
                   {emptyFields && !fields.licence_no &&
 
-                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    <p>{t('agent.required')}</p>
 
                   }
 
@@ -214,11 +214,11 @@ const Agent = () => {
 
                 <div className={cls.field}>
 
-                  <label>عدد سنوات الخبرة</label>
+                  <label>{t('agent.years')}</label>
 
                   <input 
                     type="text" 
-                    placeholder='عدد سنوات الخبرة' 
+                    placeholder={t('agent.years')}
                     name="number_experience" 
                     value={fields.number_experience} 
                     onChange={(e) => handleFields(e)} 
@@ -227,7 +227,7 @@ const Agent = () => {
 
                   {emptyFields && !fields.number_experience &&
 
-                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    <p>{t('agent.required')}</p>
 
                   }
 
@@ -239,11 +239,11 @@ const Agent = () => {
 
                 <div className={cls.field}>
 
-                  <label>الموقع الإلكتروني</label>
+                  <label>{t('agent.website')}</label>
 
                   <input 
                     type="text" 
-                    placeholder='الموقع الإلكتروني' 
+                    placeholder={t('agent.website')} 
                     name="website_url" 
                     value={fields.website_url} 
                     onChange={(e) => handleFields(e)} 
@@ -252,7 +252,7 @@ const Agent = () => {
 
                   {emptyFields && !fields.website_url &&
 
-                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    <p>{t('agent.required')}</p>
 
                   }
 
@@ -278,7 +278,7 @@ const Agent = () => {
 
           <div className={`${cls.block} ${cls[i18n.language]}`}>
 
-            <h4><i className="fa-light fa-user-lock"></i> تفاصيل تسجيل الدخول</h4>
+            <h4><i className="fa-light fa-user-lock"></i> {t('agent.register')}</h4>
 
             <div className="row">
 
@@ -286,11 +286,11 @@ const Agent = () => {
 
               <div className={cls.field}>
 
-                <label>الإسم الأول</label>
+                <label>{t('agent.fName')}</label>
 
                 <input 
                   type="text" 
-                  placeholder='الإسم الأول' 
+                  placeholder={t('agent.fName')}
                   name="first_name" 
                   value={fields.first_name} 
                   onChange={(e) => handleFields(e)} 
@@ -299,7 +299,7 @@ const Agent = () => {
 
                 {emptyFields && !fields.first_name &&
 
-                  <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                  <p>{t('agent.required')}</p>
 
                 }
 
@@ -311,11 +311,11 @@ const Agent = () => {
 
               <div className={cls.field}>
 
-                <label>الإسم الأخير</label>
+                <label>{t('agent.lName')}</label>
 
                 <input 
                   type="text" 
-                  placeholder='الإسم الأخير' 
+                  placeholder={t('agent.lName')} 
                   name="last_name" 
                   value={fields.last_name} 
                   onChange={(e) => handleFields(e)} 
@@ -324,7 +324,7 @@ const Agent = () => {
 
                 {emptyFields && !fields.last_name &&
 
-                  <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                  <p>{t('agent.required')}</p>
 
                 }
 
@@ -336,11 +336,11 @@ const Agent = () => {
 
                 <div className={cls.field}>
 
-                  <label>البريد الإلكتروني</label>
+                  <label>{t('agent.email')}</label>
 
                   <input 
                     type="text" 
-                    placeholder='البريد الإلكتروني' 
+                    placeholder={t('agent.email')}
                     name="email" 
                     value={fields.email} 
                     onChange={(e) => handleFields(e)} 
@@ -349,7 +349,7 @@ const Agent = () => {
 
                   {emptyFields && !fields.email &&
 
-                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    <p>{t('agent.required')}</p>
 
                   }
 
@@ -361,11 +361,11 @@ const Agent = () => {
 
                 <div className={cls.field}>
 
-                  <label>كلمة المرور</label>
+                  <label>{t('agent.password')}</label>
 
                   <input 
                     type="password" 
-                    placeholder='كلمة المرور' 
+                    placeholder={t('agent.password')}
                     name="password" 
                     value={fields.password} 
                     onChange={(e) => handleFields(e)} 
@@ -374,7 +374,7 @@ const Agent = () => {
 
                   {emptyFields && !fields.password &&
 
-                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    <p>{t('agent.required')}</p>
 
                   }
 
@@ -386,21 +386,9 @@ const Agent = () => {
 
                 <div className={cls.field}>
 
-                  <label>الدولة</label>
+                  <label>{t('agent.country')}</label>
 
-                  <SelectBox placeholder="الدولة" list={countries} value={country.title || ''} select={selectCountry} error={emptyFields && !country.title ? true : false} />
-
-                </div>
-
-              </div>
-
-              <div className="col-lg-6">
-
-                <div className={cls.field}>
-
-                  <label>المدينة</label>
-
-                  <SelectBox placeholder="المدينة" list={cities} value={city.title || ''} select={setCity} error={emptyFields && !city.title ? true : false} />
+                  <SelectBox placeholder={t('agent.country')} list={countries} value={country.title || ''} select={selectCountry} error={emptyFields && !country.title ? true : false} />
 
                 </div>
 
@@ -410,11 +398,23 @@ const Agent = () => {
 
                 <div className={cls.field}>
 
-                  <label>رقم الهاتف</label>
+                  <label>{t('agent.city')}</label>
+
+                  <SelectBox placeholder={t('agent.city')} list={cities} value={city.title || ''} select={setCity} error={emptyFields && !city.title ? true : false} />
+
+                </div>
+
+              </div>
+
+              <div className="col-lg-6">
+
+                <div className={cls.field}>
+
+                  <label>{t('agent.phone')}</label>
 
                   <input 
                     type="text" 
-                    placeholder='رقم الهاتف' 
+                    placeholder={t('agent.phone')}
                     name="phone" 
                     value={fields.phone} 
                     onChange={(e) => handleFields(e)} 
@@ -423,7 +423,7 @@ const Agent = () => {
 
                   {emptyFields && !fields.phone &&
 
-                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    <p>{t('agent.required')}</p>
 
                   }
 
@@ -437,7 +437,7 @@ const Agent = () => {
 
           <div className={cls.btn}>
 
-            <button onClick={register}>تسجيل الوكيل</button>
+            <button onClick={register}>{t('agent.registerAgent')}</button>
 
           </div>
 
@@ -449,4 +449,4 @@ const Agent = () => {
   )
 }
 
-export default Agent
+export default Agent;

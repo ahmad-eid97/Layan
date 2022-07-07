@@ -1,17 +1,40 @@
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
+import axios from '../../../Utils/axios';
 
 import cls from './blogSpecs.module.scss';
 
-const BlogSpecs = () => {
+const BlogSpecs = ({ blogDetails }) => {
   // COMPONENT HOOKS
-  const { i18n } = useTranslation();
+  const [blogs, setBlogs] = useState()
+  const { t, i18n } = useTranslation('common');
+  const navigate = useNavigate();
+
+  const fetchBlogs = async () => {
+    const response = await axios.get(`/topics/7/page/1/count/4/${i18n.language}`).catch(err => console.log(err));
+
+    if(!response) return;
+
+    setBlogs(response.data.topics)
+
+    console.log(response)
+  }
+
+  useEffect(() => {
+
+    fetchBlogs()
+
+  }, [])
 
   return (
     <div className={cls.blogSpecs}>
 
       <div className={`${cls.search} ${cls[i18n.language]}`}>
 
-        <input type="text" placeholder='بحث' />
+        <input type="text" placeholder={t('blogDetails.search')} />
 
         <i className="fa-light fa-magnifying-glass"></i>
         
@@ -19,21 +42,15 @@ const BlogSpecs = () => {
 
       <div className={cls.categories}>
 
-        <h5>تصنيف المقالات</h5>
+        <h5>{t('blogDetails.blogs')}</h5>
 
         <ul>
 
-          <li><i className="fa-solid fa-circle-dashed"></i> تكنولوجيا</li>
+          {blogDetails?.Joined_categories.map((one, idx) => (
 
-          <li><i className="fa-solid fa-circle-dashed"></i> سياسة</li>
+            <li key={idx}><i className="fa-solid fa-circle-dashed"></i> {one.title}</li>
 
-          <li><i className="fa-solid fa-circle-dashed"></i> إقتصاد</li>
-
-          <li><i className="fa-solid fa-circle-dashed"></i> تعليم</li>
-
-          <li><i className="fa-solid fa-circle-dashed"></i> واقع افتراضي</li>
-
-          <li><i className="fa-solid fa-circle-dashed"></i> ألعاب</li>
+          ))}
 
         </ul>
         
@@ -41,56 +58,25 @@ const BlogSpecs = () => {
 
       <div className={cls.latest}>
 
-        <h5>آخر المقالات</h5>
+        <h5>{t('blogDetails.latest')}</h5>
 
-        <div className={cls.one}>
+        {blogs?.map(blog => (
 
-          <img src="/assets/images/blog.jpg" alt="latestImage" />
+          <div key={blog.id} className={cls.one}>
 
-          <div className={cls.info}>
+            <img src={blog.photo_file} alt="latestImage" />
 
-            <p>10 طرق للحصول علي نتائج كافية للتحصيل الدراسي</p>
-            <span>Nov, 5 2020</span>
+            <div className={cls.info}>
 
-          </div>
+              <p onClick={() => navigate(`/blogs/${blog.id}`)}>{blog.title}</p>
 
-        </div>
+              <span>{blog.date}</span>
 
-        <div className={cls.one}>
-
-          <img src="/assets/images/blog.jpg" alt="latestImage" />
-
-          <div className={cls.info}>
-
-            <p>10 طرق للحصول علي نتائج كافية للتحصيل الدراسي</p>
-            <span>Nov, 5 2020</span>
+            </div>
 
           </div>
 
-        </div>
-
-        <div className={cls.one}>
-
-          <img src="/assets/images/blog.jpg" alt="latestImage" />
-
-          <div className={cls.info}>
-
-            <p>10 طرق للحصول علي نتائج كافية للتحصيل الدراسي</p>
-            <span>Nov, 5 2020</span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div className={cls.tag}>
-
-        <h5>العلامات</h5>
-
-        <span>أندرويد</span>
-        <span>عمل</span>
-        <span>تكنولوجيا</span>
+        ))}
 
       </div>
 

@@ -1,6 +1,11 @@
+import { useTranslation } from 'react-i18next';
+
 import cls from './features.module.scss';
 
 const Features = () => {
+  // COMPONENT HOOKS
+  const { t } = useTranslation('common');
+
   return (
     <div className={cls.features}>
 
@@ -12,9 +17,9 @@ const Features = () => {
 
             <div className={cls.text}>
 
-              <span>لماذا نحن!؟</span>
-              <h1>مميزات منصتنا التعليمية في مجالها الاستثماري والتعليمي</h1>
-              <p>منصة تمتلك الخبرة الكافية لادارة المجال التعليمي في مختلف البلاد ومتابعه دورية للطلاب والمسجلين طوال فترة الدراسه لضمان استمراريتهم وانتاجيتهم في البرنامج الذي تم تسجيلهم فيه</p>
+              <span>{t('home.why')}</span>
+              <h1>{t('home.features')}</h1>
+              <p>{t('home.about')}</p>
 
             </div>
 
@@ -27,9 +32,8 @@ const Features = () => {
               <div className='col-md-6'>
 
                 <div className={cls.part}>
-                  <img src="/assets/images/support.png" alt="" />
-                  {/* <i className="fa-light fa-headset"></i> */}
-                  <h6>دعم فني طوال الإسبوع</h6>
+                  <img src="/assets/images/support.png" alt="image" />
+                  <h6>{t('home.support')}</h6>
                 </div>
 
               </div>
@@ -38,8 +42,7 @@ const Features = () => {
 
                 <div className={cls.part}>
                   <img src="/assets/images/pay.png" alt="" />
-                  {/* <i className="fa-light fa-bag-shopping"></i> */}
-                  <h6>طرق دفع مختلفة</h6>
+                  <h6>{t('home.pay')}</h6>
                 </div>
 
               </div>
@@ -48,8 +51,7 @@ const Features = () => {
 
                 <div className={cls.part}>
                   <img src="/assets/images/report.png" alt="" />
-                  {/* <i className="fa-light fa-file-chart-column"></i> */}
-                  <h6>تقديم تقريرات دورية</h6>
+                  <h6>{t('home.reports')}</h6>
                 </div>
 
               </div>
@@ -58,8 +60,7 @@ const Features = () => {
 
                 <div className={cls.part}>
                   <img src="/assets/images/clock.png" alt="" />
-                  {/* <i className="fa-light fa-alarm-clock"></i> */}
-                  <h6>سرعة الرد والإستجابه</h6>
+                  <h6>{t('home.response')}</h6>
                 </div>
 
               </div>

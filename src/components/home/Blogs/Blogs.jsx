@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -10,6 +11,7 @@ const Blogs = () => {
   // COMPONENT HOOKS
   const [blogs, setBlogs] = useState([])
   const { t, i18n } = useTranslation('common');
+  const navigate = useNavigate();
 
   // COMPONENT HANDLERS
   const fetchNews = async () => {
@@ -41,28 +43,24 @@ const Blogs = () => {
 
           {blogs.map((blog, idx) => (
 
-            // <div key={idx} className='col-md-6 col-lg-4 col-xl-3'>
+            <div key={idx} className={`${cls.blog} quarterContainer`} onClick={() => navigate(`/blogs/${blog.id}`)}>
 
-              <div key={idx} className={`${cls.blog} quarterContainer`}>
+              <img src={blog.photo_file} alt="" />
 
-                <img src={blog.photo_file} alt="" />
+              <div className={cls.info}>
 
-                <div className={cls.info}>
+                <h6>{blog.title}</h6>
 
-                  <h6>{blog.title}</h6>
+                <p dangerouslySetInnerHTML={{ __html: blog.details.substring(0, 350) }}></p>
 
-                  <p dangerouslySetInnerHTML={{ __html: blog.details.substring(0, 350) }}></p>
-
-                  <span><i className="fa-light fa-clock"></i> <span>أضيفت في {blog.date}</span></span>
-
-                </div>
-
-                <div className={`quarter ${i18n.language}`}></div>
-                <div className={`movingQuarter ${i18n.language}`}></div>
+                <span><i className="fa-light fa-clock"></i> <span>{t('home.addedIn')} {blog.date}</span></span>
 
               </div>
 
-            // </div>
+              <div className={`quarter ${i18n.language}`}></div>
+              <div className={`movingQuarter ${i18n.language}`}></div>
+
+            </div>
 
           ))}
 

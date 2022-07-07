@@ -3,10 +3,13 @@ import { useState } from 'react';
 import ModalVideo from 'react-modal-video';
 import "react-modal-video/scss/modal-video.scss";
 
+import { useTranslation } from 'react-i18next';
+
 import cls from './knowUs.module.scss';
 
 const KnowUs = () => {
-	const [isOpen, setOpen] = useState(false)
+	const [isOpen, setOpen] = useState(false);
+  const { t } = useTranslation('common')
 
   return (
     <div className={cls.knowUs}>
@@ -21,8 +24,6 @@ const KnowUs = () => {
 
             <div className={cls.video} onClick={()=> setOpen(true)}>
 
-              {/* <iframe style={{ pointerEvents: 'none', borderRadius: '5px' }} width="560" height="315" src="https://www.youtube.com/embed/HndV87XpkWg?controls=0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
-
               <div className={cls.blobOverlay}></div>
 
               <i className="fa-solid fa-play"></i>
@@ -33,9 +34,9 @@ const KnowUs = () => {
 
           <div className='col-lg-6'>
 
-            <span>تعرف علينا عن قرب</span>
+            <span>{t('home.knowUs')}</span>
 
-            <h2>لأنك تستحق الأفضل دائماَ</h2>
+            <h2>{t('home.deserveBest')}</h2>
 
             <div className={`${cls.features} row`}>
 
@@ -43,7 +44,7 @@ const KnowUs = () => {
                 <div>
                   <i className="fa-light fa-comment-smile"></i>
                   <p>+15,000</p>
-                  <p>طلبة سعداء</p>
+                  <p>{t('home.happy')}</p>
                 </div>
               </div>
 
@@ -51,7 +52,7 @@ const KnowUs = () => {
                 <div>
                   <i className="fa-light fa-city"></i>
                   <p>+15,000</p>
-                  <p>جامعة معتمدة</p>
+                  <p>{t('home.accredited')}</p>
                 </div>
               </div>
 
@@ -59,7 +60,7 @@ const KnowUs = () => {
                 <div>
                   <i className="fa-light fa-graduation-cap"></i>
                   <p>+15,000</p>
-                  <p>تخصص جامعي</p>
+                  <p>{t('home.major')}</p>
                 </div>
               </div>
 
@@ -67,7 +68,7 @@ const KnowUs = () => {
                 <div>
                   <i className="fa-light fa-users-medical"></i>
                   <p>+15,000</p>
-                  <p>فريق إستشاري</p>
+                  <p>{t('home.consulting')}</p>
                 </div>
               </div>
 

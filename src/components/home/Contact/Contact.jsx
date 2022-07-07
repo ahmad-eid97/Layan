@@ -6,41 +6,9 @@ import axios from '../../../Utils/axios';
 
 import { toast } from 'react-toastify';
 
+import { useTranslation } from 'react-i18next';
+
 import cls from './contact.module.scss';
-
-const contactList = [
-  {
-    title: 'واتساب',
-    label: 'whatsapp'
-  },
-  {
-    title: 'فيس بوك',
-    label: 'facebook'
-  },
-  {
-    title: 'تويتر',
-    label: 'twitter'
-  },
-  {
-    title: 'رقم الهاتف',
-    label: 'phone'
-  }
-]
-
-const contactMethods = [
-  {
-    title: 'واتساب',
-    label: 'whatsapp'
-  },
-  {
-    title: 'مقابلة',
-    label: 'interview'
-  },
-  {
-    title: 'الإتصال',
-    label: 'call'
-  }
-]
 
 const Contact = () => {
   // COMPONENT HOOKS
@@ -51,6 +19,41 @@ const Contact = () => {
   const [contact, setContact] = useState();
   const [emptyFields, setEmptyFields] = useState(false)
   const [contactMethod, setContactMethod] = useState();
+  const { t } = useTranslation('common')
+
+  const contactList = [
+    {
+      title: `${t('home.whatsapp')}`,
+      label: 'whatsapp'
+    },
+    {
+      title: `${t('home.facebook')}`,
+      label: 'facebook'
+    },
+    {
+      title: `${t('home.twitter')}`,
+      label: 'twitter'
+    },
+    {
+      title: `${t('home.phone')}`,
+      label: 'phone'
+    }
+  ]
+
+  const contactMethods = [
+    {
+      title: `${t('home.whatsapp')}`,
+      label: 'whatsapp'
+    },
+    {
+      title: `${t('home.meet')}`,
+      label: 'interview'
+    },
+    {
+      title: `${t('home.call')}`,
+      label: 'call'
+    }
+  ]
 
   // COMPONENT HANDLERS
   const setContactWay = async () => {
@@ -69,7 +72,7 @@ const Contact = () => {
 
       setEmptyFields(true)
 
-      errorNotify('يجب إدخال البيانات كاملة')
+      errorNotify(t('home.fillFields'))
 
     } else {
 
@@ -79,7 +82,7 @@ const Contact = () => {
   
       if(!response) return;
 
-      successNotify('تم إرسال البيانات بنجاح')
+      successNotify(t('home.sendSuccess'))
   
       console.log(response)
 
@@ -100,25 +103,25 @@ const Contact = () => {
 
             <div className={cls.form}>
 
-              <h4>تابع عروض الجامعات المميزة</h4>
+              <h4>{t('home.offers')}</h4>
 
-              <input type="text" placeholder='الإسم' value={name} onChange={(e) => setName(e.target.value)} />
+              <input type="text" placeholder={t('home.name')} value={name} onChange={(e) => setName(e.target.value)} />
 
-              <input type="number" placeholder='رقم الهاتف' value={phone} onChange={(e) => setPhone(e.target.value)} />
+              <input type="number" placeholder={t('home.phone')} value={phone} onChange={(e) => setPhone(e.target.value)} />
 
-              <SelectBox placeholder='الإتصال' list={contactList} value={contact?.title || ''} select={setContact} />
+              <SelectBox placeholder={t('home.contact')} list={contactList} value={contact?.title || ''} select={setContact} />
 
-              <input type="text" placeholder='البريد الإلكتروني' value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input type="text" placeholder={t('home.email')} value={email} onChange={(e) => setEmail(e.target.value)} />
 
-              <input type="text" placeholder='الإهتمامات' value={interest} onChange={(e) => setInterest(e.target.value)} />
+              <input type="text" placeholder={t('home.interests')} value={interest} onChange={(e) => setInterest(e.target.value)} />
 
-              <label>إختر طريقة التواصل</label>
+              <label>{t('home.contactWay')}</label>
 
-              <SelectBox placeholder='التواصل' list={contactMethods} value={contactMethod?.title || ''} select={setContactMethod} />
+              <SelectBox placeholder={t('home.communication')} list={contactMethods} value={contactMethod?.title || ''} select={setContactMethod} />
 
               <div className={cls.btn}>
 
-                <button onClick={setContactWay}>سجل تواصلك</button>
+                <button onClick={setContactWay}>{t('home.registerContacting')}</button>
 
               </div>
 
@@ -146,4 +149,4 @@ const Contact = () => {
   )
 }
 
-export default Contact
+export default Contact;

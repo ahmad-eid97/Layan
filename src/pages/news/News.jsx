@@ -15,7 +15,7 @@ const News = () => {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation('common');
   const navigate = useNavigate();
 
   // DCOMPONENT HANDLERS
@@ -54,15 +54,15 @@ const News = () => {
 
             <img src="/assets/images/news.png" alt="titleImage" />
     
-            <p>أحدث الأخبار</p>
+            <p>{t('news.latest')}</p>
             
           </h3>
 
           <div className={cls.search}>
 
-            <input type="text" placeholder='بحث عن خبر' className={cls[i18n.language]} />
+            <input type="text" placeholder={t('news.searchNews')} className={cls[i18n.language]} />
 
-            <button className={cls[i18n.language]}>بحث</button>
+            <button className={cls[i18n.language]}>{t('news.search')}</button>
 
           </div>
 
@@ -76,7 +76,7 @@ const News = () => {
 
               // <div key={idx} className='col-md-6 col-lg-4 col-xl-3'>
 
-                <div key={idx} className={`${cls.singleNews} quarterContainer`} onClick={() => navigate('/news/123')}>
+                <div key={idx} className={`${cls.singleNews} quarterContainer`} onClick={() => navigate(`/news/${singleOne.id}`)}>
 
                   <img src={singleOne.photo_file} alt="newsImage" />
 
@@ -84,11 +84,11 @@ const News = () => {
 
                     <h6>{singleOne.title}</h6>
 
-                    <p>أضيفت بواسطة {singleOne.user.name}</p>
+                    <p>{t('news.addedBy')} {singleOne.user.name}</p>
 
                     <p dangerouslySetInnerHTML={{ __html: singleOne.details.substring(0, 350) + '...'}}></p>
 
-                    <span><i className="fa-light fa-clock"></i> <span>أضيفت في {singleOne.date}</span></span>
+                    <span><i className="fa-light fa-clock"></i> <span>{t('news.addedIn')} {singleOne.date}</span></span>
 
                   </div>
 
@@ -109,7 +109,7 @@ const News = () => {
 
             <img src="/assets/images/emptyUniversities.png" alt="empty" />
 
-            <p>لا توجد أخبار حتي الاَن</p>
+            <p>{t('news.noNews')}</p>
 
           </div>
         

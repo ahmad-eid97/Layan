@@ -53,7 +53,7 @@ const EducationInfo = () => {
   const [secondLang, setSecondLang] = useState('');
   const [loading, setLoading] = useState(false);
   const [emptyFields, setEmptyFields] = useState(false);
-  const { i18n } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
 
   // COMPONENT HANDLERS
   const fetchData = async () => {
@@ -211,7 +211,7 @@ const EducationInfo = () => {
 
           <img src="/assets/images/cap.png" alt="titleImage" />
 
-          <p>تسجيل بيان الدرجة العلمية</p>
+          <p>{t('info.register')}</p>
 
         </h1>
 
@@ -219,7 +219,7 @@ const EducationInfo = () => {
 
           <div className={cls.block}>
 
-            <h4><i className="fa-light fa-file-chart-column"></i> بيانات البرنامج</h4>
+            <h4><i className="fa-light fa-file-chart-column"></i> {t('info.programInfo')}</h4>
 
             <div className="row">
 
@@ -227,13 +227,13 @@ const EducationInfo = () => {
 
                 <div className={cls.field}>
 
-                  <label>الطالب</label>
+                  <label>{t('info.student')}</label>
 
-                  <SelectBox placeholder="الطالب" list={students} value={student.title || ''} select={setStudent} error={emptyFields && !student.title ? true : false} />
+                  <SelectBox placeholder={t('info.student')} list={students} value={student.title || ''} select={setStudent} error={emptyFields && !student.title ? true : false} />
 
                   {emptyFields && !student.title &&
 
-                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    <p>{t('info.required')}</p>
 
                   }
 
@@ -245,21 +245,9 @@ const EducationInfo = () => {
 
                 <div className={cls.field}>
 
-                  <label>فصل الدراسة</label>
+                  <label>{t('info.semester')}</label>
 
-                  <SelectBox placeholder="فصل الدراسة" list={semesters} value={semester.title || ''} select={setSemester} />
-
-                </div>
-
-              </div>
-
-              <div className="col-lg-6">
-
-                <div className={cls.field}>
-
-                  <label>الجامعة</label>
-
-                  <SelectBox placeholder="الجامعة" list={universities} value={university.title || ''} select={setUniversity} />
+                  <SelectBox placeholder={t('info.semester')} list={semesters} value={semester.title || ''} select={setSemester} />
 
                 </div>
 
@@ -269,21 +257,9 @@ const EducationInfo = () => {
 
                 <div className={cls.field}>
 
-                  <label>الدرجة العملية</label>
+                  <label>{t('info.university')}</label>
 
-                  <SelectBox placeholder="الدرجة العملية" list={university ? university.degrees : degrees} value={degree.title || ''} select={setDegree} />
-
-                </div>
-
-              </div>
-
-              <div className="col-lg-6">
-
-                <div className={cls.field}>
-
-                  <label>البرنامج الرئيسي</label>
-
-                  <SelectBox placeholder="البرنامج الرئيسي" list={programs} value={primaryProgram.specialties && primaryProgram.specialties.title || ''} select={setPrimaryProgram} />
+                  <SelectBox placeholder={t('info.university')} list={universities} value={university.title || ''} select={setUniversity} />
 
                 </div>
 
@@ -293,21 +269,9 @@ const EducationInfo = () => {
 
                 <div className={cls.field}>
 
-                  <label>لغة البرنامج الرئيسي</label>
+                  <label>{t('info.degree')}</label>
 
-                  <SelectBox placeholder="لغة البرنامج الرئيسي" list={primaryLanguages} value={primaryLang.title || ''} select={setPrimaryLang} />
-
-                </div>
-
-              </div>
-
-              <div className="col-lg-6">
-
-                <div className={cls.field}>
-
-                  <label>البرنامج الثانوي</label>
-
-                  <SelectBox placeholder="البرنامج الثانوي" list={programs} value={secondProgram.specialties && secondProgram.specialties.title || ''} select={setSecondProgram} />
+                  <SelectBox placeholder={t('info.degree')} list={university ? university.degrees : degrees} value={degree.title || ''} select={setDegree} />
 
                 </div>
 
@@ -317,9 +281,45 @@ const EducationInfo = () => {
 
                 <div className={cls.field}>
 
-                  <label>لغة البرنامج الثانوي</label>
+                  <label>{t('info.mainProgram')}</label>
 
-                  <SelectBox placeholder="لغة البرنامج الثانوي" list={secondLanguages} value={secondLang.title || ''} select={setSecondLang} />
+                  <SelectBox placeholder={t('info.mainProgram')} list={programs} value={primaryProgram.specialties && primaryProgram.specialties.title || ''} select={setPrimaryProgram} />
+
+                </div>
+
+              </div>
+
+              <div className="col-lg-6">
+
+                <div className={cls.field}>
+
+                  <label>{t('info.mainLang')}</label>
+
+                  <SelectBox placeholder={t('info.mainLang')} list={primaryLanguages} value={primaryLang.title || ''} select={setPrimaryLang} />
+
+                </div>
+
+              </div>
+
+              <div className="col-lg-6">
+
+                <div className={cls.field}>
+
+                  <label>{t('info.secondProgram')}</label>
+
+                  <SelectBox placeholder={t('info.secondProgram')} list={programs} value={secondProgram.specialties && secondProgram.specialties.title || ''} select={setSecondProgram} />
+
+                </div>
+
+              </div>
+
+              <div className="col-lg-6">
+
+                <div className={cls.field}>
+
+                  <label>{t('info.secondLang')}</label>
+
+                  <SelectBox placeholder={t('info.secondLang')} list={secondLanguages} value={secondLang.title || ''} select={setSecondLang} />
 
                 </div>
 
@@ -341,7 +341,7 @@ const EducationInfo = () => {
 
           <div className={cls.btn}>
 
-            <button onClick={saveApplication}>حفظ</button>
+            <button onClick={saveApplication}>{t('info.save')}</button>
 
           </div>
 

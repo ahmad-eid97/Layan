@@ -10,6 +10,8 @@ import Cookies from 'universal-cookie';
 
 import axios from '../../Utils/axios';
 
+import { useTranslation } from 'react-i18next';
+
 import cls from './login.module.scss';
 
 const cookie = new Cookies();
@@ -21,6 +23,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { t } = useTranslation('auth')
 
   const login = async () => {
     setLoading(true)
@@ -55,17 +58,17 @@ const Login = () => {
 
           <img src="/assets/images/lock.png" alt="titleImage" />
 
-          <p>تسجيل الدخول لحسابك</p>
+          <p>{t('login.loginTo')}</p>
           
         </h3>
 
         <div className={cls.form}>
 
-          <input type="text" placeholder='البريد الإلكتروني' value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="text" placeholder={t('login.email')} value={email} onChange={(e) => setEmail(e.target.value)} />
 
-          <input type="password" placeholder='كلمة المرور' value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" placeholder={t('login.password')} value={password} onChange={(e) => setPassword(e.target.value)} />
 
-          <button onClick={login}>تسجيل الدخول </button>
+          <button onClick={login}>{t('login.login')} </button>
 
         </div>
 

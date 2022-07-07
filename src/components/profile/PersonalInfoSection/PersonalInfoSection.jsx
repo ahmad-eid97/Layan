@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../../../store/slices/userSlice/userSlice';
 
+import { useTranslation } from 'react-i18next';
+
 import cls from './personalInfoSection.module.scss';
 import { useState } from 'react';
 
@@ -16,6 +18,7 @@ const cookie = new Cookies()
 
 const PersonalInfoSection = () => {
   // COMPONENT HOOKS
+  const { t } = useTranslation('common')
   const user = useSelector(({user}) => user.user);
   const dispatch = useDispatch()
   const navigate = useNavigate();
@@ -59,7 +62,7 @@ const PersonalInfoSection = () => {
 
           </div>
 
-          <button onClick={logout}>تسجيل الخروج</button>
+          <button onClick={logout}>{t('profile.logout')}</button>
 
         </div>
 
@@ -69,7 +72,7 @@ const PersonalInfoSection = () => {
 
         <div className={cls.one}>
 
-          <p>الإسم:</p>
+          <p>{t('profile.name')}:</p>
 
           <span>{user?.username}</span>
 
@@ -77,7 +80,7 @@ const PersonalInfoSection = () => {
 
         <div className={cls.one}>
 
-          <p>البريد الإلكترني:</p>
+          <p>{t('profile.email')}:</p>
 
           <span>{user?.email}</span>
 
@@ -85,7 +88,7 @@ const PersonalInfoSection = () => {
 
         <div className={cls.one}>
 
-          <p>تاريخ الميلاد:</p>
+          <p>{t('profile.birthdate')}:</p>
 
           <span>{user?.birth_date}</span>
 
@@ -93,7 +96,7 @@ const PersonalInfoSection = () => {
 
         <div className={cls.one}>
 
-          <p>البلد:</p>
+          <p>{t('profile.country')}:</p>
 
           <span>{user?.country?.title}</span>
 
@@ -101,7 +104,7 @@ const PersonalInfoSection = () => {
 
         <div className={cls.one}>
 
-          <p>المدينة:</p>
+          <p>{t('profile.city')}:</p>
 
           <span>{user?.city?.title}</span>
 

@@ -1,10 +1,56 @@
+import { useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import { format } from 'date-fns';
+
+import validator from 'validator'
+
+import axios from '../../../Utils/axios';
+
+import { toast } from 'react-toastify';
 
 import cls from './details.module.scss';
 
-const Details = () => {
+const Details = ({ blogDetails, blogId, fetchBlogDetails }) => {
   // COMPONENT HOOKS
-  const { i18n } = useTranslation();
+  const [fields, setFields] = useState()
+  const { t, i18n } = useTranslation('common');
+
+  const handleFields = (e) => {
+    setFields({
+      ...fields,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const postComment = async () => {
+
+    const data = {
+      api_key: 402784613679330,
+      topic_id: blogId,
+      comment_name: fields.name,
+      comment_email: fields.email,
+      comment_message: fields.message
+    }
+
+    if (!validator.isEmail(fields.email)) {
+      return errorNotify(t('blogDetails.invalid'));
+    }
+
+    const response = await axios.post(`/comment`, data).catch(err => console.log(err));
+
+    if(!response) return;
+
+    successNotify(t('blogDetails.commentAdded'));
+
+    fetchBlogDetails()
+
+    console.log(response)
+  }
+
+  const successNotify = (message) => toast.success(message)
+  const errorNotify = (message) => toast.error(message)
 
   return (
     <div className={cls.details}>
@@ -13,174 +59,99 @@ const Details = () => {
 
         <div className={`${cls.badge} ${cls[i18n.language]}`}>
 
-          <span>11</span>
+          {blogDetails && (
+            <>
 
-          <span>OCT</span>
+              <span>{format(new Date(blogDetails?.date), 'dd')}</span>
+
+              <span>{format(new Date(blogDetails?.date), 'MMM')}</span>
+            
+            </>
+          )}
 
         </div>
 
-        <img src="/assets/images/blog.jpg" alt="blogImage" className={cls.blogImage} />
+        <img src={blogDetails?.photo_file} alt="blogImage" className={cls.blogImage} />
 
         <div className={cls.info}>
 
-          <span className={cls[i18n.language]}><i className="fa-regular fa-user"></i> بواسطة احمد</span>
+          <span className={cls[i18n.language]}><i className="fa-regular fa-user"></i> {blogDetails?.user.name} {t('blogDetails.addedBy')}</span>
 
-          <span className={cls[i18n.language]}><i className="fa-regular fa-message-dots"></i> 3 تعليقات</span>
+          <span className={cls[i18n.language]}><i className="fa-regular fa-message-dots"></i> {blogDetails?.comments_count}</span>
 
-          <h4>تقديم حلول أفضل للأجيال القادمة</h4>
+          <h4>{blogDetails?.title}</h4>
 
-          <p>هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا هذا النص لملئ الفراغات ليس إلا </p>
-
-        </div>
-
-        <div className={cls.tags}>
-
-          <div className={`${cls.part} ${cls.partOne}`}>
-
-            <p>العلامات:</p>
-            <span>تكنولوجيا</span>
-            <span>واقع افتراضي</span>
-            <span>ذكاء اصطناعي</span>
-
-          </div>
-
-          <div className={cls.part}>
-
-            <i className="fa-brands fa-facebook-f"></i>
-
-            <i className="fa-brands fa-twitter"></i>
-
-            <i className="fa-brands fa-instagram"></i>
-
-            <i className="fa-brands fa-youtube"></i>
-
-          </div>
+          <p dangerouslySetInnerHTML={{ __html: blogDetails?.details }}></p>
 
         </div>
 
         <div className={cls.comments}>
 
-          <h4>التعليقات (3):</h4>
+          <h4>{t('blogDetails.comments')} ({blogDetails?.comments_count}):</h4>
 
-          <div className={cls.comment}>
+          {blogDetails && blogDetails.comments && blogDetails?.comments.map((comment, idx) => (
 
-            <div className={cls.userWrapper}>
+            <div key={idx} className={cls.comment}>
 
-              <div className={cls.user}>
+              <div className={cls.userWrapper}>
 
-                <img src="/assets/images/user.jpg" alt="user" />
+                <div className={cls.user}>
 
-                <div className={cls.info}>
+                  <img src="/assets/images/default.jpg" alt="user" />
 
-                  <h5>ahmad eid</h5>
+                  <div className={cls.info}>
 
-                  <p>OCT 11, 2019</p>
+                    <h5>{comment.name}</h5>
 
-                </div>
+                    <p>{format(new Date(comment.date).getTime(), 'dd / MM / yyyy')}</p>
 
-              </div>
-
-              <span className={cls.reply}>الرد <i className="fa-light fa-reply-all"></i></span>
-
-            </div>
-
-            <p>هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا </p>
-
-          </div>
-
-          <div className={cls.comment}>
-
-            <div className={cls.userWrapper}>
-
-              <div className={cls.user}>
-
-                <img src="/assets/images/user.jpg" alt="user" />
-
-                <div className={cls.info}>
-
-                  <h5>ahmad eid</h5>
-
-                  <p>OCT 11, 2019</p>
+                  </div>
 
                 </div>
 
-              </div>
-
-              <span className={cls.reply}>الرد <i className="fa-light fa-reply-all"></i></span>
-
-            </div>
-
-            <p>هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا </p>
-
-          </div>
-
-          <div className={cls.comment}>
-
-            <div className={cls.userWrapper}>
-
-              <div className={cls.user}>
-
-                <img src="/assets/images/user.jpg" alt="user" />
-
-                <div className={cls.info}>
-
-                  <h5>ahmad eid</h5>
-
-                  <p>OCT 11, 2019</p>
-
-                </div>
+                <span className={cls.reply}>{t('blogDetails.response')} <i className="fa-light fa-reply-all"></i></span>
 
               </div>
 
-              <span className={cls.reply}>الرد <i className="fa-light fa-reply-all"></i></span>
+              <p>{comment.comment}</p>
 
             </div>
 
-            <p>هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا هذا المنشور جميل جدا </p>
-
-          </div>
+          ))}
 
         </div>
 
         <div className={cls.form}>
 
-          <h3>إنشر تعليق جديد</h3>
+          <h3>{t('blogDetails.postNewComment')}</h3>
 
           <div className="row">
 
             <div className="col-md-6">
 
-              <label>الإسم<span>*</span></label>
+              <label>{t('blogDetails.name')}<span>*</span></label>
 
-              <input type="text" placeholder='الإسم' />
+              <input type="text" placeholder={t('blogDetails.name')} name='name' onChange={(e) => handleFields(e)} />
 
             </div>
 
             <div className="col-md-6">
 
-              <label>البريد الإلكتروني<span>*</span></label>
+              <label>{t('blogDetails.email')}<span>*</span></label>
 
-              <input type="text" placeholder='البريد الإلكتروني' />
-
-            </div>
-
-            <div className="col-md-12">
-
-              <label>الموقع الإلكتروني<span>*</span></label>
-
-              <input type="text" placeholder='الموقع الإلكتروني' />
+              <input type="text" placeholder={t('blogDetails.email')} name='email' onChange={(e) => handleFields(e)} />
 
             </div>
 
             <div className="col-xs-12">
 
-              <label>التعليق<span>*</span></label>
+              <label>{t('blogDetails.comment')}<span>*</span></label>
 
-              <textarea placeholder='التعليق'></textarea>
+              <textarea placeholder={t('blogDetails.comment')} name='message' onChange={(e) => handleFields(e)}></textarea>
 
             </div>
 
-            <button>نشر التعليق</button>
+            <button onClick={postComment}>{t('blogDetails.postcomment')}</button>
 
           </div>
 

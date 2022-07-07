@@ -17,7 +17,7 @@ const Programs = () => {
   const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1);
   const [count, setCount] = useState(0);
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation('common');
   const navigate = useNavigate();
 
   // COMPONENT HANDLERS
@@ -70,7 +70,7 @@ const Programs = () => {
   
           <img src="/assets/images/report.png" alt="titleImage" />
   
-          <p>برامج الجامعات</p>
+          <p>{t('programs.programs')}</p>
           
         </h3>
 
@@ -105,21 +105,21 @@ const Programs = () => {
 
                       <div className='col-4'>
 
-                        <p>البرنامج</p>
+                        <p>{t('programs.program')}</p>
                         <span>{program && program.specialties && program.specialties.title}</span>
 
                       </div>
 
                       <div className='col-4'>
 
-                        <p>الدراسة</p>
+                        <p>{t('programs.study')}</p>
                         <span>{program.study_years}</span>
 
                       </div>
 
                       <div className='col-4'>
 
-                        <p>السعر</p>
+                        <p>{t('programs.price')}</p>
                         <span>{program.price_start_at}</span>
 
                       </div>
@@ -136,31 +136,31 @@ const Programs = () => {
 
                         <div className="col-1">
 
-                          <p>الحالة</p>
+                          <p>{t('programs.status')}</p>
 
                         </div>
 
                         <div className="col-3">
 
-                          <p>الجامعة</p>
+                          <p>{t('programs.university')}</p>
 
                         </div>
 
                         <div className="col-3">
 
-                          <p>السعر قبل الخصم</p>
+                          <p>{t('programs.priceBefore')}</p>
 
                         </div>
 
                         <div className="col-3">
 
-                          <p>السعر بعد الخصم</p>
+                          <p>{t('programs.priceAfter')}</p>
 
                         </div>
 
                         <div className="col-2">
 
-                          <p>الخصم</p>
+                          <p>{t('programs.discount')}</p>
 
                         </div>
 
@@ -225,7 +225,7 @@ const Programs = () => {
 
           <div className='empty'>
             <img src="/assets/images/emptyUniversities.png" alt="empty" />
-            <p>لا توجد برامج</p>
+            <p>{t('programs.noPrograms')}</p>
           </div>
         }
 

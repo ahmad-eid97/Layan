@@ -1,6 +1,11 @@
+import { useTranslation } from 'react-i18next';
+
 import cls from './footer.module.scss';
 
 const Footer = () => {
+  // COMPONENT HOOKS
+  const { t } = useTranslation('nav')
+
   return (
     <footer className={`${cls.footer} text-center text-lg-start bg-light text-muted`}>
   
@@ -9,7 +14,7 @@ const Footer = () => {
       >
 
         <div className="me-5 d-none d-lg-block">
-          <span>تواصل معنا عن طريق منصات التواصل الإجتماعي</span>
+          <span>{t('footer.contact')}</span>
         </div>
 
         <div className={cls.icons}>
@@ -26,12 +31,6 @@ const Footer = () => {
           <a target="blank" href="https://youtube.com/channel/UCRhUpd_l49FxB2z5jYb0GhA" className="me-4 text-reset">
             <i className="fa-brands fa-youtube"></i>
           </a>
-          {/* <a target="blank" href="/" className="me-4 text-reset">
-            <i className="fab fa-linkedin"></i>
-          </a>
-          <a target="blank" href="/" className="me-4 text-reset">
-            <i className="fab fa-github"></i>
-          </a> */}
 
         </div>
 
@@ -48,52 +47,52 @@ const Footer = () => {
                 <img src="/assets/images/logo.png" alt="logoImage" />
               </h6>
               <p className={cls.text}>
-                منصة ليان التعليمية تسهل عليك الوصول للمحتوي التعليمي المطلوب ف اقرب فرصه ممكنه وبكفاءه عالية
+                {t('footer.layan')}
               </p>
             </div>
  
             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
 
               <h6 className="text-uppercase fw-bold mb-4">
-                جامعاتنا
+                {t('footer.ourUniversities')}
               </h6>
               <p>
-                <a href="#!" className="text-reset">جامعة اسطنبول</a>
+                <a href="#!" className="text-reset">{t('footer.oneUni')}</a>
               </p>
               <p>
-                <a href="#!" className="text-reset">جامعة حلب</a>
+                <a href="#!" className="text-reset">{t('footer.twoUni')}</a>
               </p>
               <p>
-                <a href="#!" className="text-reset">جامعة القاهره</a>
+                <a href="#!" className="text-reset">{t('footer.threeUni')}</a>
               </p>
               <p>
-                <a href="#!" className="text-reset">الجامعة الأمريكية</a>
+                <a href="#!" className="text-reset">{t('footer.fourUni')}</a>
               </p>
             </div>
 
             <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
               <h6 className="text-uppercase fw-bold mb-4">
-                إعرف أكثر
+                {t('footer.know')} 
               </h6>
               <p>
-                <a href="#!" className="text-reset">الخطوات المطلوبة</a>
+                <a href="#!" className="text-reset">{t('footer.steps')}</a>
               </p>
               <p>
-                <a href="#!" className="text-reset">كن وكيلنا</a>
+                <a href="#!" className="text-reset">{t('footer.agent')}</a>
               </p>
               <p>
-                <a href="#!" className="text-reset">تتبع الطلب</a>
+                <a href="#!" className="text-reset">{t('footer.track')}</a>
               </p>
               <p>
-                <a href="#!" className="text-reset">تواصل معنا</a>
+                <a href="#!" className="text-reset">{t('footer.contacting')}</a>
               </p>
             </div>
 
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 
               <h6 className="text-uppercase fw-bold mb-4">
-                التطبيقات
+                {t('footer.apps')}
               </h6>
 
               <div className={cls.app}>
@@ -114,7 +113,7 @@ const Footer = () => {
       </section>
 
       <div className={`${cls.bottom} text-center p-4`} style={{ backgroundColor: '#363636' }}>
-        جميع الحقوق محفوظة لموقع ليان
+        {t('footer.right')}
         © 2022 
       </div>
 

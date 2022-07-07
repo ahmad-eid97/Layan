@@ -1,5 +1,7 @@
 import DataAccordion from '../../components/UIs/DataAccordion/DataAccordion';
 
+import { useTranslation } from 'react-i18next';
+
 import cls from './questions.module.scss';
 
 const questions = [
@@ -36,7 +38,8 @@ const questions = [
 ]
 
 const Questions = () => {
-
+  const { t } = useTranslation('common');
+  
   return (
     <div className={cls.questions}>
 
@@ -46,7 +49,7 @@ const Questions = () => {
 
             <img src="/assets/images/question.png" alt="titleImage" />
     
-            <p>أكثر الأسئلة تردداَ</p>
+            <p>{t('questions.title')}</p>
             
           </h1>
 

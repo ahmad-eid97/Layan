@@ -46,9 +46,9 @@ const Header = () => {
 
               <div className={cls.middle}>
 
-                <h1>لا تدع الفرصة تفوتك . احصل علي قبولك الجامعي الاَن.</h1>
+                <h1>{t('home.dontLetGo')}</h1>
 
-                <p>تمتلك شركتنا فريق عمل احترافي وتعمل علي توفير وتسهيل سبل التعليم في مختلف بلاد العالم ومتابعة دورية للطلاب المسجلين حتي نهاية فترة دراستهم تماماَ</p>
+                <p>{t('home.student')}</p>
 
                 <button>{t('home.know')}</button>
 
@@ -75,7 +75,7 @@ const Header = () => {
               <div className={cls.part}>
                 <i className="fa-solid fa-phone"></i>
                 <div>
-                  <p>إتصل بنا على</p>
+                  <p>{t('home.contacting')}</p>
                   <span>0097022973810</span>
                 </div>
               </div>
@@ -83,7 +83,7 @@ const Header = () => {
               <div className={cls.part}>
                 <i className="fa-solid fa-phone"></i>
                 <div>
-                  <p>تفاصيل التواصل</p>
+                  <p>{t('home.contacting')}</p>
                   <span>info@lyanedu.com</span>
                 </div>
               </div>
@@ -121,9 +121,9 @@ const Header = () => {
 
               <div className={cls.middle}>
 
-                <h1>لا تدع الفرصة تفوتك . احصل علي قبولك الجامعي الاَن.</h1>
+                <h1>{t('home.dontLetGo')}</h1>
 
-                <p>تمتلك شركتنا فريق عمل احترافي وتعمل علي توفير وتسهيل سبل التعليم في مختلف بلاد العالم ومتابعة دورية للطلاب المسجلين حتي نهاية فترة دراستهم تماماَ</p>
+                <p>{t('home.student')}</p>
 
                 <button>{t('home.know')}</button>
 
@@ -150,7 +150,7 @@ const Header = () => {
               <div className={cls.part}>
                 <i className="fa-solid fa-phone"></i>
                 <div>
-                  <p>إتصل بنا على</p>
+                  <p>{t('home.contacting')}</p>
                   <span>0097022973810</span>
                 </div>
               </div>
@@ -158,7 +158,7 @@ const Header = () => {
               <div className={cls.part}>
                 <i className="fa-solid fa-phone"></i>
                 <div>
-                  <p>تفاصيل التواصل</p>
+                  <p>{t('home.contacting')}</p>
                   <span>info@lyanedu.com</span>
                 </div>
               </div>
@@ -196,9 +196,9 @@ const Header = () => {
 
               <div className={cls.middle}>
 
-                <h1>لا تدع الفرصة تفوتك . احصل علي قبولك الجامعي الاَن.</h1>
+                <h1>{t('home.dontLetGo')}</h1>
 
-                <p>تمتلك شركتنا فريق عمل احترافي وتعمل علي توفير وتسهيل سبل التعليم في مختلف بلاد العالم ومتابعة دورية للطلاب المسجلين حتي نهاية فترة دراستهم تماماَ</p>
+                <p>{t('home.student')}</p>
 
                 <button>{t('home.know')}</button>
 
@@ -225,7 +225,7 @@ const Header = () => {
               <div className={cls.part}>
                 <i className="fa-solid fa-phone"></i>
                 <div>
-                  <p>إتصل بنا على</p>
+                  <p>{t('home.contacting')}</p>
                   <span>0097022973810</span>
                 </div>
               </div>
@@ -233,7 +233,7 @@ const Header = () => {
               <div className={cls.part}>
                 <i className="fa-solid fa-phone"></i>
                 <div>
-                  <p>تفاصيل التواصل</p>
+                  <p>{t('home.contacting')}</p>
                   <span>info@lyanedu.com</span>
                 </div>
               </div>
@@ -271,9 +271,9 @@ const Header = () => {
 
               <div className={cls.middle}>
 
-                <h1>لا تدع الفرصة تفوتك . احصل علي قبولك الجامعي الاَن.</h1>
+                <h1>{t('home.dontLetGo')}</h1>
 
-                <p>تمتلك شركتنا فريق عمل احترافي وتعمل علي توفير وتسهيل سبل التعليم في مختلف بلاد العالم ومتابعة دورية للطلاب المسجلين حتي نهاية فترة دراستهم تماماَ</p>
+                <p>{t('home.student')}</p>
 
                 <button>{t('home.know')}</button>
 
@@ -300,7 +300,7 @@ const Header = () => {
               <div className={cls.part}>
                 <i className="fa-solid fa-phone"></i>
                 <div>
-                  <p>إتصل بنا على</p>
+                  <p>{t('home.contacting')}</p>
                   <span>0097022973810</span>
                 </div>
               </div>
@@ -308,7 +308,7 @@ const Header = () => {
               <div className={cls.part}>
                 <i className="fa-solid fa-phone"></i>
                 <div>
-                  <p>تفاصيل التواصل</p>
+                  <p>{t('home.contacting')}</p>
                   <span>info@lyanedu.com</span>
                 </div>
               </div>

@@ -24,7 +24,7 @@ const AllUniversities = () => {
   const [universities, setUniversities] = useState([])
   const [choosedCountry, setChoosedCountry] = useState(null);
   const [resMeta, setResMeta] = useState({})
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation('common');
   const navigate = useNavigate();
 
   const responsive = {
@@ -152,7 +152,7 @@ const AllUniversities = () => {
 
         <img src="/assets/images/universityBuilding.png" alt="titleImage" />
 
-        <p>الجامعات حسب الدول</p>
+        <p>{t('unis.unis')}</p>
         
       </h3>
 
@@ -183,9 +183,9 @@ const AllUniversities = () => {
 
         <div className={cls.search}>
 
-          <input type="text" placeholder='بحث عن جامعة' className={cls[i18n.language]} />
+          <input type="text" placeholder={t('unis.searchUnis')} className={cls[i18n.language]} />
 
-          <button className={cls[i18n.language]}>بحث</button>
+          <button className={cls[i18n.language]}>{t('unis.search')}</button>
 
         </div>
 
@@ -205,7 +205,7 @@ const AllUniversities = () => {
 
                     <h6>{one.title}</h6>
 
-                    <button onClick={() => navigate(`/university/${one.id}`)}>عرض التفاصيل</button>
+                    <button onClick={() => navigate(`/university/${one.id}`)}>{t('unis.showDetails')}</button>
 
                   </div>
 

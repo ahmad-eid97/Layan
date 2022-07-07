@@ -47,8 +47,6 @@ function App() {
     if(!response) return;
 
     dispatch(userActions.setUser(response.data.data))
-
-    console.log(response)
   }
 
   useEffect(() => {

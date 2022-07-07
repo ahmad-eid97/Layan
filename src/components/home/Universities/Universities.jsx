@@ -39,20 +39,17 @@ const Universities = () => {
   // COMPONENT HOOKS
   const [universities, setUniversities] = useState([])
   const [selectedUinversity, setSelectedUniversity] = useState(null);
-  const [loading, setLoading] = useState(false)
   const { t, i18n } = useTranslation('common');
 
   // COMPONENT HANDLERS
   const fetchUniversities = async () => {
-    // setLoading(true)
 
     const response = await axios.get(`/crm/universities?lang=${i18n.language}&limit=30`);
 
     if(!response) return;
 
     setUniversities(response.data.data.universities);
-
-    // setLoading(false)
+    console.log(response.data.data.universities);
   }
 
   useEffect(() => {
@@ -61,8 +58,6 @@ const Universities = () => {
 
   return (
     <div className={cls.universities}>
-
-      {loading && <Loader />}
 
       <div className='container'>
         

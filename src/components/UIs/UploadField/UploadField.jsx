@@ -1,9 +1,13 @@
+import { t } from 'i18next';
 import { useRef } from 'react';
+
+import { useTranslation } from 'react-i18next';
 
 import cls from './uploadField.module.scss';
 
 const UploadField = ({ attach, updateAttachment, empty }) => {
   // COMPONENT HOOKS
+  const { t } = useTranslation('common')
   const inputRef = useRef();
 
   // COMPONENT HANDLERS
@@ -52,7 +56,7 @@ const UploadField = ({ attach, updateAttachment, empty }) => {
             <i className="fa-light fa-cloud-arrow-up"></i>
             
             <p>
-              إضغط لرفع ملف
+              {t('upload.upload')}
             </p>
 
           </div>

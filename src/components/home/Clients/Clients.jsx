@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import Loader from '../../UIs/Loader/Loader';
-
 import axios from '../../../Utils/axios';
 
 import { useTranslation } from 'react-i18next';
@@ -13,20 +11,16 @@ import cls from './clients.module.scss';
 
 const Clients = () => {
 	const [clients, setClients] = useState('');
-	const [loading, setLoading] = useState('');
   const { t, i18n } = useTranslation('common');
 
   // COMPONENT HANDLERS
   const fetchClients = async () => {
-    setLoading(true)
 
     const response = await axios.get(`/topics/13/page/1/count/50/${i18n.language}`);
 
     if(!response) return;
 
     setClients(response.data.topics);
-
-    setLoading(false)
   }
 
   useEffect(() => {
@@ -83,11 +77,11 @@ const Clients = () => {
 
             <div className={cls.text}>
 
-              <span>التوصيات</span>
+              <span>{t('home.recommendations')}</span>
 
-              <h1>ماذا يقول عنا عملاؤنا!؟</h1>
+              <h1>{t('home.says')}</h1>
 
-              <p>اَراء العملاء في مجتمعنا والتعامل معنا عن طريق المنصه من كل البلدان المتاح بها منصتنا.</p>
+              <p>{t('home.opinions')}.</p>
 
             </div>
 
@@ -101,4 +95,4 @@ const Clients = () => {
   )
 }
 
-export default Clients
+export default Clients;

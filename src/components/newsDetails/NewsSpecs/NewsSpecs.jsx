@@ -1,17 +1,40 @@
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
+import axios from '../../../Utils/axios';
 
 import cls from './newsSpecs.module.scss';
 
 const NewsSpecs = () => {
   // COMPONENT HOOKS
-  const { i18n } = useTranslation();
+  const [news, setNews] = useState([])
+  const { t, i18n } = useTranslation('common');
+  const navigate = useNavigate();
+
+  const fecthNews = async () => {
+    const response = await axios.get(`/topics/3/page/1/count/4/${i18n.language}`).catch(err => console.log(err))
+
+    if(!response) return;
+
+    setNews(response.data.topics);
+
+    console.log(response)
+  }
+
+  useEffect(() => {
+
+    fecthNews()
+
+  }, [])
 
   return (
     <div className={cls.newsSpecs}>
 
       <div className={`${cls.search} ${cls[i18n.language]}`}>
 
-        <input type="text" placeholder='بحث' />
+        <input type="text" placeholder={t('newsDetails.search')} />
 
         <i className="fa-light fa-magnifying-glass"></i>
         
@@ -19,56 +42,24 @@ const NewsSpecs = () => {
 
       <div className={cls.latest}>
 
-        <h5>آخر الأخبار</h5>
+        <h5>{t('newsDetails.latest')}</h5>
 
-        <div className={cls.one}>
+        {news.map((singleOne) => (
 
-          <img src="/assets/images/blog.jpg" alt="latestImage" />
+          <div key={singleOne.id} className={cls.one}>
 
-          <div className={cls.info}>
+            <img src={singleOne.photo_file} alt="latestImage" />
 
-            <p>10 طرق للحصول علي نتائج كافية للتحصيل الدراسي</p>
-            <span>Nov, 5 2020</span>
+            <div className={cls.info}>
 
-          </div>
+              <p onClick={() => navigate(`/news/${singleOne.id}`)}>{singleOne.title}</p>
+              <span>{singleOne.date}</span>
 
-        </div>
-
-        <div className={cls.one}>
-
-          <img src="/assets/images/blog.jpg" alt="latestImage" />
-
-          <div className={cls.info}>
-
-            <p>10 طرق للحصول علي نتائج كافية للتحصيل الدراسي</p>
-            <span>Nov, 5 2020</span>
+            </div>
 
           </div>
 
-        </div>
-
-        <div className={cls.one}>
-
-          <img src="/assets/images/blog.jpg" alt="latestImage" />
-
-          <div className={cls.info}>
-
-            <p>10 طرق للحصول علي نتائج كافية للتحصيل الدراسي</p>
-            <span>Nov, 5 2020</span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div className={cls.tag}>
-
-        <h5>العلامات</h5>
-
-        <span>أندرويد</span>
-        <span>عمل</span>
-        <span>تكنولوجيا</span>
+        ))}
 
       </div>
 

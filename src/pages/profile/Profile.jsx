@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { PersonalInfoSection, ApplicationsSection } from '../../components';
 
+import { useTranslation } from 'react-i18next';
+
 import cls from './profile.module.scss';
 
 const Profile = () => {
   // COMPONENT HOOKS
-  const [currentTab, setCurrentTab] = useState('personal')
+  const [currentTab, setCurrentTab] = useState('personal');
+  const { t } = useTranslation('common');
 
   return (
     <div className={cls.profile}>
@@ -14,9 +17,9 @@ const Profile = () => {
 
         <div className={cls.nav}>
 
-          <span onClick={() => setCurrentTab('personal')} className={currentTab === 'personal' ? cls.active : ''}>المعلومات الشخصية</span>
+          <span onClick={() => setCurrentTab('personal')} className={currentTab === 'personal' ? cls.active : ''}>{t('profile.personal')}</span>
 
-          <span onClick={() => setCurrentTab('applications')} className={currentTab === 'applications' ? cls.active : ''}>الطلبات</span>
+          <span onClick={() => setCurrentTab('applications')} className={currentTab === 'applications' ? cls.active : ''}>{t('profile.applications')}</span>
 
         </div>
 

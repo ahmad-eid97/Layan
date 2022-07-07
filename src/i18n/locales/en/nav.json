@@ -1,3 +1,32 @@
 {
-  
+  "nav.who": "About US?",
+  "nav.contactUs": "Contact US",
+  "nav.questions": "Questions",
+  "nav.trackOrder": "Track Order",
+  "nav.register": "Register",
+  "nav.beAgent": "Be Agent",
+  "nav.profile": "Profile",
+  "nav.login": "Login",
+  "nav.studySteps": "Study Steps",
+  "nav.universities": "Universities",
+  "nav.programs": "Programs",
+  "nav.services": "Services",
+  "nav.news": "News",
+  "nav.blogs": "Blogs",
+  "nav.registerNow": "Register Now",
+
+  "footer.contact": "Connect with us through social media platforms",
+  "footer.layan": "Lian's educational platform makes it easy for you to access the required educational content as soon as possible and with high efficiency",
+  "footer.ourUniversities": "Our Universities",
+  "footer.oneUni": "Instanbul University",
+  "footer.twoUni": "Halab University",
+  "footer.threeUni": "Cairo University",
+  "footer.fourUni": "USA University",
+  "footer.steps": "Steps",
+  "footer.agent": "Be Our Agent",
+  "footer.track": "Track Your Order",
+  "footer.know": "Know More",
+  "footer.contacting": "Contacting Us",
+  "footer.apps": "Apps",
+  "footer.right": "All rights reserved"
 }

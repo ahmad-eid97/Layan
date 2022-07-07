@@ -16,6 +16,7 @@
     margin-bottom: 30px;
     background-color: #fff;
     grid-column: span 3;
+    cursor: pointer;
     @include lg {
       grid-column: span 4;
     }

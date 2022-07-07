@@ -14,7 +14,7 @@ const Service = () => {
   const [services, setServices] = useState([]);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation('common');
   const navigate = useNavigate();
 
   // DCOMPONENT HANDLERS
@@ -47,7 +47,7 @@ const Service = () => {
 
           <img src="/assets/images/services.png" alt="titleImage" />
   
-          <p>تعرف علي خدماتنا للحصول علي القبول الجامعي</p>
+          <p>{t('services.know')}</p>
           
         </h1>
 
@@ -55,19 +55,15 @@ const Service = () => {
 
           {services.map((service, idx) => (
 
-            // <div key={idx} className="col-md-6 col-lg-4" style={{ alignSelf: 'stretch !important' }}>
+            <div key={idx} className={cls.service}>
 
-              <div key={idx} className={cls.service}>
+              <img src={service.photo_file} alt="discount" />
 
-                <img src={service.photo_file} alt="discount" />
+              <h4>{service.title}</h4>
 
-                <h4>{service.title}</h4>
+              <p dangerouslySetInnerHTML={{ __html: service.details }}></p>
 
-                <p dangerouslySetInnerHTML={{ __html: service.details }}></p>
-
-              </div>
-
-            // </div>
+            </div>
 
           ))}
 

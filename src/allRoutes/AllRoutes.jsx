@@ -22,7 +22,8 @@ import {
   Applications,
   Login,
   Programs,
-  Profile
+  Profile,
+  NotFound
 } from "../pages";
 
 const AllRoutes = () => {
@@ -72,6 +73,8 @@ const AllRoutes = () => {
       <Route path="/programs" element={<Programs />} />
 
       <Route path="/profile" element={<Profile />} />
+
+      <Route path="/*" element={<NotFound />} />
       
     </Routes>
   )

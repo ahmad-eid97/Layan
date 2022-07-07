@@ -54,7 +54,6 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { t, i18n } = useTranslation('auth');
-  const { t: translate } = useTranslation('common')
   const dispatch = useDispatch();
 
   const handleFields = (e) => {
@@ -136,7 +135,7 @@ const Register = () => {
   
         if(emptyFields === false) {
   
-          errorNotify(translate('fields.error'));
+          errorNotify(t('fields.error'));
   
         }
   
@@ -171,8 +170,8 @@ const Register = () => {
     console.log(citiesResponse)
   }
 
-  const successNotify = (message) => toast.success(message)
-  const errorNotify = (message) => toast.error(message)
+  const successNotify = (message) => toast.success(message);
+  const errorNotify = (message) => toast.error(message);
 
   return (
     <div className={cls.register}>
@@ -185,7 +184,7 @@ const Register = () => {
 
           <img src="/assets/images/cap.png" alt="titleImage" />
 
-          <p>طلب التسجيل للحصول علي القبول الجامعى</p>
+          <p>{t('register.title')}</p>
 
         </h1>
 
@@ -193,7 +192,7 @@ const Register = () => {
 
           <div className={`${cls.block} ${cls[i18n.language]}`}>
 
-            <h4><i className="fa-light fa-user"></i> المعلومات الشخصية</h4>
+            <h4><i className="fa-light fa-user"></i> {t('register.personal')}</h4>
 
             <div className="row">
 
@@ -201,11 +200,11 @@ const Register = () => {
 
                 <div className={cls.field}>
 
-                  <label>إسم المستخدم</label>
+                  <label>{t('register.name')}</label>
 
                   <input 
                     type="text" 
-                    placeholder='إسم المستخدم' 
+                    placeholder={t('register.name')}  
                     name="username" 
                     value={fields.username} 
                     onChange={(e) => handleFields(e)}
@@ -214,7 +213,7 @@ const Register = () => {
 
                   {emptyFields && fields.username === '' &&
                   
-                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    <p>{t('register.required')} </p>
                   
                   }
 
@@ -226,11 +225,11 @@ const Register = () => {
 
                 <div className={cls.field}>
 
-                  <label>الإسم الاول</label>
+                  <label>{t('register.fName')} </label>
 
                   <input 
                     type="text" 
-                    placeholder='الإسم الاول' 
+                    placeholder={t('register.fName')}  
                     name="fname" 
                     value={fields.fname} 
                     onChange={(e) => handleFields(e)}
@@ -239,7 +238,7 @@ const Register = () => {
 
                     {emptyFields && fields.fname === '' &&
                     
-                      <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                      <p>{t('register.required')} </p>
                     
                     }
 
@@ -251,11 +250,11 @@ const Register = () => {
 
                 <div className={cls.field}>
 
-                  <label>الإسم الأخير</label>
+                  <label>{t('register.fatherName')} </label>
 
                   <input 
                     type="text" 
-                    placeholder='الإسم الأخير' 
+                    placeholder={t('register.fatherName')} 
                     name="lname" 
                     value={fields.lname} 
                     onChange={(e) => handleFields(e)} 
@@ -264,7 +263,7 @@ const Register = () => {
 
                   {emptyFields && fields.lname === '' &&
 
-                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    <p>{t('register.required')}</p>
 
                   }
 
@@ -276,11 +275,11 @@ const Register = () => {
 
                 <div className={cls.field}>
 
-                  <label>إسم الأب</label>
+                  <label>{t('register.fatherName')}</label>
 
                   <input 
                     type="text" 
-                    placeholder='إسم الأب' 
+                    placeholder={t('register.fatherName')}
                     name="fatherName" 
                     value={fields.fatherName} 
                     onChange={(e) => handleFields(e)} 
@@ -289,7 +288,7 @@ const Register = () => {
 
                   {emptyFields && fields.fatherName === '' &&
 
-                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    <p>{t('register.required')}</p>
 
                   }
 
@@ -301,11 +300,11 @@ const Register = () => {
 
                 <div className={cls.field}>
 
-                  <label>إسم الأم</label>
+                  <label>{t('register.motherName')}</label>
 
                   <input 
                     type="text" 
-                    placeholder='إسم الأم' 
+                    placeholder={t('register.motherName')}
                     name="motherName" 
                     value={fields.motherName} 
                     onChange={(e) => handleFields(e)} 
@@ -314,7 +313,7 @@ const Register = () => {
 
                     {emptyFields && fields.motherName === '' &&
   
-                      <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                      <p>{t('register.required')}</p>
   
                     }
 
@@ -326,7 +325,7 @@ const Register = () => {
 
                 <div className={cls.field}>
 
-                  <label>تاريخ الميلاد</label>
+                  <label>{t('register.birthDate')}</label>
 
                   <div className={`${cls.date} ${cls[i18n.language]}`}>
 
@@ -336,7 +335,7 @@ const Register = () => {
 
                     {emptyFields && fields.startDate === '' &&
 
-                      <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                      <p>{t('register.required')} </p>
 
                     }
 
@@ -350,11 +349,11 @@ const Register = () => {
 
                 <div className={cls.field}>
 
-                  <label>رقم جواز السفر</label>
+                  <label>{t('register.passportNo')} </label>
 
                   <input 
                     type="text" 
-                    placeholder='رقم جواز السفر' 
+                    placeholder={t('register.passportNo')} 
                     name="passportNo" 
                     value={fields.passportNo} 
                     onChange={(e) => handleFields(e)} 
@@ -363,7 +362,7 @@ const Register = () => {
 
                   {emptyFields && fields.passportNo === '' &&
 
-                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    <p>{t('register.required')}</p>
 
                   }
 
@@ -375,13 +374,13 @@ const Register = () => {
 
                 <div className={cls.field}>
 
-                  <label>الجنس</label>
+                  <label>{t('register.gender')}</label>
 
-                  <SelectBox placeholder="الجنس" list={genderList} value={gender['title'] || ''} select={setGender} error={emptyFields && !gender ? true : false} />
+                  <SelectBox placeholder={t('register.gender')} list={genderList} value={gender['title'] || ''} select={setGender} error={emptyFields && !gender ? true : false} />
 
                   {emptyFields && !gender &&
 
-                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    <p>{t('register.required')}</p>
 
                   }
 
@@ -395,7 +394,7 @@ const Register = () => {
 
           <div className={`${cls.block} ${cls[i18n.language]}`}>
 
-            <h4><i className="fa-light fa-lock-keyhole"></i> معلومات الحساب</h4>
+            <h4><i className="fa-light fa-lock-keyhole"></i> {t('register.accountInfo')}</h4>
 
             <div className="row">
 
@@ -403,11 +402,11 @@ const Register = () => {
 
                 <div className={cls.field}>
 
-                  <label>البريد الإلكتروني</label>
+                  <label>{t('register.email')}</label>
 
                   <input 
                     type="text" 
-                    placeholder='البريد الإلكتروني' 
+                    placeholder={t('register.email')}  
                     name="email" value={fields.email} 
                     onChange={(e) => handleFields(e)} 
                     className={emptyFields && fields.email === '' ? cls.error : ''}
@@ -415,7 +414,7 @@ const Register = () => {
 
                   {emptyFields && !fields.email &&
 
-                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    <p>{t('register.required')} </p>
 
                   }
 
@@ -427,11 +426,11 @@ const Register = () => {
 
                 <div className={cls.field}>
 
-                  <label>كلمة المرور</label>
+                  <label>{t('register.password')}</label>
 
                   <input 
                     type="password" 
-                    placeholder='كلمة المرور' 
+                    placeholder={t('register.password')} 
                     name="password" 
                     value={fields.password} 
                     onChange={(e) => handleFields(e)} 
@@ -440,7 +439,7 @@ const Register = () => {
 
                   {emptyFields && !fields.password &&
 
-                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    <p>{t('register.required')}</p>
 
                   }
 
@@ -452,11 +451,11 @@ const Register = () => {
 
                 <div className={cls.field}>
 
-                  <label>رقم الهاتف</label>
+                  <label>{t('register.phone')}</label>
 
                   <input 
                     type="text" 
-                    placeholder='رقم الهاتف' 
+                    placeholder={t('register.phone')} 
                     name="phone" 
                     value={fields.phone} 
                     onChange={(e) => handleFields(e)}
@@ -465,7 +464,7 @@ const Register = () => {
 
                   {emptyFields && !fields.phone &&
 
-                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    <p>{t('register.required')}</p>
 
                   }
 
@@ -477,119 +476,9 @@ const Register = () => {
 
           </div>
 
-          {/* <div className={`${cls.block} ${cls[i18n.language]}`}>
-
-            <h4><i className="fa-light fa-camera-retro"></i> الوثائق</h4>
-
-            <div className="row">
-
-              <div className="col-lg-6">
-
-                <div className={cls.field}>
-
-                  <label>الشعار</label>
-
-                  <div className={cls.imageArea}>
-
-                    {choosedLogoImage ? 
-
-                      <>
-                        
-                        <div className={cls.images}>
-
-                          <div className={cls.image}>
-
-                            <img src={URL.createObjectURL(choosedLogoImage)} alt="uploadedImage" />
-
-                            <i className="fa-regular fa-xmark" onClick={deleteLogoImage}></i>
-
-                          </div>
-
-                          {choosedLogoImage.name.substring(0, 20) + '...'}
-
-                        </div>
-
-                      </>
-
-                      : 
-
-                      <div onClick={inputClick}>
-
-                        <i className="fa-light fa-cloud-arrow-up"></i>
-                        
-                        <p>
-                          إضغط لرفع ملف
-                        </p>
-
-                      </div>
-
-                      }
-
-                      <input type="file" style={{ display: 'none' }} ref={inputRef} onChange={chooseLogoImage} />
-
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div className="col-lg-6">
-
-                <div className={cls.field}>
-
-                  <label>ملف جواز السفر</label>
-
-                  <div className={cls.imageArea}>
-
-                    {choosedPassportImage ? 
-
-                      <>
-                        
-                        <div className={cls.images}>
-
-                          <div className={cls.image}>
-
-                            <img src={URL.createObjectURL(choosedPassportImage)} alt="uploadedImage" />
-
-                            <i className="fa-regular fa-xmark" onClick={deletePassportImage}></i>
-
-                          </div>
-
-                          {choosedPassportImage.name.substring(0, 20) + '...'}
-
-                        </div>
-
-                      </>
-
-                      : 
-
-                      <div onClick={inputPassportClick}>
-
-                        <i className="fa-light fa-cloud-arrow-up"></i>
-                        
-                        <p>
-                          إضغط لرفع ملف
-                        </p>
-
-                      </div>
-
-                      }
-
-                      <input type="file" style={{ display: 'none' }} ref={passportInputRef} onChange={choosePassportImage} />
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div> */}
-
           <div className={`${cls.block} ${cls[i18n.language]}`}>
 
-            <h4><i className="fa-light fa-earth-americas"></i> معلومات عامة</h4>
+            <h4><i className="fa-light fa-earth-americas"></i> {t('register.generalInfo')}</h4>
 
             <div className="row">
 
@@ -597,13 +486,13 @@ const Register = () => {
 
                 <div className={cls.field}>
 
-                  <label>الدولة</label>
+                  <label>{t('register.country')}</label>
 
-                  <SelectBox placeholder="الدولة" list={countries} value={country['title'] || ''} select={chooseCountry} error={emptyFields && !country ? true : false} />
+                  <SelectBox placeholder={t('register.country')} list={countries} value={country['title'] || ''} select={chooseCountry} error={emptyFields && !country ? true : false} />
 
                   {emptyFields && !country &&
 
-                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    <p>{t('register.required')}</p>
 
                   }
 
@@ -615,44 +504,19 @@ const Register = () => {
 
                 <div className={cls.field}>
 
-                  <label>المدينة</label>
+                  <label>{t('register.city')}</label>
 
-                  <SelectBox placeholder="المدينة" list={cities} value={city.title || ''} select={setCity} error={emptyFields && !city ? true : false} />
+                  <SelectBox placeholder={t('register.city')} list={cities} value={city.title || ''} select={setCity} error={emptyFields && !city ? true : false} />
 
                   {emptyFields && !city &&
 
-                    <p>هذا الحقل لا يجب ان يكون فارغاَ</p>
+                    <p>{t('register.required')}</p>
 
                   }
 
                 </div>
 
               </div>
-
-              {/* <div className="col-lg-6">
-
-                <div className={`${cls.field} ${cls.radio}`}>
-
-                  <label>الحالة</label>
-
-                  <div>
-                  <div className="form-check">
-                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onChange={() => setStatus('on')} checked={status === 'on'} />
-                    <span>
-                      نشط
-                    </span>
-                  </div>
-                  <div className="form-check">
-                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onChange={() => setStatus('off')} checked={status === 'off'} />
-                    <span>
-                      غير نشط
-                    </span>
-                  </div>
-                  </div>
-
-                </div>
-
-              </div> */}
 
             </div>
 
@@ -660,7 +524,7 @@ const Register = () => {
 
           <div className={cls.btn}>
 
-            <button onClick={register}>{t('register.register')}</button>
+            <button onClick={register}>{t('register.registerNew')}</button>
 
           </div>
 

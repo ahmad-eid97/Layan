@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -8,12 +9,13 @@ import cls from './news.module.scss';
 
 const News = () => {
   // COMPONENT HOOKS
-  const [news, setNews] = useState([])
+  const [news, setNews] = useState([]);
   const { t, i18n } = useTranslation('common');
+  const navigate = useNavigate();
 
   // COMPONENT HANDLERS
   const fetchNews = async () => {
-    const response = await axios.get(`/topics/3/page/1/count/50/${i18n.language}`);
+    const response = await axios.get(`/topics/3/page/1/count/4/${i18n.language}`);
 
     if(!response) return;
 
@@ -41,30 +43,26 @@ const News = () => {
 
           {news.map((one, idx) => (
 
-            // <div key={idx} className='col-md-6 col-lg-4 col-xl-3'>
+            <div key={idx} className={`${cls.singleNews} quarterContainer`} onClick={() => navigate(`/news/${one.id}`)}>
 
-              <div key={idx} className={`${cls.singleNews} quarterContainer`}>
+              <img src={one.photo_file} alt="newsImage" />
 
-                <img src={one.photo_file} alt="newsImage" />
+              <div className={cls.info}>
 
-                <div className={cls.info}>
+                <h6>{one.title}</h6>
 
-                  <h6>{one.title}</h6>
+                <p><span>أضيف بواسطة {one.user.name}</span></p>
 
-                  <p><span>أضيف بواسطة {one.user.name}</span></p>
+                <p dangerouslySetInnerHTML={{ __html: one.details.substring(0, 350) }}></p>
 
-                  <p dangerouslySetInnerHTML={{ __html: one.details.substring(0, 350) }}></p>
-
-                  <span><i className="fa-light fa-clock"></i> <span>أضيفت في {one.date}</span></span>
-
-                </div>
-
-                <div className={`quarter ${i18n.language} second`}></div>
-                <div className={`movingQuarter ${i18n.language} second`}></div>
+                <span><i className="fa-light fa-clock"></i> <span>أضيفت في {one.date}</span></span>
 
               </div>
 
-            // </div>
+              <div className={`quarter ${i18n.language} second`}></div>
+              <div className={`movingQuarter ${i18n.language} second`}></div>
+
+            </div>
 
           ))}
 

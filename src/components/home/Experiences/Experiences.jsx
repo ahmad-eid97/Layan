@@ -1,10 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import Loader from '../../UIs/Loader/Loader';
-
-import ModalVideo from 'react-modal-video';
-import "react-modal-video/scss/modal-video.scss";
-
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -17,20 +12,16 @@ import cls from './experiences.module.scss';
 const Experiences = () => {
   const [openViewer, setOpenViewer] = useState(false)
 	const [experiences, setExperiences] = useState('');
-	const [loading, setLoading] = useState('');
   const { t, i18n } = useTranslation('common');
 
   // COMPONENT HANDLERS
   const fetchExperiences = async () => {
-    setLoading(true)
 
     const response = await axios.get(`/topics/11/page/1/count/50/${i18n.language}`);
 
     if(!response) return;
 
     setExperiences(response.data.topics);
-
-    setLoading(false)
   }
 
   useEffect(() => {
@@ -60,7 +51,7 @@ const Experiences = () => {
 
                 <div className={cls.text}>
 
-                  <span>علي إستعداد للتجربة!؟</span>
+                  <span>{t('home.ready')}</span>
 
                   <h3>{one.title}</h3>
 
@@ -71,28 +62,28 @@ const Experiences = () => {
                     <div className='col-sm-6 col-lg-3'>
                       <div>
                         <i className="fa-light fa-graduation-cap"></i>
-                        <p>Education</p>
+                        <p>{t('home.education')}</p>
                       </div>
                     </div>
 
                     <div className='col-sm-6 col-lg-3'>
                       <div>
                         <i className="fa-light fa-briefcase"></i>
-                        <p>Work</p>
+                        <p>{t('home.work')}</p>
                       </div>
                     </div>
 
                     <div className='col-sm-6 col-lg-3'>
                       <div>
                         <i className="fa-light fa-clock"></i>
-                        <p>Time</p>
+                        <p>{t('home.time')}</p>
                       </div>
                     </div>
 
                     <div className='col-sm-6 col-lg-3'>
                       <div>
                         <i className="fa-light fa-money-bill"></i>
-                        <p>Payment</p>
+                        <p>{t('home.payment')}</p>
                       </div>
                     </div>
 

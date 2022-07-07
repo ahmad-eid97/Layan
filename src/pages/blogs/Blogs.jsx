@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 import axios from './../../Utils/axios';
 
-import PagesLoader from '../../components/UIs/PagesLoader/PagesLoader' 
+import PagesLoader from '../../components/UIs/PagesLoader/PagesLoader';
+
+import { format } from 'date-fns';
 
 import { useTranslation } from 'react-i18next';
 
@@ -15,7 +17,7 @@ const Blogs = () => {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation('common');
   const navigate = useNavigate();
 
   // DCOMPONENT HANDLERS
@@ -30,7 +32,7 @@ const Blogs = () => {
 
     setCount(response.data.topics_count);
 
-    setLoading(false)
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -52,7 +54,7 @@ const Blogs = () => {
 
           <img src="/assets/images/blog.png" alt="titleImage" />
 
-          <p>أشهر المقالات المنشورة</p>
+          <p>{t('blogs.famous')}</p>
           
         </h3>
 
@@ -60,36 +62,38 @@ const Blogs = () => {
 
           { blogs.map((blog, idx) => (
 
-            // <div key={idx} className="col-md-6 col-lg-4">
+            <div key={idx} className={`${cls.blog} quarterContainer`} onClick={() => navigate(`/blogs/${blog.id}`)}>
 
-              <div key={idx} className={`${cls.blog} quarterContainer`} onClick={() => navigate('/blogs/123')}>
+              <div className={`${cls.badge} ${cls[i18n.language]}`}>
 
-                <div className={`${cls.badge} ${cls[i18n.language]}`}>
+                {blog && (
+                  <>
 
-                  <span>11</span>
+                    <span>{format(new Date(blog?.date), 'dd')}</span>
 
-                  <span>OCT</span>
-
-                </div>
-
-                <img src={blog.photo_file} alt="blogImage" />
-
-                <div className={cls.info}>
-
-                  <span><i className="fa-regular fa-user"></i> بواسطة {blog.user.name}</span>
-
-                  <h4>{blog.title}</h4>
-
-                  <p dangerouslySetInnerHTML={{ __html: blog.details.substring(0, 400) }}></p>
-
-                </div>
-
-                <div className={`quarter ${i18n.language} second`}></div>
-                <div className={`movingQuarter ${i18n.language} second`}></div>
+                    <span>{format(new Date(blog?.date), 'MMM')}</span>
+                  
+                  </>
+                )}
 
               </div>
 
-            // </div>
+              <img src={blog.photo_file} alt="blogImage" />
+
+              <div className={cls.info}>
+
+                <span><i className="fa-regular fa-user"></i> {t('blogs.addedBy')} {blog.user.name}</span>
+
+                <h4>{blog.title}</h4>
+
+                <p dangerouslySetInnerHTML={{ __html: blog.details.substring(0, 400) }}></p>
+
+              </div>
+
+              <div className={`quarter ${i18n.language} second`}></div>
+              <div className={`movingQuarter ${i18n.language} second`}></div>
+
+            </div>
 
           )) }
 

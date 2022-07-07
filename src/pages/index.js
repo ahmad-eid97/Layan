@@ -41,3 +41,5 @@ export { default as Applications } from './applications/Applications';
 export { default as Programs } from './programs/Programs';
 
 export { default as Profile } from './profile/Profile';
+
+export { default as NotFound } from './notFound/NotFound';
