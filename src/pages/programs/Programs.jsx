@@ -156,12 +156,6 @@ const Programs = () => {
 
                         </div>
 
-                        <div className="col-3">
-
-                          <p>{t('programs.priceAfter')}</p>
-
-                        </div>
-
                         <div className="col-2">
 
                           <p>{t('programs.discount')}</p>
@@ -192,13 +186,7 @@ const Programs = () => {
 
                           </div>
 
-                          <div className="col-3">
-
-                            <span>{(university.cost - university.sale).toString()}</span>
-
-                          </div>
-
-                          <div className="col-2">
+                          <div className="col-4">
 
                             <span>{university.sale}</span>
 

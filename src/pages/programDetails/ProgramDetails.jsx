@@ -43,7 +43,7 @@ const ProgramDetails = () => {
 
       <div className={cls.head}>
 
-        <div className="container">
+        <div className={`${cls.container} container`}>
 
           {program.logo_file ?
             <img src={program.logo_file} alt="programImage" />

@@ -4,7 +4,7 @@ const ProgramDetailsInfo = ({ program }) => {
   return (
     <div className={cls.programDetailsInfo}>
 
-      <div className='container'>
+      <div className={`${cls.container} container`}>
 
         <h2 dangerouslySetInnerHTML={{ __html: program.details }}></h2>
 
