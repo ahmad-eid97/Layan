@@ -40,8 +40,12 @@ const ProgramsFilterPage = ({ route }) => {
 
     let META = response.data.data.meta;
 
-    if (META.current_page === META.last_page) {
+    if (META.current_page === META.last_page && META.total >= 31) {
       setPaginationPages([META.current_page - 2, META.current_page - 1, META.current_page]);
+    } else if(META.total <= 10) {
+      setPaginationPages([META.current_page])
+    } else if(META.total <= 20 && META.total > 10) {
+      setPaginationPages([META.current_page, META.current_page + 1]);
     } else {
       setPaginationPages([META.current_page, META.current_page + 1, META.current_page + 2]);
     }
@@ -401,7 +405,7 @@ const ProgramsFilterPage = ({ route }) => {
                   </li>
                 ))
               }
-              {Array(Math.ceil(meta.total)).length > 3 &&
+              {Array(Math.ceil(meta.total)).length > +meta.per_page * 3 &&
               
                 <>
                 
