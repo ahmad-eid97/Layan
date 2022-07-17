@@ -13,6 +13,8 @@ const Accordion = ({ data }) => {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
 
+  console.log(data)
+
   // COMPONENT HANDLERS
   const showSubList = (e, list) => {
     if(showSub === list) {
@@ -42,7 +44,7 @@ const Accordion = ({ data }) => {
 
         <Box className={`${cls.label} ${cls[i18n.language]}`}>
 
-          <p dangerouslySetInnerHTML={{ __html: data.details }}></p>
+          <p dangerouslySetInnerHTML={{ __html: data.specialties.title }}></p>
 
         </Box>
 

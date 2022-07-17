@@ -15,7 +15,7 @@ const ProgramDetailsUniversities = ({ program }) => {
 
           {program && program.universities && program.universities.map((university, idx) => (
 
-            <div className='row align-items-center' key={idx}>
+            <div className='row align-items-center justify-content-center' key={idx}>
 
               <div className='col-lg-3'>
 
@@ -41,29 +41,17 @@ const ProgramDetailsUniversities = ({ program }) => {
 
               </div>
 
-              <div className='col-lg-2'>
+              <div className='col-lg-3'>
 
                 <div className={cls.block}>
 
                   <p>الخصم</p>
 
-                  <span>{university.cost - university.sale}</span>
+                  <span>{university.sale}</span>
 
                 </div>
 
               </div>
-
-                <div className='col-lg-2'>
-
-                  <div className={cls.block}>
-
-                    <p>السعر بعد الخصم</p>
-
-                    <span>{university.cost}</span>
-
-                  </div>
-
-                </div>
 
                 <div className='col-lg-3'>
 

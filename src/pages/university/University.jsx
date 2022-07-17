@@ -29,24 +29,6 @@ const University = () => {
 
     setUniversity(response.data.data.university);
 
-    // let Degrees = [];
-
-    // for (var i = 0; i < response.data.data.degrees.length; i++) {
-    //   let degree = response.data.data.degrees[i];
-    //   let programs = [];
-
-    //   let requests = [];
-    //   degree.programs.forEach(program => requests.push(axios.get(`/crm/programs/get_prices_university_program/${program.id}/${id}`)));
-
-    //   let costs = await Promise.all(requests);
-
-    //   degree.programs.forEach((program, i) => programs.push({ ...program, cost: costs[i].data.data.cost }));
-
-    //   Degrees.push({ ...degree, programs });
-
-    //   console.log(Degrees)
-    // }
-
     setDegrees(response.data.data.degrees)
 
     setLoading(false)

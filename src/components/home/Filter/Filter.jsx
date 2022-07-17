@@ -68,7 +68,13 @@ const Filter = () => {
 
     setCountry(countryChoosed)
 
-    const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}&country_id=${countryChoosed.id}`).catch(err => console.log(err))
+    let query = `&country_id=${countryChoosed.id}`
+
+    if(countryChoosed.id === null) {
+      query = ''
+    }
+
+    const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}${query}`).catch(err => console.log(err))
 
     if(!response) return;
 
@@ -90,39 +96,6 @@ const Filter = () => {
     console.log(response)
   }
 
-  // useEffect(() => {
-  //   fetchData()
-  // }, [country])
-
-  // const fetchUniversities = async () => {
-  //   setLoading(true)
-
-  //   const response = await axios.get(`/crm/universities?lang=${i18n.language}&country_id=${country.id}&limit=30`);
-
-  //   if(!response) return;
-
-  //   setUniversities(response.data.data.universities)
-
-  //   setLoading(false)
-  // }
-
-  // const fetchDegrees = async () => {
-  //   setLoading(true)
-
-  //   const response = await axios.get(`/crm/degrees?lang=${i18n.language}&country_id=${country.id}&limit=30`);
-
-  //   if(!response) return;
-
-  //   setDegrees(response.data.data.degrees)
-
-  //   setLoading(false)
-  // }
-
-  // useEffect(() => {
-  //   fetchUniversities()
-  //   fetchDegrees()
-  // }, [country])
-
   const updateUniversity = async(university) => {
     setLoading(true)
 
@@ -140,32 +113,6 @@ const Filter = () => {
 
     setLoading(false)
   }
-
-  // const fetchSpecialities = async () => {
-  //   const response = await axios.get(`/crm/specialties?lang=${i18n.language}&limit=30`);
-
-  //   if (!response) return;
-
-  //   setPrograms(response.data.data.specialties);
-  // }
-
-  // useEffect(() => {
-  //   fetchSpecialities()
-  // }, [])
-
-  // const getLanguages = async (speciality) => {
-  //   setLoading(true)
-
-  //   const response = await axios.get(`/crm/applications/languages/get_languages_by_program_ajax?lang=${i18n.language}&program_id=${speciality.id}`);
-
-  //   console.log(response)
-
-  //   if(!response) return;
-
-  //   setLanguages(response.data.data || []);
-
-  //   setLoading(false)
-  // }
 
   const updateSpeciality = async(speciality) => {
     setLoading(true)
