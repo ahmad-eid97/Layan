@@ -10,7 +10,7 @@ import axios from '../../Utils/axios';
 
 import cls from './programsFilterPage.module.scss';
 
-const ProgramsFilterPage = ({ route }) => {
+const ProgramsFilterPage = () => {
   // COMPONENT HOOKS
   let [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
@@ -113,7 +113,11 @@ const ProgramsFilterPage = ({ route }) => {
 
                 <div className={cls.image}>
 
-                  <img src={program.logo_file} alt="programImage" />
+                  {program.logo_file ?
+                    <img src={program.logo_file} alt="programImage" />
+                    :
+                    <img src='/assets/images/logo.png' alt="programImage" />  
+                  }
 
                   <h6>{program?.specialties?.title}</h6>
 
@@ -193,8 +197,6 @@ const ProgramsFilterPage = ({ route }) => {
                       {program.universities.map((university, idx) => (
 
                         <div key={idx} className={`${cls.oneUni} row`}>
-
-                          {/* university.id === state.state.universityId */}
 
                           {state.state.countryId && !state.state.universityId && 
                           
@@ -322,7 +324,7 @@ const ProgramsFilterPage = ({ route }) => {
                                 
                               <div className="col-1">
 
-                                <span>{university.status === true ? 'نشط' : 'غير نشظ'}</span>
+                                <span>{university.status === true ? `${t('programData.active')}` : `${t('programData.notActive')}`}</span>
 
                               </div>
 

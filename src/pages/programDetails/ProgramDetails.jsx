@@ -45,7 +45,11 @@ const ProgramDetails = () => {
 
         <div className="container">
 
-          <img src={program.logo_file} alt="" />
+          {program.logo_file ?
+            <img src={program.logo_file} alt="programImage" />
+            :
+            <img src='/assets/images/logo.png' alt="programImage" />  
+          }
 
         </div>
 

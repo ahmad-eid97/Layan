@@ -83,7 +83,11 @@ const Programs = () => {
 
                 <div className={cls.image}>
 
-                  <img src={program.logo_file} alt="programImage" />
+                  {program.logo_file ?
+                    <img src={program.logo_file} alt="programImage" />
+                    :
+                    <img src='/assets/images/logo.png' alt="programImage" />  
+                  }
 
                   <h6>{program && program.specialties && program.specialties.title}</h6>
 
