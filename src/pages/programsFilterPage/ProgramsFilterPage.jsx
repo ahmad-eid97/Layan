@@ -1,32 +1,34 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 
 import PagesLoader from '../../components/UIs/PagesLoader/PagesLoader';
+
+import { useTranslation } from 'react-i18next';
 
 import axios from '../../Utils/axios';
 
 import cls from './programsFilterPage.module.scss';
 
-const ProgramsFilterPage = () => {
+const ProgramsFilterPage = ({ route }) => {
   // COMPONENT HOOKS
   let [searchParams, setSearchParams] = useSearchParams();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [paginationPages, setPaginationPages] = useState([])
   const [loading, setLoading] = useState(false);
   const [programs, setPrograms] = useState([])
   const endPoint = searchParams.get("endPoint");
   const [links, setLinks] = useState([]);
   const [meta, setMeta] = useState([]);
   const navigate = useNavigate();
-
-  console.log()
+  const state  = useLocation()
+  const { t } = useTranslation('common')
 
   // COMPONENT HOOKS  
   const fetchData = async () => {
     setLoading(true)
 
-    console.log(endPoint)
-
     const response = await axios.get(endPoint.replace(/--/g, "&"));
-    console.log(response)
 
     if(!response) return;
 
@@ -36,6 +38,14 @@ const ProgramsFilterPage = () => {
 
     setMeta(response.data.data.meta)
 
+    let META = response.data.data.meta;
+
+    if (META.current_page === META.last_page) {
+      setPaginationPages([META.current_page - 2, META.current_page - 1, META.current_page]);
+    } else {
+      setPaginationPages([META.current_page, META.current_page + 1, META.current_page + 2]);
+    }
+
     setLoading(false)
   }
 
@@ -43,12 +53,15 @@ const ProgramsFilterPage = () => {
     fetchData(endPoint)
   }, [endPoint])
 
-  const changePage = async (e, link) => {
+  const changePage = async (e, link, page) => {
     e.preventDefault();
 
     setLoading(true)
+    console.log(`${link}&${endPoint.split('?')[1]}`)
+    
+    setCurrentPage(page)
 
-    const response = await axios.get(link);
+    const response = await axios.get(`${link}&${endPoint.replace(/--/g, "&").split('?')[1]}`);
 
     if(!response) return;
 
@@ -57,6 +70,16 @@ const ProgramsFilterPage = () => {
     setLinks(response.data.data.links)
 
     setMeta(response.data.data.meta)
+
+    let META = response.data.data.meta;
+
+    if (META.current_page === META.last_page) {
+      setPaginationPages([META.current_page - 3, META.current_page - 2, META.current_page - 1]);
+    } else if (META.current_page === META.last_page - 1) {
+      setPaginationPages([META.current_page - 1, META.current_page, META.current_page + 1]);
+    } else {
+      setPaginationPages([META.current_page, META.current_page + 1, META.current_page + 2]);
+    }
 
     setLoading(false)
 
@@ -73,7 +96,7 @@ const ProgramsFilterPage = () => {
   
           <img src="/assets/images/cap.png" alt="titleImage" />
   
-          <p>سجل الاَن واحصل علي قبولك الجامعي</p>
+          <p>{t('programData.register')}</p>
           
         </h3>
 
@@ -108,21 +131,21 @@ const ProgramsFilterPage = () => {
 
                       <div className='col-4'>
 
-                        <p>البرنامج</p>
+                        <p>{t('programData.program')}</p>
                         <span>{program?.specialties?.title}</span>
 
                       </div>
 
                       <div className='col-4'>
 
-                        <p>الدراسة</p>
+                        <p>{t('programData.study')}</p>
                         <span>{program.study_years}</span>
 
                       </div>
 
                       <div className='col-4'>
 
-                        <p>السعر</p>
+                        <p>{t('programData.price')}</p>
                         <span>{program.price_start_at}</span>
 
                       </div>
@@ -139,31 +162,25 @@ const ProgramsFilterPage = () => {
 
                         <div className="col-1">
 
-                          <p>الحالة</p>
+                          <p>{t('programData.status')}</p>
 
                         </div>
 
                         <div className="col-3">
 
-                          <p>الجامعة</p>
+                          <p>{t('programData.university')}</p>
 
                         </div>
 
                         <div className="col-3">
 
-                          <p>السعر قبل الخصم</p>
+                          <p>{t('programData.cost')}</p>
 
                         </div>
 
-                        <div className="col-3">
+                        <div className="col-4">
 
-                          <p>السعر بعد الخصم</p>
-
-                        </div>
-
-                        <div className="col-2">
-
-                          <p>الخصم</p>
+                          <p>{t('programData.discount')}</p>
 
                         </div>
 
@@ -171,37 +188,161 @@ const ProgramsFilterPage = () => {
 
                       {program.universities.map((university, idx) => (
 
-                        <div key={idx} className='row'>
+                        <div key={idx} className={`${cls.oneUni} row`}>
 
-                          <div className="col-1">
+                          {/* university.id === state.state.universityId */}
 
-                            <span>{university.status === true ? 'نشط' : 'غير نشظ'}</span>
+                          {state.state.countryId && !state.state.universityId && 
+                          
+                            <>
 
-                          </div>
+                              {university.country.id === state.state.countryId &&  
+                              
+                                <>
+                                
+                                  <div className="col-1">
 
-                          <div className="col-3">
+                                    <span>{university.status === true ? `${t('programData.active')}` : `${t('programData.notActive')}`}</span>
 
-                            <span>{university.title}</span>
+                                  </div>
 
-                          </div>
+                                  <div className="col-3">
 
-                          <div className="col-3">
+                                    <span>{university.title}</span>
 
-                            <span>{university.cost}</span>
+                                  </div>
 
-                          </div>
+                                  <div className="col-3">
 
-                          <div className="col-3">
+                                    <span>{university.cost}</span>
 
-                            <span>{university.cost - university.sale}</span>
+                                  </div>
 
-                          </div>
+                                  <div className="col-4">
 
-                          <div className="col-2">
+                                    <span>{university.sale}</span>
 
-                            <span>{university.sale}</span>
+                                  </div>
+                                
+                                </>
+                            
+                              }
+                          
+                            </>
+                          
+                          }
 
-                          </div>
+                          {!state.state.countryId && state.state.universityId && 
+                          
+                            <>
+
+                              {university.id === state.state.universityId &&  
+                              
+                                <>
+                                
+                                  <div className="col-1">
+
+                                    <span>{university.status === true ? `${t('programData.active')}` : `${t('programData.notActive')}`}</span>
+
+                                  </div>
+
+                                  <div className="col-3">
+
+                                    <span>{university.title}</span>
+
+                                  </div>
+
+                                  <div className="col-3">
+
+                                    <span>{university.cost}</span>
+
+                                  </div>
+
+                                  <div className="col-4">
+
+                                    <span>{university.sale}</span>
+
+                                  </div>
+                                
+                                </>
+                            
+                              }
+                          
+                            </>
+                          
+                          }
+
+                          {state.state.countryId && state.state.universityId && 
+                          
+                            <>
+
+                              {university.id === state.state.universityId && university.country.id === state.state.countryId &&
+                              
+                                <>
+                                
+                                  <div className="col-1">
+
+                                    <span>{university.status === true ? `${t('programData.active')}` : `${t('programData.notActive')}`}</span>
+
+                                  </div>
+
+                                  <div className="col-3">
+
+                                    <span>{university.title}</span>
+
+                                  </div>
+
+                                  <div className="col-3">
+
+                                    <span>{university.cost}</span>
+
+                                  </div>
+
+                                  <div className="col-4">
+
+                                    <span>{university.sale}</span>
+
+                                  </div>
+                                
+                                </>
+                            
+                              }
+                          
+                            </>
+                          
+                          }
+
+                          {!state.state.countryId && !state.state.universityId && 
+                          
+                            <>
+                                
+                              <div className="col-1">
+
+                                <span>{university.status === true ? 'نشط' : 'غير نشظ'}</span>
+
+                              </div>
+
+                              <div className="col-3">
+
+                                <span>{university.title}</span>
+
+                              </div>
+
+                              <div className="col-3">
+
+                                <span>{university.cost}</span>
+
+                              </div>
+
+                              <div className="col-4">
+
+                                <span>{university.sale}</span>
+
+                              </div>
+                                
+                            </>
+                          
+                          }
 
                         </div>
 
@@ -213,7 +354,7 @@ const ProgramsFilterPage = () => {
 
                   <div className={cls.btn}>
 
-                    <button onClick={() => navigate(`/program/${program.id}`)}>عرض التفاصيل</button>
+                    <button onClick={() => navigate(`/program/${program.id}`)}>{t('programData.details')}</button>
 
                   </div>
 
@@ -228,7 +369,7 @@ const ProgramsFilterPage = () => {
 
           <div className='empty'>
             <img src="/assets/images/emptyUniversities.png" alt="" />
-            <p>لا توجد برامج في هذا التصنيف</p>
+            <p>{t('programData.empty')}</p>
           </div>
         }
 
@@ -238,21 +379,42 @@ const ProgramsFilterPage = () => {
         
         <div className='pagination'>
 
+          {console.log(meta)}
+
           <nav aria-label="Page navigation example">
             <ul className="pagination">
-              <li className={`${!links.prev ? 'disabled' : '' } page-item`} onClick={(e) => changePage(e, links.prev)}>
+              <li className={`${!links.prev ? 'disabled' : '' } page-item`} onClick={(e) => changePage(e, links.prev, currentPage - 1)}>
                 <a className='page-link' aria-label="Previous">
                   <span aria-hidden="true">&laquo;</span>
                 </a>
               </li>
               {
-                Array(Math.ceil(meta.total / 200)).fill().map((one, idx) => ( // fill for looping to fill array => Array(2)
+                paginationPages.map((pageNumber, idx) => ( // fill for looping to fill array => Array(2)
                   <li className='page-item' key={idx}>
-                    <a className={`${meta.current_page === idx + 1 ? 'active' : ''} page-link`} href="#" onClick={(e) => changePage(e, `https://layanedu.com/dash/api/v1/crm/programs?page=${idx + 1}`)}>{ idx + 1 }</a>
+                    <a 
+                      className={`${pageNumber === currentPage ? 'active' : ''} page-link`} 
+                      onClick={(e) => changePage(e, `${meta.path}?page=${pageNumber}`, pageNumber)}
+                      href="#"
+                    >
+                      { pageNumber }
+                    </a>
                   </li>
                 ))
               }
-              <li className={`${!links.next ? 'disabled' : '' } page-item`} onClick={(e) => changePage(e, links.next)}>
+              {Array(Math.ceil(meta.total)).length > 3 &&
+              
+                <>
+                
+                  <span>........</span>
+
+                  <li className='page-item'>
+                    <a className={`${meta.current_page === meta.last_page ? 'active' : ''} page-link`} href="#" onClick={(e) => changePage(e, `${meta.path}?page=${meta.last_page}`)}>{meta.last_page}</a>
+                  </li>
+
+                </>
+              
+              }
+              <li className={`${!links.next ? 'disabled' : '' } page-item`} onClick={(e) => changePage(e, links.next, currentPage + 1)}>
                 <a className="page-link" href="/" aria-label="Next">
                   <span aria-hidden="true">&raquo;</span>
                 </a>

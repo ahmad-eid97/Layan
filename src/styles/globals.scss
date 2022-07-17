@@ -572,7 +572,11 @@ h3.label, h2.label, h1.label {
       align-items: center;
       border-radius: 50%;
       margin: 0 3px;
-      &:hover, &:focus {
+      &:focus {
+        background-color: #fff;
+        box-shadow: unset;
+      }
+      &:hover {
         background-color: var(--main-color);
         color: #fff;
         box-shadow: unset;

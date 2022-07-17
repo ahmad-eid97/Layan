@@ -49,7 +49,6 @@ const Universities = () => {
     if(!response) return;
 
     setUniversities(response.data.data.universities);
-    console.log(response.data.data.universities);
   }
 
   useEffect(() => {

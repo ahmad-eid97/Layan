@@ -11,6 +11,8 @@ const UniversityHead = ({ university }) => {
           <div className='col-lg-6'>
 
             <div className={cls.textSide}>
+              
+              {console.log(university)}
 
               {/* <img src="/assets/images/university.png" alt="universityLogo" /> */}
 

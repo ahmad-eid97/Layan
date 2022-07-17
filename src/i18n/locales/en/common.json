@@ -204,6 +204,19 @@
   "info.secondProgram": "Second Program",
   "info.secondLang": "Second Program Language",
   "info.required": "This field is required",
-  "info.save": "Save"
+  "info.save": "Save",
+
+  "programData.register": "Register now and get your university admission",
+  "programData.program": "Program",
+  "programData.study": "Study",
+  "programData.price": "Price starts from",
+  "programData.status": "Status",
+  "programData.university": "University",
+  "programData.cost": "Price",
+  "programData.discount": "Discount",
+  "programData.details": "Show details",
+  "programData.empty": "No programs found",
+  "programData.active": "Active",
+  "programData.notActive": "Not Active"
 
 }

@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 // STYLES FILES
 import cls from "./selectbox.module.scss";
 
-const SelectBox = ({ placeholder, list, value, select, disabled, error }) => {
+const SelectBox = ({ placeholder, list, value, select, disabled, error, type }) => {
   const { i18n } = useTranslation()
   const listItems = list;
   const [open, setOpen] = useState(false);
@@ -44,7 +44,17 @@ const SelectBox = ({ placeholder, list, value, select, disabled, error }) => {
                 onClick={() => selectChoose(item)}
                 key={idx}
               >
-                <p>{item.title ? item.title : item.specialties.title}</p>
+                {type === 'unis' || type === 'degs' || type === 'specs' ? 
+                  <>
+                    {i18n.language === 'ar' ?
+                      <p>{item.title_ar && item.title_ar}</p>
+                      :
+                      <p>{item.title_en && item.title_en}</p>
+                    }
+                  </>
+                  :
+                  <p>{item.title ? item.title : item.specialties.title}</p>
+                }
               </div>
             ))}
           </div>

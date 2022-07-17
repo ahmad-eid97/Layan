@@ -16,6 +16,8 @@ const ProgramDetailsInfo = ({ program }) => {
 
                 <div className={cls.one}>
 
+                  {console.log(program)}
+
                   <img src="/assets/images/universityBuilding.png" alt="planet" />
 
                   <div>

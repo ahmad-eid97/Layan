@@ -204,5 +204,18 @@
   "info.secondProgram": "البرنامج الثانوي",
   "info.secondLang": "لغة البرنامج الثانوي",
   "info.required": "هذا الحقل مطلوب",
-  "info.save": "حفظ"
+  "info.save": "حفظ",
+
+  "programData.register": "سجل الاَن واحصل علي قبولك الجامعي",
+  "programData.program": "البرنامج",
+  "programData.study": "الدراسة",
+  "programData.price": "السعر يبدأ من",
+  "programData.status": "الحالة",
+  "programData.university": "الجامعة",
+  "programData.cost": "السعر",
+  "programData.discount": "الخصم",
+  "programData.details": "عرض التفاصيل",
+  "programData.empty": "لا توجد برامج في هذا التصنيف",
+  "programData.active": "نشط",
+  "programData.notActive": "غير نشط"
 }

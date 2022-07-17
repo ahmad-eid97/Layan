@@ -45,7 +45,7 @@ const ProgramDetails = () => {
 
         <div className="container">
 
-          <img src={setProgram.logo_file} alt="" />
+          <img src={program.logo_file} alt="" />
 
         </div>
 
