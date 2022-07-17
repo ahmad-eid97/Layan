@@ -101,7 +101,7 @@ const Filter = () => {
 
     setUniversity(university)
 
-    const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}&university_id=${university.id}`).catch(err => console.log(err))
+    const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}&specialty_id=${speciality.id ? speciality.id : ''}&country_id=${country.id ? country.id : ''}&university_id=${university.id ? university.id : ''}&degree_id=${degree.id ? degree.id : ''}`).catch(err => console.log(err))
 
     if(!response) return;
 
@@ -119,7 +119,7 @@ const Filter = () => {
 
     setSpeciality(speciality)
 
-    const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}&specialty_id=${speciality.id}`).catch(err => console.log(err))
+    const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}&specialty_id=${speciality.id ? speciality.id : ''}&country_id=${country.id ? country.id : ''}&university_id=${university.id ? university.id : ''}&degree_id=${degree.id ? degree.id : ''}`).catch(err => console.log(err))
 
     if(!response) return;
 
@@ -141,7 +141,7 @@ const Filter = () => {
 
     setDegree(degree)
 
-    const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}&degree_id=${degree.id}`).catch(err => console.log(err))
+    const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}&specialty_id=${speciality.id ? speciality.id : ''}&country_id=${country.id ? country.id : ''}&university_id=${university.id ? university.id : ''}&degree_id=${degree.id ? degree.id : ''}`).catch(err => console.log(err))
 
     if(!response) return;
 
