@@ -181,7 +181,7 @@ const Filter = () => {
   }
 
   const search = async () => {
-    navigate(`/programs-filter?endPoint=/crm/programs/filter/search?lang=${language.title || ''}--country_id=${country.id || ''}--specialty_id=${speciality.id || ''}--degree_id=${degree.id || ''}--university_id=${university.id || ''}--limit=10`, {state: {countryId: country.id, universityId: university.id}})
+    navigate(`/programs-filter?endPoint=/crm/programs/filter/search?lang=${i18n.language}--language_id=${language.id || ''}--country_id=${country.id || ''}--specialty_id=${speciality.id || ''}--degree_id=${degree.id || ''}--university_id=${university.id || ''}--limit=10`, {state: {countryId: country.id, universityId: university.id}})
   }
 
   return (
