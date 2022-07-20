@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,6 +14,7 @@ const Programs = () => {
   // COMPONENT HOOKS
   const [programs, setPrograms] = useState([]);
   const [links, setLinks] = useState([]);
+  const [paginationPages, setPaginationPages] = useState([])
   const [meta, setMeta] = useState([]);
   const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,6 +35,18 @@ const Programs = () => {
 
     setMeta(response.data.data.meta)
 
+    let META = response.data.data.meta;
+
+    if (META.current_page === META.last_page && META.total >= 31) {
+      setPaginationPages([META.current_page - 2, META.current_page - 1, META.current_page]);
+    } else if(META.total <= 10) {
+      setPaginationPages([META.current_page])
+    } else if(META.total <= 20 && META.total > 10) {
+      setPaginationPages([META.current_page, META.current_page + 1]);
+    } else {
+      setPaginationPages([META.current_page, META.current_page + 1, META.current_page + 2]);
+    }
+
     setLoading(false)
   }
 
@@ -40,7 +54,7 @@ const Programs = () => {
     fetchPrograms();
   }, [])
 
-  const changePage = async (e, link) => {
+  const changePage = async (e, link, page) => {
     e.preventDefault();
 
     setLoading(true)
@@ -52,6 +66,20 @@ const Programs = () => {
     setPrograms(response.data.data.programs);
 
     setLinks(response.data.data.links)
+
+    setCurrentPage(page)
+
+    let META = response.data.data.meta;
+
+    if (META.current_page === META.last_page && META.total >= 31) {
+      setPaginationPages([META.current_page - 2, META.current_page - 1, META.current_page]);
+    } else if(META.total <= 10) {
+      setPaginationPages([META.current_page])
+    } else if(META.total <= 20 && META.total > 10) {
+      setPaginationPages([META.current_page, META.current_page + 1]);
+    } else {
+      setPaginationPages([META.current_page, META.current_page + 1, META.current_page + 2]);
+    }
 
     setMeta(response.data.data.meta)
 
@@ -223,7 +251,7 @@ const Programs = () => {
 
       </div>
 
-      {programs.length && 
+      {/* {programs.length && 
         
         <div className='pagination'>
 
@@ -251,7 +279,59 @@ const Programs = () => {
 
         </div>
 
+      } */}
+
+      {programs.length && 
+        
+        <div className='pagination'>
+
+          <nav aria-label="Page navigation example">
+            <ul className="pagination">
+              <li className={`${!links.prev ? 'disabled' : '' } page-item`} onClick={(e) => changePage(e, links.prev, currentPage - 1)}>
+                <a className='page-link' aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              {
+                paginationPages.map((pageNumber, idx) => ( // fill for looping to fill array => Array(2)
+                  <li className='page-item' key={idx}>
+                    <a 
+                      className={`${pageNumber === currentPage ? 'active' : ''} page-link`} 
+                      onClick={(e) => changePage(e, `${meta.path}?page=${pageNumber}`, pageNumber)}
+                      href="#"
+                    >
+                      { pageNumber }
+                    </a>
+                  </li>
+                ))
+              }
+              {Array(Math.ceil(meta.total)).length > +meta.per_page * 3 &&
+              
+                <>
+                
+                  <span>........</span>
+
+                  <li className='page-item'>
+                    <a className={`${meta.current_page === meta.last_page ? 'active' : ''} page-link`} href="#" onClick={(e) => changePage(e, `${meta.path}?page=${meta.last_page}`)}>{meta.last_page}</a>
+                  </li>
+
+                </>
+              
+              }
+              
+              <li className={`${!links.next ? 'disabled' : '' } page-item`} onClick={(e) => changePage(e, links.next, currentPage + 1)}>
+                <a className="page-link" href="/" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+        </div>
+
       }
+
+      {console.log(meta)}
 
     </div>
   )

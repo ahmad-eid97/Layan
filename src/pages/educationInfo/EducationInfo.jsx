@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import SelectBox from '../../components/UIs/SelectBox/Selectbox';
 import Loader from './../../components/UIs/Loader/Loader';
 import UploadField from '../../components/UIs/UploadField/UploadField';
 
 import { useTranslation } from 'react-i18next';
+
+import Cookies from 'universal-cookie';
 
 import axios from '../../Utils/axios';
 
@@ -34,6 +37,8 @@ const students = [
   }
 ]
 
+const cookie = new Cookies();
+
 const EducationInfo = () => {
   // COMPONENT HOOKS
   const [semesters, setSemesters] = useState([]);
@@ -54,11 +59,36 @@ const EducationInfo = () => {
   const [loading, setLoading] = useState(false);
   const [emptyFields, setEmptyFields] = useState(false);
   const { t, i18n } = useTranslation('common');
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  console.log(searchParams.get('university'))
+
+  const handleChoosedUniversity = async () => {
+    setLoading(true);
+
+    const response = await axios.get(`/crm/universities/${searchParams.get('university')}?lang=${i18n.language}`).catch(err => console.log(err))
+
+    if(!response) return;
+
+    console.log(response)
+
+    setUniversity(response.data.data.university);
+
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    if(searchParams.get('university')) {
+      console.log('here')
+      handleChoosedUniversity()
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams.get('university')])
 
   // COMPONENT HANDLERS
   const fetchData = async () => {
-    setLoading(true);
-
+    if(!searchParams.get('university')) setLoading(true);
+  
     let setters = [
       {name: 'semesters', set: setSemesters},
       {name: 'degrees', set: setDegrees},
@@ -77,15 +107,31 @@ const EducationInfo = () => {
 
     responses.forEach((res, i) => {
       if(!res) return;
+      console.log(res)
       setters[i].set(res.data.data[setters[i].name]);
     })
 
-    setLoading(false);
+    if(!searchParams.get('university')) setLoading(false);
   }
 
   useEffect(() => {
     fetchData();
   }, [])
+
+  const handleChooseUniversity = async (univer) => {
+    setLoading(true)
+
+    setUniversity(univer)
+
+    const response = await axios.get(`/crm/degrees?lang=${i18n.language}&university=${univer.id}&limit=30`);
+
+    if (!response) return;
+
+    setDegrees(response.data.data.degrees);
+
+    setLoading(false)
+
+  }
 
   const getFilesByDegree = async () => {
 
@@ -187,15 +233,11 @@ const EducationInfo = () => {
 
       const response = await axios.post(`/crm/applications?lang=${i18n.language}`, {
         headers: {
-          Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbGF5YW5lZHUuY29tXC9hcGlcL3YxXC9jcm1cL3N0dWRlbnRzXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY1NjYwNDQxOCwibmJmIjoxNjU2NjA0NDE4LCJqdGkiOiJOR1JvSkt4cEt5U2dVellpIiwic3ViIjo0LCJwcnYiOiJjYWI5YWI3ZjExZTliOTMxNTFiYjY3MGQxYzJkN2NhYjkxYzU5NjA3In0.S_VRX_xgSyNedMA84W9BXqtJ_sX9kh0VAwSgldrWf98`
+          Authorization: `Bearer ${cookie.get('layanAuth')}`
         }
       })
   
       if(!response) return;
-  
-      console.log(response)
-  
-      console.log(data)
 
     }
   }
@@ -223,7 +265,7 @@ const EducationInfo = () => {
 
             <div className="row">
 
-              <div className="col-lg-6">
+              {/* <div className="col-lg-6">
 
                 <div className={cls.field}>
 
@@ -239,7 +281,7 @@ const EducationInfo = () => {
 
                 </div>
 
-              </div>
+              </div> */}
 
               <div className="col-lg-6">
 
@@ -259,19 +301,19 @@ const EducationInfo = () => {
 
                   <label>{t('info.university')}</label>
 
-                  <SelectBox placeholder={t('info.university')} list={universities} value={university.title || ''} select={setUniversity} />
+                  <SelectBox placeholder={t('info.university')} list={universities} value={university.title || ''} select={handleChooseUniversity} />
 
                 </div>
 
               </div>
 
-              <div className="col-lg-6">
+              <div className="col-lg-12">
 
                 <div className={cls.field}>
 
                   <label>{t('info.degree')}</label>
 
-                  <SelectBox placeholder={t('info.degree')} list={university ? university.degrees : degrees} value={degree.title || ''} select={setDegree} />
+                  <SelectBox placeholder={t('info.degree')} list={degrees} value={degree.title || ''} select={setDegree} />
 
                 </div>
 

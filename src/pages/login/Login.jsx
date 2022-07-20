@@ -26,31 +26,33 @@ const Login = () => {
   const { t } = useTranslation('auth')
 
   const login = async () => {
-    setLoading(true)
 
     const credentials = {
       email, password
     }
     if(email !== '' && password !== '') {
+      setLoading(true)
 
       const response = await axios.post('/crm/students/auth/login', credentials);
   
       if(!response) return;
 
-      console.log(response);
+      console.log(response)
   
       dispatch(userActions.setUser(response.data.data.student));
 
       cookie.set('layanAuth', response.data.data.access_token);
+
+      setLoading(false)
   
       navigate('/')
     }
-
-    setLoading(false)
   }
 
   return (
     <div className={cls.login}>
+
+      {loading && <Loader />}
 
       <div className='container'>
         

@@ -65,39 +65,56 @@ const ApplicationsSection = () => {
 
             <div className={cls.side}>
 
-              <p>
+              {(application.selected_program === 'primary_program' || !application.selected_program) &&
 
-                <span>{t('profile.fLang')}: </span>
+                <p>
 
-                { application.language_primary.title }
+                  <span>{t('profile.fLang')}: </span>
 
-              </p>
+                  { application.language_primary.title }
 
-              <p>
+                </p>
 
-                <span>{t('profile.sLang')}: </span>
+              }
 
-                { application.language_second.title }
+              {(application.selected_program === 'second_program' || !application.selected_program) &&
 
-              </p>
+                <p>
+
+                  <span>{t('profile.sLang')}: </span>
+
+                  { application.language_second.title }
+
+                </p>
+
+              }
 
             </div>
 
-            <div>
+            {(application.selected_program === 'primary_program' || !application.selected_program) &&
+              
+              <div>
 
-              <span>{t('profile.mainProgram')}: </span>
+                <span>{t('profile.mainProgram')}: </span>
 
-              <p dangerouslySetInnerHTML={{ __html: application.primary_program.details }}></p>
+                <h1>{ application.primary_program.specialties.title }</h1>
 
-            </div>
+              </div>
             
-            <div>
+            }
+            
 
-              <span>{t('profile.secondProgram')}: </span>
+            {(application.selected_program === 'second_program' || !application.selected_program) && 
+              
+              <div>
 
-              <p dangerouslySetInnerHTML={{ __html: application.second_program.details }}></p>
+                <span>{t('profile.secondProgram')}: </span>
 
-            </div>
+                <h1>{ application.second_program.specialties.title }</h1>
+
+              </div>
+            
+            }
 
             <div className={cls.side}>
 
@@ -125,6 +142,12 @@ const ApplicationsSection = () => {
               { application.status }
 
             </p>
+
+            {application.status_notes && 
+            
+              <p className={cls.note}><i className="fa-regular fa-message-exclamation"></i> { application.status_notes }</p>
+            
+            }
 
           </div>
 

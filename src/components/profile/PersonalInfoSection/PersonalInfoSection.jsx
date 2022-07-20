@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import axios from '../../../Utils/axios';
 
 import Cookies from 'universal-cookie';
@@ -12,12 +14,12 @@ import { userActions } from '../../../store/slices/userSlice/userSlice';
 import { useTranslation } from 'react-i18next';
 
 import cls from './personalInfoSection.module.scss';
-import { useState } from 'react';
 
 const cookie = new Cookies()
 
 const PersonalInfoSection = () => {
   // COMPONENT HOOKS
+  const [loading, setLoading] = useState(false)
   const { t } = useTranslation('common')
   const user = useSelector(({user}) => user.user);
   const dispatch = useDispatch()
@@ -25,6 +27,7 @@ const PersonalInfoSection = () => {
 
   // COMPONENT HANDLERS
   const logout = async () => {
+    setLoading(true)
     // const response = await axios.post('/crm/students/auth/logout', {
     //   headers: {
     //     Authorization: `Bearer ${cookie.get('layanAuth')}`,
@@ -38,6 +41,8 @@ const PersonalInfoSection = () => {
 
     dispatch(userActions.setUser(null));
 
+    setLoading(false)
+
     navigate('/')
 
     // console.log(response);
@@ -48,9 +53,11 @@ const PersonalInfoSection = () => {
 
       {!user && <Loader />}
 
+      {loading && <Loader />}
+
       <div className={cls.profile}>
 
-        <img src="/assets/images/user.jpg" alt="image" />
+        <img src="/assets/images/default.jpg" alt="image" />
 
         <div className={cls.info}>
 
