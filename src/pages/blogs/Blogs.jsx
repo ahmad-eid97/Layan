@@ -27,6 +27,8 @@ const Blogs = () => {
     const response = await axios.get(`/topics/7/page/1/count/30/${i18n.language}`);
 
     if(!response) return;
+    
+    console.log(response)
 
     setBlogs(response.data.topics);
 

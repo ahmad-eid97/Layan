@@ -29,6 +29,8 @@ const Programs = () => {
 
     if(!response) return;
 
+    console.log(response)
+
     setPrograms(response.data.data.programs);
 
     setLinks(response.data.data.links)
@@ -62,6 +64,8 @@ const Programs = () => {
     const response = await axios.get(link);
 
     if(!response) return;
+
+    console.log(response)
 
     setPrograms(response.data.data.programs);
 
@@ -330,8 +334,6 @@ const Programs = () => {
         </div>
 
       }
-
-      {console.log(meta)}
 
     </div>
   )
