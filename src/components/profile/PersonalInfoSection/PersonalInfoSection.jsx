@@ -25,14 +25,14 @@ const PersonalInfoSection = () => {
 
   // COMPONENT HANDLERS
   const logout = async () => {
-    // const response = await axios.post('/crm/students/auth/logout', {
-    //   headers: {
-    //     Authorization: `Bearer ${cookie.get('layanAuth')}`,
-    //     Accept: 'application/json'
-    //   }
-    // }).catch(err => console.log(err));
+    const response = await axios.get('/crm/students/auth/logout', {
+      headers: {
+        Authorization: `Bearer ${cookie.get('layanAuth')}`,
+        Accept: 'application/json'
+      }
+    }).catch(err => console.log(err));
 
-    // if(!response) return;
+    if(!response) return;
 
     cookie.remove('layanAuth');
 
@@ -40,7 +40,7 @@ const PersonalInfoSection = () => {
 
     navigate('/')
 
-    // console.log(response);
+    console.log(response);
   }
 
   return (
