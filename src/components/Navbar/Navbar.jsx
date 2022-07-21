@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import MobSidebar from './MobSidebar/MobSidebar';
 
 import { useSelector } from 'react-redux';
@@ -18,7 +18,8 @@ const Navbar = () => {
   // COMPONENT HOOKS
   const [mobSidebar, setMobSidebar] = useState(false);
   const user = useSelector(({user}) => user.user);
-  const { t } = useTranslation('nav')
+  const { t } = useTranslation('nav');
+  const navigate = useNavigate()
 
   return (
     <div className={cls.navbar}>
@@ -37,8 +38,8 @@ const Navbar = () => {
           <div>
 
             <ul>
-              <li>{t('nav.trackOrder')}</li>
-              <li><Link to="/register"> {t('nav.register')}</Link></li>
+              {/* <li>{t('nav.trackOrder')}</li> */}
+              {/* <li><Link to="/register"> {t('nav.register')}</Link></li> */}
               <li><Link to="/agent"> {t('nav.beAgent')}</Link></li>
 
               {cookie.get('layanAuth') ? 
@@ -98,7 +99,15 @@ const Navbar = () => {
 
             </div>
 
-            <button>{t('nav.registerNow')}</button>
+            {cookie.get('layanAuth') ? 
+
+              <button onClick={() => navigate('/education-info')}>{t('nav.chooseProgram')}</button>
+
+              :
+
+              <button onClick={() => navigate('/register')}>{t('nav.registerNow')}</button>
+
+            }
             
           </div>
 
@@ -109,7 +118,15 @@ const Navbar = () => {
       <div className={cls.mobileNav}>
         <div className='container'>
 
-          <button>{t('nav.registerNow')}</button>
+          {cookie.get('layanAuth') ? 
+
+            <button onClick={() => navigate('/education-info')}>{t('nav.chooseProgram')}</button>
+
+            :
+
+            <button onClick={() => navigate('/register')}>{t('nav.registerNow')}</button>
+
+          }
 
           <Link to="/">
 

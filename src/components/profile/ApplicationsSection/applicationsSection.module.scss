@@ -8,6 +8,7 @@
   .wrapper {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
+    gap: 10px;
     .app {
       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
       border-radius: 5px;
@@ -44,9 +45,19 @@
           background-color: var(--main-color);
           padding: 5px 10px;
           border-radius: 5px;
+          text-align: center !important;
           * {
             color: #fff !important;
           }
+        }
+      }
+      .note {
+        font-weight: 500;
+        background-color: #e67e22;
+        color: #fff;
+        margin-top: 20px;
+        i {
+          margin: 0 5px;
         }
       }
     }

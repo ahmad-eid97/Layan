@@ -20,6 +20,9 @@ const News = () => {
 
   // DCOMPONENT HANDLERS
   const fetchNews = async () => {
+    
+    // document.querySelector("body").scrollTo(0,0)
+
     setLoading(true)
 
     const response = await axios.get(`/topics/3/page/${currentPage}/count/30/${i18n.language}`);

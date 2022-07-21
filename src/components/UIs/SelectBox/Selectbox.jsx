@@ -38,7 +38,7 @@ const SelectBox = ({ placeholder, list, value, select, disabled, error, type }) 
 
         <div className={`${cls.field__results} ${open ? cls.active : ""}`}>
           <div className={cls.field__results_result}>
-            {listItems.map((item, idx) => (
+            {listItems && listItems.map((item, idx) => (
               <div
                 className={cls.resultInside}
                 onClick={() => selectChoose(item)}

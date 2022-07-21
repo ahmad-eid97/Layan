@@ -61,7 +61,6 @@ const ProgramsFilterPage = () => {
     e.preventDefault();
 
     setLoading(true)
-    console.log(`${link}&${endPoint.split('?')[1]}`)
     
     setCurrentPage(page)
 
@@ -384,8 +383,6 @@ const ProgramsFilterPage = () => {
       {programs.length && 
         
         <div className='pagination'>
-
-          {console.log(meta)}
 
           <nav aria-label="Page navigation example">
             <ul className="pagination">

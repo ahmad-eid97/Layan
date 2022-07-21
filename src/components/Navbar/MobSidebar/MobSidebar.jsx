@@ -4,11 +4,15 @@ import LangSwitch from '../../Switches/LangSwitch/LangSwitch';
 
 import { useTranslation } from 'react-i18next';
 
+import Cookies from 'universal-cookie';
+
 import cls from './MobSidebar.module.scss'
+
+const cookie = new Cookies();
 
 const MobSidebar = ({ mobSidebar, setMobSidebar }) => {
   // COMPONENT HOOKS
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation('nav');
 
   // COMPONENT HANDLERS
   const close = () => {
@@ -28,20 +32,30 @@ const MobSidebar = ({ mobSidebar, setMobSidebar }) => {
         </div>
 
         <ul>
-          <li onClick={close}><NavLink to="/education"> خطوات الدراسة</NavLink></li>
-          <li onClick={close}><NavLink to="/all-universities"> الجامعات</NavLink></li>
-          <li onClick={close}><NavLink to="/services"> خدماتنا</NavLink></li>
-          <li onClick={close}><NavLink to="/news"> الأخبار</NavLink></li>
-          <li onClick={close}><NavLink to="/blogs"> المقالات</NavLink></li>
-          {/* <li>الدورات</li>
-          <li>السكنات</li>
-          <li>ميديا</li> */}
-          <li>تتبع الطلب</li>
-          <li onClick={close}><NavLink to="/register"> طلب التسجيل</NavLink></li>
-          <li onClick={close}><NavLink to="/agent"> كن وكيلنا</NavLink></li>
-          <li onClick={close}><NavLink to="/about-us"> من نحن</NavLink></li>
-          <li onClick={close}><NavLink to="/contact-us"> تواصل معنا</NavLink></li>
-          <li onClick={close}><NavLink to="/questions"> الأسئلة الشائعة</NavLink></li>
+          
+          <li onClick={close}><NavLink to="/education"> {t('nav.studySteps')}</NavLink></li>
+          <li onClick={close}><NavLink to="/all-universities"> {t('nav.universities')}</NavLink></li>
+          <li onClick={close}><NavLink to="/programs"> {t('nav.programs')}</NavLink></li>
+          <li onClick={close}><NavLink to="/services"> {t('nav.services')}</NavLink></li>
+          <li onClick={close}><NavLink to="/news"> {t('nav.news')}</NavLink></li>
+          <li onClick={close}><NavLink to="/blogs"> {t('nav.blogs')}</NavLink></li>
+
+          <li onClick={close}><NavLink to="/about-us"> {t('nav.who')}</NavLink></li>
+          <li onClick={close}><NavLink to="/contact-us"> {t('nav.contactUs')}</NavLink></li>
+          <li onClick={close}><NavLink to="/questions"> {t('nav.questions')}</NavLink></li>
+          {/* <li onClick={close}><NavLink to="/register"> {t('nav.register')}</NavLink></li> */}
+          <li onClick={close}><NavLink to="/agent"> {t('nav.beAgent')}</NavLink></li>
+
+          {cookie.get('layanAuth') ? 
+
+            <li onClick={close}><NavLink to="/profile"> {t('nav.profile')}</NavLink></li>
+
+            :
+
+            <li onClick={close}><NavLink to="/login"> {t('nav.login')}</NavLink></li>
+
+          }
+          
         </ul>
 
       </div>
