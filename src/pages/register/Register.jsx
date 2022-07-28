@@ -10,6 +10,8 @@ import DatePicker from "react-datepicker";
 
 import axios from '../../Utils/axios';
 
+import validator from 'validator';
+
 import { useTranslation } from 'react-i18next';
 
 import { toast } from 'react-toastify';
@@ -52,6 +54,7 @@ const Register = () => {
   const [city, setCity] = useState('');
   const [emptyFields, setEmptyFields] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorFields, setErrorFields] = useState({})
   const navigate = useNavigate();
   const { t, i18n } = useTranslation('auth');
   const dispatch = useDispatch();
@@ -65,7 +68,7 @@ const Register = () => {
 
   // FETCH ALL COUNTRIES
   const fetchAllCountries = async () => {
-    const response = await axios.get(`/crm/countries?lang=${i18n.language === 'ar' ? 2 : 1}&limit=30`).catch(err => {
+    const response = await axios.get(`/crm/countries?lang=${i18n.language === 'ar' ? 'ar' : 1}&limit=500`).catch(err => {
       console.log(err)
     })
 
@@ -76,7 +79,8 @@ const Register = () => {
 
   // FETCH ALL COUNTRIES
   const fetchAllCities = async () => {
-    const response = await axios.get(`/crm/cities?lang=${i18n.language === 'ar' ? 2 : 1}&limit=30`).catch(err => {
+    console.log(i18n.language)
+    const response = await axios.get(`/crm/cities?lang=${i18n.language === 'ar' ? 'ar' : 1}&limit=500`).catch(err => {
       console.log(err)
     })
 
@@ -112,8 +116,6 @@ const Register = () => {
       password: fields.password,
     }
 
-    console.log(data)
-
     Object.values(data).forEach(one => {
       if(one === '') {
         setEmptyFields(true);
@@ -123,21 +125,28 @@ const Register = () => {
 
     const emptyCheck = Object.values(data).filter(one => one === undefined || one === '');
 
-    console.log(emptyCheck)
-
     if(emptyCheck.length <= 0) {
+
+      if(!validator.isEmail(fields.email)) {
+        setLoading(false)
+        return errorNotify(t('contact.emailInvalid'))
+      }
 
       const response = await axios.post('/crm/students/auth/register', data);
   
       if(!response || !response.data.success) {
+        console.log(response.data.errors)
+        setErrorFields(response.data.errors)
+
+        if(Object.values(response.data.errors).length) {
+          Object.values(response.data.errors).forEach(error => {
+            errorNotify(error[0])
+          })
+        } else {
+          errorNotify(t('agent.invalid'))
+        }
   
         setLoading(false)
-  
-        if(emptyFields === false) {
-  
-          errorNotify(t('fields.error'));
-  
-        }
   
         return;
       };
@@ -208,12 +217,18 @@ const Register = () => {
                     name="username" 
                     value={fields.username} 
                     onChange={(e) => handleFields(e)}
-                    className={emptyFields && fields.username === '' ? cls.error : ''}
+                    className={(emptyFields && fields.username === '') || errorFields.username ? cls.error : ''}
                     />
 
                   {emptyFields && fields.username === '' &&
                   
                     <p>{t('register.required')} </p>
+                  
+                  }
+
+                  {errorFields.username &&
+                  
+                    <p>{errorFields.username}</p>
                   
                   }
 
@@ -233,12 +248,18 @@ const Register = () => {
                     name="fname" 
                     value={fields.fname} 
                     onChange={(e) => handleFields(e)}
-                    className={emptyFields && fields.fname === '' ? cls.error : ''}
+                    className={(emptyFields && fields.fname === '') || errorFields.first_name ? cls.error : ''}
                     />
 
                     {emptyFields && fields.fname === '' &&
                     
                       <p>{t('register.required')} </p>
+                    
+                    }
+
+                    {errorFields.first_name &&
+                    
+                      <p>{errorFields.first_name}</p>
                     
                     }
 
@@ -250,21 +271,27 @@ const Register = () => {
 
                 <div className={cls.field}>
 
-                  <label>{t('register.fatherName')} </label>
+                  <label>{t('register.lName')} </label>
 
                   <input 
                     type="text" 
-                    placeholder={t('register.fatherName')} 
+                    placeholder={t('register.lName')} 
                     name="lname" 
                     value={fields.lname} 
                     onChange={(e) => handleFields(e)} 
-                    className={emptyFields && fields.lname === '' ? cls.error : ''}
+                    className={(emptyFields && fields.lname === '') || errorFields.last_name ? cls.error : ''}
                     />
 
                   {emptyFields && fields.lname === '' &&
 
                     <p>{t('register.required')}</p>
 
+                  }
+
+                  {errorFields.last_name &&
+                  
+                    <p>{errorFields.last_name}</p>
+                  
                   }
 
                 </div>
@@ -283,13 +310,19 @@ const Register = () => {
                     name="fatherName" 
                     value={fields.fatherName} 
                     onChange={(e) => handleFields(e)} 
-                    className={emptyFields && fields.fatherName === '' ? cls.error : ''}
-                    />
+                    className={(emptyFields && fields.fatherName === '') || errorFields.father_name ? cls.error : ''}
+                  />
 
                   {emptyFields && fields.fatherName === '' &&
 
                     <p>{t('register.required')}</p>
 
+                  }
+
+                  {errorFields.father_name &&
+                  
+                    <p>{errorFields.father_name}</p>
+                  
                   }
 
                 </div>
@@ -308,13 +341,19 @@ const Register = () => {
                     name="motherName" 
                     value={fields.motherName} 
                     onChange={(e) => handleFields(e)} 
-                    className={emptyFields && fields.motherName === '' ? cls.error : ''}
+                    className={(emptyFields && fields.motherName === '') || errorFields.mother_name ? cls.error : ''}
                     />
 
                     {emptyFields && fields.motherName === '' &&
   
                       <p>{t('register.required')}</p>
   
+                    }
+
+                    {errorFields.mother_name &&
+                    
+                      <p>{errorFields.mother_name}</p>
+                    
                     }
 
                 </div>
@@ -331,7 +370,7 @@ const Register = () => {
 
                     <i className="fa-light fa-calendar-days"></i>
 
-                    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className={emptyFields && startDate === '' ? cls.error : ''} />
+                    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className={emptyFields && startDate === '' ? cls.error : ''} showYearDropdown yearDropdownItemNumber={50} maxDate={Date.now()} scrollableYearDropdown />
 
                     {emptyFields && fields.startDate === '' &&
 
@@ -352,18 +391,24 @@ const Register = () => {
                   <label>{t('register.passportNo')} </label>
 
                   <input 
-                    type="text" 
+                    type="number" 
                     placeholder={t('register.passportNo')} 
                     name="passportNo" 
                     value={fields.passportNo} 
                     onChange={(e) => handleFields(e)} 
-                    className={emptyFields && fields.passportNo === '' ? cls.error : ''}
+                    className={(emptyFields && fields.passportNo === '') || errorFields.passport_no ? cls.error : ''}
                     />
 
                   {emptyFields && fields.passportNo === '' &&
 
                     <p>{t('register.required')}</p>
 
+                  }
+
+                  {errorFields.passport_no &&
+                  
+                    <p>{errorFields.passport_no}</p>
+                  
                   }
 
                 </div>
@@ -409,13 +454,19 @@ const Register = () => {
                     placeholder={t('register.email')}  
                     name="email" value={fields.email} 
                     onChange={(e) => handleFields(e)} 
-                    className={emptyFields && fields.email === '' ? cls.error : ''}
+                    className={(emptyFields && fields.email === '') || errorFields.email ? cls.error : ''}
                   />
 
                   {emptyFields && !fields.email &&
 
                     <p>{t('register.required')} </p>
 
+                  }
+
+                  {errorFields.email &&
+                  
+                    <p>{errorFields.email}</p>
+                  
                   }
 
                 </div>
@@ -434,13 +485,19 @@ const Register = () => {
                     name="password" 
                     value={fields.password} 
                     onChange={(e) => handleFields(e)} 
-                    className={emptyFields && fields.password === '' ? cls.error : ''}
+                    className={(emptyFields && fields.password === '') || errorFields.password ? cls.error : ''}
                   />
 
                   {emptyFields && !fields.password &&
 
                     <p>{t('register.required')}</p>
 
+                  }
+
+                  {errorFields.password &&
+                  
+                    <p>{errorFields.password}</p>
+                  
                   }
 
                 </div>
@@ -454,18 +511,24 @@ const Register = () => {
                   <label>{t('register.phone')}</label>
 
                   <input 
-                    type="text" 
+                    type="number" 
                     placeholder={t('register.phone')} 
                     name="phone" 
                     value={fields.phone} 
                     onChange={(e) => handleFields(e)}
-                    className={emptyFields && fields.phone === '' ? cls.error : ''}
+                    className={(emptyFields && fields.phone === '') || errorFields.phone ? cls.error : ''}
                   />
 
                   {emptyFields && !fields.phone &&
 
                     <p>{t('register.required')}</p>
 
+                  }
+
+                  {errorFields.phone &&
+                  
+                    <p>{errorFields.phone}</p>
+                  
                   }
 
                 </div>

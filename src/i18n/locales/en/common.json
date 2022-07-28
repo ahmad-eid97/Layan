@@ -19,6 +19,7 @@
   "home.meet": "Meeting",
   "home.call": "Phone call",
   "home.fillFields": "Please fill all fields before registering",
+  "home.errorEmail": "Please enter a valid email!",
   "home.sendSuccess": "You have successfully registered",
   "home.offers": "Be in touch with our special offers",
   "home.name": "Name",
@@ -148,7 +149,9 @@
   "agent.city": "City",
   "agent.phone": "Phone Number",
   "agent.invalid": "The data entered is incorrect",
+  "agent.success": "Data sent successfully",
   "agent.registerAgent": "Register Agent",
+  "agent.application": "Application created successfully",
 
   "upload.upload": "Click to upload file",
 

@@ -9,6 +9,8 @@ import axios from '../../Utils/axios';
 
 import { toast } from 'react-toastify';
 
+import validator from 'validator';
+
 import "react-datepicker/dist/react-datepicker.css";
 import cls from './agent.module.scss';
 import UploadField from '../../components/UIs/UploadField/UploadField';
@@ -18,7 +20,7 @@ const Agent = () => {
   let initialValues = {
     business_name: '',
     website_url: '',
-    licence_no: '',
+    license_no: '',
     number_experience: '',
     first_name: '',
     last_name: '',
@@ -35,7 +37,8 @@ const Agent = () => {
   const [cities, setCities] = useState([]);
   const [city, setCity] = useState({});
   const [emptyFields, setEmptyFields] = useState(false);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [errorFields, setErrorFields] = useState({});
 
   const handleFields = (e) => {
     setFields({
@@ -55,7 +58,7 @@ const Agent = () => {
   const fetchAllCountries = async () => {
     setLoading(true)
 
-    const response = await axios.get(`/crm/countries?lang=${i18n.language}&limit=30`);
+    const response = await axios.get(`/crm/countries?lang=${i18n.language}&limit=500`);
 
     if(!response) return;
 
@@ -67,7 +70,7 @@ const Agent = () => {
   const fetchCity = async (countryId) => {
     setLoading(true)
 
-    const response = await axios.get(`/crm/cities?lang=${i18n.language}&limit=30&country_id=${countryId}`);
+    const response = await axios.get(`/crm/cities?lang=${i18n.language}&country_id=${countryId}`);
 
     if(!response) return;
 
@@ -79,9 +82,7 @@ const Agent = () => {
   }
 
   useEffect(() => {
-
     fetchAllCountries();
-
   }, [])
 
   const selectCountry = (country) => {
@@ -98,22 +99,62 @@ const Agent = () => {
       city_id: city.id
     }
 
-    Object.values(data).forEach(value => {
-      if(!value) {
+    Object.keys(data).forEach(key => {
+      if(!data[key] && key !== 'license_no' && key !== 'logo_file' && key !== 'licence_file') {
         setEmptyFields(true)
       }
     })
 
-    const empties = Object.values(data).filter(one => one === undefined || one === '')
+    let empties = []
+
+    Object.keys(data).forEach(key => {
+      if ((data[key] === undefined || data[key] === '') && key !== 'license_no' && key !== 'logo_file' && key !== 'licence_file') {
+        empties.push(data[key])
+      }
+    })
+
+    console.log(empties)
 
     if(empties.length <= 0) {
+
+      let agentData = new FormData()
+
+      Object.keys(data).forEach(key => {
+        agentData.append(key, data[key])
+      })
+
+      if(!validator.isEmail(fields.email)) {
+        console.log('here')
+        return errorNotify(t('home.errorEmail'))
+      }
+
+      setLoading(true)
       
-      const response = await axios.post('/crm/agents', data);
+      const response = await axios.post('/crm/agents', agentData);
+      console.log(response)
 
       if(!response || !response.data.success) {
-        errorNotify(t('agent.invalid'))
+        setErrorFields(response.data.errors)
+
+        console.log(response.data.errors)
+
+        if(Object.values(response.data.errors).length) {
+          Object.values(response.data.errors).forEach(error => {
+            errorNotify(error[0])
+          })
+        } else {
+          errorNotify(t('agent.invalid'))
+        }
+        setLoading(false)
+
         return;
       };
+
+      setLoading(false)
+
+      setEmptyFields(false)
+
+      successNotify(t('agent.success'))
 
     }
   }
@@ -172,13 +213,19 @@ const Agent = () => {
                     name="business_name" 
                     value={fields.business_name} 
                     onChange={(e) => handleFields(e)} 
-                    className={emptyFields && fields.business_name === '' ? cls.error : ''}
+                    className={(emptyFields && fields.business_name === '') || errorFields.business_name ? cls.error : ''}
                     />
 
                   {emptyFields && !fields.business_name &&
 
-                    <p>{t('agent.required')}</p>
+                    <p>{t('contact.required')}</p>
 
+                  }
+
+                  {errorFields.business_name &&
+                  
+                    <p>{errorFields.business_name}</p>
+                  
                   }
 
                 </div>
@@ -194,16 +241,22 @@ const Agent = () => {
                   <input 
                     type="text" 
                     placeholder={t('agent.licenceName')}
-                    name="licence_no" 
-                    value={fields.licence_no} 
+                    name="license_no" 
+                    value={fields.license_no} 
                     onChange={(e) => handleFields(e)}
-                    className={emptyFields && fields.licence_no === '' ? cls.error : ''} 
+                    className={(emptyFields && fields.license_no === '') || errorFields.license_no ? cls.error : ''} 
                   />
 
-                  {emptyFields && !fields.licence_no &&
+                  {emptyFields && !fields.license_no &&
 
-                    <p>{t('agent.required')}</p>
+                    <p>{t('contact.required')}</p>
 
+                  }
+
+                  {errorFields.license_no &&
+                  
+                    <p>{errorFields.license_no}</p>
+                  
                   }
 
                 </div>
@@ -222,13 +275,19 @@ const Agent = () => {
                     name="number_experience" 
                     value={fields.number_experience} 
                     onChange={(e) => handleFields(e)} 
-                    className={emptyFields && fields.number_experience === '' ? cls.error : ''} 
+                    className={(emptyFields && fields.number_experience === '') || errorFields.number_experience ? cls.error : ''} 
                   />
 
                   {emptyFields && !fields.number_experience &&
 
-                    <p>{t('agent.required')}</p>
+                    <p>{t('contact.required')}</p>
 
+                  }
+
+                  {errorFields.number_experience &&
+                  
+                    <p>{errorFields.number_experience}</p>
+                  
                   }
 
                 </div>
@@ -247,13 +306,19 @@ const Agent = () => {
                     name="website_url" 
                     value={fields.website_url} 
                     onChange={(e) => handleFields(e)} 
-                    className={emptyFields && fields.website_url === '' ? cls.error : ''} 
+                    className={(emptyFields && fields.website_url === '') || errorFields.website_url ? cls.error : ''} 
                   />
 
                   {emptyFields && !fields.website_url &&
 
-                    <p>{t('agent.required')}</p>
+                    <p>{t('contact.required')}</p>
 
+                  }
+
+                  {errorFields.website_url &&
+                  
+                    <p>{errorFields.website_url}</p>
+                  
                   }
 
                 </div>
@@ -262,13 +327,25 @@ const Agent = () => {
 
               <div className='col-lg-6'>
 
-                <UploadField attach={logoAttach} updateAttachment={updateLogoAttachment} empty={!logoAttach.file_url && emptyFields ? true : false} />
+                <UploadField attach={logoAttach} updateAttachment={updateLogoAttachment} />
+
+                {errorFields.logo_file &&
+
+                  <p className={cls.err}>{errorFields.logo_file}</p>
+
+                }
 
               </div>
 
               <div className='col-lg-6'>
 
-                <UploadField attach={licenceAttach} updateAttachment={updateLicenceAttachment} empty={!licenceAttach.file_url && emptyFields ? true : false} />
+                <UploadField attach={licenceAttach} updateAttachment={updateLicenceAttachment} />
+
+                {errorFields.licence_file &&
+
+                  <p className={cls.err}>{errorFields.licence_file}</p>
+
+                }
 
               </div>
 
@@ -294,13 +371,19 @@ const Agent = () => {
                   name="first_name" 
                   value={fields.first_name} 
                   onChange={(e) => handleFields(e)} 
-                  className={emptyFields && fields.first_name === '' ? cls.error : ''} 
+                  className={(emptyFields && fields.first_name === '') || errorFields.first_name ? cls.error : ''} 
                 />
 
                 {emptyFields && !fields.first_name &&
 
-                  <p>{t('agent.required')}</p>
+                  <p>{t('contact.required')}</p>
 
+                }
+
+                {errorFields.first_name &&
+                
+                  <p>{errorFields.first_name}</p>
+                
                 }
 
               </div>
@@ -319,13 +402,19 @@ const Agent = () => {
                   name="last_name" 
                   value={fields.last_name} 
                   onChange={(e) => handleFields(e)} 
-                  className={emptyFields && fields.last_name === '' ? cls.error : ''} 
+                  className={(emptyFields && fields.last_name === '') || errorFields.last_name ? cls.error : ''} 
                 />
 
                 {emptyFields && !fields.last_name &&
 
-                  <p>{t('agent.required')}</p>
+                  <p>{t('contact.required')}</p>
 
+                }
+
+                {errorFields.last_name &&
+                
+                  <p>{errorFields.last_name}</p>
+                
                 }
 
               </div>
@@ -344,13 +433,19 @@ const Agent = () => {
                     name="email" 
                     value={fields.email} 
                     onChange={(e) => handleFields(e)} 
-                    className={emptyFields && fields.email === '' ? cls.error : ''} 
+                    className={(emptyFields && fields.email === '') || errorFields.email ? cls.error : ''} 
                   />
 
                   {emptyFields && !fields.email &&
 
-                    <p>{t('agent.required')}</p>
+                    <p>{t('contact.required')}</p>
 
+                  }
+
+                  {errorFields.email &&
+                  
+                    <p>{errorFields.email}</p>
+                  
                   }
 
                 </div>
@@ -369,13 +464,19 @@ const Agent = () => {
                     name="password" 
                     value={fields.password} 
                     onChange={(e) => handleFields(e)} 
-                    className={emptyFields && fields.password === '' ? cls.error : ''} 
+                    className={(emptyFields && fields.password === '') || errorFields.password ? cls.error : ''} 
                   />
 
                   {emptyFields && !fields.password &&
 
-                    <p>{t('agent.required')}</p>
+                    <p>{t('contact.required')}</p>
 
+                  }
+
+                  {errorFields.password &&
+                  
+                    <p>{errorFields.password}</p>
+                  
                   }
 
                 </div>
@@ -418,13 +519,19 @@ const Agent = () => {
                     name="phone" 
                     value={fields.phone} 
                     onChange={(e) => handleFields(e)} 
-                    className={emptyFields && fields.phone === '' ? cls.error : ''} 
+                    className={(emptyFields && fields.phone === '') || errorFields.phone ? cls.error : ''} 
                   />
 
                   {emptyFields && !fields.phone &&
 
-                    <p>{t('agent.required')}</p>
+                    <p>{t('contact.required')}</p>
 
+                  }
+
+                  {errorFields.phone &&
+                  
+                    <p>{errorFields.phone}</p>
+                  
                   }
 
                 </div>

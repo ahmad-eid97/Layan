@@ -19,6 +19,7 @@
   "home.meet": "مقابلة",
   "home.call": "إتصال",
   "home.fillFields": "من فضلك إملأ جميع الحقول",
+  "home.errorEmail": "من فضلك ادخل بريد إلكتروني صحيح!",
   "home.sendSuccess": "تم التسجيل بنجاح",
   "home.offers": "تابع عروض الجامعات المميزة",
   "home.name": "الإسم",
@@ -148,7 +149,9 @@
   "agent.city": "المدينة",
   "agent.phone": "رقم الهاتف",
   "agent.invalid": "البيانات التي تم ادخالها غير صحيحة",
+  "agent.success": "تم إرسال البيانات بنجاح",
   "agent.registerAgent": "تسجيل الوكيل",
+  "agent.application": "تم إنشاء الطلب بنجاح",
 
   "upload.upload": "إضغط لرفع ملف",
 

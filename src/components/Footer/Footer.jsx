@@ -1,10 +1,43 @@
+import { useEffect, useState } from 'react';
+
+import axios from '../../Utils/axios';
+
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 import cls from './footer.module.scss';
 
 const Footer = () => {
   // COMPONENT HOOKS
-  const { t } = useTranslation('nav')
+  const [universities, setUniversities] = useState();
+  const { t, i18n } = useTranslation('nav');
+
+  const fetchAllUniversities = async () => {
+    const response = await axios.get(`/crm/universities?lang=${i18n.language}&limit=20`);
+
+    if(!response) return;
+
+    let randomUniversities = [];
+
+    for (var i = 0; i < response.data.data.universities.length; i++) {
+
+      let randomNum = Math.floor(Math.random() * 20);
+
+      if(randomUniversities.find(uni => uni.id === response.data.data.universities[randomNum].id)) {
+        i--;
+        continue;
+      }
+      randomUniversities.push(response.data.data.universities[randomNum])
+    }
+
+    setUniversities(randomUniversities);
+  }
+
+  useEffect(() => {
+    fetchAllUniversities()
+  }, [])
+
+  console.log(universities)
 
   return (
     <footer className={`${cls.footer} text-center text-lg-start bg-light text-muted`}>
@@ -56,18 +89,13 @@ const Footer = () => {
               <h6 className="text-uppercase fw-bold mb-4">
                 {t('footer.ourUniversities')}
               </h6>
-              <p>
-                <a href="#!" className="text-reset">{t('footer.oneUni')}</a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">{t('footer.twoUni')}</a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">{t('footer.threeUni')}</a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">{t('footer.fourUni')}</a>
-              </p>
+              {universities && universities.length && universities.slice(0, 3).map(uni => (
+                <p key={uni.id}>
+                  <Link to={`/university/${uni.id}`}>
+                    <a href="#!" className="text-reset">{uni.title}</a>
+                  </Link>
+                </p>
+              ))}
             </div>
 
             <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
@@ -76,16 +104,24 @@ const Footer = () => {
                 {t('footer.know')} 
               </h6>
               <p>
-                <a href="#!" className="text-reset">{t('footer.steps')}</a>
+                <Link to='/education'>
+                  <a href="#!" className="text-reset">{t('footer.steps')}</a>
+                </Link>
               </p>
               <p>
+                <Link to='/agent'>
                 <a href="#!" className="text-reset">{t('footer.agent')}</a>
+                </Link>
               </p>
               <p>
+                <Link to='/profile'>
                 <a href="#!" className="text-reset">{t('footer.track')}</a>
+                </Link>
               </p>
               <p>
+                <Link to='/contact-us'>
                 <a href="#!" className="text-reset">{t('footer.contacting')}</a>
+                </Link>
               </p>
             </div>
 

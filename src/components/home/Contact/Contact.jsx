@@ -6,6 +6,10 @@ import axios from '../../../Utils/axios';
 
 import { toast } from 'react-toastify';
 
+import Loader from '../../UIs/Loader/Loader';
+
+import validator from 'validator'
+
 import { useTranslation } from 'react-i18next';
 
 import cls from './contact.module.scss';
@@ -17,8 +21,9 @@ const Contact = () => {
   const [email, setEmail] = useState('');
   const [interest, setInterest] = useState('');
   const [contact, setContact] = useState();
-  const [emptyFields, setEmptyFields] = useState(false)
+  const [emptyFields, setEmptyFields] = useState(false);
   const [contactMethod, setContactMethod] = useState();
+  const [loading, setLoading] = useState(false)
   const { t } = useTranslation('common')
 
   const contactList = [
@@ -74,17 +79,27 @@ const Contact = () => {
 
       errorNotify(t('home.fillFields'))
 
+    } else if (!validator.isEmail(email)) {
+
+      errorNotify(t('home.errorEmail'))
+
     } else {
+
+      setLoading(true)
 
       setEmptyFields(false)
 
-      const response = await axios.post('/crm/contact_us', data).catch(err => console.log(err));
+      const response = await axios.post('/crm/contact_us', data).catch(err => {
+        errorNotify(t('agent.invalid'))
+
+        setLoading(false)
+      });
   
       if(!response) return;
 
       successNotify(t('home.sendSuccess'))
-  
-      console.log(response)
+
+      setLoading(false)
 
     }
   }
@@ -94,6 +109,8 @@ const Contact = () => {
 
   return (
     <div className={cls.contact}>
+
+      {loading && <Loader />}
 
       <div className='container'>
 

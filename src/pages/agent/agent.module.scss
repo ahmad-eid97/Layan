@@ -221,10 +221,16 @@
         }
       }
     }
+
     &.en {
       border-right: unset;
       border-left: 3px solid var(--main-color);
     }
+  }
+
+  .err {
+    color: var(--main-color);
+    font-size: 0.9rem;
   }
 
   .btn {

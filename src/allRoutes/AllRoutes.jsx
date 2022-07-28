@@ -33,29 +33,8 @@ import {
 
 const cookie = new Cookies()
 
-const AllRoutes = () => {
+const AllRoutes = ({ authenticated }) => {
   const user = useSelector(({user}) => user.user);
-  const [authenticated, setAuthenticated] = useState(true)
-
-  const checkAuth = async () => {
-    const auth = cookie.get('layanAuth');
-    console.log(auth)
-    if(auth) {
-      setAuthenticated(true)
-    } else {
-      setAuthenticated(false)
-    }
-  }
-
-  useEffect(() => {
-    const auth = cookie.get('layanAuth');
-    console.log(auth)
-    if(auth) {
-      setAuthenticated(true)
-    } else {
-      setAuthenticated(false)
-    }
-  }, [cookie.get('layanAuth')])
 
   return (
     <Routes>
@@ -80,7 +59,7 @@ const AllRoutes = () => {
 
       <Route path="/blogs/:blogId" element={<BlogDetails />} />
 
-      <Route path="/register" element={!authenticated ? <Register /> : <Navigate to='/' />} />
+      <Route path="/register" element={!user ? <Register /> : <Navigate to='/' />} />
 
       <Route path="/registered" element={!authenticated ? <Registered /> : <Navigate to='/' />} />
 

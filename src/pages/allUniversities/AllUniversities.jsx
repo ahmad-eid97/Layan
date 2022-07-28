@@ -18,6 +18,8 @@ import cls from './allUniversities.module.scss';
 
 const AllUniversities = () => {
   // COMPONENT HOOKS
+  const [loadSwiper, setLoadSwiper] = useState(false);
+  const [lang, setLang] = useState('ltr');
   const [loading, setLoading] = useState(false);
   const [pageLoading, setPageLoading] = useState(false);
   const [countries, setCountries] = useState([]);
@@ -27,32 +29,10 @@ const AllUniversities = () => {
   const { t, i18n } = useTranslation('common');
   const navigate = useNavigate();
 
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 10
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 6
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 664 },
-      items: 3
-    },
-    small: {
-      breakpoint: { max: 664, min: 465 },
-      items: 2
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1
-    }
-  };
-
   useEffect(() => {
-    
+    setLoadSwiper(false);
+    setLang(i18n.language === 'ar' ? 'rtl':'ltr');
+    setLoadSwiper(true);
   }, [i18n.language])
 
   const fetchAllCountries = async () => {
@@ -158,24 +138,28 @@ const AllUniversities = () => {
 
       <div className='container'>
 
-        <Swiper 
-          spaceBetween={5}
-          className={`${cls.carousel} ${cls[i18n.language]}`}
-          dir='rtl'
-          breakpoints={breakpoints}
-        >
+        {
+          loadSwiper && 
+          <Swiper 
+            spaceBetween={5}
+            className={`${cls.carousel} ${cls[i18n.language]}`}
+            dir={lang}
+            onSwiper={(swiper) => console.log(swiper)}
+            breakpoints={breakpoints}
+          >
 
-          {countries.map((one, idx) => (
+            {countries.map((one, idx) => (
 
-            <SwiperSlide key={idx} className={`${cls.smallSlide} ${choosedCountry.id === one.id ? cls.choosed : ''}`} onClick={() => setChoosedCountry(one)}>
+              <SwiperSlide key={idx} className={`${cls.smallSlide} ${choosedCountry.id === one.id ? cls.choosed : ''}`} onClick={() => setChoosedCountry(one)}>
 
-              <p>{one.title}</p>
+                <p>{one.title}</p>
 
-            </SwiperSlide>
+              </SwiperSlide>
 
-          ))}
+            ))}
 
-        </Swiper>
+          </Swiper>
+        }
 
       </div>
 

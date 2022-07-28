@@ -16,7 +16,7 @@ const UploadField = ({ attach, updateAttachment, empty }) => {
   }
 
   const chooseImage = (e) => {
-    updateAttachment({ ...attach, file_url: URL.createObjectURL(e.target.files[0]) })
+    updateAttachment({ ...attach, file_url: e.target.files[0] })
   }
 
   const deletedImage = () => {
@@ -39,7 +39,7 @@ const UploadField = ({ attach, updateAttachment, empty }) => {
 
               <div className={cls.image}>
 
-                <img src={attach.file_url} alt="uploadedImage" />
+                <img src={ typeof attach.file_url === 'object' ? URL.createObjectURL(attach.file_url) : attach.file_url } alt="uploadedImage" />
 
                 <i className="fa-regular fa-xmark" onClick={deletedImage}></i>
 

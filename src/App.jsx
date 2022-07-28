@@ -23,6 +23,7 @@ const cookie = new Cookies()
 
 function App() {
   // COMPONENT STATES
+  const [authenticated, setAuthenticated] = useState(true)
   const { i18n } = useTranslation('common');
   const [lang, setLang] = useState(i18n.language)
   const location = useLocation()
@@ -35,6 +36,16 @@ function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location])
+
+  useEffect(() => {
+    const auth = cookie.get('layanAuth');
+    console.log(auth)
+    if(auth) {
+      setAuthenticated(true)
+    } else {
+      setAuthenticated(false)
+    }
+  }, [cookie.get('layanAuth')])
 
   const fetchAuthenticatedUser = async () => {
     const response = await axios.get('/crm/students/auth/me', {
@@ -78,7 +89,7 @@ function App() {
 
       <ScrollToTop>
 
-        <AllRoutes />
+        <AllRoutes authenticated={authenticated} />
 
       </ScrollToTop>
 

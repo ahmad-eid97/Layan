@@ -6,6 +6,8 @@ import Loader from '../../UIs/Loader/Loader';
 
 import axios from '../../../Utils/axios';
 
+import Choose from './../../UIs/Choose/Choose';
+
 import { useTranslation } from 'react-i18next';
 
 import cls from './filter.module.scss';
@@ -29,7 +31,7 @@ const Filter = () => {
   const fetchCountries = async () => {
     setLoading(true)
 
-    const countriesRes = await axios.get(`/crm/countries?lang=${i18n.language}`);
+    const countriesRes = await axios.get(`/crm/countries?lang=${i18n.language}&limit=500`);
 
     if(!countriesRes) return;
 
@@ -190,8 +192,12 @@ const Filter = () => {
       <div className='container'>
 
         {loading && <Loader />}
+        
+        <Choose placeholder={t('home.country')} keyword="title" results={countries} choose={chooseCountryHandler} value={country.title || ''} />
 
-        <Selectbox placeholder={t('home.country')} type="specialCountries" list={countries} select={chooseCountryHandler} value={country.title || ''} />
+        {/* <Selectbox placeholder={t('home.country')} type="specialCountries" list={countries} select={chooseCountryHandler} value={country.title || ''} /> */}
+        
+        {/* <Choose placeholder={t('home.university')} keyword={`title_${i18n.language}`} list={universities} choose={updateUniversity} value={university[`title_${i18n.language}`] || ''} /> */}
 
         <Selectbox placeholder={t('home.university')} type="unis" list={universities} select={updateUniversity} value={university[`title_${i18n.language}`] || ''} />
 
