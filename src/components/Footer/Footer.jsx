@@ -96,6 +96,9 @@ const Footer = () => {
                   </Link>
                 </p>
               ))}
+              <Link to={`/all-universities`} style={{ color: 'red' }}>
+                <a href="#!" className="text-reset">{t('footer.more')}</a>
+              </Link>
             </div>
 
             <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
