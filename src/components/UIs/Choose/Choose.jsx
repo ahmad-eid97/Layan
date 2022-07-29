@@ -1,15 +1,16 @@
 import { useState, useRef, useEffect } from "react";
 
 import { useTranslation } from "react-i18next";
+
 // STYLES FILES
 import cls from "./choose.module.scss";
 
-const Choose = ({ placeholder, results, choose, value, disabled, keyword }) => {
+const Choose = ({ placeholder, results, choose, value, disabled, keyword, error }) => {
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState(value);
   const [filteredResults, setFilteredResults] = useState(results);
   const inputRef = useRef();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation('common');
 
   useEffect(() => {
     setInputValue(value);
@@ -23,9 +24,16 @@ const Choose = ({ placeholder, results, choose, value, disabled, keyword }) => {
   const filterResults = (typed) => {
     setInputValue(typed);
     if (typed !== "") {
-      let filtered = filteredResults.filter((result) =>
-        result[keyword].toLowerCase().startsWith(typed.toLowerCase())
-      );
+      let filtered;
+      if(keyword === 'specialties.title') {
+        filtered = filteredResults.filter((result) =>
+          result.specialties.title.toLowerCase().startsWith(typed.toLowerCase())
+        );
+      } else {
+        filtered = filteredResults.filter((result) =>
+          result[keyword].toLowerCase().startsWith(typed.toLowerCase())
+        );
+      }
 
       if (filtered.length !== 0) {
         setFilteredResults(filtered);
@@ -60,22 +68,29 @@ const Choose = ({ placeholder, results, choose, value, disabled, keyword }) => {
           onChange={(e) => filterResults(e.target.value)}
           onFocus={() => setOpen(true)}
           disabled={disabled}
+          className={error ? cls.error : ''}
         />
-        <i className={`fa-solid fa-angle-down ${cls[i18n.language]}`}></i>
+        <i className={`fa-solid fa-angle-down ${cls[i18n.language]} ${error ? cls.error : ''}`}></i>
 
-        <div className={`${cls.field__results} ${open ? cls.active : ""}`}>
+        <div className={`${cls.field__results} ${open ? cls.active : ""} ${error ? cls.error : ''}`}>
           <div className={cls.field__results_result}>
-            {filteredResults.map((result) => (
+            {filteredResults.length > 0 && filteredResults.map((result) => (
               <div
                 className={cls.resultInside}
                 onClick={() => selectChoose(result)}
-                key={result.option}
+                key={result.id}
               >
-                <p key={result}>{result.title}</p>
+                {keyword === 'specialties.title' ?
+                  <p key={result}>{result.specialties.title}</p>
+                  :
+                  <p key={result}>{result[keyword]}</p>
+                }
               </div>
             ))}
           </div>
         </div>
+
+        {error && <p className={cls.error}>{t('contact.required')}</p>}
       </div>
     </>
   );

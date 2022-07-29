@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import SelectBox from '../../components/UIs/SelectBox/Selectbox';
+import Choose from './../../components/UIs/Choose/Choose';
 import Loader from '../../components/UIs/Loader/Loader';
 
 import { useTranslation } from 'react-i18next';
@@ -74,7 +75,7 @@ const Agent = () => {
 
     if(!response) return;
 
-    setCities(response.data.data.cities)
+    setCities(response.data.data.cities ? response.data.data.cities : [])
 
     setCity(response.data.data.cities[0])
 
@@ -489,7 +490,7 @@ const Agent = () => {
 
                   <label>{t('agent.country')}</label>
 
-                  <SelectBox placeholder={t('agent.country')} list={countries} value={country.title || ''} select={selectCountry} error={emptyFields && !country.title ? true : false} />
+                  <Choose placeholder={t('agent.country')} keyword="title" results={countries} value={country.title || ''} choose={selectCountry} error={emptyFields && !country.title ? true : false} />
 
                 </div>
 
@@ -501,7 +502,7 @@ const Agent = () => {
 
                   <label>{t('agent.city')}</label>
 
-                  <SelectBox placeholder={t('agent.city')} list={cities} value={city.title || ''} select={setCity} error={emptyFields && !city.title ? true : false} />
+                  <Choose placeholder={t('agent.city')} keyword="title" results={cities} value={city?.title || ''} choose={setCity} error={emptyFields && !city?.title ? true : false} />
 
                 </div>
 

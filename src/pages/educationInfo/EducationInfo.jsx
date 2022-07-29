@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
 import SelectBox from '../../components/UIs/SelectBox/Selectbox';
+import Choose from './../../components/UIs/Choose/Choose';
 import Loader from './../../components/UIs/Loader/Loader';
 import UploadField from '../../components/UIs/UploadField/UploadField';
 
@@ -73,10 +74,10 @@ const EducationInfo = () => {
     ]
 
     const requests = [
-      axios.get(`/crm/semesters?lang=${i18n.language}&limit=30`),
-      axios.get(`/crm/degrees?lang=${i18n.language}&limit=30`),
-      axios.get(`/crm/universities?lang=${i18n.language}&limit=30`),
-      axios.get(`/crm/programs?lang=${i18n.language}&limit=30`)
+      axios.get(`/crm/semesters?lang=${i18n.language}&limit=500`),
+      axios.get(`/crm/degrees?lang=${i18n.language}&limit=500`),
+      axios.get(`/crm/universities?lang=${i18n.language}&limit=500`),
+      axios.get(`/crm/programs?lang=${i18n.language}&limit=500`)
     ]
 
     let responses = await Promise.all(requests);
@@ -99,7 +100,7 @@ const EducationInfo = () => {
 
     setUniversity(univer)
 
-    const response = await axios.get(`/crm/degrees?lang=${i18n.language}&university=${univer.id}&limit=30`);
+    const response = await axios.get(`/crm/degrees?lang=${i18n.language}&university=${univer.id}&limit=500`);
 
     if (!response) return;
 
@@ -268,14 +269,8 @@ const EducationInfo = () => {
                 <div className={cls.field}>
 
                   <label>{t('info.semester')}</label>
-
-                  <SelectBox placeholder={t('info.semester')} list={semesters} value={semester.title || ''} select={setSemester} error={emptyFields && !semester.title ? true : false} />
-
-                  {emptyFields && !semester.title &&
-
-                    <p>{t('contact.required')}</p>
-
-                  }
+        
+                  <Choose placeholder={t('info.semester')} keyword='title' results={semesters} choose={setSemester} value={semester.title || ''} error={emptyFields && !semester.title ? true : false} />
 
                 </div>
 
@@ -286,14 +281,8 @@ const EducationInfo = () => {
                 <div className={cls.field}>
 
                   <label>{t('info.university')}</label>
-
-                  <SelectBox placeholder={t('info.university')} list={universities} value={university.title || ''} select={handleChooseUniversity} error={emptyFields && !university.title ? true : false} />
-
-                  {emptyFields && !university.title &&
-
-                    <p>{t('contact.required')}</p>
-
-                  }
+        
+                  <Choose placeholder={t('info.university')} keyword='title' results={universities} choose={handleChooseUniversity} value={university.title || ''} error={emptyFields && !university.title ? true : false} />
 
                 </div>
 
@@ -304,14 +293,8 @@ const EducationInfo = () => {
                 <div className={cls.field}>
 
                   <label>{t('info.degree')}</label>
-
-                  <SelectBox placeholder={t('info.degree')} list={degrees} value={degree.title || ''} select={setDegree} error={emptyFields && !degree.title ? true : false} />
-
-                  {emptyFields && !degree.title &&
-
-                    <p>{t('contact.required')}</p>
-
-                  }
+        
+                  <Choose placeholder={t('info.degree')} keyword='title' results={degrees} choose={setDegree} value={degree.title || ''} error={emptyFields && !degree.title ? true : false} />
 
                 </div>
 
@@ -322,14 +305,8 @@ const EducationInfo = () => {
                 <div className={cls.field}>
 
                   <label>{t('info.mainProgram')}</label>
-
-                  <SelectBox placeholder={t('info.mainProgram')} list={programs} value={primaryProgram.specialties && primaryProgram.specialties.title || ''} select={setPrimaryProgram} error={emptyFields && !primaryProgram?.specialties?.title ? true : false} />
-
-                  {emptyFields && !primaryProgram?.specialties?.title &&
-
-                    <p>{t('contact.required')}</p>
-
-                  }
+        
+                  <Choose placeholder={t('info.mainProgram')} keyword='specialties.title' results={programs} choose={setPrimaryProgram} value={primaryProgram.specialties && primaryProgram.specialties.title || ''}  error={emptyFields && !primaryProgram?.specialties?.title ? true : false} />
 
                 </div>
 
@@ -340,14 +317,8 @@ const EducationInfo = () => {
                 <div className={cls.field}>
 
                   <label>{t('info.mainLang')}</label>
-
-                  <SelectBox placeholder={t('info.mainLang')} list={primaryLanguages} value={primaryLang.title || ''} select={setPrimaryLang} error={emptyFields && !primaryLang.title ? true : false} />
-
-                  {emptyFields && !primaryLang.title &&
-
-                    <p>{t('contact.required')}</p>
-
-                  }
+        
+                  <Choose placeholder={t('info.mainLang')} keyword='title' results={primaryLanguages} choose={setPrimaryLang} value={primaryLang.title || ''} error={emptyFields && !primaryLang.title ? true : false} />
 
                 </div>
 
@@ -358,14 +329,8 @@ const EducationInfo = () => {
                 <div className={cls.field}>
 
                   <label>{t('info.secondProgram')}</label>
-
-                  <SelectBox placeholder={t('info.secondProgram')} list={programs} value={secondProgram.specialties && secondProgram.specialties.title || ''} select={setSecondProgram} error={emptyFields && !secondProgram?.specialties?.title ? true : false} />
-
-                  {emptyFields && !secondProgram?.specialties?.title &&
-
-                    <p>{t('contact.required')}</p>
-
-                  }
+        
+                  <Choose placeholder={t('info.secondProgram')} keyword='specialties.title' results={programs} choose={setSecondProgram} value={secondProgram.specialties && secondProgram.specialties.title || ''}  error={emptyFields && !secondProgram?.specialties?.title ? true : false} />
 
                 </div>
 
@@ -376,14 +341,8 @@ const EducationInfo = () => {
                 <div className={cls.field}>
 
                   <label>{t('info.secondLang')}</label>
-
-                  <SelectBox placeholder={t('info.secondLang')} list={secondLanguages} value={secondLang.title || ''} select={setSecondLang} error={emptyFields && !secondLang.title ? true : false} />
-
-                  {emptyFields && !secondLang.title &&
-
-                    <p>{t('contact.required')}</p>
-
-                  }
+        
+                  <Choose placeholder={t('info.secondLang')} keyword='title' results={secondLanguages} choose={setSecondLang} value={secondLang.title || ''} error={emptyFields && !secondLang.title ? true : false} />
 
                 </div>
 

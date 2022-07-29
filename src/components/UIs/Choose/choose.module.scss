@@ -30,6 +30,9 @@
       right: unset;
       left: 15px;
     }
+    &.error {
+      top: 16%;
+    }
   }
   .field__results {
     width: 100%;
@@ -43,6 +46,9 @@
     display: none;
     max-height: 300px;
     overflow-y: scroll;
+    &.error {
+      top: 60%;
+    }
     .field__results_result {
       padding: 10px 0;
       .resultInside {
@@ -57,6 +63,7 @@
         p {
           font-size: 0.9rem;
           padding: 4px 10px;
+          color: var(--text-color);
         }
         &:hover {
           background-color: var(--hover-color);

@@ -194,18 +194,14 @@ const Filter = () => {
         {loading && <Loader />}
         
         <Choose placeholder={t('home.country')} keyword="title" results={countries} choose={chooseCountryHandler} value={country.title || ''} />
-
-        {/* <Selectbox placeholder={t('home.country')} type="specialCountries" list={countries} select={chooseCountryHandler} value={country.title || ''} /> */}
         
-        {/* <Choose placeholder={t('home.university')} keyword={`title_${i18n.language}`} list={universities} choose={updateUniversity} value={university[`title_${i18n.language}`] || ''} /> */}
-
-        <Selectbox placeholder={t('home.university')} type="unis" list={universities} select={updateUniversity} value={university[`title_${i18n.language}`] || ''} />
-
-        <Selectbox placeholder={t('home.degree')} type="degs" list={degrees} select={updateDegree} value={degree[`title_${i18n.language}`] || ''} />
-
-        <Selectbox placeholder={t('home.speciality')} type="specs" list={programs} select={updateSpeciality} value={speciality[`title_${i18n.language}`] || ''} />
+        <Choose placeholder={t('home.university')} keyword={`title_${i18n.language}`} results={universities} choose={updateUniversity} value={university[`title_${i18n.language}`] || ''} />
         
-        <Selectbox placeholder={t('home.lang')} list={languages} select={updateLanguage} value={language.title || ''} />
+        <Choose placeholder={t('home.degree')} keyword={`title_${i18n.language}`} results={degrees} choose={updateDegree} value={degree[`title_${i18n.language}`] || ''} />
+        
+        <Choose placeholder={t('home.speciality')} keyword={`title_${i18n.language}`} results={programs} choose={updateSpeciality} value={speciality[`title_${i18n.language}`] || ''} />
+        
+        <Choose placeholder={t('home.lang')} keyword='title' results={languages} choose={updateLanguage} value={language.title || ''} />
 
         <button onClick={search}>{t('home.search')}</button>
 

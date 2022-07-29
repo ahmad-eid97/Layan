@@ -90,6 +90,7 @@ const Contact = () => {
       setEmptyFields(false)
 
       const response = await axios.post('/crm/contact_us', data).catch(err => {
+        console.log(err)
         errorNotify(t('agent.invalid'))
 
         setLoading(false)
