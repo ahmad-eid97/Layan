@@ -100,16 +100,25 @@ const Agent = () => {
       city_id: city.id
     }
 
-    Object.keys(data).forEach(key => {
-      if(!data[key] && key !== 'license_no' && key !== 'logo_file' && key !== 'licence_file') {
+    let requiredData = data
+
+    delete requiredData.license_no;
+    delete requiredData.logo_file;
+    delete requiredData.licence_file;
+    delete requiredData.website_url;
+
+    console.log(requiredData)
+
+    Object.keys(requiredData).forEach(key => {
+      if(!requiredData[key]) {
         setEmptyFields(true)
       }
     })
 
     let empties = []
 
-    Object.keys(data).forEach(key => {
-      if ((data[key] === undefined || data[key] === '') && key !== 'license_no' && key !== 'logo_file' && key !== 'licence_file') {
+    Object.keys(requiredData).forEach(key => {
+      if ((requiredData[key] === undefined || data[key] === '') && key !== 'license_no' && key !== 'logo_file' && key !== 'licence_file' && key !== 'website_url') {
         empties.push(data[key])
       }
     })
@@ -245,14 +254,8 @@ const Agent = () => {
                     name="license_no" 
                     value={fields.license_no} 
                     onChange={(e) => handleFields(e)}
-                    className={(emptyFields && fields.license_no === '') || errorFields.license_no ? cls.error : ''} 
+                    className={errorFields.license_no ? cls.error : ''} 
                   />
-
-                  {emptyFields && !fields.license_no &&
-
-                    <p>{t('contact.required')}</p>
-
-                  }
 
                   {errorFields.license_no &&
                   
@@ -307,14 +310,8 @@ const Agent = () => {
                     name="website_url" 
                     value={fields.website_url} 
                     onChange={(e) => handleFields(e)} 
-                    className={(emptyFields && fields.website_url === '') || errorFields.website_url ? cls.error : ''} 
+                    className={errorFields.website_url ? cls.error : ''} 
                   />
-
-                  {emptyFields && !fields.website_url &&
-
-                    <p>{t('contact.required')}</p>
-
-                  }
 
                   {errorFields.website_url &&
                   
