@@ -152,7 +152,11 @@ const Navbar = () => {
         </div>
       </div>
 
-      <MobSidebar mobSidebar={mobSidebar} setMobSidebar={setMobSidebar} />
+      <MobSidebar
+        mobSidebar={mobSidebar}
+        setMobSidebar={setMobSidebar}
+        menuLinks={menuLinks}
+      />
     </div>
   );
 };
