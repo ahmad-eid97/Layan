@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { userActions } from '../../store/slices/userSlice/userSlice';
 
 import SelectBox from '../../components/UIs/SelectBox/Selectbox';
+import Choose from '../../components/UIs/Choose/Choose';
 
 import DatePicker from "react-datepicker";
 
@@ -550,14 +551,8 @@ const Register = () => {
                 <div className={cls.field}>
 
                   <label>{t('register.country')}</label>
-
-                  <SelectBox placeholder={t('register.country')} list={countries} value={country['title'] || ''} select={chooseCountry} error={emptyFields && !country ? true : false} />
-
-                  {emptyFields && !country &&
-
-                    <p>{t('register.required')}</p>
-
-                  }
+        
+                  <Choose placeholder={t('register.country')} keyword='title' results={countries} choose={chooseCountry} value={country['title'] || ''}  error={emptyFields && !country ? true : false} />
 
                 </div>
 
@@ -568,14 +563,8 @@ const Register = () => {
                 <div className={cls.field}>
 
                   <label>{t('register.city')}</label>
-
-                  <SelectBox placeholder={t('register.city')} list={cities} value={city.title || ''} select={setCity} error={emptyFields && !city ? true : false} />
-
-                  {emptyFields && !city &&
-
-                    <p>{t('register.required')}</p>
-
-                  }
+        
+                  <Choose placeholder={t('register.city')} keyword='title' results={cities} choose={setCity} value={city?.title || ''}  error={emptyFields && !city ? true : false} />
 
                 </div>
 

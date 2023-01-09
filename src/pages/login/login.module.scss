@@ -1,3 +1,4 @@
+@import '../../styles/mixins';
 @import '../../styles/extends';
 
 .login {
@@ -11,6 +12,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    @include sm {
+      width: 450px;
+    }
+    @include xs {
+      width: 330px;
+    }
     input {
       display: block;
       width: 100%;

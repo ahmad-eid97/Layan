@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import SelectBox from '../../components/UIs/SelectBox/Selectbox';
+import Choose from './../../components/UIs/Choose/Choose';
 import Loader from '../../components/UIs/Loader/Loader';
 
 import { useTranslation } from 'react-i18next';
@@ -74,7 +75,7 @@ const Agent = () => {
 
     if(!response) return;
 
-    setCities(response.data.data.cities)
+    setCities(response.data.data.cities ? response.data.data.cities : [])
 
     setCity(response.data.data.cities[0])
 
@@ -99,16 +100,25 @@ const Agent = () => {
       city_id: city.id
     }
 
-    Object.keys(data).forEach(key => {
-      if(!data[key] && key !== 'license_no' && key !== 'logo_file' && key !== 'licence_file') {
+    let requiredData = data
+
+    delete requiredData.license_no;
+    delete requiredData.logo_file;
+    delete requiredData.licence_file;
+    delete requiredData.website_url;
+
+    console.log(requiredData)
+
+    Object.keys(requiredData).forEach(key => {
+      if(!requiredData[key]) {
         setEmptyFields(true)
       }
     })
 
     let empties = []
 
-    Object.keys(data).forEach(key => {
-      if ((data[key] === undefined || data[key] === '') && key !== 'license_no' && key !== 'logo_file' && key !== 'licence_file') {
+    Object.keys(requiredData).forEach(key => {
+      if ((requiredData[key] === undefined || data[key] === '') && key !== 'license_no' && key !== 'logo_file' && key !== 'licence_file' && key !== 'website_url') {
         empties.push(data[key])
       }
     })
@@ -244,14 +254,8 @@ const Agent = () => {
                     name="license_no" 
                     value={fields.license_no} 
                     onChange={(e) => handleFields(e)}
-                    className={(emptyFields && fields.license_no === '') || errorFields.license_no ? cls.error : ''} 
+                    className={errorFields.license_no ? cls.error : ''} 
                   />
-
-                  {emptyFields && !fields.license_no &&
-
-                    <p>{t('contact.required')}</p>
-
-                  }
 
                   {errorFields.license_no &&
                   
@@ -306,14 +310,8 @@ const Agent = () => {
                     name="website_url" 
                     value={fields.website_url} 
                     onChange={(e) => handleFields(e)} 
-                    className={(emptyFields && fields.website_url === '') || errorFields.website_url ? cls.error : ''} 
+                    className={errorFields.website_url ? cls.error : ''} 
                   />
-
-                  {emptyFields && !fields.website_url &&
-
-                    <p>{t('contact.required')}</p>
-
-                  }
 
                   {errorFields.website_url &&
                   
@@ -489,7 +487,7 @@ const Agent = () => {
 
                   <label>{t('agent.country')}</label>
 
-                  <SelectBox placeholder={t('agent.country')} list={countries} value={country.title || ''} select={selectCountry} error={emptyFields && !country.title ? true : false} />
+                  <Choose placeholder={t('agent.country')} keyword="title" results={countries} value={country.title || ''} choose={selectCountry} error={emptyFields && !country.title ? true : false} />
 
                 </div>
 
@@ -501,7 +499,7 @@ const Agent = () => {
 
                   <label>{t('agent.city')}</label>
 
-                  <SelectBox placeholder={t('agent.city')} list={cities} value={city.title || ''} select={setCity} error={emptyFields && !city.title ? true : false} />
+                  <Choose placeholder={t('agent.city')} keyword="title" results={cities} value={city?.title || ''} choose={setCity} error={emptyFields && !city?.title ? true : false} />
 
                 </div>
 
