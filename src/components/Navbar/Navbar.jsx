@@ -21,11 +21,13 @@ const Navbar = () => {
   const [mobSidebar, setMobSidebar] = useState(false);
   const [menuLinks, setMenuLinks] = useState([]);
   const user = useSelector(({ user }) => user.user);
-  const { t } = useTranslation("nav");
+  const { t, i18n } = useTranslation("nav");
   const navigate = useNavigate();
 
   const fetchTopMenu = async () => {
-    const response = await axios.get("https://layanedu.com/dash/api/v1/menu/1");
+    const response = await axios.get(
+      `https://layanedu.com/dash/api/v1/menu/1/${i18n.language}`
+    );
 
     setMenuLinks(response.data.links);
   };
