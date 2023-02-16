@@ -25,13 +25,13 @@ const Home = () => {
 
       <KnowUs />
 
-      <News />
+      <Blogs />
 
       <Universities />
 
       <Experiences />
 
-      <Blogs />
+      <News />
 
       <Clients />
 

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import Carousel from "react-material-ui-carousel";
 
 import { useTranslation } from 'react-i18next';
@@ -34,7 +36,9 @@ const Header = () => {
 
                   <h1>{t('home.layan')}</h1>
 
-                  <button>{t('home.register')}</button>
+                  <Link to="/register">
+                    <button>{t('home.register')}</button>
+                  </Link>
 
                 </div>
 
@@ -50,7 +54,9 @@ const Header = () => {
 
                 <p>{t('home.student')}</p>
 
-                <button>{t('home.know')}</button>
+                <Link to="/about-us">
+                  <button>{t('home.know')}</button>
+                </Link>
 
               </div>
 
@@ -109,7 +115,9 @@ const Header = () => {
 
                   <h1>{t('home.layan')}</h1>
 
-                  <button>{t('home.register')}</button>
+                  <Link to="/register">
+                    <button>{t('home.register')}</button>
+                  </Link>
 
                 </div>
 
@@ -125,7 +133,9 @@ const Header = () => {
 
                 <p>{t('home.student')}</p>
 
-                <button>{t('home.know')}</button>
+                <Link to="/about-us">
+                  <button>{t('home.know')}</button>
+                </Link>
 
               </div>
 

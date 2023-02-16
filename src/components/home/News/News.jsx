@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -41,7 +41,7 @@ const News = () => {
 
         <div className={cls.wrapper}>
 
-          {news.map((one, idx) => (
+          {news.reverse().slice(0, 8).map((one, idx) => (
 
             <div key={idx} className={`${cls.singleNews} quarterContainer`} onClick={() => navigate(`/news/${one.id}`)}>
 
@@ -68,6 +68,12 @@ const News = () => {
 
         </div>
 
+      </div>
+
+      <div className={cls.btn}>
+        <Link to="/news">
+          <button>{t("home.seeMore")}</button>
+        </Link>
       </div>
 
     </div>
