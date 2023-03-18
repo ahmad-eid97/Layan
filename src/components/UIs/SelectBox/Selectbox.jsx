@@ -16,11 +16,17 @@ const SelectBox = ({ placeholder, list, value, select, disabled, error, type }) 
     setOpen(false);
   };
 
+  const inputBlur = () => {
+    setTimeout(() => {
+      setOpen(false)
+    }, 300)
+  }
+
   return (
     <>
-      {open && (
+      {/* {open && (
         <div className={cls.overlay} onClick={() => setOpen(false)}></div>
-      )}
+      )} */}
 
       <div className={cls.field}>
         <div className={cls.field__selectArea}>
@@ -30,6 +36,7 @@ const SelectBox = ({ placeholder, list, value, select, disabled, error, type }) 
             placeholder={placeholder}
             value={value}
             onFocus={() => setOpen(true)}
+            onBlur={inputBlur}
             disabled={disabled}
             className={error ? cls.error : ''}
           />
