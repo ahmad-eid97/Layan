@@ -41,7 +41,7 @@ const Education = () => {
 
           {steps.map((step, idx) => (
 
-            <div className={`${cls.step} ${cls[i18n.language]}`}>
+            <div key={idx} className={`${cls.step} ${cls[i18n.language]}`}>
 
               <div className={`${cls.num} ${cls[i18n.language]}`}>
 

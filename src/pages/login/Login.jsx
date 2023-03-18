@@ -12,6 +12,8 @@ import axios from '../../Utils/axios';
 
 import { useTranslation } from 'react-i18next';
 
+import { toast } from 'react-toastify';
+
 import cls from './login.module.scss';
 
 const cookie = new Cookies();
@@ -26,7 +28,6 @@ const Login = () => {
   const { t } = useTranslation('auth')
 
   const login = async () => {
-
     const credentials = {
       email, password
     }
@@ -38,6 +39,11 @@ const Login = () => {
       if(!response) return;
 
       console.log(response)
+
+      if (!response.data.success) {
+        setLoading(false);
+        return errorNotify(response.data.message)
+      }
   
       dispatch(userActions.setUser(response.data.data.student));
 
@@ -48,6 +54,10 @@ const Login = () => {
       navigate('/')
     }
   }
+
+  const errorNotify = (msg) => toast.error(msg)
+
+  if (cookie.get('layanAuth')) return null;
 
   return (
     <div className={cls.login}>

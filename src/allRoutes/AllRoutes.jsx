@@ -31,10 +31,10 @@ import {
   NotFound
 } from "../pages";
 
-const cookie = new Cookies()
-
 const AllRoutes = ({ authenticated }) => {
   const user = useSelector(({user}) => user.user);
+
+  console.log(authenticated)
 
   return (
     <Routes>
@@ -80,8 +80,6 @@ const AllRoutes = ({ authenticated }) => {
       {/* <Route path="/applications" element={<Applications />} /> */}
 
       <Route path="/programs" element={<Programs />} />
-
-      {console.log(authenticated)}
 
       <Route path="/profile" element={authenticated ? <Profile /> : <Navigate to='/login' />} />
 

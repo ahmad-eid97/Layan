@@ -53,11 +53,17 @@ const Choose = ({ placeholder, results, choose, value, disabled, keyword, error 
     inputRef.current.id = result.id;
   };
 
+  const inputBlur = () => {
+    setTimeout(() => {
+      setOpen(false)
+    }, 300)
+  }
+
   return (
     <>
-      {open && (
+      {/* {open && (
         <div className={cls.overlay} onClick={() => setOpen(false)}></div>
-      )}
+      )} */}
 
       <div className={cls.field}>
         <input
@@ -67,6 +73,7 @@ const Choose = ({ placeholder, results, choose, value, disabled, keyword, error 
           value={inputValue}
           onChange={(e) => filterResults(e.target.value)}
           onFocus={() => setOpen(true)}
+          onBlur={inputBlur}
           disabled={disabled}
           className={error ? cls.error : ''}
         />

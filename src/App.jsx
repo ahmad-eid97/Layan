@@ -23,7 +23,7 @@ const cookie = new Cookies()
 
 function App() {
   // COMPONENT STATES
-  const [authenticated, setAuthenticated] = useState(true)
+  const [authenticated, setAuthenticated] = useState(false)
   const { i18n } = useTranslation('common');
   const [lang, setLang] = useState(i18n.language)
   const location = useLocation()
@@ -39,7 +39,6 @@ function App() {
 
   useEffect(() => {
     const auth = cookie.get('layanAuth');
-    console.log(auth)
     if(auth) {
       setAuthenticated(true)
     } else {
@@ -61,13 +60,9 @@ function App() {
   }
 
   useEffect(() => {
-
     if(cookie.get('layanAuth')) {
-
       fetchAuthenticatedUser();
-
     }
-
   }, [cookie.get('layanAuth')])
 
   return (
