@@ -36,8 +36,6 @@ const ApplicationsSection = () => {
     setApplications(response.data.data.applications)
 
     setLoading(false)
-
-    console.log(response)
   }
 
   useEffect(() => {
@@ -48,6 +46,12 @@ const ApplicationsSection = () => {
     <div className={cls.applicationsSection}>
 
       {loading && <Loader />}
+
+      {applications.length <= 0 ?
+        <p>{t('profile.noApps')}</p>
+        :
+        null
+      }
 
       <div className={cls.wrapper}>
 

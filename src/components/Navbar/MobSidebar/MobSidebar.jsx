@@ -39,8 +39,8 @@ const MobSidebar = ({ mobSidebar, setMobSidebar, menuLinks }) => {
         </div>
 
         <ul>
-          {menuLinks.map((link) => (
-            <li onClick={close}>
+          {menuLinks.map((link, idx) => (
+            <li key={idx} onClick={close}>
               <NavLink to={`/${link.href}`}> {link.title}</NavLink>
             </li>
           ))}

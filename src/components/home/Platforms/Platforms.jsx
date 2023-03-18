@@ -69,11 +69,9 @@ const Platforms = () => {
         >
 
           {platforms.map((one, idx) => (
-
             <div key={idx} className={cls.slide}>
               <img src={one} alt="platform" />
             </div>
-
           ))}
 
         </Carousel>

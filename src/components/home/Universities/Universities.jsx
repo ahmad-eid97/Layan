@@ -82,12 +82,10 @@ const Universities = () => {
         >
 
           {universities && universities.map((one, idx) => (
-
             <div key={idx} className={cls.slide} onClick={() => setSelectedUniversity(one)}>
               <img src={one.photo_file} alt="university" />
               <p>{one.title}</p>
             </div>
-
           ))}
 
         </Carousel>
@@ -114,11 +112,9 @@ const Universities = () => {
               >
 
                 {selectedUinversity.specialties.map((one, idx) => (
-
                   <div key={idx} className={cls.smallSlide}>
                     <p>{one.title}</p>
                   </div>
-
                 ))}
 
               </Carousel>

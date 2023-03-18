@@ -86,8 +86,8 @@ const Navbar = () => {
           </div>
 
           <ul>
-            {menuLinks.map((link) => (
-              <li>
+            {menuLinks.map((link, idx) => (
+              <li key={idx}>
                 <NavLink to={`/${link.href}`}> {link.title}</NavLink>
               </li>
             ))}

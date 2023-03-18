@@ -4,9 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { userActions } from './store/slices/userSlice/userSlice';
 
-import Navbar from './components/Navbar/Navbar';
 import AllRoutes from './allRoutes/AllRoutes';
-import { Footer } from './components';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,7 +21,7 @@ const cookie = new Cookies()
 
 function App() {
   // COMPONENT STATES
-  const [authenticated, setAuthenticated] = useState(false)
+  const [authenticated, setAuthenticated] = useState(true)
   const { i18n } = useTranslation('common');
   const [lang, setLang] = useState(i18n.language)
   const location = useLocation()
@@ -80,15 +78,11 @@ function App() {
         pauseOnHover
       />
 
-      <Navbar />
-
       <ScrollToTop>
 
         <AllRoutes authenticated={authenticated} />
 
       </ScrollToTop>
-
-      <Footer />
       
     </div>
   );

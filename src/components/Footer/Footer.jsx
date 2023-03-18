@@ -104,16 +104,16 @@ const Footer = () => {
                 universities.slice(0, 3).map((uni) => (
                   <p key={uni.id}>
                     <Link to={`/university/${uni.id}`}>
-                      <a href="#!" className="text-reset">
+                      {/* <a href="#!" className="text-reset"> */}
                         {uni.title}
-                      </a>
+                      {/* </a> */}
                     </Link>
                   </p>
                 ))}
               <Link to={`/all-universities`} style={{ color: "red" }}>
-                <a href="#!" className="text-reset">
+                {/* <a href="#!" className="text-reset"> */}
                   {t("footer.more")}
-                </a>
+                {/* </a> */}
               </Link>
             </div>
 
@@ -123,30 +123,30 @@ const Footer = () => {
               </h6>
               <p>
                 <Link to="/education">
-                  <a href="#!" className="text-reset">
+                  {/* <a href="#!" className="text-reset"> */}
                     {t("footer.steps")}
-                  </a>
+                  {/* </a> */}
                 </Link>
               </p>
               <p>
                 <Link to="/agent">
-                  <a href="#!" className="text-reset">
+                  {/* <a href="#!" className="text-reset"> */}
                     {t("footer.agent")}
-                  </a>
+                  {/* </a> */}
                 </Link>
               </p>
               <p>
                 <Link to="/profile">
-                  <a href="#!" className="text-reset">
+                  {/* <a href="#!" className="text-reset"> */}
                     {t("footer.track")}
-                  </a>
+                  {/* </a> */}
                 </Link>
               </p>
               <p>
                 <Link to="/contact-us">
-                  <a href="#!" className="text-reset">
+                  {/* <a href="#!" className="text-reset"> */}
                     {t("footer.contacting")}
-                  </a>
+                  {/* </a> */}
                 </Link>
               </p>
             </div>

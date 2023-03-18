@@ -11,6 +11,8 @@ import DatePicker from "react-datepicker";
 
 import axios from '../../Utils/axios';
 
+import Loader from '../../components/UIs/Loader/Loader';
+
 import validator from 'validator';
 
 import { useTranslation } from 'react-i18next';
@@ -19,7 +21,10 @@ import { toast } from 'react-toastify';
 
 import "react-datepicker/dist/react-datepicker.css";
 import cls from './register.module.scss';
-import Loader from '../../components/UIs/Loader/Loader';
+
+import Cookies from 'universal-cookie';
+
+const cookie = new Cookies();
 
 const genderList = [
   {
@@ -80,7 +85,6 @@ const Register = () => {
 
   // FETCH ALL COUNTRIES
   const fetchAllCities = async () => {
-    console.log(i18n.language)
     const response = await axios.get(`/crm/cities?lang=${i18n.language === 'ar' ? 'ar' : 1}&limit=500`).catch(err => {
       console.log(err)
     })
@@ -136,7 +140,6 @@ const Register = () => {
       const response = await axios.post('/crm/students/auth/register', data);
   
       if(!response || !response.data.success) {
-        console.log(response.data.errors)
         setErrorFields(response.data.errors)
 
         if(Object.values(response.data.errors).length) {
@@ -176,12 +179,12 @@ const Register = () => {
     setCities(citiesResponse.data.data.cities)
 
     setCity(citiesResponse.data.data.cities[0])
-
-    console.log(citiesResponse)
   }
 
   const successNotify = (message) => toast.success(message);
   const errorNotify = (message) => toast.error(message);
+
+  if (cookie.get('layanAuth')) return null;
 
   return (
     <div className={cls.register}>

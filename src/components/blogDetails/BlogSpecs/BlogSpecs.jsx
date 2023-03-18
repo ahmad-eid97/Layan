@@ -48,7 +48,7 @@ const BlogSpecs = ({ blogDetails }) => {
 
           {blogDetails?.Joined_categories.map((one, idx) => (
 
-            <li key={idx}><i className="fa-solid fa-circle-dashed"></i> {one.title}</li>
+            <li key={one.id}><i className="fa-solid fa-circle-dashed"></i> {one.title}</li>
 
           ))}
 

@@ -1,5 +1,9 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from 'react';
+
+import Navbar from "../components/Navbar/Navbar";
+
+import { Footer } from "../components";
 
 import { useSelector } from 'react-redux';
 
@@ -33,59 +37,76 @@ import {
 
 const AllRoutes = ({ authenticated }) => {
   const user = useSelector(({user}) => user.user);
-
-  console.log(authenticated)
+  const location = useLocation()
+  const cookie = new Cookies();
 
   return (
-    <Routes>
+    <>
+    
+      {(location.pathname === '/login' || location.pathname === '/register') && cookie.get('layanAuth') ?
+        null
+        :
+        <Navbar />
+      }
 
-      <Route path="/" element={<Home />} />
+        <Routes>
 
-      <Route path="/login" element={!authenticated ? <Login /> : <Navigate to='/' />} />
-      
-      <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/" element={<Home />} />
 
-      <Route path="/contact-us" element={<Contact />} />
+          <Route path="/login" element={!user ? <Login /> : <Navigate to='/' />} />
+          
+          <Route path="/about-us" element={<AboutUs />} />
 
-      <Route path="/questions" element={<Questions />} />
+          <Route path="/contact-us" element={<Contact />} />
 
-      <Route path="/services" element={<Services />} />
+          <Route path="/questions" element={<Questions />} />
 
-      <Route path="/news" element={<News />} />
-      
-      <Route path="/news/:newsId" element={<NewsDetails />} />
+          <Route path="/services" element={<Services />} />
 
-      <Route path="/blogs" element={<Blogs />} />
+          <Route path="/news" element={<News />} />
+          
+          <Route path="/news/:newsId" element={<NewsDetails />} />
 
-      <Route path="/blogs/:blogId" element={<BlogDetails />} />
+          <Route path="/blogs" element={<Blogs />} />
 
-      <Route path="/register" element={!user ? <Register /> : <Navigate to='/' />} />
+          <Route path="/blogs/:blogId" element={<BlogDetails />} />
 
-      <Route path="/registered" element={!authenticated ? <Registered /> : <Navigate to='/' />} />
+          <Route path="/register" element={!user ? <Register /> : <Navigate to='/' />} />
 
-      <Route path="/agent" element={<Agent />} />
+          <Route path="/registered" element={!authenticated ? <Registered /> : <Navigate to='/' />} />
 
-      <Route path="/education" element={<Education />} />
+          <Route path="/agent" element={<Agent />} />
 
-      <Route path="/education-info" element={authenticated ? <EducationInfo /> : <Navigate to="/login" />} />
+          <Route path="/education" element={<Education />} />
 
-      <Route path="/university/:id" element={<University />} />
+          <Route path="/education-info" element={authenticated ? <EducationInfo /> : <Navigate to="/login" />} />
 
-      <Route path="/all-universities" element={<AllUniversities />} />
+          <Route path="/university/:id" element={<University />} />
 
-      <Route path="/program/:id" element={<ProgramDetails />} />
+          <Route path="/all-universities" element={<AllUniversities />} />
 
-      <Route path="/programs-filter" element={<ProgramsFilterPage />} />
+          <Route path="/program/:id" element={<ProgramDetails />} />
 
-      {/* <Route path="/applications" element={<Applications />} /> */}
+          <Route path="/programs-filter" element={<ProgramsFilterPage />} />
 
-      <Route path="/programs" element={<Programs />} />
+          {/* <Route path="/applications" element={<Applications />} /> */}
 
-      <Route path="/profile" element={authenticated ? <Profile /> : <Navigate to='/login' />} />
+          <Route path="/programs" element={<Programs />} />
 
-      <Route path="/*" element={<NotFound />} />
-      
-    </Routes>
+          <Route path="/profile" element={authenticated ? <Profile /> : <Navigate to='/login' />} />
+
+          <Route path="/*" element={<NotFound />} />
+          
+        </Routes>
+    
+        {(location.pathname === '/login' || location.pathname === '/register') && cookie.get('layanAuth') ?
+          null
+          :
+          <Footer />
+        }
+
+
+    </>
   )
 }
 
