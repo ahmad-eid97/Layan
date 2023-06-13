@@ -4,16 +4,20 @@
 .header {
   position: relative;
   z-index: 2;
+  // min-height: 70vh;
+
   .row {
     @include md {
       flex-direction: column-reverse;
     }
   }
+
   .triangle {
     @include lg {
       display: none;
     }
   }
+
   .text {
     height: 85vh;
     background-image: url('../../../../public/assets/images/side.png');
@@ -24,29 +28,38 @@
     display: grid;
     place-content: center;
     max-width: 100%;
+
     @include md {
       display: none;
     }
+
     .content {
       width: 75%;
       margin: 0 100px 0px 30px;
+
       h1 {
         margin-bottom: 20px;
       }
-      h1, p {
+
+      h1,
+      p {
         text-align: center !important;
       }
+
       text-align: center !important;
+
       button {
         margin-top: 10px;
         margin-bottom: 50px;
         @extend %mainBtn;
       }
     }
+
     &.ar {
       background-image: url('../../../../public/assets/images/sideAr.png');
       background-size: cover;
       background-position: left top;
+
       .content {
         margin: 0 30px 0 100px;
       }
@@ -58,26 +71,33 @@
     position: relative;
     z-index: 1;
     background-color: transparent;
+
     button {
       @extend %mainBtn;
       margin-top: 10px;
     }
+
     @include lg {
       padding: 0 50px;
       margin-bottom: 100px;
     }
+
     @include md {
       margin: 10px 0 150px;
       padding: 0 20px;
+
       h1 {
         font-size: 1.5rem;
       }
     }
+
     @include sm {
       margin: 10px 0 150px;
+
       h1 {
         font-size: 1.2rem;
       }
+
       p {
         font-size: 0.8rem;
       }
@@ -97,28 +117,34 @@
     max-width: 100%;
     display: grid;
     place-content: center;
+
     img {
       height: 500px;
       width: 100%;
       object-fit: contain;
     }
+
     @include lg {
       margin-bottom: 100px;
       width: 500px;
     }
+
     @include md {
       height: 400px;
       width: 400px;
       margin: 20px auto 0;
+
       img {
         height: 400px;
         width: 100%;
       }
     }
+
     @include sm {
       height: 400px;
       width: 400px;
       margin: 20px auto 0;
+
       img {
         height: 400px;
         width: 100%;
@@ -136,18 +162,22 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
+
     &.ar {
       background-image: url('../../../../public/assets/images/bottomAr.png');
     }
+
     div {
       display: flex;
       justify-content: center;
       align-items: flex-start;
+
       .part {
         margin: 20px 30px;
         display: flex;
         align-items: center;
         color: #fff;
+
         i {
           width: 40px;
           height: 40px;
@@ -158,44 +188,68 @@
           display: grid;
           place-content: center;
         }
+
         div {
           display: block;
+
           span {
             font-weight: 600;
             font-size: 1.1rem;
           }
         }
+
         @include md {
           margin: 0px 30px 0px;
           transform: translateY(-20px);
         }
+
         @include sm {
           margin: 0px 10px 0px;
           transform: translateY(-25px);
+
           i {
             width: 30px;
             height: 30px;
             margin: 0 7px;
             font-size: 0.7rem;
           }
+
           div {
             p {
               font-size: 0.7rem;
               margin-bottom: 0px;
             }
+
             span {
               font-size: 0.9rem;
             }
           }
         }
+
         @include xs {
           margin: 0px 2px 0px;
           transform: translateY(-35px);
         }
       }
     }
+
     @include lg {
       background-image: url('../../../../public/assets/images/bottomSm.png') !important;
     }
+  }
+
+  @include lg {
+    max-height: 50vh;
+    min-height: 65vh;
+  }
+
+  @include md {
+    max-height: 80vh;
+    min-height: 50vh;
+  }
+
+  @include xs {
+    max-height: 80vh;
+    min-height: 50vh;
   }
 }

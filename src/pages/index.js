@@ -1,5 +1,7 @@
 export { default as Register } from './register/Register';
 
+export { default as AdminRegister } from './adminRegister/AdminRegister';
+
 export { default as Login } from './login/Login';
 
 export { default as Home } from './home/Home';
@@ -21,7 +23,7 @@ export { default as BlogDetails } from './blogDetails/BlogDetails';
 export { default as NewsDetails } from './newsDetails/NewsDetails';
 
 export { default as Registered } from './registered/Registered';
- 
+
 export { default as Agent } from './agent/Agent';
 
 export { default as Education } from './education/Education';

@@ -78,7 +78,7 @@ const Register = () => {
       console.log(err)
     })
 
-    if(!response) return;
+    if (!response) return;
 
     setCountries(response.data.data.countries)
   }
@@ -89,7 +89,7 @@ const Register = () => {
       console.log(err)
     })
 
-    if(!response) return;
+    if (!response) return;
 
     setCities(response.data.data.cities)
   }
@@ -107,14 +107,7 @@ const Register = () => {
     setLoading(true)
     const data = {
       username: fields.username,
-      first_name: fields.fname,
-      last_name: fields.lname,
-      father_name: fields.fatherName,
-      mother_name: fields.motherName,
-      passport_no: fields.passportNo,
-      gender: gender.label,
       phone: fields.phone,
-      birth_date: startDate,
       country_id: country.id,
       city_id: city.id,
       email: fields.email,
@@ -122,7 +115,7 @@ const Register = () => {
     }
 
     Object.values(data).forEach(one => {
-      if(one === '') {
+      if (one === '') {
         setEmptyFields(true);
         setLoading(false)
       }
@@ -130,35 +123,37 @@ const Register = () => {
 
     const emptyCheck = Object.values(data).filter(one => one === undefined || one === '');
 
-    if(emptyCheck.length <= 0) {
+    if (emptyCheck.length <= 0) {
 
-      if(!validator.isEmail(fields.email)) {
+      if (!validator.isEmail(fields.email)) {
         setLoading(false)
         return errorNotify(t('contact.emailInvalid'))
       }
 
       const response = await axios.post('/crm/students/auth/register', data);
-  
-      if(!response || !response.data.success) {
+
+      if (!response || !response.data.success) {
         setErrorFields(response.data.errors)
 
-        if(Object.values(response.data.errors).length) {
+        if (Object.values(response.data.errors).length) {
           Object.values(response.data.errors).forEach(error => {
             errorNotify(error[0])
           })
         } else {
           errorNotify(t('agent.invalid'))
         }
-  
+
         setLoading(false)
-  
+
         return;
       };
-  
+
       setLoading(false)
-  
+
       dispatch(userActions.setUser(response.data.data.student))
-  
+
+      cookie.set('layanAuth', response.data.data.access_token)
+
       navigate('/registered')
 
     }
@@ -172,7 +167,7 @@ const Register = () => {
 
     const citiesResponse = await axios.get(`/crm/cities?lang=${i18n.language}&limit=30&country_id=${country.id}`);
 
-    if(!citiesResponse) return;
+    if (!citiesResponse) return;
 
     setLoading(false)
 
@@ -190,7 +185,7 @@ const Register = () => {
     <div className={cls.register}>
 
       {loading && <Loader />}
-        
+
       <div className="container">
 
         <h1 className='label'>
@@ -203,7 +198,7 @@ const Register = () => {
 
         <div className={cls.form}>
 
-          <div className={`${cls.block} ${cls[i18n.language]}`}>
+          {/* <div className={`${cls.block} ${cls[i18n.language]}`}>
 
             <h4><i className="fa-light fa-user"></i> {t('register.personal')}</h4>
 
@@ -215,25 +210,25 @@ const Register = () => {
 
                   <label>{t('register.name')}</label>
 
-                  <input 
-                    type="text" 
-                    placeholder={t('register.name')}  
-                    name="username" 
-                    value={fields.username} 
+                  <input
+                    type="text"
+                    placeholder={t('register.name')}
+                    name="username"
+                    value={fields.username}
                     onChange={(e) => handleFields(e)}
                     className={(emptyFields && fields.username === '') || errorFields.username ? cls.error : ''}
-                    />
+                  />
 
                   {emptyFields && fields.username === '' &&
-                  
+
                     <p>{t('register.required')} </p>
-                  
+
                   }
 
                   {errorFields.username &&
-                  
+
                     <p>{errorFields.username}</p>
-                  
+
                   }
 
                 </div>
@@ -246,26 +241,26 @@ const Register = () => {
 
                   <label>{t('register.fName')} </label>
 
-                  <input 
-                    type="text" 
-                    placeholder={t('register.fName')}  
-                    name="fname" 
-                    value={fields.fname} 
+                  <input
+                    type="text"
+                    placeholder={t('register.fName')}
+                    name="fname"
+                    value={fields.fname}
                     onChange={(e) => handleFields(e)}
                     className={(emptyFields && fields.fname === '') || errorFields.first_name ? cls.error : ''}
-                    />
+                  />
 
-                    {emptyFields && fields.fname === '' &&
-                    
-                      <p>{t('register.required')} </p>
-                    
-                    }
+                  {emptyFields && fields.fname === '' &&
 
-                    {errorFields.first_name &&
-                    
-                      <p>{errorFields.first_name}</p>
-                    
-                    }
+                    <p>{t('register.required')} </p>
+
+                  }
+
+                  {errorFields.first_name &&
+
+                    <p>{errorFields.first_name}</p>
+
+                  }
 
                 </div>
 
@@ -277,14 +272,14 @@ const Register = () => {
 
                   <label>{t('register.lName')} </label>
 
-                  <input 
-                    type="text" 
-                    placeholder={t('register.lName')} 
-                    name="lname" 
-                    value={fields.lname} 
-                    onChange={(e) => handleFields(e)} 
+                  <input
+                    type="text"
+                    placeholder={t('register.lName')}
+                    name="lname"
+                    value={fields.lname}
+                    onChange={(e) => handleFields(e)}
                     className={(emptyFields && fields.lname === '') || errorFields.last_name ? cls.error : ''}
-                    />
+                  />
 
                   {emptyFields && fields.lname === '' &&
 
@@ -293,9 +288,9 @@ const Register = () => {
                   }
 
                   {errorFields.last_name &&
-                  
+
                     <p>{errorFields.last_name}</p>
-                  
+
                   }
 
                 </div>
@@ -308,12 +303,12 @@ const Register = () => {
 
                   <label>{t('register.fatherName')}</label>
 
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     placeholder={t('register.fatherName')}
-                    name="fatherName" 
-                    value={fields.fatherName} 
-                    onChange={(e) => handleFields(e)} 
+                    name="fatherName"
+                    value={fields.fatherName}
+                    onChange={(e) => handleFields(e)}
                     className={(emptyFields && fields.fatherName === '') || errorFields.father_name ? cls.error : ''}
                   />
 
@@ -324,9 +319,9 @@ const Register = () => {
                   }
 
                   {errorFields.father_name &&
-                  
+
                     <p>{errorFields.father_name}</p>
-                  
+
                   }
 
                 </div>
@@ -339,26 +334,26 @@ const Register = () => {
 
                   <label>{t('register.motherName')}</label>
 
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     placeholder={t('register.motherName')}
-                    name="motherName" 
-                    value={fields.motherName} 
-                    onChange={(e) => handleFields(e)} 
+                    name="motherName"
+                    value={fields.motherName}
+                    onChange={(e) => handleFields(e)}
                     className={(emptyFields && fields.motherName === '') || errorFields.mother_name ? cls.error : ''}
-                    />
+                  />
 
-                    {emptyFields && fields.motherName === '' &&
-  
-                      <p>{t('register.required')}</p>
-  
-                    }
+                  {emptyFields && fields.motherName === '' &&
 
-                    {errorFields.mother_name &&
-                    
-                      <p>{errorFields.mother_name}</p>
-                    
-                    }
+                    <p>{t('register.required')}</p>
+
+                  }
+
+                  {errorFields.mother_name &&
+
+                    <p>{errorFields.mother_name}</p>
+
+                  }
 
                 </div>
 
@@ -394,14 +389,14 @@ const Register = () => {
 
                   <label>{t('register.passportNo')} </label>
 
-                  <input 
-                    type="number" 
-                    placeholder={t('register.passportNo')} 
-                    name="passportNo" 
-                    value={fields.passportNo} 
-                    onChange={(e) => handleFields(e)} 
+                  <input
+                    type="number"
+                    placeholder={t('register.passportNo')}
+                    name="passportNo"
+                    value={fields.passportNo}
+                    onChange={(e) => handleFields(e)}
                     className={(emptyFields && fields.passportNo === '') || errorFields.passport_no ? cls.error : ''}
-                    />
+                  />
 
                   {emptyFields && fields.passportNo === '' &&
 
@@ -410,9 +405,9 @@ const Register = () => {
                   }
 
                   {errorFields.passport_no &&
-                  
+
                     <p>{errorFields.passport_no}</p>
-                  
+
                   }
 
                 </div>
@@ -439,7 +434,7 @@ const Register = () => {
 
             </div>
 
-          </div>
+          </div> */}
 
           <div className={`${cls.block} ${cls[i18n.language]}`}>
 
@@ -451,13 +446,44 @@ const Register = () => {
 
                 <div className={cls.field}>
 
+                  <label>{t('register.name')}</label>
+
+                  <input
+                    type="text"
+                    placeholder={t('register.name')}
+                    name="username"
+                    value={fields.username}
+                    onChange={(e) => handleFields(e)}
+                    className={(emptyFields && fields.username === '') || errorFields.username ? cls.error : ''}
+                  />
+
+                  {emptyFields && fields.username === '' &&
+
+                    <p>{t('register.required')} </p>
+
+                  }
+
+                  {errorFields.username &&
+
+                    <p>{errorFields.username}</p>
+
+                  }
+
+                </div>
+
+              </div>
+
+              <div className="col-lg-6">
+
+                <div className={cls.field}>
+
                   <label>{t('register.email')}</label>
 
-                  <input 
-                    type="text" 
-                    placeholder={t('register.email')}  
-                    name="email" value={fields.email} 
-                    onChange={(e) => handleFields(e)} 
+                  <input
+                    type="text"
+                    placeholder={t('register.email')}
+                    name="email" value={fields.email}
+                    onChange={(e) => handleFields(e)}
                     className={(emptyFields && fields.email === '') || errorFields.email ? cls.error : ''}
                   />
 
@@ -468,9 +494,9 @@ const Register = () => {
                   }
 
                   {errorFields.email &&
-                  
+
                     <p>{errorFields.email}</p>
-                  
+
                   }
 
                 </div>
@@ -483,12 +509,12 @@ const Register = () => {
 
                   <label>{t('register.password')}</label>
 
-                  <input 
-                    type="password" 
-                    placeholder={t('register.password')} 
-                    name="password" 
-                    value={fields.password} 
-                    onChange={(e) => handleFields(e)} 
+                  <input
+                    type="password"
+                    placeholder={t('register.password')}
+                    name="password"
+                    value={fields.password}
+                    onChange={(e) => handleFields(e)}
                     className={(emptyFields && fields.password === '') || errorFields.password ? cls.error : ''}
                   />
 
@@ -499,9 +525,9 @@ const Register = () => {
                   }
 
                   {errorFields.password &&
-                  
+
                     <p>{errorFields.password}</p>
-                  
+
                   }
 
                 </div>
@@ -514,11 +540,11 @@ const Register = () => {
 
                   <label>{t('register.phone')}</label>
 
-                  <input 
-                    type="number" 
-                    placeholder={t('register.phone')} 
-                    name="phone" 
-                    value={fields.phone} 
+                  <input
+                    type="number"
+                    placeholder={t('register.phone')}
+                    name="phone"
+                    value={fields.phone}
                     onChange={(e) => handleFields(e)}
                     className={(emptyFields && fields.phone === '') || errorFields.phone ? cls.error : ''}
                   />
@@ -530,32 +556,22 @@ const Register = () => {
                   }
 
                   {errorFields.phone &&
-                  
+
                     <p>{errorFields.phone}</p>
-                  
+
                   }
 
                 </div>
 
               </div>
 
-            </div>
-
-          </div>
-
-          <div className={`${cls.block} ${cls[i18n.language]}`}>
-
-            <h4><i className="fa-light fa-earth-americas"></i> {t('register.generalInfo')}</h4>
-
-            <div className="row">
-
               <div className="col-lg-6">
 
                 <div className={cls.field}>
 
                   <label>{t('register.country')}</label>
-        
-                  <Choose placeholder={t('register.country')} keyword='title' results={countries} choose={chooseCountry} value={country['title'] || ''}  error={emptyFields && !country ? true : false} />
+
+                  <Choose placeholder={t('register.country')} keyword='title' results={countries} choose={chooseCountry} value={country['title'] || ''} error={emptyFields && !country ? true : false} />
 
                 </div>
 
@@ -566,8 +582,8 @@ const Register = () => {
                 <div className={cls.field}>
 
                   <label>{t('register.city')}</label>
-        
-                  <Choose placeholder={t('register.city')} keyword='title' results={cities} choose={setCity} value={city?.title || ''}  error={emptyFields && !city ? true : false} />
+
+                  <Choose placeholder={t('register.city')} keyword='title' results={cities} choose={setCity} value={city?.title || ''} error={emptyFields && !city ? true : false} />
 
                 </div>
 

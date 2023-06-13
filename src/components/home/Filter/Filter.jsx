@@ -33,9 +33,9 @@ const Filter = () => {
 
     const countriesRes = await axios.get(`/crm/countries?lang=${i18n.language}&limit=500`);
 
-    if(!countriesRes) return;
+    if (!countriesRes) return;
 
-    countriesRes.data.data.countries.unshift({title: 'الكل', id: null})
+    countriesRes.data.data.countries.unshift({ title: 'الكل', id: null })
 
     setCountries(countriesRes.data.data.countries)
 
@@ -46,7 +46,7 @@ const Filter = () => {
 
     const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}`).catch(err => console.log(err))
 
-    if(!response) return;
+    if (!response) return;
 
     setUniversities(response.data.data.universities)
 
@@ -72,13 +72,13 @@ const Filter = () => {
 
     let query = `&country_id=${countryChoosed.id}`
 
-    if(countryChoosed.id === null) {
+    if (countryChoosed.id === null) {
       query = ''
     }
 
     const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}${query}`).catch(err => console.log(err))
 
-    if(!response) return;
+    if (!response) return;
 
     setUniversities(response.data.data.universities)
 
@@ -98,14 +98,14 @@ const Filter = () => {
     console.log(response)
   }
 
-  const updateUniversity = async(university) => {
+  const updateUniversity = async (university) => {
     setLoading(true)
 
     setUniversity(university)
 
     const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}&specialty_id=${speciality.id ? speciality.id : ''}&country_id=${country.id ? country.id : ''}&university_id=${university.id ? university.id : ''}&degree_id=${degree.id ? degree.id : ''}`).catch(err => console.log(err))
 
-    if(!response) return;
+    if (!response) return;
 
     setDegrees(response.data.data.degrees)
 
@@ -116,14 +116,14 @@ const Filter = () => {
     setLoading(false)
   }
 
-  const updateSpeciality = async(speciality) => {
+  const updateSpeciality = async (speciality) => {
     setLoading(true)
 
     setSpeciality(speciality)
 
     const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}&specialty_id=${speciality.id ? speciality.id : ''}&country_id=${country.id ? country.id : ''}&university_id=${university.id ? university.id : ''}&degree_id=${degree.id ? degree.id : ''}`).catch(err => console.log(err))
 
-    if(!response) return;
+    if (!response) return;
 
     setUniversities(response.data.data.universities)
 
@@ -145,7 +145,7 @@ const Filter = () => {
 
     const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}&specialty_id=${speciality.id ? speciality.id : ''}&country_id=${country.id ? country.id : ''}&university_id=${university.id ? university.id : ''}&degree_id=${degree.id ? degree.id : ''}`).catch(err => console.log(err))
 
-    if(!response) return;
+    if (!response) return;
 
     setUniversities(response.data.data.universities)
 
@@ -167,7 +167,7 @@ const Filter = () => {
 
     const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}&language_id=${lang.id}`).catch(err => console.log(err))
 
-    if(!response) return;
+    if (!response) return;
 
     setUniversities(response.data.data.universities)
 
@@ -183,24 +183,24 @@ const Filter = () => {
   }
 
   const search = async () => {
-    navigate(`/programs-filter?endPoint=/crm/programs/filter/search?lang=${i18n.language}--language_id=${language.id || ''}--country_id=${country.id || ''}--specialty_id=${speciality.id || ''}--degree_id=${degree.id || ''}--university_id=${university.id || ''}--limit=10`, {state: {countryId: country.id, universityId: university.id}})
+    navigate(`/programs-filter?endPoint=/crm/programs/filter/search?lang=${i18n.language}--language_id=${language.id || ''}--country_id=${country.id || ''}--specialty_id=${speciality.id || ''}--degree_id=${degree.id || ''}--university_id=${university.id || ''}--limit=10`, { state: { countryId: country.id, universityId: university.id } })
   }
 
   return (
     <div className={cls.filter}>
 
-      <div className='container'>
+      <div className={`${cls.container} container`}>
 
         {loading && <Loader />}
-        
+
         <Choose placeholder={t('home.country')} keyword="title" results={countries} choose={chooseCountryHandler} value={country.title || ''} />
-        
+
         <Choose placeholder={t('home.university')} keyword={`title_${i18n.language}`} results={universities} choose={updateUniversity} value={university[`title_${i18n.language}`] || ''} />
-        
+
         <Choose placeholder={t('home.degree')} keyword={`title_${i18n.language}`} results={degrees} choose={updateDegree} value={degree[`title_${i18n.language}`] || ''} />
-        
+
         <Choose placeholder={t('home.speciality')} keyword={`title_${i18n.language}`} results={programs} choose={updateSpeciality} value={speciality[`title_${i18n.language}`] || ''} />
-        
+
         <Choose placeholder={t('home.lang')} keyword='title' results={languages} choose={updateLanguage} value={language.title || ''} />
 
         <button onClick={search}>{t('home.search')}</button>

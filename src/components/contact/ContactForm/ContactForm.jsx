@@ -33,14 +33,14 @@ const ContactForm = () => {
   const sendMessage = async () => {
     const empty = Object.values(fields).filter(one => one === '');
 
-    if(empty.length) {
+    if (empty.length) {
       setEmptyFields(true)
     } else {
 
-      if(validator.isEmail(fields.contact_email)) {
+      if (validator.isEmail(fields.contact_email)) {
         const response = await axios.post('/contact', fields);
 
-        if(!response) return;
+        if (!response) return;
 
         successNotify(t('contact.success'))
       } else {
@@ -56,13 +56,13 @@ const ContactForm = () => {
     <div className={cls.contactForm}>
 
       <div className='container'>
-        
+
         <h1 className='label'>
 
           <img src="/assets/images/message.png" alt="titleImage" />
 
           <p>{t('contact.contact')}</p>
-          
+
         </h1>
 
         <div className={`${cls.row} row`}>
@@ -158,23 +158,23 @@ const ContactForm = () => {
 
                 <div className={cls.way}>
 
-                <i className="fa-light fa-location-check"></i>
+                  <i className="fa-light fa-location-check"></i>
 
-                <div>
-                  <p>{t('contact.address')}</p>
-                  <span>إسطنبول, تركيا</span>
-                </div>
+                  <div>
+                    <p>{t('contact.address')}</p>
+                    <span>إسطنبول, تركيا</span>
+                  </div>
 
                 </div>
 
                 <div className={cls.way}>
 
-                <i className="fa-light fa-message"></i>
+                  <i className="fa-light fa-message"></i>
 
-                <div>
-                  <p>{t('contact.details')}</p>
-                  <span>info@lyanedu.com</span>
-                </div>
+                  <div>
+                    <p>{t('contact.details')}</p>
+                    <span>info@layanedu.com</span>
+                  </div>
 
                 </div>
 
