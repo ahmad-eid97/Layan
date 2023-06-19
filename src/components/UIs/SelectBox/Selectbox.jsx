@@ -24,10 +24,6 @@ const SelectBox = ({ placeholder, list, value, select, disabled, error, type }) 
 
   return (
     <>
-      {/* {open && (
-        <div className={cls.overlay} onClick={() => setOpen(false)}></div>
-      )} */}
-
       <div className={cls.field}>
         <div className={cls.field__selectArea}>
           <input
@@ -42,7 +38,6 @@ const SelectBox = ({ placeholder, list, value, select, disabled, error, type }) 
           />
           <i className={`fa-solid fa-angle-down ${cls[i18n.language]}`}></i>
         </div>
-
         <div className={`${cls.field__results} ${open ? cls.active : ""}`}>
           <div className={cls.field__results_result}>
             {listItems && listItems.map((item, idx) => (
@@ -51,7 +46,7 @@ const SelectBox = ({ placeholder, list, value, select, disabled, error, type }) 
                 onClick={() => selectChoose(item)}
                 key={idx}
               >
-                {type === 'unis' || type === 'degs' || type === 'specs' ? 
+                {type === 'unis' || type === 'degs' || type === 'specs' ?
                   <>
                     {i18n.language === 'ar' ?
                       <p>{item.title_ar && item.title_ar}</p>

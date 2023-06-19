@@ -3,38 +3,44 @@
 .overlay {
   position: absolute;
   background-color: transparent;
-  // background-color: #ccc;
   width: 100%;
   top: 0;
   left: 0;
   height: 100%;
   z-index: 9;
 }
+
 .field {
   position: relative;
+
   .field__selectArea {
     position: relative;
+
     input {
       @extend %input;
       padding: 12px 15px;
       width: 100%;
       cursor: pointer;
+
       &.error {
         border-color: var(--main-color) !important;
       }
     }
+
     i {
       position: absolute;
       top: 25%;
       right: 15px;
       opacity: 0.7;
       font-size: 0.8rem;
+
       &.ar {
         right: unset;
         left: 15px;
       }
     }
   }
+
   .field__results {
     width: 100%;
     height: auto;
@@ -51,33 +57,40 @@
     border: 1px solid var(--border-color);
     box-shadow: 0 1px 2px rgb(56 65 74 / 10%);
     animation: show 0.2s ease-out;
+
     .field__results_result {
       padding: 10px 0;
+
       .resultInside {
         display: flex;
         align-items: center;
         cursor: pointer;
         padding: 0px 20px;
         margin-bottom: 0px;
+
         p {
           font-size: 0.9rem;
           padding: 5px 5px;
           font-weight: 400;
           color: var(--text-color);
         }
+
         &:hover {
           background-color: var(--hover-color);
         }
       }
     }
+
     &.active {
       display: block;
     }
+
     @keyframes show {
       0% {
         transform: translateY(10px);
         opacity: 0;
       }
+
       100% {
         transform: translateY(0px);
         opacity: 1;

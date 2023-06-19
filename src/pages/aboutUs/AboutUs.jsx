@@ -6,11 +6,8 @@ const AboutUs = () => {
 
   return (
     <div className={cls.aboutUs}>
-
       <Company />
-
       <Information />
-
     </div>
   )
 }

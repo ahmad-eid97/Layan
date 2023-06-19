@@ -3,6 +3,7 @@
 
 .allUniversities {
   margin: 50px 0 100px;
+
   img {
     transform: rotate(0deg) !important;
   }
@@ -14,9 +15,11 @@
     width: 70%;
     margin: 0 auto;
     margin-bottom: 50px;
+
     @include xs {
       width: 90%;
     }
+
     input {
       width: 100%;
       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
@@ -25,21 +28,26 @@
       padding: 10px 20px;
       font-size: 1.1rem;
       outline: none;
+
       &.en {
         border-radius: 5px 0 0 5px;
       }
+
       @include sm {
         font-size: 0.8rem;
       }
     }
+
     button {
       @extend %mainBtn;
       border-radius: 5px 0 0 5px;
       padding: 10px 40px;
       font-size: 1rem;
+
       &.en {
         border-radius: 0 5px 5px 0;
       }
+
       @include sm {
         padding: 10px 20px;
         font-size: 0.8rem;
@@ -50,10 +58,6 @@
   .carousel {
     margin-bottom: 10px;
     padding-bottom: 20px;
-    // direction: rtl !important;
-    // &.en {
-    //   direction: ltr !important;
-    // }
   }
 
   .smallSlide {
@@ -68,13 +72,14 @@
     margin: 0 10px;
     font-size: 0.9rem;
     background-color: #fff;
-    // min-width: 120px;
     cursor: pointer;
+
     p {
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 0 3px 0;
+
       img {
         width: 25px;
         height: 20px;
@@ -82,16 +87,18 @@
         margin: 0 7px;
       }
     }
+
     &:hover {
       background-color: var(--dark-color);
       color: #fff;
     }
+
     &.choosed {
       background-color: var(--dark-color);
       color: #fff;
     }
   }
-    
+
   .single {
     text-align: center !important;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
@@ -104,12 +111,18 @@
     margin: 20px 0;
     cursor: pointer;
     background-color: #fff;
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
     user-select: none;
+
     img {
       width: 200px !important;
       height: 120px !important;
@@ -118,25 +131,29 @@
       margin-bottom: 10px;
       border-radius: 5px;
     }
+
     h6 {
       font-weight: 600;
       margin-bottom: 20px;
     }
+
     button {
       padding: 5px 20px;
       font-size: 0.85rem;
       @extend %mainBtn;
     }
+
     @include sm {
       max-width: 400px;
       margin: 20px auto;
     }
+
     &:hover {
       background-color: var(--dark-color);
       color: #fff;
     }
   }
-  
+
   .empty {
     display: flex;
     flex-direction: column;
@@ -144,9 +161,11 @@
     justify-content: center;
     width: 100%;
     margin: 100px 0;
+
     img {
       width: 150px;
     }
+
     p {
       font-weight: 600;
       font-size: 1.2rem;

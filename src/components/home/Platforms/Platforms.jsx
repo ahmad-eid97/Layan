@@ -7,7 +7,6 @@ import cls from './platforms.module.scss';
 
 const responsive = {
   superLargeDesktop: {
-    // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
     items: 10
   },
@@ -44,17 +43,11 @@ const Platforms = () => {
 
   return (
     <div className={cls.platforms}>
-
       <div className='container'>
-        
         <h3 className='label'>
-
-          <img src="/assets/images/cap.png" alt="titleImage" />
-
+          <img src="/assets/images/cap.png" alt="titleImage" loading="lazy" />
           <p>{t('home.platforms')}</p>
-          
         </h3>
-
         <Carousel
           className={cls.carousel}
           draggable={true}
@@ -67,17 +60,13 @@ const Platforms = () => {
           transitionDuration={500}
           arrows={false}
         >
-
           {platforms.map((one, idx) => (
             <div key={idx} className={cls.slide}>
-              <img src={one} alt="platform" />
+              <img src={one} alt="platform" loading="lazy" />
             </div>
           ))}
-
         </Carousel>
-
       </div>
-
     </div>
   )
 }

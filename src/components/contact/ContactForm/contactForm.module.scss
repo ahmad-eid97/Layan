@@ -2,15 +2,19 @@
 
 .contactForm {
   margin: 50px 0 50px;
+
   h1 {
     text-align: center !important;
     margin-bottom: 30px;
+
     img {
       transform: rotate(0deg) !important;
     }
+
     p {
       font-size: 1.5rem !important;
     }
+
     @include sm {
       p {
         font-size: 1.2rem !important;
@@ -25,7 +29,6 @@
   }
 
   .form {
-    // margin-top: 50px;
     padding: 40px 20px;
     border-radius: 5px;
 
@@ -33,13 +36,15 @@
       margin-top: 15px;
       margin-bottom: 5px;
       font-size: 0.9rem;
+
       span {
         color: var(--main-color);
         font-weight: bold;
       }
     }
 
-    input, textarea {
+    input,
+    textarea {
       width: 100%;
       padding: 10px 15px;
       border: 1px solid rgb(225, 225, 225);
@@ -47,6 +52,7 @@
       border-radius: 5px;
       outline: none;
       font-size: 0.9rem;
+
       &.error {
         border-color: var(--main-color);
       }
@@ -66,6 +72,7 @@
     p {
       display: flex;
       align-items: center;
+
       input {
         width: 17px;
         height: 17px;
@@ -99,14 +106,18 @@
     .wayWrapper {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
+
       .way {
         grid-column: span 6;
+
         @include md {
           grid-column: span 2;
         }
+
         @include sm {
           grid-column: span 3;
         }
+
         @include xs {
           grid-column: span 6;
         }
@@ -117,6 +128,7 @@
       display: flex;
       align-items: center;
       margin-top: 20px;
+
       i {
         width: 50px;
         height: 50px;
@@ -128,6 +140,7 @@
         align-items: center;
         font-size: 1.2rem;
       }
+
       div {
         margin: 0 15px;
       }

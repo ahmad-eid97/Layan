@@ -25,7 +25,7 @@ const Choose = ({ placeholder, results, choose, value, disabled, keyword, error 
     setInputValue(typed);
     if (typed !== "") {
       let filtered;
-      if(keyword === 'specialties.title') {
+      if (keyword === 'specialties.title') {
         filtered = filteredResults.filter((result) =>
           result.specialties.title.toLowerCase().startsWith(typed.toLowerCase())
         );
@@ -34,7 +34,6 @@ const Choose = ({ placeholder, results, choose, value, disabled, keyword, error 
           result[keyword].toLowerCase().startsWith(typed.toLowerCase())
         );
       }
-
       if (filtered.length !== 0) {
         setFilteredResults(filtered);
       } else {
@@ -61,10 +60,6 @@ const Choose = ({ placeholder, results, choose, value, disabled, keyword, error 
 
   return (
     <>
-      {/* {open && (
-        <div className={cls.overlay} onClick={() => setOpen(false)}></div>
-      )} */}
-
       <div className={cls.field}>
         <input
           ref={inputRef}
@@ -78,7 +73,6 @@ const Choose = ({ placeholder, results, choose, value, disabled, keyword, error 
           className={error ? cls.error : ''}
         />
         <i className={`fa-solid fa-angle-down ${cls[i18n.language]} ${error ? cls.error : ''}`}></i>
-
         <div className={`${cls.field__results} ${open ? cls.active : ""} ${error ? cls.error : ''}`}>
           <div className={cls.field__results_result}>
             {filteredResults.length > 0 && filteredResults.map((result) => (
@@ -96,7 +90,6 @@ const Choose = ({ placeholder, results, choose, value, disabled, keyword, error 
             ))}
           </div>
         </div>
-
         {error && <p className={cls.error}>{t('contact.required')}</p>}
       </div>
     </>

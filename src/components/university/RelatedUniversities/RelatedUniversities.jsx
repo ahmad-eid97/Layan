@@ -37,17 +37,11 @@ const RelatedUniversities = ({ relatedUniversities }) => {
 
   return (
     <div className={cls.relatedUniversities}>
-
       <div className='container'>
-        
         <h3 className='label'>
-
-          <img src="/assets/images/cap.png" alt="titleImage" />
-
+          <img src="/assets/images/cap.png" alt="titleImage" loading="lazy" />
           <p>جامعات أخرى</p>
-          
         </h3>
-
         <Carousel
           className={cls.carousel}
           draggable={true}
@@ -60,25 +54,15 @@ const RelatedUniversities = ({ relatedUniversities }) => {
           transitionDuration={500}
           arrows={false}
         >
-
           {relatedUniversities.map((one, idx) => (
-
             <div key={idx} className={cls.slide}>
-
-              <img src={one.photo_file} alt="platform" />
-
+              <img src={one.photo_file} alt="platform" loading="lazy" />
               <h6>{one.title}</h6>
-
               <button onClick={() => navigate(`/university/${one.id}`)}>عرض التفاصيل</button>
-
             </div>
-
           ))}
-
         </Carousel>
-
       </div>
-
     </div>
   )
 }

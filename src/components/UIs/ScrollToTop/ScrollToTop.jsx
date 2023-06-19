@@ -2,7 +2,7 @@ import { Component } from "react"
 
 class ScrollToTop extends Component {
   componentDidUpdate(prevProps) {
-    document.querySelector("body").scrollTo(0,0)
+    document.querySelector("body").scrollTo(0, 0)
   }
 
   render() {
@@ -10,4 +10,4 @@ class ScrollToTop extends Component {
   }
 }
 
-export default ScrollToTop
+export default ScrollToTop;

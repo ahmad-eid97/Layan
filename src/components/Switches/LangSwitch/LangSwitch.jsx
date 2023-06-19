@@ -19,30 +19,9 @@ const LangSwitch = () => {
   }, [i18n])
 
   const switchLang = (lang) => {
-    
     window.location.reload()
-
     cookie.set('layaneduLang', lang)
-    
-    // i18n.changeLanguage(lang)
-    
   };
-
-  // LANG DROPDOWN DATA
-  // const menu = [
-  //   {
-  //     option: `${translate('nav.english')}`,
-  //     img: "/assets/imgs/navbar/america.png",
-  //     method: switchLang,
-  //     param: 'en'
-  //   },
-  //   {
-  //     option: `${translate('nav.arabic')}`,
-  //     img: "/assets/imgs/navbar/suadi.png",
-  //     method: switchLang,
-  //     param: 'ar'
-  //   },
-  // ];
 
   return (
     <div className={cls.lang}>

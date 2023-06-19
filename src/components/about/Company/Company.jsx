@@ -10,47 +10,26 @@ const Company = () => {
 
   return (
     <div className={cls.company}>
-
       <div className='container'>
-
         <div className={`${cls.row} row align-items-center`}>
-
-        <div className='col-lg-6'>
-
-          <div className={cls.text}>
-
-            <span>{t('about.about')}</span>
-
-            <h2>{t('about.doing')}</h2>
-
-            <p>{t('about.text')}</p>
-
-            <h4>{t('about.have')}</h4>
-
-            <ProgressBar label={t('about.analytics')} percentage="95" />
-
-            <ProgressBar label={t('about.solutions')} percentage="60" />
-
+          <div className='col-lg-6'>
+            <div className={cls.text}>
+              <span>{t('about.about')}</span>
+              <h2>{t('about.doing')}</h2>
+              <p>{t('about.text')}</p>
+              <h4>{t('about.have')}</h4>
+              <ProgressBar label={t('about.analytics')} percentage="95" />
+              <ProgressBar label={t('about.solutions')} percentage="60" />
+            </div>
           </div>
-
-        </div>
-
-        <div className='col-lg-6'>
-
-          <div className={cls.image}>
-
-            <div className="blob"></div>
-
-            <img src="/assets/images/man.png" alt="contactImage" />
-
+          <div className='col-lg-6'>
+            <div className={cls.image}>
+              <div className="blob"></div>
+              <img src="/assets/images/man.png" alt="contactImage" loading="lazy" />
+            </div>
           </div>
-
         </div>
-
-        </div>
-
       </div>
-
     </div>
   )
 }

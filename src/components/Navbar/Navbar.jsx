@@ -28,7 +28,6 @@ const Navbar = () => {
     const response = await axios.get(
       `https://layanedu.com/dash/api/v1/menu/1/${i18n.language}`
     );
-
     setMenuLinks(response.data.links);
   };
 
@@ -52,11 +51,8 @@ const Navbar = () => {
             </li>
             <li></li>
           </ul>
-
           <div>
             <ul>
-              {/* <li>{t('nav.trackOrder')}</li> */}
-              {/* <li><Link to="/register"> {t('nav.register')}</Link></li> */}
               <li>
                 <Link to="/agent"> {t("nav.beAgent")}</Link>
               </li>
@@ -71,20 +67,17 @@ const Navbar = () => {
                 </li>
               )}
             </ul>
-
             <LangSwitch />
           </div>
         </div>
       </div>
-
       <div className={cls.navLinks}>
         <div className="container">
           <div className={cls.logo}>
             <Link to="/">
-              <img src="/assets/images/logo.png" alt="logo" />
+              <img src="/assets/images/logo.png" alt="logo" loading="lazy" />
             </Link>
           </div>
-
           <ul>
             {menuLinks.map((link, idx) => (
               <li key={idx}>
@@ -92,7 +85,6 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-
           <div>
             <div className={cls.icons}>
               <a
@@ -101,15 +93,12 @@ const Navbar = () => {
               >
                 <i className="fa-brands fa-facebook-f"></i>
               </a>
-
               <a target="blank" href="https://twitter.com/LayanEducation">
                 <i className="fa-brands fa-twitter"></i>
               </a>
-
               <a target="blank" href="https://www.instagram.com/layanpalestine">
                 <i className="fa-brands fa-instagram"></i>
               </a>
-
               <a
                 target="blank"
                 href="https://youtube.com/channel/UCRhUpd_l49FxB2z5jYb0GhA"
@@ -130,7 +119,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
       <div className={cls.mobileNav}>
         <div className="container">
           {cookie.get("layanAuth") ? (
@@ -142,18 +130,15 @@ const Navbar = () => {
               {t("nav.registerNow")}
             </button>
           )}
-
           <Link to="/">
-            <img src="/assets/images/logo.png" alt="logo" />
+            <img src="/assets/images/logo.png" alt="logo" loading="lazy" />
           </Link>
-
           <i
             className="fa-light fa-grid-2"
             onClick={() => setMobSidebar(true)}
           ></i>
         </div>
       </div>
-
       <MobSidebar
         mobSidebar={mobSidebar}
         setMobSidebar={setMobSidebar}

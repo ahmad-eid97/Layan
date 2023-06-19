@@ -16,14 +16,10 @@ const Footer = () => {
     const response = await axios.get(
       `/crm/universities?lang=${i18n.language}&limit=20`
     );
-
     if (!response) return;
-
     let randomUniversities = [];
-
     for (var i = 0; i < response.data.data.universities.length; i++) {
       let randomNum = Math.floor(Math.random() * 20);
-
       if (
         randomUniversities.find(
           (uni) => uni.id === response.data.data.universities[randomNum].id
@@ -34,7 +30,6 @@ const Footer = () => {
       }
       randomUniversities.push(response.data.data.universities[randomNum]);
     }
-
     setUniversities(randomUniversities);
   };
 
@@ -52,7 +47,6 @@ const Footer = () => {
         <div className="me-5 d-none d-lg-block">
           <span>{t("footer.contact")}</span>
         </div>
-
         <div className={cls.icons}>
           <a
             target="blank"
@@ -84,17 +78,15 @@ const Footer = () => {
           </a>
         </div>
       </section>
-
       <section className={cls.logoSection}>
         <div className="container text-center text-md-start mt-5">
           <div className="row mt-3">
             <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">
-                <img src="/assets/images/logo.png" alt="logoImage" />
+                <img src="/assets/images/logo.png" alt="logoImage" loading="lazy" />
               </h6>
               <p className={cls.text}>{t("footer.layan")}</p>
             </div>
-
             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">
                 {t("footer.ourUniversities")}
@@ -104,16 +96,12 @@ const Footer = () => {
                 universities.slice(0, 3).map((uni) => (
                   <p key={uni.id}>
                     <Link to={`/university/${uni.id}`}>
-                      {/* <a href="#!" className="text-reset"> */}
-                        {uni.title}
-                      {/* </a> */}
+                      {uni.title}
                     </Link>
                   </p>
                 ))}
               <Link to={`/all-universities`} style={{ color: "red" }}>
-                {/* <a href="#!" className="text-reset"> */}
-                  {t("footer.more")}
-                {/* </a> */}
+                {t("footer.more")}
               </Link>
             </div>
 
@@ -123,44 +111,33 @@ const Footer = () => {
               </h6>
               <p>
                 <Link to="/education">
-                  {/* <a href="#!" className="text-reset"> */}
-                    {t("footer.steps")}
-                  {/* </a> */}
+                  {t("footer.steps")}
                 </Link>
               </p>
               <p>
                 <Link to="/agent">
-                  {/* <a href="#!" className="text-reset"> */}
-                    {t("footer.agent")}
-                  {/* </a> */}
+                  {t("footer.agent")}
                 </Link>
               </p>
               <p>
                 <Link to="/profile">
-                  {/* <a href="#!" className="text-reset"> */}
-                    {t("footer.track")}
-                  {/* </a> */}
+                  {t("footer.track")}
                 </Link>
               </p>
               <p>
                 <Link to="/contact-us">
-                  {/* <a href="#!" className="text-reset"> */}
-                    {t("footer.contacting")}
-                  {/* </a> */}
+                  {t("footer.contacting")}
                 </Link>
               </p>
             </div>
-
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
               <h6 className="text-uppercase fw-bold mb-4">
                 {t("footer.apps")}
               </h6>
-
               <div className={cls.app}>
                 App Store
                 <i className="fa-brands fa-apple"></i>
               </div>
-
               <div className={cls.app}>
                 Google Play
                 <i className="fa-brands fa-google-play"></i>
@@ -169,7 +146,6 @@ const Footer = () => {
           </div>
         </div>
       </section>
-
       <div
         className={`${cls.bottom} text-center p-4`}
         style={{ backgroundColor: "#363636" }}

@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
@@ -77,9 +77,7 @@ const AdminRegister = () => {
     const response = await axios.get(`/crm/countries?lang=${i18n.language === 'ar' ? 'ar' : 1}&limit=500`).catch(err => {
       console.log(err)
     })
-
     if (!response) return;
-
     setCountries(response.data.data.countries)
   }
 
@@ -88,18 +86,13 @@ const AdminRegister = () => {
     const response = await axios.get(`/crm/cities?lang=${i18n.language === 'ar' ? 'ar' : 1}&limit=500`).catch(err => {
       console.log(err)
     })
-
     if (!response) return;
-
     setCities(response.data.data.cities)
   }
 
   useEffect(() => {
-    // FETCH ALL COUNTRIES
     fetchAllCountries()
-    // FETCH ALL COUNTRIES
     fetchAllCities()
-
   }, [])
 
   // COMPONENT HANDLERS
@@ -112,9 +105,7 @@ const AdminRegister = () => {
       phone: fields.phone,
       country_id: country.id,
       city_id: city.id,
-
     }
-
     const data = {
       first_name: fields.fname,
       last_name: fields.lname,
@@ -124,28 +115,21 @@ const AdminRegister = () => {
       gender: gender.label,
       birth_date: startDate,
     }
-
     Object.values(requiredData).forEach(one => {
       if (one === '') {
         setEmptyFields(true);
         setLoading(false)
       }
     })
-
     const emptyCheck = Object.values(requiredData).filter(one => one === undefined || one === '');
-
     if (emptyCheck.length <= 0) {
-
       if (!validator.isEmail(fields.email)) {
         setLoading(false)
         return errorNotify(t('contact.emailInvalid'))
       }
-
       const response = await axios.post('/crm/students/auth/register', { ...requiredData, ...data });
-
       if (!response || !response.data.success) {
         setErrorFields(response.data.errors)
-
         if (Object.values(response.data.errors).length) {
           Object.values(response.data.errors).forEach(error => {
             errorNotify(error[0])
@@ -153,74 +137,44 @@ const AdminRegister = () => {
         } else {
           errorNotify(t('agent.invalid'))
         }
-
         setLoading(false)
-
         return;
       };
-
       setLoading(false)
-
       dispatch(userActions.setUser(response.data.data.student))
-
       cookie.set('layanAuth', response.data.data.access_token)
-
       navigate('/registered')
-
     }
-
   }
 
   const chooseCountry = async (country) => {
     setCountry(country);
-
     setLoading(true)
-
     const citiesResponse = await axios.get(`/crm/cities?lang=${i18n.language}&limit=30&country_id=${country.id}`);
-
     if (!citiesResponse) return;
-
     setLoading(false)
-
     setCities(citiesResponse.data.data.cities)
-
     setCity(citiesResponse.data.data.cities[0])
   }
-
-  const successNotify = (message) => toast.success(message);
   const errorNotify = (message) => toast.error(message);
 
   if (cookie.get('layanAuth')) return null;
 
   return (
     <div className={cls.register}>
-
       {loading && <Loader />}
-
       <div className="container">
-
         <h1 className='label'>
-
-          <img src="/assets/images/cap.png" alt="titleImage" />
-
+          <img src="/assets/images/cap.png" alt="titleImage" loading="lazy" />
           <p>{t('register.title')}</p>
-
         </h1>
-
         <div className={cls.form}>
-
           <div className={`${cls.block} ${cls[i18n.language]}`}>
-
             <h4><i className="fa-light fa-user"></i> {t('register.personal')}</h4>
-
             <div className="row">
-
               <div className="col-lg-6">
-
                 <div className={cls.field}>
-
                   <label>{t('register.name')}</label>
-
                   <input
                     type="text"
                     placeholder={t('register.name')}
@@ -229,29 +183,17 @@ const AdminRegister = () => {
                     onChange={(e) => handleFields(e)}
                     className={(emptyFields && fields.username === '') || errorFields.username ? cls.error : ''}
                   />
-
                   {emptyFields && fields.username === '' &&
-
                     <p>{t('register.required')} </p>
-
                   }
-
                   {errorFields.username &&
-
                     <p>{errorFields.username}</p>
-
                   }
-
                 </div>
-
               </div>
-
               <div className="col-lg-6">
-
                 <div className={cls.field}>
-
                   <label>{t('register.fName')} </label>
-
                   <input
                     type="text"
                     placeholder={t('register.fName')}
@@ -259,17 +201,11 @@ const AdminRegister = () => {
                     value={fields.fname}
                     onChange={(e) => handleFields(e)}
                   />
-
                 </div>
-
               </div>
-
               <div className="col-lg-6">
-
                 <div className={cls.field}>
-
                   <label>{t('register.lName')} </label>
-
                   <input
                     type="text"
                     placeholder={t('register.lName')}
@@ -277,17 +213,11 @@ const AdminRegister = () => {
                     value={fields.lname}
                     onChange={(e) => handleFields(e)}
                   />
-
                 </div>
-
               </div>
-
               <div className="col-lg-6">
-
                 <div className={cls.field}>
-
                   <label>{t('register.fatherName')}</label>
-
                   <input
                     type="text"
                     placeholder={t('register.fatherName')}
@@ -295,17 +225,11 @@ const AdminRegister = () => {
                     value={fields.fatherName}
                     onChange={(e) => handleFields(e)}
                   />
-
                 </div>
-
               </div>
-
               <div className="col-lg-6">
-
                 <div className={cls.field}>
-
                   <label>{t('register.motherName')}</label>
-
                   <input
                     type="text"
                     placeholder={t('register.motherName')}
@@ -313,35 +237,20 @@ const AdminRegister = () => {
                     value={fields.motherName}
                     onChange={(e) => handleFields(e)}
                   />
-
                 </div>
-
               </div>
-
               <div className="col-lg-6">
-
                 <div className={cls.field}>
-
                   <label>{t('register.birthDate')}</label>
-
                   <div className={`${cls.date} ${cls[i18n.language]}`}>
-
                     <i className="fa-light fa-calendar-days"></i>
-
                     <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className={emptyFields && startDate === '' ? cls.error : ''} showYearDropdown yearDropdownItemNumber={50} maxDate={Date.now()} scrollableYearDropdown />
-
                   </div>
-
                 </div>
-
               </div>
-
               <div className="col-lg-6">
-
                 <div className={cls.field}>
-
                   <label>{t('register.passportNo')} </label>
-
                   <input
                     type="number"
                     placeholder={t('register.passportNo')}
@@ -349,39 +258,22 @@ const AdminRegister = () => {
                     value={fields.passportNo}
                     onChange={(e) => handleFields(e)}
                   />
-
                 </div>
-
               </div>
-
               <div className="col-lg-6">
-
                 <div className={cls.field}>
-
                   <label>{t('register.gender')}</label>
-
                   <SelectBox placeholder={t('register.gender')} list={genderList} value={gender['title'] || ''} select={setGender} />
-
                 </div>
-
               </div>
-
             </div>
-
           </div>
-
           <div className={`${cls.block} ${cls[i18n.language]}`}>
-
             <h4><i className="fa-light fa-lock-keyhole"></i> {t('register.accountInfo')}</h4>
-
             <div className="row">
-
               <div className="col-lg-6">
-
                 <div className={cls.field}>
-
                   <label>{t('register.email')}</label>
-
                   <input
                     type="text"
                     placeholder={t('register.email')}
@@ -389,29 +281,17 @@ const AdminRegister = () => {
                     onChange={(e) => handleFields(e)}
                     className={(emptyFields && fields.email === '') || errorFields.email ? cls.error : ''}
                   />
-
                   {emptyFields && !fields.email &&
-
                     <p>{t('register.required')} </p>
-
                   }
-
                   {errorFields.email &&
-
                     <p>{errorFields.email}</p>
-
                   }
-
                 </div>
-
               </div>
-
               <div className="col-lg-6">
-
                 <div className={cls.field}>
-
                   <label>{t('register.password')}</label>
-
                   <input
                     type="password"
                     placeholder={t('register.password')}
@@ -420,29 +300,17 @@ const AdminRegister = () => {
                     onChange={(e) => handleFields(e)}
                     className={(emptyFields && fields.password === '') || errorFields.password ? cls.error : ''}
                   />
-
                   {emptyFields && !fields.password &&
-
                     <p>{t('register.required')}</p>
-
                   }
-
                   {errorFields.password &&
-
                     <p>{errorFields.password}</p>
-
                   }
-
                 </div>
-
               </div>
-
               <div className="col-lg-6">
-
                 <div className={cls.field}>
-
                   <label>{t('register.phone')}</label>
-
                   <input
                     type="number"
                     placeholder={t('register.phone')}
@@ -451,71 +319,38 @@ const AdminRegister = () => {
                     onChange={(e) => handleFields(e)}
                     className={(emptyFields && fields.phone === '') || errorFields.phone ? cls.error : ''}
                   />
-
                   {emptyFields && !fields.phone &&
-
                     <p>{t('register.required')}</p>
-
                   }
-
                   {errorFields.phone &&
-
                     <p>{errorFields.phone}</p>
-
                   }
-
                 </div>
-
               </div>
-
             </div>
-
           </div>
-
           <div className={`${cls.block} ${cls[i18n.language]}`}>
-
             <h4><i className="fa-light fa-earth-americas"></i> {t('register.generalInfo')}</h4>
-
             <div className="row">
-
               <div className="col-lg-6">
-
                 <div className={cls.field}>
-
                   <label>{t('register.country')}</label>
-
                   <Choose placeholder={t('register.country')} keyword='title' results={countries} choose={chooseCountry} value={country['title'] || ''} error={emptyFields && !country ? true : false} />
-
                 </div>
-
               </div>
-
               <div className="col-lg-6">
-
                 <div className={cls.field}>
-
                   <label>{t('register.city')}</label>
-
                   <Choose placeholder={t('register.city')} keyword='title' results={cities} choose={setCity} value={city?.title || ''} error={emptyFields && !city ? true : false} />
-
                 </div>
-
               </div>
-
             </div>
-
           </div>
-
           <div className={cls.btn}>
-
             <button onClick={register}>{t('register.registerNew')}</button>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
   )
 }

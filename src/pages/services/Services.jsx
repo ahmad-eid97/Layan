@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import axios from './../../Utils/axios';
 
-import PagesLoader from '../../components/UIs/PagesLoader/PagesLoader' 
+import PagesLoader from '../../components/UIs/PagesLoader/PagesLoader'
 
 import { useTranslation } from 'react-i18next';
 
@@ -15,20 +15,14 @@ const Service = () => {
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const { t, i18n } = useTranslation('common');
-  const navigate = useNavigate();
 
   // DCOMPONENT HANDLERS
   const fetchServices = async () => {
     setLoading(true)
-
     const response = await axios.get(`/topics/2/page/1/count/30/${i18n.language}`);
-
-    if(!response) return;
-
+    if (!response) return;
     setServices(response.data.topics);
-
     setCount(response.data.topics_count);
-
     setLoading(false)
   }
 
@@ -38,39 +32,22 @@ const Service = () => {
 
   return (
     <div className={cls.services}>
-
       {loading && <PagesLoader />}
-
       <div className='container'>
-        
         <h1 className='label'>
-
-          <img src="/assets/images/services.png" alt="titleImage" />
-  
+          <img src="/assets/images/services.png" alt="titleImage" loading="lazy" />
           <p>{t('services.know')}</p>
-          
         </h1>
-
         <div className={cls.wrapper}>
-
           {services.map((service, idx) => (
-
             <div key={idx} className={cls.service}>
-
-              <img src={service.photo_file} alt="discount" />
-
+              <img src={service.photo_file} alt="discount" loading="lazy" />
               <h4>{service.title}</h4>
-
               <p dangerouslySetInnerHTML={{ __html: service.details }}></p>
-
             </div>
-
           ))}
-
         </div>
-
       </div>
-
     </div>
   )
 }

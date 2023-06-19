@@ -20,6 +20,7 @@
 
     img {
       width: 100px;
+
       @include sm {
         width: 80px;
       }
@@ -28,6 +29,7 @@
     h2 {
       margin-bottom: 15px;
       font-weight: bold;
+
       @include sm {
         font-size: 1.2rem;
       }
@@ -41,15 +43,18 @@
 
     p {
       opacity: 0.9;
+
       p {
         span {
           color: #fff !important;
           font-size: 1.3rem !important;
         }
       }
+
       @include sm {
         font-size: 1rem;
       }
+
       @include xs {
         font-size: 0.9rem;
       }
@@ -59,23 +64,15 @@
   .imageSide {
     height: 70vh;
     position: relative;
+
     @include md {
       height: 50vh;
       margin-bottom: 30px;
     }
+
     img {
       width: 100%;
     }
-    // &:after {
-    //   content: '';
-    //   position: absolute;
-    //   top: 0;
-    //   right: 0;
-    //   height: 100%;
-    //   width: 50%;
-    //   z-index: 999;
-    //   background: linear-gradient(90deg, transparent, #FFFFFF);
-    // }
   }
 
   button {

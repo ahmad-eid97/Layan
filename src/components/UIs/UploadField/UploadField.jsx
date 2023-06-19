@@ -1,4 +1,3 @@
-import { t } from 'i18next';
 import { useRef } from 'react';
 
 import { useTranslation } from 'react-i18next';
@@ -26,48 +25,28 @@ const UploadField = ({ attach, updateAttachment, empty }) => {
 
   return (
     <div className={cls.field}>
-
       <label>{attach.name}</label>
-
       <div className={cls.imageArea}>
-
-        {attach.file_url ? 
-
+        {attach.file_url ?
           <>
-            
             <div className={cls.images}>
-
               <div className={cls.image}>
-
-                <img src={ typeof attach.file_url === 'object' ? URL.createObjectURL(attach.file_url) : attach.file_url } alt="uploadedImage" />
-
+                <img src={typeof attach.file_url === 'object' ? URL.createObjectURL(attach.file_url) : attach.file_url} alt="uploadedImage" loading="lazy" />
                 <i className="fa-regular fa-xmark" onClick={deletedImage}></i>
-
               </div>
-
             </div>
-
           </>
-
-          : 
-
+          :
           <div onClick={inputClick}>
-
             <i className="fa-light fa-cloud-arrow-up"></i>
-            
             <p>
               {t('upload.upload')}
             </p>
-
           </div>
-
-          }
-
-          <input type="file" style={{ display: 'none' }} ref={inputRef} onChange={chooseImage} />
-
+        }
+        <input type="file" style={{ display: 'none' }} ref={inputRef} onChange={chooseImage} />
       </div>
-
-      {empty && <p className={cls.error}>يجب إرفاق ملف</p>}
+      {empty && <p className={cls.error}>{t('university.upload')}</p>}
 
     </div>
   )

@@ -18,10 +18,12 @@
     background-color: var(--default-background);
     padding: 10px 0;
     box-shadow: 0 1px 2px rgb(56 65 74 / 20%);
+
     * {
       color: #000 !important;
       font-size: 1rem;
     }
+
     &.ar {
       border-left: unset;
       border-right: 3px solid var(--main-color);
@@ -38,11 +40,12 @@
         font-size: 0.8rem;
         font-weight: 500;
         background-color: var(--main-color-light);
+
         @include xs {
           font-size: 0.7rem;
-        } 
+        }
       }
-      
+
       i {
         font-size: 1.5rem;
         color: var(--dark-color);
@@ -50,6 +53,7 @@
         align-items: center;
         padding: 0 20px;
         transition: all 0.2s ease-in-out;
+
         @include xs {
           font-size: 1rem;
         }
@@ -65,16 +69,20 @@
       margin: 0 15px;
       display: flex;
       align-items: center;
+
       @include xs {
         font-size: 0.9rem;
       }
+
       i {
         font-size: 1.2rem;
         margin-right: 10px;
+
         @include xs {
           font-size: 1rem;
         }
       }
+
       &.ar {
         i {
           margin-right: unset;
@@ -83,13 +91,14 @@
       }
     }
 
-    & > i {
+    &>i {
       position: absolute;
       top: 25%;
       right: 15px;
       transition: all 0.2s ease-in-out;
       pointer-events: none;
       font-size: 1rem;
+
       &.ar {
         right: unset;
         left: 25px;
@@ -121,28 +130,23 @@
     .accordionBody {
       padding: 20px 20px;
       background-color: var(--special-background);
+
       p {
         color: var(--main-color);
         font-weight: 600;
         margin-top: 20px;
         font-size: 0.9rem;
       }
+
       span {
         font-size: 0.9rem;
       }
+
       button {
         font-size: 0.8rem;
         padding: 5px 15px;
         margin: 0;
         margin-top: 20px;
-      }
-    }
-  }
-
-  &.showSub {
-    .link {
-      .icon i {
-        // transform: rotate(180deg);
       }
     }
   }
@@ -153,6 +157,7 @@
         font-size: 0.9rem;
       }
     }
+
     .subMenu {
       li {
         font-size: 0.85rem;

@@ -101,7 +101,7 @@
             }
           }
         }
-        span { 
+        span {
           font-size: 0.8rem;
           padding: 6px 15px;
           background-color: var(--main-color);
@@ -160,10 +160,11 @@
                 height: 70px !important;
               }
             }
-  
+
             .info {
               margin: 0 20px;
-              h5, p {
+              h5,
+              p {
                 margin: 0;
               }
               h5 {
@@ -171,7 +172,7 @@
               }
             }
           }
-  
+
           .reply {
             font-weight: 600;
             color: var(--main-color);
@@ -203,7 +204,8 @@
         }
       }
 
-      input, textarea {
+      input,
+      textarea {
         width: 100%;
         margin-bottom: 15px;
         padding: 10px 15px;

@@ -22,47 +22,31 @@ const University = () => {
   // COMPONENT HOANDLERS
   const fetchUniversityData = async () => {
     setLoading(true)
-
     const response = await axios.get(`/crm/universities/${id}?lang=${i18n.language}`);
-
-    if(!response) return;
-
+    if (!response) return;
     setUniversity(response.data.data.university);
-
     setDegrees(response.data.data.degrees)
-
     setLoading(false)
   }
 
   const fetchRelatedUniversities = async () => {
     const response = await axios.get(`/crm/universities?lang=${i18n.language}&limit=10`);
-
-    if(!response) return;
-
+    if (!response) return;
     setRelatedUniversities(response.data.data.universities);
   }
 
   useEffect(() => {
-
     fetchUniversityData();
-
     fetchRelatedUniversities();
-
   }, [id])
 
   return (
     <div className={cls.university}>
-
       {loading && <PageLoader />}
-
       <UniversityHead university={university} />
-
       <UniversityInfo university={university} />
-
       <UniversityDetails degrees={degrees} />
-
       <RelatedUniversities relatedUniversities={relatedUniversities} />
-      
     </div>
   )
 }

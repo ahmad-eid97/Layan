@@ -39,36 +39,22 @@ const questions = [
 
 const Questions = () => {
   const { t } = useTranslation('common');
-  
+
   return (
     <div className={cls.questions}>
-
       <div className='container'>
-        
-          <h1 className='label'>
-
-            <img src="/assets/images/question.png" alt="titleImage" />
-    
-            <p>{t('questions.title')}</p>
-            
-          </h1>
-
-          <div className={`${cls.accordion} accordion`} id="accordionExample">
-
-            {questions.map((question, idx) => (
-
-              <div key={idx} className={cls.question}>
-
-                <DataAccordion data={question} />
-
-              </div>
-
-            ))}
-
-          </div>
-
+        <h1 className='label'>
+          <img src="/assets/images/question.png" alt="titleImage" loading="lazy" />
+          <p>{t('questions.title')}</p>
+        </h1>
+        <div className={`${cls.accordion} accordion`} id="accordionExample">
+          {questions.map((question, idx) => (
+            <div key={idx} className={cls.question}>
+              <DataAccordion data={question} />
+            </div>
+          ))}
+        </div>
       </div>
-
     </div>
   )
 }

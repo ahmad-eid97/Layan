@@ -22,7 +22,6 @@ const MobSidebar = ({ mobSidebar, setMobSidebar, menuLinks }) => {
   return (
     <div className={`${cls.wrapper} ${mobSidebar ? cls.show : cls.hide}`}>
       <div className={cls.dropLayer} onClick={() => setMobSidebar(false)}></div>
-
       <div
         className={`${cls.mobSidebar} ${cls[i18n.language]}`}
         sx={{ bgcolor: "background.secondary" }}
@@ -37,26 +36,12 @@ const MobSidebar = ({ mobSidebar, setMobSidebar, menuLinks }) => {
             onClick={() => setMobSidebar(false)}
           ></i>
         </div>
-
         <ul>
           {menuLinks.map((link, idx) => (
             <li key={idx} onClick={close}>
               <NavLink to={`/${link.href}`}> {link.title}</NavLink>
             </li>
           ))}
-
-          {/* <li onClick={close}><NavLink to="/education"> {t('nav.studySteps')}</NavLink></li>
-          <li onClick={close}><NavLink to="/all-universities"> {t('nav.universities')}</NavLink></li>
-          <li onClick={close}><NavLink to="/programs"> {t('nav.programs')}</NavLink></li>
-          <li onClick={close}><NavLink to="/services"> {t('nav.services')}</NavLink></li>
-          <li onClick={close}><NavLink to="/news"> {t('nav.news')}</NavLink></li>
-          <li onClick={close}><NavLink to="/blogs"> {t('nav.blogs')}</NavLink></li>
-
-          <li onClick={close}><NavLink to="/about-us"> {t('nav.who')}</NavLink></li>
-          <li onClick={close}><NavLink to="/contact-us"> {t('nav.contactUs')}</NavLink></li>
-          <li onClick={close}><NavLink to="/questions"> {t('nav.questions')}</NavLink></li>
-          <li onClick={close}><NavLink to="/agent"> {t('nav.beAgent')}</NavLink></li> */}
-
           {cookie.get("layanAuth") ? (
             <li onClick={close}>
               <NavLink to="/profile"> {t("nav.profile")}</NavLink>

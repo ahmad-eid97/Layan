@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Selectbox from '../../UIs/SelectBox/Selectbox';
 import Loader from '../../UIs/Loader/Loader';
 
 import axios from '../../../Utils/axios';
@@ -30,34 +29,21 @@ const Filter = () => {
 
   const fetchCountries = async () => {
     setLoading(true)
-
     const countriesRes = await axios.get(`/crm/countries?lang=${i18n.language}&limit=500`);
-
     if (!countriesRes) return;
-
     countriesRes.data.data.countries.unshift({ title: 'الكل', id: null })
-
     setCountries(countriesRes.data.data.countries)
-
     setLoading(false)
   }
 
   const fetchAllData = async () => {
-
     const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}`).catch(err => console.log(err))
-
     if (!response) return;
-
     setUniversities(response.data.data.universities)
-
     setDegrees(response.data.data.degrees)
-
     setPrograms(response.data.data.specialties)
-
     setLanguages(response.data.data.languages)
-
     setLoading(false)
-
   }
 
   useEffect(() => {
@@ -67,35 +53,22 @@ const Filter = () => {
 
   const chooseCountryHandler = async (countryChoosed) => {
     setLoading(true)
-
     setCountry(countryChoosed)
-
     let query = `&country_id=${countryChoosed.id}`
-
     if (countryChoosed.id === null) {
       query = ''
     }
-
     const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}${query}`).catch(err => console.log(err))
-
     if (!response) return;
-
     setUniversities(response.data.data.universities)
-
     setDegrees(response.data.data.degrees)
-
     setPrograms(response.data.data.specialties)
-
     setLanguages(response.data.data.languages)
-
     setUniversity('')
     setDegree('')
     setSpeciality('')
     setLanguage('')
-
     setLoading(false)
-
-    console.log(response)
   }
 
   const updateUniversity = async (university) => {
@@ -118,67 +91,37 @@ const Filter = () => {
 
   const updateSpeciality = async (speciality) => {
     setLoading(true)
-
     setSpeciality(speciality)
-
     const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}&specialty_id=${speciality.id ? speciality.id : ''}&country_id=${country.id ? country.id : ''}&university_id=${university.id ? university.id : ''}&degree_id=${degree.id ? degree.id : ''}`).catch(err => console.log(err))
-
     if (!response) return;
-
     setUniversities(response.data.data.universities)
-
     setDegrees(response.data.data.degrees)
-
     setPrograms(response.data.data.specialties)
-
     setLanguages(response.data.data.languages)
-
-    console.log(response)
-
     setLoading(false)
   }
 
   const updateDegree = async (degree) => {
     setLoading(true)
-
     setDegree(degree)
-
     const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}&specialty_id=${speciality.id ? speciality.id : ''}&country_id=${country.id ? country.id : ''}&university_id=${university.id ? university.id : ''}&degree_id=${degree.id ? degree.id : ''}`).catch(err => console.log(err))
-
     if (!response) return;
-
     setUniversities(response.data.data.universities)
-
     setDegrees(response.data.data.degrees)
-
     setPrograms(response.data.data.specialties)
-
     setLanguages(response.data.data.languages)
-
-    console.log(response)
-
     setLoading(false)
   }
 
   const updateLanguage = async (lang) => {
     setLoading(true)
-
     setLanguage(lang)
-
     const response = await axios.get(`/crm/programs/filter/get_search_program?lang=${i18n.language}&language_id=${lang.id}`).catch(err => console.log(err))
-
     if (!response) return;
-
     setUniversities(response.data.data.universities)
-
     setDegrees(response.data.data.degrees)
-
     setPrograms(response.data.data.specialties)
-
     setLanguages(response.data.data.languages)
-
-    console.log(response)
-
     setLoading(false)
   }
 
@@ -188,25 +131,15 @@ const Filter = () => {
 
   return (
     <div className={cls.filter}>
-
       <div className={`${cls.container} container`}>
-
         {loading && <Loader />}
-
         <Choose placeholder={t('home.country')} keyword="title" results={countries} choose={chooseCountryHandler} value={country.title || ''} />
-
         <Choose placeholder={t('home.university')} keyword={`title_${i18n.language}`} results={universities} choose={updateUniversity} value={university[`title_${i18n.language}`] || ''} />
-
         <Choose placeholder={t('home.degree')} keyword={`title_${i18n.language}`} results={degrees} choose={updateDegree} value={degree[`title_${i18n.language}`] || ''} />
-
         <Choose placeholder={t('home.speciality')} keyword={`title_${i18n.language}`} results={programs} choose={updateSpeciality} value={speciality[`title_${i18n.language}`] || ''} />
-
         <Choose placeholder={t('home.lang')} keyword='title' results={languages} choose={updateLanguage} value={language.title || ''} />
-
         <button onClick={search}>{t('home.search')}</button>
-
       </div>
-
     </div>
   )
 }

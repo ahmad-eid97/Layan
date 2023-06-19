@@ -59,10 +59,8 @@
   "home.major": "University major",
   "home.consulting": "Consulting team",
   "home.seeMore": "See More",
-
   "education.steps": "ُEducational Steps In Our Platform",
   "fields.error": "Something went wrong with fields!",
-
   "about.about": "What about our company!?",
   "about.doing": "We provide services through the continuous development of our platform in the service of educational content",
   "about.have": "We have more than 10 years of experience in the educational field across different platforms and distance learning",
@@ -82,12 +80,10 @@
   "about.uni": "University major",
   "about.university": "accredited university",
   "about.students": "Happy Students",
-
   "unis.unis": "Universities for each country",
   "unis.search": "Search",
   "unis.searchUnis": "Search for university",
   "unis.showDetails": "Show Details",
-
   "programs.programs": "Universities Programs",
   "programs.program": "Program",
   "programs.study": "Study",
@@ -98,20 +94,16 @@
   "programs.priceAfter": "Price after discount",
   "programs.discount": "Discount",
   "programs.noPrograms": "No programs found",
-
   "services.know": "Learn about our services to obtain university admission",
-
   "news.latest": "Latest News",
   "news.search": "Search",
   "news.searchNews": "Search news",
   "news.addedBy": "Added by",
   "news.addedIn": "Added in",
   "news.noNews": "No news found",
-
   "blogs.famous": "Most popular articles",
   "blogs.addedBy": "Added by",
   "blogs.noBlogs": "No blogs found",
-
   "contact.contact": "Send us a text and we will contact you",
   "contact.name": "Name",
   "contact.email": "Email",
@@ -130,7 +122,6 @@
   "contact.phoneCall": "Phone number",
   "contact.address": "Address",
   "contact.details": "Contact details",
-
   "agent.title": "Application for registration for university admission",
   "agent.agents": "Be One Of Our Agents",
   "agent.text": "A leader in student services and university admissions. A company established in 2015 aims to help foreign students to enroll in Turkish universities, provide distinguished study discounts, and help choose the appropriate specialization. Educate Me Shukran Company has a professional team that extends its hands to all students. It is not only limited to submitting the student’s papers to the university and providing him with university admission, but rather accommodating the student’s needs in full, starting from providing him with all university consultations, passing through the reception of the airport, providing him with suitable housing and completing all procedures for his stay in Turkey",
@@ -153,9 +144,7 @@
   "agent.success": "Data sent successfully",
   "agent.registerAgent": "Register Agent",
   "agent.application": "Application created successfully",
-
   "upload.upload": "Click to upload file",
-
   "profile.personal": "Personal Information",
   "profile.applications": "Applications",
   "profile.name": "Name",
@@ -176,9 +165,7 @@
   "profile.createApp": "Create Application",
   "profile.noApps": "This student has no applications yet.",
   "notFound.notFound": "Page Not Found",
-
   "questions.title": "Most Frequently Asked Questions",
-
   "blogDetails.invalid": "The data entered is invalid",
   "blogDetails.commentAdded": "Comment added successfully",
   "blogDetails.addedBy": "Added by",
@@ -192,12 +179,10 @@
   "blogDetails.blogs": "Categories",
   "blogDetails.latest": "Latest blogs",
   "blogDetails.search": "Search",
-
   "newsDetails.addedBy": "Added by",
   "newsDetails.comments": "Comments",
   "newsDetails.search": "Search",
   "newsDetails.latest": "Latest News",
-
   "info.register": "Registration of a degree statement",
   "info.programInfo": "Program Information",
   "info.student": "Student",
@@ -210,7 +195,6 @@
   "info.secondLang": "Second Program Language",
   "info.required": "This field is required",
   "info.save": "Save",
-
   "programData.register": "Register now and get your university admission",
   "programData.program": "Program",
   "programData.study": "Study",
@@ -222,6 +206,27 @@
   "programData.details": "Show details",
   "programData.empty": "No programs found",
   "programData.active": "Active",
-  "programData.notActive": "Not Active"
-
+  "programData.notActive": "Not Active",
+  "university.universities": "Universities",
+  "university.university": "University",
+  "university.price": "Price",
+  "university.discount": "Discount",
+  "university.register": "Register",
+  "university.registerNow": "Register Now",
+  "university.language": "Language",
+  "university.study": "Study",
+  "university.beforePrice": "Price before discount",
+  "university.afterPrice": "Price after discount",
+  "university.showDetails": "Show details",
+  "university.universityDetails": "University Details",
+  "university.specialities": "Specialities",
+  "university.international": "International Ranking",
+  "university.local": "Local Ranking",
+  "university.student": "Student",
+  "university.noUniversity": "No universities in this country",
+  "university.requests": "Submission requests",
+  "university.requested": "The request has been registered successfully",
+  "university.requestDesc": "Your application to join the university and educational academy has been successfully registered on our platform. Thank you for your trust in our platform",
+  "university.choose": "Choose the appropriate program to register",
+  "university.upload": "You should upload file"
 }

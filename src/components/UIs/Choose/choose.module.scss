@@ -1,42 +1,38 @@
 @import '../../../styles/extends.scss';
 
-.overlay {
-  // position: fixed;
-  // position: absolute;
-  // // background-color: transparent;
-  // background-color: rgba(0, 0, 0, 0.5);
-  // width: 99vw;
-  // top: 0;
-  // left: 0;
-  // height: 100%;
-  // z-index: 1;
-  // overflow-y: auto;
-}
+.overlay {}
+
 .field {
   position: relative;
+
   input {
     @extend %input;
     padding: 12px 15px;
     width: 100%;
     cursor: pointer;
+
     &.error {
       border-color: var(--main-color) !important;
     }
   }
+
   i {
     position: absolute;
     top: 25%;
     right: 15px;
     opacity: 0.7;
     font-size: 0.8rem;
+
     &.ar {
       right: unset;
       left: 15px;
     }
+
     &.error {
       top: 16%;
     }
   }
+
   .field__results {
     width: 100%;
     height: auto;
@@ -49,30 +45,37 @@
     display: none;
     max-height: 300px;
     overflow-y: scroll;
+
     &.error {
       top: 60%;
     }
+
     .field__results_result {
       padding: 10px 0;
+
       .resultInside {
         display: flex;
         align-items: center;
         cursor: pointer;
         padding: 0px 10px;
         margin-bottom: 5px;
+
         img {
           width: 30px;
         }
+
         p {
           font-size: 0.9rem;
           padding: 4px 10px;
           color: var(--text-color);
         }
+
         &:hover {
           background-color: var(--hover-color);
         }
       }
     }
+
     &.active {
       display: block;
     }

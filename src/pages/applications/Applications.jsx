@@ -8,13 +8,12 @@ import cls from './applications.module.scss';
 
 const Applications = () => {
   // COMPONENT HOOKS
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation('common');
 
   // COMPONENT HANDLERS
   const fetchApplications = async () => {
     const response = await axios.get(`/crm/applications?lang=${i18n.language}&limit=30`);
-    
-    if(!response) return;
+    if (!response) return;
   }
 
   useEffect(() => {
@@ -23,19 +22,12 @@ const Applications = () => {
 
   return (
     <div className={cls.applications}>
-
       <div className='container'>
-        
         <h3 className='label'>
-
-          <img src="/assets/images/blog.png" alt="titleImage" />
-
-          <p>طلبات التقديم</p>
-          
+          <img src="/assets/images/blog.png" alt="titleImage" loading="lazy" />
+          <p>{t('university.requests')}</p>
         </h3>
-
       </div>
-
     </div>
   )
 }

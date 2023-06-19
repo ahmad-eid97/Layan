@@ -23,18 +23,14 @@ const ApplicationsSection = () => {
   // COMPONENT HANDLERS
   const fetchApplications = async () => {
     setLoading(true)
-
     const response = await axios.get(`/crm/applications?lang=${i18n.language}&limit=30`, {
       headers: {
         Authorization: `Bearer ${cookie.get('layanAuth')}`,
         Accept: 'application/json'
       }
     })
-
-    if(!response) return;
-
+    if (!response) return;
     setApplications(response.data.data.applications)
-
     setLoading(false)
   }
 
@@ -44,127 +40,68 @@ const ApplicationsSection = () => {
 
   return (
     <div className={cls.applicationsSection}>
-
       {loading && <Loader />}
-
       {applications.length <= 0 ?
         <p>{t('profile.noApps')}</p>
         :
         null
       }
-
       <div className={cls.wrapper}>
-
         {applications.map((application, idx) => (
-
           <div key={idx} className={cls.app}>
-
             <p>
-
               <span>{t('profile.degree')}: </span>
-
-              { application.degree.title }
-
+              {application.degree.title}
             </p>
-
             <div className={cls.side}>
-
               {(application.selected_program === 'primary_program' || !application.selected_program) &&
-
                 <p>
-
                   <span>{t('profile.fLang')}: </span>
-
-                  { application.language_primary.title }
-
+                  {application.language_primary.title}
                 </p>
-
               }
-
               {(application.selected_program === 'second_program' || !application.selected_program) &&
-
                 <p>
-
                   <span>{t('profile.sLang')}: </span>
-
-                  { application.language_second.title }
-
+                  {application.language_second.title}
                 </p>
-
               }
-
             </div>
-
             {(application.selected_program === 'primary_program' || !application.selected_program) &&
-              
               <div>
-
                 <span>{t('profile.mainProgram')}: </span>
-
-                <h1>{ application.primary_program.specialties.title }</h1>
-
+                <h1>{application.primary_program.specialties.title}</h1>
               </div>
-            
             }
-            
-
-            {(application.selected_program === 'second_program' || !application.selected_program) && 
-              
+            {(application.selected_program === 'second_program' || !application.selected_program) &&
               <div>
-
                 <span>{t('profile.secondProgram')}: </span>
-
-                <h1>{ application.second_program.specialties.title }</h1>
-
+                <h1>{application.second_program.specialties.title}</h1>
               </div>
-            
             }
-
             <div className={cls.side}>
-
               <p>
-
                 <span>{t('profile.semester')}: </span>
-
-                { application.semester.title }
-
+                {application.semester.title}
               </p>
               <p>
-
                 <span>{t('profile.university')}: </span>
-
-                { application.university.title }
-
+                {application.university.title}
               </p>
-
             </div>
-
             <p>
-
               <span>{t('profile.status')}: </span>
-
-              { application.status }
-
+              {application.status}
             </p>
-
-            {application.status_notes && 
-            
-              <p className={cls.note}><i className="fa-regular fa-message-exclamation"></i> { application.status_notes }</p>
-            
+            {application.status_notes &&
+              <p className={cls.note}><i className="fa-regular fa-message-exclamation"></i> {application.status_notes}</p>
             }
-
           </div>
-
         ))}
-
       </div>
-
       <div className={cls.btn}>
-
         <button onClick={() => navigate('/education-info')}>{t('profile.createApp')}</button>
-
       </div>
-
     </div>
   )
 }

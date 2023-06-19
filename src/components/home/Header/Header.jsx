@@ -22,7 +22,6 @@ const Header = () => {
     } catch (err) {
       console.log(err)
     }
-
   }
 
   useEffect(() => {
@@ -41,61 +40,36 @@ const Header = () => {
         {/* SLIDE */}
         {banners.map(banner => (
           <div className={cls.slide} key={banner.id}>
-
             <div className={`${cls.row} row align-items-center`}>
-
               <div className={`${cls.triangle} col-lg-6 col-xl-4`}>
-
                 <div className={`${cls.text} ${cls[i18n.language]}`}>
-
                   <div className={cls.content}>
-
                     <span>{t('home.deserve')}</span>
-
                     <h1>{t('home.layan')}</h1>
-
                     <Link to="/register">
                       <button>{t('home.register')}</button>
                     </Link>
-
                   </div>
-
                 </div>
-
               </div>
-
               <div className='col-lg-6 col-xl-4'>
-
                 <div className={cls.middle}>
-
                   <h1>{banner.title}</h1>
-
                   <p>{banner.details}</p>
-
                   <a href={banner.link_url} target="_blank">
                     <button>{t('home.know')}</button>
                   </a>
-
                 </div>
-
               </div>
-
               <div className='col-lg-6 col-xl-4'>
-
                 <div className={cls.image}>
-
-                  <img src={banner.file ? banner.file : "/assets/images/person.png"} alt={banner.title} />
-
+                  <img src={banner.file ? banner.file : "/assets/images/person.png"} alt={banner.title} loading="lazy" />
                 </div>
-
               </div>
-
             </div>
 
             <div className={`${cls.bottom} ${cls[i18n.language]}`}>
-
               <div className={`${cls.wrapper} container`}>
-
                 <div className={cls.part}>
                   <i className="fa-solid fa-phone"></i>
                   <div>
@@ -103,7 +77,6 @@ const Header = () => {
                     <span>0097022973810</span>
                   </div>
                 </div>
-
                 <div className={cls.part}>
                   <i className="fa-solid fa-phone"></i>
                   <div>
@@ -111,16 +84,11 @@ const Header = () => {
                     <span>info@layanedu.com</span>
                   </div>
                 </div>
-
               </div>
-
             </div>
-
           </div>
         ))}
-
       </Carousel>
-
     </div>
   )
 }

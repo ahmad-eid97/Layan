@@ -31,26 +31,17 @@ const Login = () => {
     const credentials = {
       email, password
     }
-    if(email !== '' && password !== '') {
+    if (email !== '' && password !== '') {
       setLoading(true)
-
       const response = await axios.post('/crm/students/auth/login', credentials);
-  
-      if(!response) return;
-
-      console.log(response)
-
+      if (!response) return;
       if (!response.data.success) {
         setLoading(false);
         return errorNotify(response.data.message)
       }
-  
       dispatch(userActions.setUser(response.data.data.student));
-
       cookie.set('layanAuth', response.data.data.access_token);
-
       setLoading(false)
-  
       navigate('/')
     }
   }
@@ -61,31 +52,18 @@ const Login = () => {
 
   return (
     <div className={cls.login}>
-
       {loading && <Loader />}
-
       <div className='container'>
-        
         <h3 className='label'>
-
-          <img src="/assets/images/lock.png" alt="titleImage" />
-
+          <img src="/assets/images/lock.png" alt="titleImage" loading="lazy" />
           <p>{t('login.loginTo')}</p>
-          
         </h3>
-
         <div className={cls.form}>
-
           <input type="text" placeholder={t('login.email')} value={email} onChange={(e) => setEmail(e.target.value)} />
-
           <input type="password" placeholder={t('login.password')} value={password} onChange={(e) => setPassword(e.target.value)} />
-
           <button onClick={login}>{t('login.login')} </button>
-
         </div>
-
       </div>
-
     </div>
   )
 }

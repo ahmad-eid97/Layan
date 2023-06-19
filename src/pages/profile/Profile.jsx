@@ -12,23 +12,14 @@ const Profile = () => {
 
   return (
     <div className={cls.profile}>
-
       <div className='container'>
-
         <div className={cls.nav}>
-
           <span onClick={() => setCurrentTab('personal')} className={currentTab === 'personal' ? cls.active : ''}>{t('profile.personal')}</span>
-
           <span onClick={() => setCurrentTab('applications')} className={currentTab === 'applications' ? cls.active : ''}>{t('profile.applications')}</span>
-
         </div>
-
         {currentTab === 'personal' && <PersonalInfoSection />}
-
         {currentTab === 'applications' && <ApplicationsSection />}
-
       </div>
-
     </div>
   )
 }

@@ -20,45 +20,30 @@ const ProgramDetails = () => {
   // COMPONENT HANDLERS
   const fetchProgram = async () => {
     setLoading(true)
-
     const response = await axios.get(`/crm/programs/${id}?lang=${i18n.language}`);
-
-    if(!response) return;
-
+    if (!response) return;
     setProgram(response.data.data)
-
     setLoading(false)
-  } 
+  }
 
   useEffect(() => {
-
     fetchProgram();
-
   }, [])
 
   return (
     <div className={cls.programDetails}>
-
       {loading && <PagesLoader />}
-
       <div className={cls.head}>
-
         <div className={`${cls.container} container`}>
-
           {program.logo_file ?
-            <img src={program.logo_file} alt="programImage" />
+            <img src={program.logo_file} alt="programImage" loading="lazy" />
             :
-            <img src='/assets/images/logo.png' alt="programImage" />  
+            <img src='/assets/images/logo.png' alt="programImage" loading="lazy" />
           }
-
         </div>
-
       </div>
-
       <ProgramDetailsInfo program={program} />
-
       <ProgramDetailsUniversities program={program} />
-
     </div>
   )
 }

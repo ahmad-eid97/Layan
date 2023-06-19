@@ -18,6 +18,7 @@
     background-color: var(--default-background);
     padding: 10px 0;
     box-shadow: 0 1px 2px rgb(56 65 74 / 10%);
+
     &.ar {
       border-left: unset;
       border-right: 5px solid var(--main-color);
@@ -34,11 +35,12 @@
         font-size: 0.8rem;
         font-weight: 500;
         background-color: var(--main-color-light);
+
         @include xs {
           font-size: 0.7rem;
-        } 
+        }
       }
-      
+
       i {
         font-size: 1.5rem;
         color: var(--dark-color);
@@ -46,6 +48,7 @@
         align-items: center;
         padding: 0 20px;
         transition: all 0.2s ease-in-out;
+
         @include xs {
           font-size: 1rem;
         }
@@ -61,16 +64,20 @@
       margin: 0 15px;
       display: flex;
       align-items: center;
+
       @include xs {
         font-size: 0.9rem;
       }
+
       i {
         font-size: 1.2rem;
         margin-right: 10px;
+
         @include xs {
           font-size: 1rem;
         }
       }
+
       &.ar {
         i {
           margin-right: unset;
@@ -79,13 +86,14 @@
       }
     }
 
-    & > i {
+    &>i {
       position: absolute;
       top: 25%;
       right: 15px;
       transition: all 0.2s ease-in-out;
       pointer-events: none;
       font-size: 1rem;
+
       &.ar {
         right: unset;
         left: 25px;
@@ -117,25 +125,19 @@
     .accordionBody {
       padding: 20px 20px;
       background-color: var(--special-background);
+
       p {
         span {
           color: var(--main-color);
           font-weight: 600;
         }
       }
+
       .time {
         margin-top: 10px;
         color: var(--main-color);
         font-weight: 500;
         font-size: 0.9rem;
-      }
-    }
-  }
-
-  &.showSub {
-    .link {
-      .icon i {
-        // transform: rotate(180deg);
       }
     }
   }
@@ -146,6 +148,7 @@
         font-size: 0.9rem;
       }
     }
+
     .subMenu {
       li {
         font-size: 0.85rem;

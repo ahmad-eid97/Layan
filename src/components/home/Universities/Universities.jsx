@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import Loader from '../../../components/UIs/Loader/Loader';
-
 import { useTranslation } from 'react-i18next';
 
 import Carousel from 'react-multi-carousel';
@@ -43,31 +41,22 @@ const Universities = () => {
 
   // COMPONENT HANDLERS
   const fetchUniversities = async () => {
-
     const response = await axios.get(`/crm/universities?lang=${i18n.language}&limit=30`);
-
-    if(!response) return;
-
+    if (!response) return;
     setUniversities(response.data.data.universities);
   }
 
   useEffect(() => {
     fetchUniversities();
-  }, [])
+  }, [selectedUinversity])
 
   return (
     <div className={cls.universities}>
-
       <div className='container'>
-        
         <h3 className='label'>
-
-          <img src="/assets/images/cap.png" alt="titleImage" />
-
+          <img src="/assets/images/cap.png" alt="titleImage" loading="lazy" />
           <p>{t('home.universities')}</p>
-          
         </h3>
-
         <Carousel
           className={cls.carousel}
           draggable={true}
@@ -80,51 +69,38 @@ const Universities = () => {
           transitionDuration={500}
           arrows={false}
         >
-
           {universities && universities.map((one, idx) => (
             <div key={idx} className={cls.slide} onClick={() => setSelectedUniversity(one)}>
-              <img src={one.photo_file} alt="university" />
+              <img src={one.photo_file} alt="university" loading="lazy" />
               <p>{one.title}</p>
             </div>
           ))}
-
         </Carousel>
-
-        {selectedUinversity && 
-
+        {selectedUinversity?.specialties &&
           <div className={cls.description}>
-
             <h6><i className="fa-light fa-graduation-cap"></i> <span>{selectedUinversity.title}</span></h6>
-
             <i className={`${cls[i18n.language]} fa-light fa-xmark`} onClick={() => setSelectedUniversity(null)}></i>
-
-              <Carousel
-                className={cls.carousel}
-                draggable={true}
-                showDots={false}
-                responsive={responsive}
-                autoPlay={true}
-                infinite={true}
-                autoPlaySpeed={3000}
-                keyBoardControl={true}
-                transitionDuration={500}
-                arrows={false}
-              >
-
-                {selectedUinversity.specialties.map((one, idx) => (
-                  <div key={idx} className={cls.smallSlide}>
-                    <p>{one.title}</p>
-                  </div>
-                ))}
-
-              </Carousel>
-
+            <Carousel
+              className={cls.carousel}
+              draggable={true}
+              showDots={false}
+              responsive={responsive}
+              autoPlay={true}
+              infinite={true}
+              autoPlaySpeed={3000}
+              keyBoardControl={true}
+              transitionDuration={500}
+              arrows={false}
+            >
+              {selectedUinversity.specialties.map((one, idx) => (
+                <div key={idx} className={cls.smallSlide}>
+                  <p>{one.title}</p>
+                </div>
+              ))}
+            </Carousel>
           </div>
-        
         }
-
       </div>
-
     </div>
   )
 }

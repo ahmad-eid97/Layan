@@ -14,29 +14,33 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
     background-color: #fff;
     overflow: hidden;
+
     @include sm {
       display: block;
     }
 
     .image {
       grid-column: span 1;
+
       @include sm {
         margin: 3px 20px 10px;
       }
+
       img {
         width: 150px;
         height: 100px;
         border-radius: 10px;
         object-fit: contain;
       }
+
       h6 {
-        // margin: 10px 40px;
         font-weight: 600;
       }
     }
 
     .info {
       grid-column: span 5;
+
       @include lg {
         margin: 0 20px;
       }
@@ -48,17 +52,21 @@
           font-size: 0.8rem;
           border-radius: 20px;
           margin: 0 10px;
+
           @include sm {
             padding: 5px 10px;
             font-size: 0.7rem;
             margin: 0 5px;
           }
+
           &:first-of-type {
             background-color: #d0a6e0;
           }
+
           &:nth-of-type(2) {
             background-color: #aad0e7;
           }
+
           &:nth-of-type(3) {
             background-color: #ffcb9d;
           }
@@ -68,9 +76,11 @@
 
     .programDetails {
       margin: 30px 0;
+
       p {
         font-weight: 600;
       }
+
       span {
         font-size: 0.9rem;
       }
@@ -78,17 +88,21 @@
 
     .university {
       padding-bottom: 20px;
+
       @include md {
         overflow-x: scroll;
       }
+
       .wrapper {
         min-width: 700px;
       }
+
       p {
         color: var(--main-color);
         font-weight: 600;
         font-size: 0.9rem;
       }
+
       span {
         font-size: 0.95rem;
       }
@@ -98,6 +112,7 @@
       display: flex;
       justify-content: flex-end;
       margin-top: 10px;
+
       button {
         @extend %mainBtn;
         padding: 5px 25px;

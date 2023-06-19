@@ -1,12 +1,12 @@
-import { 
-  Filter, 
-  Header, 
-  Features, 
-  KnowUs, 
-  Universities, 
-  Clients, 
-  Contact, 
-  Blogs, 
+import {
+  Filter,
+  Header,
+  Features,
+  KnowUs,
+  Universities,
+  Clients,
+  Contact,
+  Blogs,
   Platforms,
   Experiences,
   News
@@ -16,29 +16,17 @@ const Home = () => {
 
   return (
     <div>
-
       <Header />
-
       <Filter />
-
       <Features />
-
       <KnowUs />
-
       <Blogs />
-
       <Universities />
-
       <Experiences />
-
       <News />
-
       <Clients />
-
       <Platforms />
-
       <Contact />
-
     </div>
   )
 }
