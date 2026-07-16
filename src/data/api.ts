@@ -1,6 +1,7 @@
 import { seedApplications } from "./applications"
 import { blogs, news } from "./articles"
 import {
+  admissionRequirements,
   banners,
   experiences,
   faqs,
@@ -143,6 +144,9 @@ export const getProgram = (id: number) => {
   const program = programs.find((p) => p.id === id)
   return program ? expandProgram(program) : undefined
 }
+
+export const getAdmissionRequirements = (degreeId: number) =>
+  admissionRequirements[degreeId] ?? []
 
 export const getBanners = () => banners
 export const getServices = () => services

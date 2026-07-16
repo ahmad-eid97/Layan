@@ -8,7 +8,7 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, subtitle, children }: PageHeaderProps) {
   return (
-    <section className="relative overflow-hidden border-b">
+    <section className="relative -mt-16 overflow-hidden border-b pt-16">
       <div className="section-glow absolute inset-0" aria-hidden />
       <div className="bg-dots absolute inset-0 opacity-30" aria-hidden />
       <div className="relative container mx-auto px-4 py-12 text-center md:py-16">

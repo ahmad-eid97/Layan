@@ -17,7 +17,7 @@ export function Hero() {
   const autoplay = useRef(Autoplay({ delay: 6000, stopOnInteraction: false }))
 
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative -mt-16 overflow-hidden pt-16">
       <div className="hero-glow absolute inset-0" aria-hidden />
       <div className="bg-dots absolute inset-0 opacity-40" aria-hidden />
 
@@ -68,7 +68,7 @@ export function Hero() {
                 </div>
 
                 <div className="relative hidden justify-center md:flex">
-                  <div className="from-primary/20 to-secondary/20 absolute inset-8 rounded-[3rem] bg-linear-to-tr blur-2xl" aria-hidden />
+                  <div className="image-glow absolute -inset-10" aria-hidden />
                   <img
                     src={banner.image}
                     alt=""

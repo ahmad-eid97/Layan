@@ -190,6 +190,14 @@
       );
   }
 
+  .image-glow {
+    background: radial-gradient(
+      ellipse 55% 55% at 50% 50%,
+      color-mix(in oklab, var(--primary) 16%, transparent),
+      transparent 72%
+    );
+  }
+
   .section-glow {
     background:
       radial-gradient(

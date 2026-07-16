@@ -35,8 +35,8 @@ export function UniversitiesSection() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="hidden md:inline-flex" />
-        <CarouselNext className="hidden md:inline-flex" />
+        <CarouselPrevious className="bg-background/80 inset-s-2 hidden backdrop-blur md:inline-flex" />
+        <CarouselNext className="bg-background/80 inset-e-2 hidden backdrop-blur md:inline-flex" />
       </Carousel>
       <div className="mt-8 text-center">
         <Button asChild variant="outline">

@@ -2,10 +2,37 @@ import type {
   Banner,
   Experience,
   Faq,
+  LocalizedText,
   Service,
   StudyStep,
   Testimonial,
 } from "./types"
+
+export const admissionRequirements: Record<number, LocalizedText[]> = {
+  1: [
+    { en: "Certified translation of the high school certificate", ar: "ترجمة معتمدة لشهادة الثانوية العامة" },
+    { en: "Valid passport copy", ar: "صورة جواز سفر ساري المفعول" },
+    { en: "Personal photo with a white background", ar: "صورة شخصية بخلفية بيضاء" },
+    { en: "Language certificate, or a free preparatory year", ar: "شهادة لغة، أو سنة تحضيرية مجانية" },
+  ],
+  2: [
+    { en: "Bachelor degree certificate and transcript", ar: "شهادة البكالوريوس وكشف الدرجات" },
+    { en: "Valid passport copy", ar: "صورة جواز سفر ساري المفعول" },
+    { en: "CV and motivation letter", ar: "سيرة ذاتية ورسالة دافع" },
+    { en: "Language certificate for the study track", ar: "شهادة لغة لمسار الدراسة المختار" },
+  ],
+  3: [
+    { en: "Master degree certificate and transcript", ar: "شهادة الماجستير وكشف الدرجات" },
+    { en: "Research proposal", ar: "مقترح بحثي" },
+    { en: "Two academic recommendation letters", ar: "رسالتا توصية أكاديميتان" },
+    { en: "Online interview with the faculty", ar: "مقابلة إلكترونية مع الكلية" },
+  ],
+  4: [
+    { en: "High school certificate copy", ar: "صورة شهادة الثانوية العامة" },
+    { en: "Valid passport copy", ar: "صورة جواز سفر ساري المفعول" },
+    { en: "Personal photo with a white background", ar: "صورة شخصية بخلفية بيضاء" },
+  ],
+}
 
 export const banners: Banner[] = [
   {
@@ -182,45 +209,50 @@ export const studySteps: StudyStep[] = [
     order: 1,
     title: { en: "Free Consultation", ar: "استشارة مجانية" },
     details: {
-      en: "Tell us your grades, budget and dream specialty — we map out realistic options together.",
-      ar: "أخبرنا بدرجاتك وميزانيتك وتخصص أحلامك — ونرسم معاً الخيارات الواقعية المتاحة.",
+      en: "Tell us your grades, budget and dream specialty in a free call with one of our advisors — we map out realistic options together and answer every question you have.",
+      ar: "أخبرنا بدرجاتك وميزانيتك وتخصص أحلامك في مكالمة مجانية مع أحد مستشارينا — نرسم معاً الخيارات الواقعية المتاحة ونجيب عن كل أسئلتك.",
     },
+    duration: { en: "Same day", ar: "في نفس اليوم" },
   },
   {
     id: 2,
     order: 2,
     title: { en: "Choose Program & University", ar: "اختيار البرنامج والجامعة" },
     details: {
-      en: "Compare tuition, rankings and languages of instruction, then lock in a primary and backup choice.",
-      ar: "قارن الرسوم والتصنيفات ولغات الدراسة، ثم ثبّت خيارك الأساسي والاحتياطي.",
+      en: "Compare tuition, rankings and languages of instruction across our partner universities, then lock in a primary choice and a backup so no semester is wasted.",
+      ar: "قارن الرسوم والتصنيفات ولغات الدراسة بين جامعاتنا الشريكة، ثم ثبّت خيارك الأساسي وخياراً احتياطياً حتى لا يضيع عليك أي فصل دراسي.",
     },
+    duration: { en: "2–5 days", ar: "2–5 أيام" },
   },
   {
     id: 3,
     order: 3,
     title: { en: "Submit Documents", ar: "تقديم المستندات" },
     details: {
-      en: "Upload your certificates and passport — we review, translate and submit the file to the university.",
-      ar: "ارفع شهاداتك وجواز سفرك — نراجع الملف ونترجمه ونقدّمه إلى الجامعة.",
+      en: "Upload your certificates and passport through your account — we review, translate and certify everything, then submit the complete file to the university on your behalf.",
+      ar: "ارفع شهاداتك وجواز سفرك عبر حسابك — نراجع كل شيء ونترجمه ونوثّقه، ثم نقدّم الملف كاملاً إلى الجامعة نيابة عنك.",
     },
+    duration: { en: "3–7 days", ar: "3–7 أيام" },
   },
   {
     id: 4,
     order: 4,
     title: { en: "Receive Acceptance", ar: "استلام القبول" },
     details: {
-      en: "Your official acceptance letter typically arrives within 2–4 weeks. We follow up so you don't have to.",
-      ar: "تصل رسالة القبول الرسمية عادة خلال 2–4 أسابيع. نتابع نحن حتى لا تضطر أنت لذلك.",
+      en: "Your official acceptance letter typically arrives within two to four weeks. We chase the admission office so you don't have to — and keep you updated at every stage.",
+      ar: "تصل رسالة القبول الرسمية عادة خلال أسبوعين إلى أربعة أسابيع. نتابع نحن مع مكتب القبول حتى لا تضطر أنت لذلك — ونبقيك على اطلاع في كل مرحلة.",
     },
+    duration: { en: "2–4 weeks", ar: "2–4 أسابيع" },
   },
   {
     id: 5,
     order: 5,
     title: { en: "Travel & Enroll", ar: "السفر والتسجيل" },
     details: {
-      en: "Visa, ticket, airport pickup and university registration — we stay with you until your first lecture.",
-      ar: "التأشيرة والتذكرة والاستقبال في المطار والتسجيل الجامعي — نبقى معك حتى محاضرتك الأولى.",
+      en: "Visa, ticket, airport pickup, housing and university registration — our local team stays with you until you sit in your first lecture, and follows up every semester after.",
+      ar: "التأشيرة والتذكرة والاستقبال في المطار والسكن والتسجيل الجامعي — يبقى فريقنا المحلي معك حتى تجلس في محاضرتك الأولى، ويتابع معك كل فصل دراسي بعدها.",
     },
+    duration: { en: "1–2 weeks", ar: "1–2 أسبوع" },
   },
 ]
 

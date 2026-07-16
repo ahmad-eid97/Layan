@@ -20,7 +20,7 @@ export function UniversityCard({ university }: { university: University }) {
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
             loading="lazy"
           />
-          <Badge className="absolute top-3 start-3">
+          <Badge className="absolute top-3 inset-s-3">
             #{university.internationalRanking}
           </Badge>
         </div>

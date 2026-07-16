@@ -11,6 +11,12 @@ export const universities: University[] = [
     internationalRanking: 420,
     localRanking: 8,
     studentCount: 32000,
+    foundedYear: 1996,
+    highlights: [
+      { en: "Merit scholarships covering up to 50% of tuition", ar: "منح تفوق تغطي حتى 50% من الرسوم الدراسية" },
+      { en: "Two campuses on both sides of the Bosphorus", ar: "حرمان جامعيان على ضفتي البوسفور" },
+      { en: "Dedicated international student office in 6 languages", ar: "مكتب مخصص للطلاب الدوليين يعمل بست لغات" },
+    ],
     bio: {
       en: "A leading private university in the heart of Istanbul, welcoming students from more than 90 countries.",
       ar: "جامعة خاصة رائدة في قلب إسطنبول، تستقبل طلاباً من أكثر من 90 دولة حول العالم.",
@@ -30,6 +36,12 @@ export const universities: University[] = [
     internationalRanking: 310,
     localRanking: 5,
     studentCount: 24500,
+    foundedYear: 1985,
+    highlights: [
+      { en: "On-campus startup incubator with seed funding", ar: "حاضنة أعمال داخل الحرم الجامعي مع تمويل تأسيسي" },
+      { en: "Laboratories shared with global technology companies", ar: "مختبرات مشتركة مع شركات تقنية عالمية" },
+      { en: "94% of engineering graduates employed within 6 months", ar: "94% من خريجي الهندسة يعملون خلال 6 أشهر" },
+    ],
     bio: {
       en: "Turkey's destination for engineering and technology degrees with research-driven teaching.",
       ar: "وجهة تركيا لدرجات الهندسة والتقنية مع تعليم قائم على البحث العلمي.",
@@ -49,6 +61,12 @@ export const universities: University[] = [
     internationalRanking: 540,
     localRanking: 12,
     studentCount: 18000,
+    foundedYear: 2001,
+    highlights: [
+      { en: "Two university teaching hospitals on campus", ar: "مستشفيان جامعيان تعليميان داخل الحرم" },
+      { en: "Clinical training starts from the second year", ar: "التدريب السريري يبدأ من السنة الثانية" },
+      { en: "Research center ranked top 10 in Turkey for health sciences", ar: "مركز أبحاث ضمن أفضل 10 في تركيا للعلوم الصحية" },
+    ],
     bio: {
       en: "A research university in the capital known for its medical and health sciences faculties.",
       ar: "جامعة بحثية في العاصمة تشتهر بكليات الطب والعلوم الصحية.",
@@ -68,6 +86,12 @@ export const universities: University[] = [
     internationalRanking: 610,
     localRanking: 4,
     studentCount: 41000,
+    foundedYear: 1925,
+    highlights: [
+      { en: "A century-old academic tradition with modern facilities", ar: "تقاليد أكاديمية عمرها قرن مع مرافق حديثة" },
+      { en: "Arabic and English study tracks in most faculties", ar: "مسارات دراسة بالعربية والإنجليزية في معظم الكليات" },
+      { en: "The region's largest alumni network for career support", ar: "أكبر شبكة خريجين في المنطقة لدعم المسار المهني" },
+    ],
     bio: {
       en: "One of Egypt's largest private universities with a century-old academic tradition.",
       ar: "واحدة من أكبر الجامعات الخاصة في مصر بتقاليد أكاديمية عريقة.",
@@ -87,6 +111,12 @@ export const universities: University[] = [
     internationalRanking: 720,
     localRanking: 7,
     studentCount: 15500,
+    foundedYear: 2006,
+    highlights: [
+      { en: "Small classes with a 1:15 professor-to-student ratio", ar: "فصول صغيرة بنسبة أستاذ لكل 15 طالباً" },
+      { en: "Double-degree options with European partner universities", ar: "خيارات شهادة مزدوجة مع جامعات أوروبية شريكة" },
+      { en: "Seafront campus minutes from the Alexandria corniche", ar: "حرم جامعي على البحر يبعد دقائق عن كورنيش الإسكندرية" },
+    ],
     bio: {
       en: "A Mediterranean campus focused on business, design and maritime studies.",
       ar: "حرم جامعي على البحر المتوسط يركّز على إدارة الأعمال والتصميم والدراسات البحرية.",
@@ -106,6 +136,12 @@ export const universities: University[] = [
     internationalRanking: 980,
     localRanking: 2,
     studentCount: 52000,
+    foundedYear: 1958,
+    highlights: [
+      { en: "Among the most affordable tuition fees in the region", ar: "من أنسب الرسوم الدراسية في المنطقة" },
+      { en: "Historic faculties of law, literature and engineering", ar: "كليات عريقة في القانون والآداب والهندسة" },
+      { en: "One of the largest public universities in Syria", ar: "واحدة من أكبر الجامعات الحكومية في سوريا" },
+    ],
     bio: {
       en: "A historic public university and one of the largest academic institutions in Syria.",
       ar: "جامعة حكومية عريقة وواحدة من أكبر المؤسسات الأكاديمية في سوريا.",
@@ -125,6 +161,12 @@ export const universities: University[] = [
     internationalRanking: 1100,
     localRanking: 3,
     studentCount: 8500,
+    foundedYear: 1978,
+    highlights: [
+      { en: "Project-based learning adopted by local industry", ar: "تعلّم قائم على المشاريع تتبناه الصناعة المحلية" },
+      { en: "Modern engineering and IT laboratories", ar: "مختبرات حديثة للهندسة وتقنية المعلومات" },
+      { en: "Strong ties with municipalities and tech employers", ar: "علاقات قوية مع البلديات وشركات التقنية" },
+    ],
     bio: {
       en: "An applied-sciences university known for engineering and information technology.",
       ar: "جامعة للعلوم التطبيقية تشتهر بالهندسة وتقنية المعلومات.",
@@ -144,6 +186,12 @@ export const universities: University[] = [
     internationalRanking: 180,
     localRanking: 45,
     studentCount: 28000,
+    foundedYear: 1898,
+    highlights: [
+      { en: "Merit scholarships up to $12,000 per year", ar: "منح تفوق تصل إلى 12,000 دولار سنوياً" },
+      { en: "Up to 3 years of practical training after STEM degrees", ar: "حتى 3 سنوات تدريب عملي بعد الشهادات العلمية" },
+      { en: "Research university in the heart of Boston", ar: "جامعة بحثية في قلب مدينة بوسطن" },
+    ],
     bio: {
       en: "A US public research university with generous merit scholarships for international students.",
       ar: "جامعة أمريكية حكومية بحثية تقدّم منحاً سخية للطلاب الدوليين المتفوقين.",

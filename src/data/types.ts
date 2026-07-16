@@ -46,6 +46,8 @@ export interface University {
   internationalRanking: number
   localRanking: number
   studentCount: number
+  foundedYear: number
+  highlights: LocalizedText[]
   bio: LocalizedText
   details: LocalizedText
 }
@@ -67,6 +69,8 @@ export interface Program {
   priceStartAt: number
   details: LocalizedText
   opportunities: LocalizedText
+  curriculum: LocalizedText[]
+  careers: LocalizedText[]
   offerings: ProgramOffering[]
 }
 
@@ -114,6 +118,7 @@ export interface StudyStep {
   order: number
   title: LocalizedText
   details: LocalizedText
+  duration: LocalizedText
 }
 
 export interface Banner {

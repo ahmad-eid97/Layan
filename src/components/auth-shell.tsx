@@ -12,7 +12,7 @@ interface AuthShellProps {
 
 export function AuthShell({ title, subtitle, children, wide = false }: AuthShellProps) {
   return (
-    <section className="relative overflow-hidden px-4 py-14">
+    <section className="relative -mt-16 overflow-hidden px-4 pt-30 pb-14">
       <div className="section-glow absolute inset-0" aria-hidden />
       <div className="bg-dots absolute inset-0 opacity-30" aria-hidden />
 
