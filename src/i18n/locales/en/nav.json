@@ -30,5 +30,7 @@
   "footer.contacting": "Contacting Us",
   "footer.apps": "Apps",
   "footer.right": "All rights reserved",
-  "footer.more": "More..."
+  "footer.more": "More...",
+  "footer.address": "Istanbul, Turkey",
+  "nav.logout": "Logout"
 }

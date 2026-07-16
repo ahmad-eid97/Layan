@@ -5,7 +5,7 @@
   "nav.trackOrder": "تتبع الطلب",
   "nav.register": "طلب التسجيل",
   "nav.beAgent": "كن وكيلنا",
-  "nav.profile": "الصفحة الشحصية",
+  "nav.profile": "الصفحة الشخصية",
   "nav.login": "تسجيل الدخول",
   "nav.studySteps": "خطوات الدراسة",
   "nav.universities": "الجامعات",
@@ -30,5 +30,7 @@
   "footer.contacting": "تواصل معنا",
   "footer.apps": "التطبيقات",
   "footer.right": "جميع الحقوق محفوظة لموقع ليان",
-  "footer.more": "المزيد..."
+  "footer.more": "المزيد...",
+  "footer.address": "إسطنبول، تركيا",
+  "nav.logout": "تسجيل الخروج"
 }

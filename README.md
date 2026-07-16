@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Layan — Study Abroad Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, bilingual (Arabic / English) web app for a study-abroad consultancy: browse
+universities and programs across 5 countries, read blogs and news, and walk through a
+mock application flow from registration to acceptance.
 
-## Available Scripts
+> **Note:** This is a portfolio rebuild of a legacy project. The original backend was
+> removed — all data is served from typed local fixtures (`src/data/`), and auth is a
+> local mock (any credentials work).
 
-In the project directory, you can run:
+## Tech stack
 
-### `npm start`
+- **Vite 7 + React 19 + TypeScript** (strict)
+- **Tailwind CSS 4 + shadcn/ui** (Radix primitives, RTL-enabled)
+- **react-router 7** (data mode, lazy-loaded routes)
+- **i18next** — full Arabic/English localization with instant RTL/LTR switching
+- **pnpm** for package management
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Getting started
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+pnpm install
+pnpm dev        # start dev server at http://localhost:5173
+```
 
-### `npm test`
+Other scripts:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+pnpm build      # typecheck + production build to dist/
+pnpm preview    # serve the production build
+pnpm lint       # eslint
+pnpm format     # prettier
+```
 
-### `npm run build`
+## Highlights
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Bilingual by design** — UI chrome via i18next namespaces, content via
+  `{ en, ar }` fields on every fixture, resolved with a `useLocalized()` hook.
+  Switching language flips `<html dir>` instantly; carousels, spacing and layout
+  are all RTL-aware (logical properties throughout).
+- **Typed mock data layer** — `src/data/api.ts` exposes accessors
+  (`getPrograms({ countryId, degreeId, ... })`) that behave like an API with
+  client-side filtering, so a real backend can be reintroduced without touching pages.
+- **Modern UI** — autoplay hero carousel with floating glass cards, glassmorphism
+  search panel, scroll-reveal animations, count-up stats, partner marquee, and a
+  consistent brand theme (light + dark) derived from the original Layan identity.
+- **Full user flows** — registration, login, program search & filtering, a
+  multi-step application builder (`/education-info`), and a profile page with
+  application tracking backed by `localStorage`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Project structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+src/
+├── components/     # layout, cards, home sections, shared UI (shadcn in ui/)
+├── context/        # mock auth provider
+├── data/           # types, fixtures, and the local "API"
+├── hooks/          # useLocalized, useDirection, usePagination, useCountUp...
+├── i18n/           # i18next config + ar/en locale files
+├── pages/          # one file per route (lazy-loaded)
+└── router.tsx      # route table with auth guards
+```
